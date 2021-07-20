@@ -21,14 +21,14 @@ export default () => {
                 Try these pages instead:
               </p>
               <div className={style.links}>
-                <Link className="mr-4 ray__link" to="/">
-                  Homepage
+                <Link className="me-4 ray__link" to="/">
+                  Mint Tokens (Home)
                 </Link>
-                <Link className="mr-4 ray__link" to="/live/">
-                  Live
+                <Link className="me-4 ray__link" to="/live/">
+                  Live Feed
                 </Link>
-                <Link className="mr-4 ray__link" to="/explorer/">
-                  Asset Explorer
+                <Link className="me-4 ray__link" to="/explorer/">
+                  Tokens Explorer
                 </Link>
               </div>
             </div>

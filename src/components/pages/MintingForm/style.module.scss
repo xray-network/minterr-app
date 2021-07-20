@@ -28,6 +28,7 @@
   img {
     max-width: 100%;
     max-height: 100%;
+    border-radius: 4px;
   }
 }
 
@@ -45,6 +46,34 @@
   background: $gray-1;
   border-radius: 8px;
 } 
+
+.faq {
+  margin: 0;
+  padding: 0;
+
+  li {
+    padding: 0;
+    margin: 0 rem(20) 0 0;
+    display: inline;
+    color: $gray-5;
+
+    i {
+      font-style: normal;
+      display: inline-flex;
+      margin-right: rem(5);
+      align-items: center;
+      justify-content: center;
+      width: rem(20);
+      height: rem(20);
+      border-radius: 100%;
+      // background: $black;
+      border: 2px solid $black;
+      color: $black;
+      font-weight: bold;
+      font-size: rem(14);
+    }
+  }
+}
 
 // dark theme
 [data-theme='dark'] {

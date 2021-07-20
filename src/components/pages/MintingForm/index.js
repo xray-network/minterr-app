@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { useSelector, useDispatch } from 'react-redux'
-import { Form, Input, Tooltip, Upload, Button, Checkbox, Radio, InputNumber, Alert, message } from "antd"
+import QRCode from 'qrcode.react'
+import { Popover, Form, Input, Tooltip, Upload, Button, Checkbox, Radio, InputNumber, Alert, message } from "antd"
 import { InboxOutlined } from '@ant-design/icons'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { SVGCopy, SVGZap, SVGClose } from "@/svg"
@@ -22,6 +23,7 @@ export default () => {
   const [mnemonicToRestore, setMnemonicToRestore] = useState('')
   const [, forceUpdate] = useState()
   const [donateState, setDonateState] = useState(false)
+  const [tokenType, setTokenType] = useState(721)
   const [error, setError] = useState(false)
 
   useEffect(() => {
@@ -96,10 +98,7 @@ export default () => {
     const mint = formFields.mint || []
     mint.push({
       image: url,
-      name: undefined,
-      ticker: undefined,
       amount: 1,
-      publisher: 'https://minterr.org',
     })
     const newFields = mint.map((item, index) => {
       return {
@@ -130,14 +129,7 @@ export default () => {
         }
       }
     })
-    const tokensMetadata = {}
-    values.mint.forEach(item => {
-      tokensMetadata[item.ticker] = {
-        image: item.image,
-        name: item.name,
-        publisher: item.publisher,
-      }
-    })
+
     const donateOpts = {
       // donateAddress: 'addr1q9ky2t5najzxwsvjl2e6q60vvkcewfwr0ft63vcvce7hwmr30hw5ksyahzstrqal7g45aug24r8sdf5842lfwzg4c99qvvuqv3',
       donateAddress: 'addr_test1qzd2ulz7jx0zn3t90vep26f7gl9wkj03lx0w5ca0vhnl5u6nfathe437695m4cwzlgn959uswtm56dkkmvxjx6h6mfssh7t4zy',
@@ -145,12 +137,34 @@ export default () => {
     }
     const donate = donateState ? donateOpts : undefined
 
-    const metadata = {
-      "721": {
-        [policyId]: tokensMetadata,
-      },
-      publisher: "https://minterr.org",
+    const processedMetadata = {}
+    let metadata = {}
+
+    if (tokenType === 721) {
+      values.mint.forEach(item => {
+        const itemProcesses = Object.assign({}, item)
+        delete itemProcesses.amount
+        processedMetadata[item.ticker] = {
+          ...item,
+          publisher: "https://minterr.org",
+        }
+      })
+      metadata = {
+        "721": {
+          [policyId]: processedMetadata,
+        },
+        publisher: "https://minterr.org",
+      }
     }
+
+    if (tokenType === 0) {
+      metadata = {
+        ...values.mint[0],
+        publisher: "https://minterr.org",
+      }
+    }
+
+    console.log(metadata)
 
     const tx = Cardano.crypto.txBuildMint(
       values.toAddress,
@@ -195,12 +209,37 @@ export default () => {
   return (
     <div className="ray__block">
       <h1 className="mb-5">
-        Let's mint a magic token, creator! <span role="img" aria-label="">👋</span>
+        Let's mint a Cardano token, creator! <span role="img" aria-label="">👋</span>
       </h1>
+      <div className="mb-5">
+        <ul className={style.faq}>
+          <li>
+            <i>1</i> Write down the mnemonic before you send the funds
+          </li>
+          <li>
+            <i>2</i> Send at least 2 <span className="ray__ticker">ADA</span> (or 3 <span className="ray__ticker">ADA</span> if you want to donate) to the session address (~1.7 <span className="ray__ticker">ADA</span> will be sent back with minted tokens)
+          </li>
+          <li>
+            <i>3</i> Make sure the balance is topped up
+          </li>
+          <li>
+            <i>4</i> Enter the recipient address of minted tokens
+          </li>
+          <li>
+            <i>5</i> Select token type
+          </li>
+          <li>
+            <i>6</i> Make a donation!
+          </li>
+          <li>
+            <i>7</i> Complete the form
+          </li>
+        </ul>
+      </div>
       <div className="row">
         <div className="col-12">
           <div className="mb-2">
-            <span className="me-3"><strong>Session Mnemonic</strong></span>
+            <span className="me-3"><strong>1. Session Mnemonic</strong></span>
             {!restore && (
               <span>
                 <span
@@ -254,7 +293,7 @@ export default () => {
             {restore && (
               <div className={style.restoreInput}>
                 <Input.Search
-                  placeholder="Enter the mnemonic you want to recover"
+                  placeholder="Enter the mnemonic you want to restore"
                   allowClear
                   enterButton="Restore"
                   size="large"
@@ -274,7 +313,14 @@ export default () => {
       </div>
       <div className="row">
         <div className="col-6">
-          <div className="mb-2"><strong>Session Address</strong></div>
+          <div className="mb-2">
+            <strong className="me-2">2. Session Address</strong>
+            <Popover
+              content={<QRCode value={address} size="50" />}
+            >
+              <span className="link">QR Code</span>
+            </Popover>
+          </div>
           <div className="mb-5">
             <h5>
               <CopyToClipboard text={address} onCopy={onCopy}>
@@ -292,7 +338,7 @@ export default () => {
         </div>
         <div className="col-6">
           <div className="mb-2">
-            <span className="me-3"><strong>Address Balance</strong></span>
+            <span className="me-3"><strong>3. Address Balance</strong></span>
             {!addressStateLoading && (
               <span
                 className="link"
@@ -310,7 +356,7 @@ export default () => {
               </div>
             )}
           </div>
-          <h5 className="mb-5">{amount} ADA</h5>
+          <h5 className="mb-5">{amount} <span className="ray__ticker">ADA</span></h5>
         </div>
       </div>
 
@@ -324,10 +370,20 @@ export default () => {
         <div className="row">
           <div className="col-12">
             <div className="pb-4">
-              <div className="mb-2"><strong>Mint To Address</strong></div>
+              <div className="mb-2"><strong>4. Mint To Address</strong></div>
               <Form.Item
                 name="toAddress"
-                rules={[{ required: true, message: 'Required' }]}
+                rules={[
+                  { required: true, message: 'Required' },
+                  () => ({
+                    validator(_, value) {
+                      if (!value || (Cardano.crypto.validateAddress(value) === 'base')) {
+                        return Promise.resolve()
+                      }
+                      return Promise.reject(new Error('Must be a valid Shelley address'))
+                    },
+                  })
+                ]}
               >
                 <Input
                   size="large"
@@ -342,57 +398,60 @@ export default () => {
         <div className="row">
           <div className="col-6">
             <div className="mb-5">
-              <div className="mb-2"><strong>Token Type</strong></div>
-              <Radio.Group value={1}>
-                <Radio value={1} className="me-3">NFT</Radio>
-                <Radio value={2} className="me-3">Regular</Radio>
+              <div className="mb-2"><strong>5. Token Type</strong></div>
+              <Radio.Group value={tokenType} onChange={(e) => {
+                setTokenType(e.target.value)
+                form.resetFields(['mint'])
+              }}>
+                <Radio value={721} className="me-3">NFT</Radio>
+                <Radio value={0} className="me-3">Regular</Radio>
               </Radio.Group>
             </div>
           </div>
           <div className="col-6">
             <div className="mb-5">
               <div className="mb-2">
-                <span className="me-3"><strong>Donation</strong></span>
+                <span className="me-3"><strong>6. Donation</strong></span>
               </div>
               <Checkbox className="cursor-pointer" checked={donateState} onChange={(e) => setDonateState(e.target.checked)}>
-                Donate 1 ADA for the further development
+                Donate 1 <span className="ray__ticker">ADA</span> for the further development
               </Checkbox>
             </div>
           </div>
         </div>
-        <div className="row">
-          <div className="col-12">
-            <div className="mb-2"><strong>Upload files (Up to 30, max 2Mb each)</strong></div>
-            <div className="mb-5">
-              <Upload.Dragger
-                maxCount={30}
-                action="https://ipfs.infura.io:5001/api/v0/add?stream-channels=true"
-                onChange={uploadFiles}
-                multiple
-              >
-                <div className="font-size-16">
-                  <p className="ant-upload-drag-icon mt-4 mb-2">
-                    <InboxOutlined />
-                  </p>
-                  <p>Click or drag file to this area to upload</p>
-                  <p className="text-muted mb-4">
-                    Support for a single or bulk upload. Strictly forbidden to upload pirated files or NSFW content.
-                  </p>
+        {tokenType === 721 && (
+          <div>
+            <div className="row">
+              <div className="col-12">
+                <div className="mb-3"><strong>7. Upload Files & Edit Token Fields (Up to 30, max 2Mb each)</strong></div>
+                <div className="mb-4">
+                  <Upload.Dragger
+                    maxCount={30}
+                    action="https://ipfs.infura.io:5001/api/v0/add?stream-channels=true"
+                    onChange={uploadFiles}
+                    multiple
+                  >
+                    <div className="font-size-16">
+                      <p className="ant-upload-drag-icon mt-4 mb-2">
+                        <InboxOutlined />
+                      </p>
+                      <p>Click or drag file to this area to upload</p>
+                      <p className="text-muted mb-4">
+                        Support for a single or bulk upload. Strictly forbidden to upload pirated files or NSFW content
+                      </p>
+                    </div>
+                  </Upload.Dragger>
                 </div>
-              </Upload.Dragger>
+              </div>
             </div>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-12">
-            <div className="mb-2"><strong>Edit Tokens Data</strong></div>
-            <div className="row mb-5">
+            <div className="row">
               <Form.List name="mint">
                 {(fields, { remove }) => (
                   <>
                     {fields.map((field, index) => {
+                      console.log(formFields)
                       const originalImage = formFields.mint[index].image
-                      const image = originalImage.startsWith('ipfs://')
+                      const image = originalImage && originalImage.startsWith('ipfs://')
                         ? `https://cloudflare-ipfs.com/ipfs/${originalImage.replace('ipfs://', '')}`
                         : originalImage
                       return (
@@ -425,11 +484,14 @@ export default () => {
                                 {...field.restField}
                                 name={[field.name, 'ticker']}
                                 fieldKey={[field.fieldKey, 'ticker']}
-                                rules={[{ required: true, message: 'Required' }]}
+                                rules={[
+                                  { required: true, message: 'Required' },
+                                  { pattern: new RegExp(/^[a-zA-Z0-9]+$/i), message: 'No special characters' }
+                                ]}
                               >
                                 <Input
                                   size="large"
-                                  placeholder="Ticker (SOMENFT001)"
+                                  placeholder="Ticker (eg, XRAY001)"
                                   allowClear
                                   autoComplete="off"
                                 />
@@ -438,11 +500,14 @@ export default () => {
                                 {...field.restField}
                                 name={[field.name, 'name']}
                                 fieldKey={[field.fieldKey, 'name']}
-                                rules={[{ required: true, message: 'Required' }]}
+                                rules={[
+                                  { required: true, message: 'Required' },
+                                  { pattern: new RegExp(/^[a-zA-Z0-9()\-+&#!?.,\s]+$/i), message: 'No special characters' }
+                                ]}
                               >
                                 <Input
                                   size="large"
-                                  placeholder="Name (Some Nft #001)"
+                                  placeholder="Name (eg, XRAY NFT #001)"
                                   allowClear
                                   autoComplete="off"
                                 />
@@ -465,14 +530,6 @@ export default () => {
                               </Form.Item>
                               <Form.Item
                                 {...field.restField}
-                                name={[field.name, 'publisher']}
-                                fieldKey={[field.fieldKey, 'publisher']}
-                                hidden
-                              >
-                                <Input />
-                              </Form.Item>
-                              <Form.Item
-                                {...field.restField}
                                 name={[field.name, 'image']}
                                 fieldKey={[field.fieldKey, 'image']}
                                 hidden
@@ -488,30 +545,76 @@ export default () => {
                 )}
               </Form.List>
             </div>
-            {isFormEmpty && (
-              <div className="mb-5 py-4 text-muted text-center">
+            {/* {isFormEmpty && (
+              <div className="mb-5 pt-3 pb-5 text-muted text-center">
                 Upload the files first
               </div>
+            )} */}
+          </div>
+        )}
+        {tokenType === 0 && (
+          <div>
+            <Form.Item
+              name={['mint', 0, 'ticker']}
+              rules={[
+                { required: true, message: 'Required' },
+                { pattern: new RegExp(/^[a-zA-Z0-9]+$/i), message: 'No special characters' }
+              ]}
+            >
+              <Input
+                size="large"
+                placeholder="Ticker (eg, XRAY)"
+                allowClear
+                autoComplete="off"
+              />
+            </Form.Item>
+            <Form.Item
+              name={['mint', 0, 'name']}
+              rules={[
+                { required: true, message: 'Required' },
+                { pattern: new RegExp(/^[a-zA-Z0-9()\-+&#!?.,\s]+$/i), message: 'No special characters' }
+              ]}
+            >
+              <Input
+                size="large"
+                placeholder="Name (eg, XRAY Token)"
+                allowClear
+                autoComplete="off"
+              />
+            </Form.Item>
+            <Form.Item
+              name={['mint', 0, 'amount']}
+              rules={[{ required: true, message: 'Required' }]}
+            >
+              <InputNumber
+                size="large"
+                placeholder="Amount"
+                autoComplete="off"
+                className="w-100"
+                precision={0}
+                min={1}
+                max={Number.MAX_SAFE_INTEGER}
+              />
+            </Form.Item>
+          </div>
+        )}
+        <div className="row mt-5">
+          <div className="col-12">
+            {error && (
+              <Alert
+                className="mb-4"
+                type="error"
+                message="Insufficient funds to send the transaction. Top up your address."
+                closable
+                afterClose={() => setError(false)}
+              />
             )}
-            <div className="row">
-              <div className="col-12">
-                {error && (
-                  <Alert
-                    className="mb-4"
-                    type="error"
-                    message="Insufficient funds to send the transaction. Top up your address."
-                    closable
-                    afterClose={() => setError(false)}
-                  />
-                )}
-                <Button disabled={isFormEmpty} htmlType="submit" size="large" className="ray__btn ray__btn--success w-100">
-                  <span className="ray__icon me-2">
-                    <SVGZap />
-                  </span>
-                  <span>Mint NFT Tokens</span>
-                </Button>
-              </div>
-            </div>
+            <Button disabled={isFormEmpty && !(tokenType === 0)} htmlType="submit" size="large" className="ray__btn ray__btn--success w-100">
+              <span className="ray__icon me-2">
+                <SVGZap />
+              </span>
+              <span>Mint NFT Tokens</span>
+            </Button>
           </div>
         </div>
       </Form>

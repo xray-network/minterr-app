@@ -7,7 +7,7 @@ import Soon from '@/components/shared/Soon'
 export default () => {
   return (
     <MainLayout>
-      <Helmet title="Cardano Asset Explorer" />
+      <Helmet title="Cardano NFT Asset Explorer" />
       {/* <Explorer /> */}
       <Soon />
     </MainLayout>

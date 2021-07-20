@@ -7,7 +7,7 @@ import TransactionModal from '@/components/pages/TransactionModal'
 export default () => {
   return (
     <MainLayout>
-      <Helmet title="Mint Cardano Tokens" />
+      <Helmet title="Mint Cardano NFT Token Online" />
       <MintingForm />
       <TransactionModal />
     </MainLayout>

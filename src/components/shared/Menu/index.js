@@ -1,7 +1,7 @@
 import React from "react"
 import { Link } from "gatsby"
 import style from "./style.module.scss"
-import { SVGMinterr, SVGWallet, SVGAddCircled, SVGZap, SVGSearch } from "@/svg"
+import { SVGMinterr, SVGWallet, SVGAddCircled, SVGSun, SVGZap, SVGSearch } from "@/svg"
 
 export default () => {
   return (
@@ -13,7 +13,7 @@ export default () => {
         <span className="text-muted d-sm-inline d-none">
           Cardano minting tool and NFT explorer #1
         </span>
-        <span className="ms-auto">
+        <span className="ms-auto me-3">
           <a
             href="https://raywallet.org"
             className="ant-btn ray__btn ray__btn--round"
@@ -26,12 +26,12 @@ export default () => {
             </span>
           </a>
         </span>
-        {/* <span role="button" tabIndex="0" className="cursor-pointer me-3">
+        <span role="button" tabIndex="0" className="cursor-pointer me-3">
           <span className="ray__icon ray__icon--22">
             <SVGSun />
           </span>
-        </span> */}
-        {/* <span className={`${style.menuIcon} cursor-pointer`} /> */}
+        </span>
+        <span className={`${style.menuIcon} cursor-pointer`} />
       </div>
       <div className="ray__line" />
       <div className={style.Submenu}>
@@ -63,7 +63,7 @@ export default () => {
           <span className="ray__icon me-2">
             <SVGSearch />
           </span>
-          <span>Asset Explorer</span>
+          <span>Tokens Explorer</span>
         </Link>
       </div>
     </div>
