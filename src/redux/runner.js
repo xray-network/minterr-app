@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux"
 
-export default ({ children }) => {
+const Runner = ({ children }) => {
   const dispatch = useDispatch()
 
   setInterval(() => {
@@ -11,3 +11,5 @@ export default ({ children }) => {
 
   return children
 }
+
+export default Runner

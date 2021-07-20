@@ -2,15 +2,15 @@ import React from "react"
 import { useSelector } from "react-redux"
 import { Input, Tooltip } from 'antd'
 import { SVGRay, SVGCardano, SVGWallet, SVGTwitter, SVGAtSign, SVGChrome, SVGApple, SVGCategory, SVGAndroid, SVGInternet } from "@/svg"
-import style from "./style.module.scss"
+import * as style from "./style.module.scss"
 
-export default () => {
+const Footer = () => {
   const networkSlot = useSelector((state) => state.settings.networkSlot)
   const networkBlock = useSelector((state) => state.settings.networkBlock)
 
   return (
     <div className="ray__block mb-0">
-      <div className={`${style.footer} mb-5`}>
+      <div className="mb-5">
         <div className="ray__line mb-5" />
         <div className={style.top}>
           <div className="row">
@@ -209,3 +209,5 @@ export default () => {
     </div>
   )
 }
+
+export default Footer

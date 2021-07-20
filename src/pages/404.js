@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet"
 import MainLayout from '@/layouts/Main'
 import Error404 from "@/components/shared/404"
 
-export default () => {
+const Page404 = () => {
   return (
     <MainLayout>
       <Helmet title="Page Not Found">
@@ -13,3 +13,5 @@ export default () => {
     </MainLayout>
   )
 }
+
+export default Page404

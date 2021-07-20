@@ -1,10 +1,17 @@
 module.exports = {
-  flags: {
-    DEV_SSR: false,
+  siteMetadata: {
+    siteUrl: "https://minterr.org",
+    title: "Mint Cardano Tokens | Minterr",
   },
   plugins: [
+    "gatsby-plugin-sitemap",
     `gatsby-plugin-react-helmet`,
-    `gatsby-plugin-sass`,
+    {
+      resolve: `gatsby-plugin-sass`,
+      options: {
+        implementation: require("node-sass"),
+      },
+    },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -59,4 +66,4 @@ module.exports = {
       }
     },
   ],
-}
+};

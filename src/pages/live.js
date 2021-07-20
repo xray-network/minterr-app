@@ -4,7 +4,7 @@ import MainLayout from '@/layouts/Main'
 // import Live from '@/components/pages/Live'
 import Soon from '@/components/shared/Soon'
 
-export default () => {
+const PageLive = () => {
   return (
     <MainLayout>
       <Helmet title="Cardano NFT Live Feed" />
@@ -13,3 +13,5 @@ export default () => {
     </MainLayout>
   )
 }
+
+export default PageLive

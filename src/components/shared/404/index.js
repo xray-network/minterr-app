@@ -1,8 +1,8 @@
 import React from "react"
-import style from "./style.module.scss"
+import * as style from "./style.module.scss"
 import { Link } from "gatsby"
 
-export default () => {
+const Page404 = () => {
   return (
     <div className="ray__block">
       <div className={style.error}>
@@ -20,7 +20,7 @@ export default () => {
                 <br />
                 Try these pages instead:
               </p>
-              <div className={style.links}>
+              <div>
                 <Link className="me-4 ray__link" to="/">
                   Mint Tokens (Home)
                 </Link>
@@ -38,3 +38,5 @@ export default () => {
     </div>
   )
 }
+
+export default Page404

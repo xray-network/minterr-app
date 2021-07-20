@@ -1,2 +1,2 @@
-// import store from '@/redux/provider'
-// export const wrapRootElement = store
+import store from '@/redux/provider'
+export const wrapRootElement = store

@@ -4,7 +4,7 @@ import MainLayout from '@/layouts/Main'
 import MintingForm from '@/components/pages/MintingForm'
 import TransactionModal from '@/components/pages/TransactionModal'
 
-export default () => {
+const PageIndex = () => {
   return (
     <MainLayout>
       <Helmet title="Mint Cardano NFT Token Online" />
@@ -13,3 +13,5 @@ export default () => {
     </MainLayout>
   )
 }
+
+export default PageIndex

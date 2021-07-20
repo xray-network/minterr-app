@@ -1,9 +1,9 @@
 import React from "react"
 import { Link } from "gatsby"
-import style from "./style.module.scss"
+import * as style from "./style.module.scss"
 import { SVGMinterr, SVGWallet, SVGAddCircled, SVGSun, SVGZap, SVGSearch } from "@/svg"
 
-export default () => {
+const Menu = () => {
   return (
     <div className="ray__block mb-4">
       <div className={style.menu}>
@@ -69,3 +69,5 @@ export default () => {
     </div>
   )
 }
+
+export default Menu

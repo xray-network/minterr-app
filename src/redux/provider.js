@@ -9,7 +9,7 @@ import reducers from './reducers'
 import root from './sagas'
 import Runner from './runner'
 
-export default ({ element }) => {
+const ReduxProvider = ({ element }) => {
   const middleware = createSagaMiddleware()
   const store = createStore(reducers(), applyMiddleware(middleware))
 
@@ -23,3 +23,5 @@ export default ({ element }) => {
     </Provider>
   )
 }
+
+export default ReduxProvider

@@ -4,7 +4,7 @@ import MainLayout from '@/layouts/Main'
 // import Explorer from '@/components/pages/Explorer'
 import Soon from '@/components/shared/Soon'
 
-export default () => {
+const PageExplorer = () => {
   return (
     <MainLayout>
       <Helmet title="Cardano NFT Asset Explorer" />
@@ -13,3 +13,5 @@ export default () => {
     </MainLayout>
   )
 }
+
+export default PageExplorer

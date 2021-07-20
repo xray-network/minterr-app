@@ -1,6 +1,6 @@
 import React from "react"
 
-export default () => {
+const Explorer = () => {
   return (
     <div className="ray__block">
       <h1>
@@ -10,4 +10,4 @@ export default () => {
   )
 }
 
-
+export default Explorer

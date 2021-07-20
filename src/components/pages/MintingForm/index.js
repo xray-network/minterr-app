@@ -6,9 +6,9 @@ import { InboxOutlined } from '@ant-design/icons'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { SVGCopy, SVGZap, SVGClose } from "@/svg"
 import Cardano from "../../../services/cardano"
-import style from "./style.module.scss"
+import * as style from "./style.module.scss"
 
-export default () => {
+const MintingForm = () => {
   const [form] = Form.useForm()
   const dispatch = useDispatch()
   const mnemonic = useSelector((state) => state.settings.mnemonic)
@@ -622,4 +622,4 @@ export default () => {
   )
 }
 
-
+export default MintingForm

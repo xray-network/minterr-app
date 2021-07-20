@@ -1,7 +1,7 @@
 import React from "react"
-import style from "./style.module.scss"
+import * as style from "./style.module.scss"
 
-export default () => {
+const Soon = () => {
   return (
     <div className="ray__block">
       <div className={style.error}>
@@ -24,3 +24,5 @@ export default () => {
     </div>
   )
 }
+
+export default Soon

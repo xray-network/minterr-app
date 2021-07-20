@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
-import style from "./style.module.scss"
+import * as style from "./style.module.scss"
 
-export default () => {
+const Cookies = () => {
   const cookiesViewed = useSelector((state) => state.settings.cookiesViewed)
   const dispatch = useDispatch()
 
@@ -35,7 +35,7 @@ export default () => {
             Our site uses cookies{" "}
             <span role="img" aria-label="">
               🍪
-          </span>
+            </span>
           </strong>
         </h5>
         <p className={style.description}>
@@ -43,7 +43,7 @@ export default () => {
           to enhance the experience on our site, and for advertising purposes.
           Usage of a cookie is in no way linked to any personally identifiable
           information on our website.
-      </p>
+        </p>
         <a
           href="/"
           onClick={e => {
@@ -53,8 +53,10 @@ export default () => {
           className="ray__button ray__button--small"
         >
           Got it
-      </a>
+        </a>
       </div>
     )
     : null
 }
+
+export default Cookies
