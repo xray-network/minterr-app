@@ -1,0 +1,169 @@
+@import "@/styles/mixins";
+
+html, body {
+  height: auto;
+  width: auto;
+  min-height: 100%;
+}
+
+html {
+  font-size: 16px;
+  @media (max-width: $lg-max-width) {
+    font-size: 14px;
+  }
+  @media (max-width: $md-max-width) {
+    font-size: 12px;
+  }
+  @media (max-width: $sm-max-width) {
+    font-size: 11px;
+  }
+}
+
+body {
+  font-family: $base-font-family;
+  color: $text;
+  overflow-x: hidden;
+  position: relative;
+  background-color: $pastel-1;
+  position: relative;
+
+  * {
+    font-variant: normal !important;
+    font-feature-settings: normal !important;
+  }
+
+  &:before {
+    content: "";
+    display: block;
+    position: absolute;
+    z-index: -1;
+    pointer-events: none;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0.05;
+    background: transparent repeat url(/resources/pattern.svg) top center;
+    background-size: 400px 400px;
+  }
+}
+
+a, .link {
+  text-decoration: none;
+  color: $blue;
+  cursor: pointer;
+  
+  @include transition-color();
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: $blue;
+    text-decoration: none;
+  }
+}
+
+input {
+  outline: none !important;
+  font-family: $base-font-family;
+  color: $text;
+}
+
+button,
+input {
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+strong {
+  font-weight: 700;
+
+  &.bolder {
+    font-weight: 900;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: $dark;
+  margin-bottom: rem(20);
+  font-weight: 700;
+}
+
+h1 {
+  font-size: rem(42);
+}
+
+h2 {
+  font-size: rem(36);
+}
+
+h5 {
+  font-size: rem(21);
+}
+
+p {
+  margin-bottom: rem(20);
+}
+
+ul {
+  padding-left: rem(30);
+
+  li {
+    margin-bottom: rem(8);
+  }
+}
+
+sup {
+  font-size: 60%;
+  font-weight: normal !important;
+}
+
+[role="button"] {
+  outline: none;
+}
+
+::placeholder {
+  color: $gray-4 !important;
+}
+
+code {
+  display: inline-block;
+  padding: 0 rem(7);
+  background: $gray-2;
+  border-radius: 20px;
+  font-size: 80%;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+// dark theme
+[data-theme='dark'] {
+  body {
+    background: $dark;
+    color: $dark-gray-2;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: $white;
+  }
+
+  a {
+    color: $white;
+
+    &:hover,
+    &:active,
+    &:focus {
+      color: $blue-light;
+    }
+  }
+
+  ::placeholder {
+    color: $dark-gray-3 !important;
+  }
+
+  code {
+    background: $dark-gray-3;
+  }
+}

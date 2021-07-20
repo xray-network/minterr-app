@@ -1,0 +1,197 @@
+@import "@/styles/mixins";
+
+.ray {
+  &__icon {
+    display: flex !important;
+    align-items: center;
+
+    svg {
+      height: rem(18) !important;
+      width: auto !important;
+      
+      * {
+        fill: $dark;
+      }
+    }
+
+    &--inline {
+      display: inline-flex !important;
+    }
+
+    &--22 {
+      svg {
+        height: rem(22) !important;
+      }
+    }
+
+    @at-root {
+      a:not(.ray__btn), .cursor-pointer {
+        &:hover {
+          .ray__icon {
+            svg {
+              * {
+                fill: $blue;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &__block {
+    max-width: rem(1040);
+    margin: 0 auto rem(80);
+    padding: 0 rem(25);
+  }
+
+  &__line {
+    height: 1px;
+    background: $border;
+
+    &--margin {
+      margin: rem(25) 0;
+    }
+  }
+
+  &__table {
+    overflow: auto;
+    white-space: nowrap;
+  }
+
+  &__ticker {
+    display: inline-block;
+    font-size: 83%;
+    border: 1px solid $gray-3;
+    line-height: 120%;
+    padding: rem(2) rem(5);
+    border-radius: 5px;
+    font-weight: bold;
+    text-transform: uppercase;
+    vertical-align: baseline;
+  }
+
+  &__btn {
+    display: flex;
+    white-space: nowrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 rem(20);
+    color: $white;
+    background: $dark;
+    height: rem(38);
+    border: 1px solid transparent;
+    font-size: rem(16);
+    text-align: center;
+    font-weight: 700;
+    border-radius: 8px;
+    border: 1px solid transparent !important; 
+    @include transition-middle();
+
+    svg {
+      height: rem(18) !important;
+      width: auto !important;
+      * {
+        fill: $white;
+      }
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+      color: $white;
+      background: lighten($dark, 10%);
+    }
+
+    &[disabled] {
+      background: transparent !important;
+      border: 1px solid $border !important;
+      color: $gray-5 !important;
+
+      .ray__icon {
+        svg {
+          * {
+            fill: $gray-5;
+          }
+        }
+      }
+    }
+
+    &--round {
+      border-radius: 100px;
+    }
+
+    &--small {
+      height: rem(32);
+    }
+
+    &--large {
+      padding: 0 rem(40);
+      font-size: rem(21);
+    }
+
+    &--primary {
+      background: $primary;
+
+      &:hover,
+      &:focus,
+      &:active {
+        background: lighten($primary, 5%);
+      }
+    }
+
+    &--success {
+      background: $success;
+
+      &:hover,
+      &:focus,
+      &:active {
+        background: lighten($success, 5%);
+      }
+    }
+  }
+}
+
+// dark theme
+[data-theme='dark'] {
+  .ray {
+    &__block {
+      &--top {
+        border-top: 1px solid $dark-border;
+      }
+
+      &--bottom {
+        border-bottom: 1px solid $dark-border;
+      }
+    }
+
+    &__line {
+      background: $dark-border;
+    }
+
+    &__ticker {
+      border: 1px solid $dark-gray-3;
+    }
+
+    &__copy {
+      color: $dark-gray-3;
+    }
+
+    &__button {
+      &[disabled] {
+        background: $dark-gray-4 !important;
+        color: $dark-gray-3 !important;
+        border-color: transparent !important;
+      }
+
+      &--white {
+        &[disabled] {
+          background: transparent !important;
+          border-color: rgba($border, .2) !important;
+          color: $dark-gray-1 !important;
+        }
+      }
+    }
+  }
+}

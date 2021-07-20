@@ -1,0 +1,303 @@
+@import "@/styles/mixins";
+
+.ant {
+  &-result {
+    &-success .ant-result-icon > .anticon {
+      color: $success;
+    }
+
+    &-subtitle {
+      color: $gray-5;
+      font-size: rem(16);
+    }
+  }
+
+  &-alert {
+    font-size: rem(16);
+    border-radius: 8px;
+  }
+
+  &-form {
+    font-size: rem(16);
+
+    label {
+      font-size: rem(16);
+    }
+  }
+
+  &-input {
+    font-size: rem(14);
+
+    &:hover,
+    &:focus,
+    &:active {
+      border-color: $blue-light;
+    }
+
+    &-lg {
+      font-size: rem(16);
+    }
+
+    &-affix-wrapper {
+      padding: rem(4) rem(11);
+      border-radius: 8px;
+
+      &-lg {
+        padding: rem(6.5) rem(11);
+      }
+    }
+
+    &-search {
+      > .ant-input-group > .ant-input-group-addon:last-child .ant-input-search-button,
+      > .ant-input-group > .ant-input-group-addon:last-child {
+        border-radius: 0 8px 8px 0;
+      }
+  
+      .ant-input-group .ant-input-affix-wrapper:not(:last-child) {
+        border-top-left-radius: 8px;
+        border-bottom-left-radius: 8px;
+      }
+    }
+
+    &-number {
+      border-radius: 8px;
+
+      &-handler-wrap {
+        border-radius: 0 8px 8px 0;
+      }
+    }
+  }
+
+  &-btn {
+    border-radius: 8px;
+
+    &-primary {
+      background: $blue;
+
+      &:hover {
+        background: $blue-light;
+      }
+    }
+
+    &.ant-upload-list-item-card-actions-btn {
+      background: transparent;
+    }
+  }
+
+  &-message {
+    svg {
+      vertical-align: baseline;
+    }
+
+    &-notice-content {
+      border-radius: 8px;
+    }
+    
+    &-success .anticon {
+      color: $success;
+    }
+
+    &-error .anticon {
+      color: $danger;
+    }
+  }
+
+  &-upload {
+    &.ant-upload-drag {
+      border-radius: 8px;
+    }
+
+    &-list-item {
+      &:hover {
+        .ant-upload-list-item-info {
+          background: transparent;
+        }
+      }
+    }
+  }
+
+  &-tooltip {
+    &-inner {
+      border-radius: 8px;
+    }
+  }
+
+  &-checkbox {
+    &-wrapper {
+      font-size: rem(16);
+    }
+  }
+
+  &-radio {
+    &-wrapper {
+      font-size: rem(16);
+    }
+  }
+
+  // &-message {
+  //   &-notice {
+  //     &-content {
+  //       border-radius: 8px;
+  //     }
+  //   }
+  // }
+
+  // &-popover {
+  //   &-inner {
+  //     border-radius: 8px;
+  //   }
+  // }
+
+  // &-alert {
+  //   border-radius: 8px;
+
+  //   &-message {
+  //     font-weight: 700;
+  //   }
+  // }
+
+  // &-table {
+  //   background: none;
+
+  //   th {
+  //     transition: none !important;
+  //   }
+  // }
+
+  &-modal {
+    &-mask {
+      background: rgba($pastel-1, 0.8) !important;
+    }
+
+    &-close-x {
+      color: $gray-5;
+
+      &:hover {
+        color: $gray-3;
+      }
+    }
+
+    &-content {
+      border-radius: 12px !important;
+      box-shadow: none;
+    }
+  
+    &-header {
+      background: transparent !important;
+    }
+  
+    &-body {
+      font-size: rem(16) !important;
+      color: $black;
+    }
+  
+    &-title {
+      color: $black !important;
+    }
+  }
+}
+
+// dark theme
+[data-theme='dark'] {
+  // .ant {
+  //   &-input {
+  //     background: $dark-gray-4;
+  //     border-color: darken($dark-gray-3, 15%);
+  //     color: $white;
+  //   }
+
+  //   &-message {
+  //     &-notice {
+  //       &-content {
+  //         color: $white;
+  //         background: darken($dark-gray-3, 15%);
+  //       }
+  //     }
+  //   }
+
+  //   &-popover {
+  //     &-inner {
+  //       background: darken($dark-gray-3, 15%);
+        
+  //       &-content {
+  //         color: $white
+  //       }
+  //     }
+
+  //     &-title {
+  //       color: $white;
+  //       border-color: $dark-gray-3;
+  //     }
+
+  //     &-arrow {
+  //       border-right-color: darken($dark-gray-3, 15%) !important;
+  //       border-bottom-color: darken($dark-gray-3, 15%) !important;
+  //     }
+  //   }
+
+  //   &-alert {
+  //     background: darken($dark-gray-3, 15%);
+  //     border-color: darken($dark-gray-3, 15%);
+  //     color: $white;
+
+  //     &-message {
+  //       color: $white;
+  //     }
+  //   }
+
+  //   &-table {
+  //     color: lighten($dark-gray-2, 5%);
+
+  //     td, th {
+  //       border-bottom-color: darken($dark-gray-3, 15%);
+  //     }
+
+  //     &-thead  {
+  //       > tr > th {
+  //         background: darken($dark-gray-3, 15%);
+  //         color: lighten($dark-gray-2, 5%);
+
+  //         &.ant-table-column-has-sorters {
+  //           &:hover {
+  //             background: darken($dark-gray-3, 17%) !important;
+  //           }
+  //         }
+  //       }
+  //     }
+
+  //     &-row {
+  //       &:hover {
+  //         > td {
+  //           background: $dark-gray-4 !important;
+  //         }
+  //       }
+  //     }
+  //   }
+
+  //   &-spin {
+  //     &-container {
+  //       &:after {
+  //         background: $dark-gray-4;
+  //       }
+  //     }
+  //   }
+
+  //   &-modal {
+  //     &-content {
+  //       background: $dark-gray-4 !important;
+  //     }
+  
+  //     &-header {
+  //       border-color: $dark-border;
+  //     }
+  
+  //     &-body {
+  //       color: $dark-gray-1 !important;
+  //     }
+  
+  //     &-title {
+  //       color: $dark-gray-1 !important;
+  //     }
+  //   }
+  // }
+}

@@ -1,0 +1,78 @@
+@import "@/styles/mixins";
+
+.badge {
+  font-size: rem(14);
+  display: inline-block;
+  padding: rem(5) rem(8);
+
+  &-token {
+    background: $border;
+    color: $text;
+  }
+
+  &-success {
+    background: $success;
+  }
+
+  &-primary {
+    background: $blue;
+  }
+  
+  &-transparent {
+    background: rgba($white, .2);
+    color: $white;
+  }
+}
+
+.text {
+  &-muted {
+    color: $gray-5 !important;
+
+    @at-root {
+      a.text-muted {
+        &:hover,
+        &:active,
+        &:focus {
+          color: $blue !important;
+          text-decoration: none !important;
+        }
+      }
+    }
+  }
+}
+
+.table-hover {
+  tr:hover {
+    td {
+      background: $gray-3;
+    }
+  }
+}
+
+.font-size {
+  &-16 {
+    font-size: rem(16);
+  }
+  &-18 {
+    font-size: rem(18);
+  }
+  &-21 {
+    font-size: rem(21);
+  }
+  &-24 {
+    font-size: rem(24);
+  }
+  &-32 {
+    font-size: rem(32);
+  }
+}
+
+// dark theme
+[data-theme='dark'] {
+  .badge {
+    &-token {
+      background: $dark-gray-4;
+      color: $dark-gray-2;
+    }
+  }
+}

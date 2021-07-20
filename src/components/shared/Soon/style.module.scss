@@ -1,0 +1,45 @@
+@import "@/styles/mixins";
+
+.error {
+  padding-bottom: rem(50);
+
+  @media (max-width: $lg-max-width) {
+    padding-top: rem(40);
+    padding-bottom: 0;
+    text-align: center;
+  }
+}
+
+.title {
+  font-size: rem(60);
+  font-weight: bold;
+}
+
+.description {
+  padding-top: rem(50);
+}
+
+.icon {
+  img {
+    height: rem(100);
+    margin-bottom: rem(20);
+  }
+
+  @media (max-width: $lg-max-width) {
+    margin-bottom: 0;
+  }
+}
+
+.pig {
+  padding-top: rem(20);
+  text-align: center;
+
+  @media (max-width: $lg-max-width) {
+    text-align: center;
+    padding-top: 0;
+  }
+
+  img {
+    height: rem(400);
+  }
+}

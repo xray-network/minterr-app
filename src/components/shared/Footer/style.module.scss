@@ -1,0 +1,71 @@
+@import "@/styles/mixins";
+
+.top {
+  margin-bottom: rem(40);
+}
+
+.bottom {
+  .ray {
+    display: inline-flex;
+    align-items: center;
+    font-weight: 700;
+    font-size: rem(18);
+    color: $dark;
+
+    &:hover {
+      color: $blue;
+    }
+
+    svg {
+      margin-right: rem(10);
+      height: rem(24) !important;
+      width: auto !important;
+    }
+  }
+
+  .cardano {
+    display: inline-flex;
+    margin-right: rem(5);
+    position: relative;
+    z-index: 1;
+    top: rem(3);
+    color: $dark;
+
+    svg {
+      height: rem(18) !important;
+      width: auto !important;
+
+      * {
+        fill: blue;
+      }
+    }
+  }
+}
+
+.app {
+  width: rem(40);
+  height: rem(40);
+  background: $dark;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 rem(10) rem(10) 0;
+  border-radius: 8px;
+
+  &:hover {
+    background: lighten($dark, 10%);
+  }
+
+  svg {
+    * {
+      fill: $white !important;
+    }
+  }
+}
+
+// dark theme
+[data-theme='dark'] {
+  .logo {
+    color: $white;
+  }
+}

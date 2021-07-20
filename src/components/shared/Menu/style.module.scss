@@ -1,0 +1,65 @@
+@import "@/styles/mixins";
+
+.menu {
+  display: flex;
+  align-items: center;
+  padding: rem(15) 0;
+
+  &Logo {
+    svg {
+      height: rem(39) !important;
+      width: auto !important;
+    }
+  }
+
+  &Icon {
+    height: rem(20);
+    width: rem(20);
+    position: relative;
+    cursor: pointer;
+    margin-right: rem(10);
+
+    &:after, &:before {
+      content: "";
+      display: block;
+      position: absolute;
+      top: rem(6);
+      height: 2px;
+      width: 100%;
+      border-radius: 3px;
+      background: $dark;
+      @include transition-fast();
+    }
+
+    &:after {
+      top: rem(13);
+    }
+
+    &:hover {
+      &:after, &:before {
+        background: $blue;
+      }
+    }
+  }
+}
+
+.Submenu {
+  display: flex;
+  padding: rem(20) 0;
+
+  &Link {
+    display: flex;
+    margin-right: rem(25);
+    color: $dark;
+
+    &Active {
+      color: $blue;
+      font-weight: 700;
+    }
+  }
+}
+
+// dark theme
+[data-theme='dark'] {
+  
+}

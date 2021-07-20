@@ -1,0 +1,29 @@
+{
+  "name": "cardano-web3-browser",
+  "version": "0.1.0",
+  "description": "Cardano Web3 JavaScript API",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ray-network/cardano-web3.js.git"
+  },
+  "homepage": "https://github.com/ray-network/cardano-web3.js",
+  "bugs": {
+    "url": "https://github.com/ray-network/cardano-web3.js/issues"
+  },
+  "keywords": [
+    "Cardano",
+    "JavaScript",
+    "API"
+  ],
+  "main": "index.js",
+  "dependencies": {
+    "@emurgo/cardano-serialization-lib-browser": "^7.1.0",
+    "@emurgo/cardano-serialization-lib-nodejs": "^7.1.0",
+    "@emurgo/cardano-serialization-lib-asmjs": "^7.1.0",
+    "axios": "^0.21.1",
+    "bech32": "^2.0.0",
+    "bignumber.js": "^9.0.1",
+    "bip39-light": "^1.0.7"
+  }
+}

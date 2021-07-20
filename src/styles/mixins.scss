@@ -1,0 +1,99 @@
+// Colors
+$white: #fff;
+$black: #29304a;
+$blue: #1940ed;
+$blue-light: #4171eb;
+$blue-dark: #1a39c5;
+$yellow: #ff0;
+$orange: #faad15;
+$red: #f5222e;
+$pink: #fd3995;
+$purple: #652eff;
+$green: #3fcb9b;
+
+// light grays
+$gray-1: #f2f4f8;
+$gray-2: #edf1f3;
+$gray-3: #ebe5e5;
+$gray-4: #c8c4db;
+$gray-5: #7B8199;
+$gray-6: #595c97;
+
+// dark grays
+$dark-gray-1: #b8b8db;
+$dark-gray-2: #8484ad;
+$dark-gray-3: #4f4f7a;
+$dark-gray-4: #232236;
+$dark-gray-5: #11192e;
+$dark-gray-6: #0c0c1b;
+
+// warm colors
+$pastel-1: #feedeb;
+$pastel-2: #e7cac7;
+
+$text: $black;
+$border: $pastel-2;
+$dark-border: #272639;
+
+// Accent colors
+$default: $gray-4;
+$primary: $blue;
+$secondary: $gray-5;
+$success: $green;
+$info: $blue-light;
+$warning: $orange;
+$danger: $red;
+$light: $gray-1;
+$dark: $black;
+
+// Font Family
+// $base-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+// 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+// 'Noto Color Emoji';
+$base-font-family: "Circular Local";
+
+// Font Size
+$base-font-size: 16 !default;
+
+// Shadows
+$shadow: 0 0 40px -10px rgba($black, 0.2);
+$shadow-2: 0 4px 38px 0 rgba($black, 0.11), 0 0 21px 0 rgba($black, 0.05);
+$shadow-3: 0 0 100px -30px rgba(57, 55, 73, 0.3);
+$shadow-4: 0 4px 10px 0 rgba($black, 0.03), 0 0 10px 0 rgba($black, 0.02);
+$shadow-5: 0 0 40px -10px rgba($black, 0.4);
+$shadow-ant: 0 10px 35px -5px rgba(0, 0, 0, 0.15);
+
+// Convert value of rem() sass mixin function
+@function rem($px, $base: $base-font-size) {
+  @return #{floor(($px/$base) * 100) / 100}rem; // to REMs
+  // @return #{$px}px; // to PX's
+}
+
+// Transitions
+@mixin transition-bg() {
+  transition: background 0.2s ease-in-out;
+}
+@mixin transition-color() {
+  transition: color 0.05s ease-in-out;
+}
+@mixin transition-fast() {
+  transition: all 0.05s ease-in-out;
+}
+@mixin transition-middle() {
+  transition: all 0.1s ease-in-out;
+}
+@mixin transition-slow() {
+  transition: all 0.2s ease-in-out;
+}
+
+// Responsive utils
+$xxl-min-width: 1600px;
+$xxl-max-width: 1599px;
+$xl-min-width: 1200px;
+$xl-max-width: 1199px;
+$lg-min-width: 992px;
+$lg-max-width: 991px;
+$md-min-width: 768px;
+$md-max-width: 767px;
+$sm-min-width: 576px;
+$sm-max-width: 575px;

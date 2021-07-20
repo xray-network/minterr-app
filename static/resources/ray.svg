@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="50px" height="50px" viewBox="0 0 50 50" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 57.1 (83088) - https://sketch.com -->
+    <title>Artboard</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Artboard" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="logo">
+            <rect id="Rectangle" fill="#1940ED" x="0" y="0" width="50" height="50" rx="6.3"></rect>
+            <g id="letter" transform="translate(8.100000, 1.800000)" fill="#FFFFFF">
+                <path d="M29.63088,36 L20.68848,36 L17.11152,27.8352 L14.27328,27.8352 L14.27328,36 L6.41952,36 L6.41952,10.06704 L20.2608,10.06704 C23.1897746,10.06704 25.4771918,10.9159115 27.12312,12.61368 C28.7690482,14.3114485 29.592,16.4303873 29.592,18.97056 C29.592,20.9923301 29.1319246,22.6511935 28.21176,23.9472 C27.2915954,25.2432065 26.1964864,26.2022369 24.9264,26.82432 L29.63088,36 Z M19.05552,20.99232 C19.7812836,20.99232 20.3903975,20.8173617 20.88288,20.46744 C21.3753625,20.1175183 21.6216,19.6056034 21.6216,18.93168 C21.6216,18.2836768 21.3753625,17.7847217 20.88288,17.4348 C20.3903975,17.0848783 19.7812836,16.90992 19.05552,16.90992 L14.27328,16.90992 L14.27328,20.99232 L19.05552,20.99232 Z" id="R" fill-rule="nonzero"></path>
+                <rect id="Rectangle" x="0" y="21.6" width="8.64" height="6.48"></rect>
+            </g>
+        </g>
+    </g>
+</svg>
