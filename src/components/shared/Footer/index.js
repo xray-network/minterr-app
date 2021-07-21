@@ -61,7 +61,17 @@ const Footer = () => {
                     <span className="ray__icon me-2">
                       <SVGTwitter />
                     </span>
-                    <strong>Socials</strong>
+                    <strong>Minterr</strong>
+                  </div>
+                  <ul className="list-unstyled mb-5">
+                    <li><a href="https://twitter.com/MinterrNFT" className="text-muted">Twitter</a></li>
+                    <li><a href="https://discord.gg/dDVXcthYWn" className="text-muted">Discord</a></li>
+                  </ul>
+                  <div className="d-flex mb-4">
+                    <span className="ray__icon me-2">
+                      <SVGTwitter />
+                    </span>
+                    <strong>Ray Network</strong>
                   </div>
                   <ul className="list-unstyled">
                     <li><a href="https://twitter.com/RayWallet" className="text-muted">Twitter</a></li>

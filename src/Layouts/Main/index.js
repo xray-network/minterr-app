@@ -9,13 +9,14 @@ const MainLayout = ({ children }) => {
   return (
     <div className={style.layout}>
       <Helmet titleTemplate="%s | Minterr" title="Mint Cardano Tokens">
+        <link rel="preload" href="/resources/font/circular.css" as="style" />
+        <link rel="stylesheet" href="/resources/font/circular.css" />
         <meta property="og:url" content="https://minterr.org" />
         <meta
           name="description"
           content="Mint Non-Fungible and Fungible Tokens in a few clicks with Minterr, Cardano minting tool and NFT explorer #1"
         />
       </Helmet>
-      <Cookies />
       <div>
         <Menu />
         {children}
@@ -23,6 +24,7 @@ const MainLayout = ({ children }) => {
       <div className="mt-auto">
         <Footer />
       </div>
+      <Cookies />
     </div>
   )
 }

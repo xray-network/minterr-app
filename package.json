@@ -44,7 +44,6 @@
     "gatsby-plugin-react-svg": "^3.0.1",
     "gatsby-plugin-sass": "^4.10.0",
     "gatsby-plugin-sitemap": "^4.6.0",
-    "gatsby-plugin-web-font-loader": "^1.0.4",
     "gatsby-plugin-yandex-metrika": "^2.5.0",
     "node-polyfill-webpack-plugin": "^1.1.4",
     "node-sass": "^4.13.1",

@@ -145,6 +145,12 @@ export function* SETUP() {
   const mnemonic = yield select((state) => state.settings.mnemonic)
 
   yield Cardano.init()
+  yield put({
+    type: 'settings/SET_STATE',
+    payload: {
+      init: true,
+    },
+  })
   yield call(FETCH_NETWORK_STATE)
   yield call(LOAD_APP, {
     mnemonic: (storeSession && mnemonic) || Cardano.crypto.generateMnemonic(),

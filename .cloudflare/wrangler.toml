@@ -3,7 +3,7 @@ type = "webpack"
 account_id = "792461088a4c863230f3faee467094b1"
 # workers_dev = true
 route = "minterr.org/*"
-zone_id = "cbbc31f806ffcbb48c4dcdef7bd07133"
+zone_id = "17e734a4f6ba8106118770301feb0f63"
 
 [site]
 bucket = "../public"

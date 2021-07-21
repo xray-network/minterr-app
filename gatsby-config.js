@@ -29,15 +29,6 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-web-font-loader`,
-      options: {
-        custom: {
-          families: ["Circular Local"],
-          urls: ["/resources/font/circular.css"],
-        },
-      },
-    },
-    {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
         trackingId: "UA-41062113-23",
