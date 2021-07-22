@@ -25,6 +25,18 @@
 }
 
 .text {
+  &-primary {
+    color: $primary !important;
+  }
+
+  &-success {
+    color: $success !important;
+  }
+
+  &-danger {
+    color: $danger !important;
+  }
+
   &-muted {
     color: $gray-5 !important;
 
@@ -64,6 +76,9 @@
   }
   &-32 {
     font-size: rem(32);
+  }
+  &-48 {
+    font-size: rem(48);
   }
 }
 

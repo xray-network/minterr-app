@@ -1,4 +1,5 @@
 import SVGMinterr from '../static/resources/minterr.svg'
+import SVGFavicon from '../static/resources/favicon.svg'
 import SVGRay from '../static/resources/ray.svg'
 import SVGCardano from '../static/resources/cardano.svg'
 
@@ -23,6 +24,7 @@ import SVGClose from '@/components/icons/close.svg'
 
 export {
   SVGMinterr,
+  SVGFavicon,
   SVGRay,
   SVGCardano,
 

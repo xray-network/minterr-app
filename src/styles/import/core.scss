@@ -63,6 +63,16 @@ a, .link {
   }
 }
 
+.link {
+  &--dashed {
+    border-bottom: 1px dashed $primary;
+
+    &:hover {
+      border-color: $blue-light;
+    }
+  }
+}
+
 input {
   outline: none !important;
   font-family: $base-font-family;

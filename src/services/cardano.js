@@ -3,11 +3,12 @@ import { notification } from 'antd'
 
 const Cardano = new CardanoWeb3({
   crypto: {
-    network: 'testnet',
+    network: 'mainnet',
+    // network: 'testnet',
   },
   explorer: {
-    // url: 'https://api-mainnet-graphql.rraayy.com',
-    url: 'https://api-testnet-graphql.rraayy.com',
+    url: 'https://api-mainnet-graphql.rraayy.com',
+    // url: 'https://api-testnet-graphql.rraayy.com',
     responseHandler: (response) => {
       const { data } = response
       if (data.errors) {

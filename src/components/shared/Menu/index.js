@@ -46,7 +46,7 @@ const Menu = () => {
           <span>Mint Tokens</span>
         </Link>
         <Link
-          to="/live"
+          to="/live/"
           className={style.SubmenuLink}
           activeClassName={style.SubmenuLinkActive}
         >
@@ -56,7 +56,7 @@ const Menu = () => {
           <span>Live Feed</span>
         </Link>
         <Link
-          to="/explorer"
+          to="/explorer/"
           className={style.SubmenuLink}
           activeClassName={style.SubmenuLinkActive}
         >

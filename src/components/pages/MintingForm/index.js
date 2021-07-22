@@ -13,7 +13,7 @@ const MintingForm = () => {
   const dispatch = useDispatch()
   const mnemonic = useSelector((state) => state.settings.mnemonic)
   const address = useSelector((state) => state.settings.address)
-  const storeSession = useSelector((state) => state.settings.storeSession)
+  // const storeSession = useSelector((state) => state.settings.storeSession)
   const addressStateLoading = useSelector((state) => state.settings.addressStateLoading)
   const addressState = useSelector((state) => state.settings.addressState)
   const networkSlot = useSelector((state) => state.settings.networkSlot)
@@ -36,13 +36,13 @@ const MintingForm = () => {
     message.success('Copied to clipboard')
   }
 
-  const changeStoreSession = (e) => {
-    const { checked } = e.target
-    dispatch({
-      type: 'settings/CHANGE_STORE_SESSION',
-      payload: checked,
-    })
-  }
+  // const changeStoreSession = (e) => {
+  //   const { checked } = e.target
+  //   dispatch({
+  //     type: 'settings/CHANGE_STORE_SESSION',
+  //     payload: checked,
+  //   })
+  // }
 
   const refreshBalance = () => {
     dispatch({
@@ -208,10 +208,10 @@ const MintingForm = () => {
 
   return (
     <div className="ray__block">
-      <h1 className="mb-5">
+      <h1 className="mb-4 text-center">
         Let's mint a Cardano token, creator! <span role="img" aria-label="">👋</span>
       </h1>
-      <div className="mb-5">
+      <div className="mb-5 pb-3 text-center">
         <ul className={style.faq}>
           <li>
             <i>1</i> Write down the mnemonic before you send the funds
@@ -229,7 +229,7 @@ const MintingForm = () => {
             <i>5</i> Select token type
           </li>
           <li>
-            <i>6</i> Make a donation!
+            <i>6</i> Make a donation :)
           </li>
           <li>
             <i>7</i> Complete the form
@@ -260,9 +260,9 @@ const MintingForm = () => {
                 >
                   Restore
                 </span>
-                <Checkbox className="cursor-pointer" checked={storeSession} onChange={changeStoreSession}>
+                {/* <Checkbox className="cursor-pointer" checked={storeSession} onChange={changeStoreSession}>
                   Store session
-                </Checkbox>
+                </Checkbox> */}
               </span>
             )}
             {restore && (
@@ -351,7 +351,7 @@ const MintingForm = () => {
               </span>
             )}
             {addressStateLoading && (
-              <div className="spinner-border spinner-border-sm" role="status">
+              <div className="spinner-border spinner-border-sm text-primary" role="status">
                 <span className="visually-hidden">Loading...</span>
               </div>
             )}

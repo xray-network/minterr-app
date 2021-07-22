@@ -24,6 +24,12 @@
       }
     }
 
+    &--32 {
+      svg {
+        height: rem(32) !important;
+      }
+    }
+
     @at-root {
       a:not(.ray__btn), .cursor-pointer {
         &:hover {
