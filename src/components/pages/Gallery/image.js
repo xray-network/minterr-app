@@ -9,7 +9,7 @@ const Image = ({ nft, assetName, inViewport, forwardedRef }) => {
   const [image, setImage] = useState()
   const [observed, setObserved] = useState(false)
   const [crashed, setCrashed] = useState(false)
-  const [, setType] = useState()
+  const [type, setType] = useState()
   const url = imageStringToCloudflare(nft?.image)
   const canvasRef = useRef(null)
 
@@ -23,67 +23,57 @@ const Image = ({ nft, assetName, inViewport, forwardedRef }) => {
           setType(blob.type)
           drawOnCanvas(canvasRef, blob.url)
         })
-        .catch((error) => {
+        .catch(() => {
           setLoading(false)
           setCrashed(true)
         })
     }
   }, [inViewport, url, observed])
 
-
-  // useEffect(() => {
-  //   if (inViewport && url) {
-  //     const img = document.createElement('img')
-  //     img.onload((e) => {
-
-  //       const canvas = document.createElement('canvas')
-  //       const max_size = 200
-  //       let width = img.width
-  //       let height = img.height
-
-  //       if (width > height) {
-  //         if (width > max_size) {
-  //           height *= max_size / width;
-  //           width = max_size;
-  //         }
-  //       } else {
-  //         if (height > max_size) {
-  //           width *= max_size / height;
-  //           height = max_size;
-  //         }
-  //       }
-
-  //       canvas.width = width
-  //       canvas.height = height
-  //       canvas.getContext('2d').drawImage(image, 0, 0, width, height)
-  //       const data = canvas.toDataURL('image/jpeg')
-
-  //       setLoading(false)
-  //       setImage(data)
-  // }, [inViewport, url])
+  const isUnableToLoad = crashed && url
+  const isWrongImageScheme = !url && nft
+  const isNotNft = !nft
+  const isLoading = url && loading
+  const isSuccess = image && !loading
 
   return (
     <div className={style.image} ref={forwardedRef}>
+      <span className={style.type}>{type}</span>
       {/* IMAGE CAN'T BE LOADED */}
-      {(crashed && url) && (
-        <span className="ray__icon ray__icon--32">
-          Crash
-        </span>
+      {isUnableToLoad && (
+        <div className={style.placeholder}>
+          <span className="ray__icon ray__icon--32">
+            <SVGFavicon />
+          </span>
+          <span>
+            Unable To Load
+          </span>
+        </div>
       )}
       {/* WRONG IMAGE SCHEME */}
-      {(!url && nft) && (
-        <span className="ray__icon ray__icon--32">
-          <SVGFavicon />
-        </span>
+      {isWrongImageScheme && (
+        <div className={style.placeholder}>
+          <span className="ray__icon ray__icon--32">
+            <SVGFavicon />
+          </span>
+          <span>
+            Image Not Found
+          </span>
+        </div>
       )}
       {/* REGULAR TOKEN */}
-      {(!nft) && (
-        <span className="ray__icon ray__icon--32">
-          Asset
-        </span>
+      {isNotNft && (
+        <div className={style.placeholder}>
+          <span className="ray__icon ray__icon--32">
+            <SVGFavicon />
+          </span>
+          <span>
+            Fungible Token
+          </span>
+        </div>
       )}
       {/* LOADING */}
-      {(url && loading) && (
+      {isLoading && (
         <div className={style.loading}>
           <div className="spinner-border spinner-border text-primary" role="status">
             <span className="visually-hidden">Loading...</span>
@@ -91,7 +81,7 @@ const Image = ({ nft, assetName, inViewport, forwardedRef }) => {
         </div>
       )}
       {/* IMAGE LOADED */}
-      {(image && !loading) && (
+      {isSuccess && (
         <canvas ref={canvasRef} />
       )}
     </div>

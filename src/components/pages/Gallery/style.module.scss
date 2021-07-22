@@ -23,6 +23,7 @@
 }
 
 .image {
+  position: relative;
   height: rem(150);
   width: rem(130);
   display: flex;
@@ -66,6 +67,34 @@
     width: rem(26);
     height: rem(26);
   }
+}
+
+.placeholder {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  font-size: rem(11);
+  color: $gray-5;
+  padding-top: rem(10);
+
+  :global(.ray__icon) {
+    align-content: center;
+
+    svg {
+      margin: 0 auto;
+    }
+  }
+}
+
+.type {
+  font-size: rem(11);
+  position: absolute;
+  background: $white;
+  padding: 0 rem(5);
+  border-radius: 3px;
+  bottom: rem(5);
+  left: rem(5);
+  color: $gray-6;
 }
 
 // dark theme
