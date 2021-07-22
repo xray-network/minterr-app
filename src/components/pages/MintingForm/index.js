@@ -312,7 +312,7 @@ const MintingForm = () => {
         </div>
       </div>
       <div className="row">
-        <div className="col-6">
+        <div className="col-12 col-sm-6">
           <div className="mb-2">
             <strong className="me-2">2. Session Address</strong>
             <Popover
@@ -336,7 +336,7 @@ const MintingForm = () => {
             </h5>
           </div>
         </div>
-        <div className="col-6">
+        <div className="col-12 col-sm-6">
           <div className="mb-2">
             <span className="me-3"><strong>3. Address Balance</strong></span>
             {!addressStateLoading && (
@@ -396,7 +396,7 @@ const MintingForm = () => {
           </div>
         </div>
         <div className="row">
-          <div className="col-6">
+          <div className="col-12 col-sm-6">
             <div className="mb-5">
               <div className="mb-2"><strong>5. Token Type</strong></div>
               <Radio.Group value={tokenType} onChange={(e) => {
@@ -408,7 +408,7 @@ const MintingForm = () => {
               </Radio.Group>
             </div>
           </div>
-          <div className="col-6">
+          <div className="col-12 col-sm-6">
             <div className="mb-5">
               <div className="mb-2">
                 <span className="me-3"><strong>6. Donation</strong></span>

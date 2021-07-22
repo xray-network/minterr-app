@@ -59,6 +59,7 @@ const Menu = () => {
           to="/explorer/"
           className={style.SubmenuLink}
           activeClassName={style.SubmenuLinkActive}
+          partiallyActive={true}
         >
           <span className="ray__icon me-2">
             <SVGSearch />

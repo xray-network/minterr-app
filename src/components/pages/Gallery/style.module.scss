@@ -30,7 +30,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: $white;
+  background: #000000;
   border-radius: 8px;
   // border: 1px solid $pastel-2;
   margin-bottom: rem(5);
@@ -82,6 +82,9 @@
 
     svg {
       margin: 0 auto;
+      * {
+        fill: $white !important;
+      }
     }
   }
 }
@@ -89,12 +92,12 @@
 .type {
   font-size: rem(11);
   position: absolute;
-  background: $white;
+  background: $dark;
   padding: 0 rem(5);
   border-radius: 3px;
   bottom: rem(5);
   left: rem(5);
-  color: $gray-6;
+  color: $gray-5;
 }
 
 // dark theme

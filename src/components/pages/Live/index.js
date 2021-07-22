@@ -53,7 +53,7 @@ const Live = () => {
   const fetchData = () => {
     if (networkBlock !== 0 && networkBlock !== prevBlock) {
       const blocksToQuery = firstRun
-        ? range(networkBlock - 5, networkBlock + 1)
+        ? range(networkBlock - 5, networkBlock + 1) // query 5 blocks before from current
         : prevBlock ? generateBlocksToQuery() : [networkBlock]
       serPrevBlock(networkBlock)
       Cardano.explorer.query({
@@ -81,7 +81,7 @@ const Live = () => {
     })
     const newLiveState = [...liveState]
     newLiveState.push(...result.filter((item) => item.tokens.length > 0))
-    setLiveState(newLiveState.splice(-20))
+    setLiveState(newLiveState.splice(-10)) // show not more than 10 blocks
   }
 
   const processTransactions = (txs) => {
@@ -133,9 +133,12 @@ const Live = () => {
 
   return (
     <div className="ray__block">
-      <h1 className="mb-5 text-center">
+      <h1 className="mb-3 text-center">
         Oh no, there are so many NFTs!<br />Interplanetary file system is overloaded! <span role="img" aria-label="">💎</span>
       </h1>
+      <div className="text-muted text-center mb-5 max-width-800 ms-auto me-auto">
+        Too many "Unable to Load" messages? Go through the captcha at the following <a href="https://cloudflare-ipfs.com/ipfs/QmaYWWWmrUJkWiKAaHRiYwLaSCNGT8he4ZpuQd5TddvRVJ" target="_blank" rel="noopener noreferrer">link</a>. If you see Ray Diamond, you don't need to take any action, just surf NFTs!
+      </div>
       {loading && (
         <div className="text-center">
           <div className="spinner-border spinner-border-lg text-primary" role="status">

@@ -82,6 +82,12 @@
   }
 }
 
+.max-width {
+  &-800 {
+    max-width: rem(800);
+  }
+}
+
 // dark theme
 [data-theme='dark'] {
   .badge {

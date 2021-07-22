@@ -232,6 +232,12 @@ const Footer = () => {
             >
               Switch to {network === 'mainnet' ? 'Testnet' : 'Mainnet'}
             </span>
+            {network === 'testnet' && (
+              <div className={style.testnet}>Testnet</div>
+            )}
+            {network === 'testnet' && (
+              <a herf="https://developers.cardano.org/en/testnets/cardano/tools/faucet/" target="_blank" rel="noopener noreferrer" className={style.faucet}>tADA Faucet</a>
+            )}
           </p>
           <p className="mb-0 text-muted">{new Date().getFullYear()} &copy; Ray Labs DAO</p>
         </div>

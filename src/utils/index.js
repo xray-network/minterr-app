@@ -33,7 +33,7 @@ export const drawOnCanvas = (canvasRef, blob) => {
 }
 
 export const validUrl = (url) => {
-  return /http(s)?:\/\/(\w+:?\w*@)?(\S+)(:\d+)?((?<=\.)\w+)+(\/([\w#!:.?+=&%@!\-/])*)?/gi.test(url);
+  return /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([-.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/gm.test(url);
 }
 
 export const fetchImageBlob = async (url) => {

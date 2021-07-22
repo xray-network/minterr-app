@@ -25,7 +25,7 @@ const Cookies = () => {
     // eslint-disable-next-line
   }, [])
 
-  const Cookies = (
+  return (
     <div
       className={`${style.cookies} ${cookiesViewed && 'd-none'} ${cookiesAnimation && style.cookiesAnimated}`}
     >
@@ -55,8 +55,6 @@ const Cookies = () => {
       </a>
     </div>
   )
-
-  return !cookiesViewed && Cookies
 }
 
 export default Cookies

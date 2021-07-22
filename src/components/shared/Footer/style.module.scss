@@ -63,6 +63,28 @@
   }
 }
 
+.testnet {
+  position: fixed;
+  z-index: 9999;
+  top: 20%;
+  right: 0;
+  border-radius: 8px 0 0 8px;
+  background: $danger;
+  color: $white !important;
+  padding: rem(5) rem(10);
+}
+
+.faucet {
+  position: fixed;
+  z-index: 9999;
+  top: calc(20% + 2.5rem);
+  right: 0;
+  border-radius: 8px 0 0 8px;
+  background: $danger;
+  color: $white !important;
+  padding: rem(5) rem(10);
+}
+
 // dark theme
 [data-theme='dark'] {
   .logo {

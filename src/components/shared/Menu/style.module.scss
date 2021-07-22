@@ -51,6 +51,7 @@
     display: flex;
     margin-right: rem(25);
     color: $dark;
+    white-space: nowrap;
 
     &Active {
       color: $blue;
