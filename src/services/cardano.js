@@ -1,14 +1,19 @@
 import CardanoWeb3 from '../cardano-web3-browser'
 import { notification } from 'antd'
+import store from 'store'
+
+const network = store.get('app.settings.network')
 
 const Cardano = new CardanoWeb3({
   crypto: {
-    network: 'mainnet',
-    // network: 'testnet',
+    network: network === 'testnet'
+      ? 'testnet'
+      : 'mainnet'
   },
   explorer: {
-    url: 'https://api-mainnet-graphql.rraayy.com',
-    // url: 'https://api-testnet-graphql.rraayy.com',
+    url: network === 'testnet'
+      ? 'https://api-testnet-graphql.rraayy.com'
+      : 'https://api-mainnet-graphql.rraayy.com',
     responseHandler: (response) => {
       const { data } = response
       if (data.errors) {

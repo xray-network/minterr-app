@@ -134,7 +134,7 @@ const Live = () => {
   return (
     <div className="ray__block">
       <h1 className="mb-5 text-center">
-        Oh no, there are so many NFTs! Catch one! <span role="img" aria-label="">💎</span>
+        Oh no, there are so many NFTs!<br />Interplanetary file system is overloaded! <span role="img" aria-label="">💎</span>
       </h1>
       {loading && (
         <div className="text-center">
@@ -146,7 +146,7 @@ const Live = () => {
       <div>
         {[...liveState].reverse().map((block) => {
           return (
-            <div key={block.number}>
+            <div className="mb-5" key={block.number}>
               <h5 className="text-center">
                 Block <a href={`/explorer/block/${block.number}`} target="_blank" rel="noopener noreferrer" className="link--dashed">{block.number}</a> outputs
               </h5>

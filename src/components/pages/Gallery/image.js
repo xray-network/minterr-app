@@ -81,7 +81,7 @@ const Image = ({ nft, assetName, inViewport, forwardedRef }) => {
         </div>
       )}
       {/* IMAGE LOADED */}
-      {isSuccess && (
+      {isSuccess && !isUnableToLoad && (
         <canvas ref={canvasRef} />
       )}
     </div>

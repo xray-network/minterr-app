@@ -1,12 +1,21 @@
-import React from "react"
+import React, { useState } from "react"
 import { useSelector } from "react-redux"
 import { Input, Tooltip } from 'antd'
+import store from 'store'
 import { SVGRay, SVGCardano, SVGWallet, SVGTwitter, SVGAtSign, SVGChrome, SVGApple, SVGCategory, SVGAndroid, SVGInternet } from "@/svg"
 import * as style from "./style.module.scss"
 
 const Footer = () => {
   const networkSlot = useSelector((state) => state.settings.networkSlot)
   const networkBlock = useSelector((state) => state.settings.networkBlock)
+  const [network, setNetwork] = useState(store.get('app.settings.network') || 'mainnet')
+
+  const switchNetwork = () => {
+    const nextNetwork = network === 'mainnet' ? 'testnet' : 'mainnet'
+    store.set('app.settings.network', nextNetwork)
+    setNetwork(nextNetwork)
+    window.location.reload()
+  }
 
   return (
     <div className="ray__block mb-0">
@@ -212,7 +221,18 @@ const Footer = () => {
               </a>
             </span>
           </p>
-          <p className="mb-2 text-muted">Cardano Status: Block {networkBlock}, Slot {networkSlot}</p>
+          <p className="mb-2 text-muted">
+            <span className="me-2 text-capitalize">Cardano {network} Status: Block {networkBlock}, Slot {networkSlot}</span>
+            <span
+              className="link"
+              onClick={switchNetwork}
+              onKeyPress={switchNetwork}
+              role="button"
+              tabIndex="0"
+            >
+              Switch to {network === 'mainnet' ? 'Testnet' : 'Mainnet'}
+            </span>
+          </p>
           <p className="mb-0 text-muted">{new Date().getFullYear()} &copy; Ray Labs DAO</p>
         </div>
       </div>
