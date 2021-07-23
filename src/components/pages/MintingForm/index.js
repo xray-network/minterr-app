@@ -5,8 +5,11 @@ import { Popover, Form, Input, Tooltip, Upload, Button, Checkbox, Radio, InputNu
 import { InboxOutlined } from '@ant-design/icons'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { SVGCopy, SVGZap, SVGClose } from "@/svg"
+import store from 'store'
 import Cardano from "../../../services/cardano"
 import * as style from "./style.module.scss"
+
+const network = store.get('app.settings.network')
 
 const MintingForm = () => {
   const [form] = Form.useForm()
@@ -131,8 +134,9 @@ const MintingForm = () => {
     })
 
     const donateOpts = {
-      // donateAddress: 'addr1q9ky2t5najzxwsvjl2e6q60vvkcewfwr0ft63vcvce7hwmr30hw5ksyahzstrqal7g45aug24r8sdf5842lfwzg4c99qvvuqv3',
-      donateAddress: 'addr_test1qzd2ulz7jx0zn3t90vep26f7gl9wkj03lx0w5ca0vhnl5u6nfathe437695m4cwzlgn959uswtm56dkkmvxjx6h6mfssh7t4zy',
+      donateAddress: network === 'testnet'
+        ? 'addr_test1qzd2ulz7jx0zn3t90vep26f7gl9wkj03lx0w5ca0vhnl5u6nfathe437695m4cwzlgn959uswtm56dkkmvxjx6h6mfssh7t4zy'
+        : 'addr1q9ky2t5najzxwsvjl2e6q60vvkcewfwr0ft63vcvce7hwmr30hw5ksyahzstrqal7g45aug24r8sdf5842lfwzg4c99qvvuqv3',
       donateValue: '1000000',
     }
     const donate = donateState ? donateOpts : undefined
@@ -163,8 +167,6 @@ const MintingForm = () => {
         publisher: "https://minterr.org",
       }
     }
-
-    console.log(metadata)
 
     const tx = Cardano.crypto.txBuildMint(
       values.toAddress,
@@ -201,15 +203,17 @@ const MintingForm = () => {
   const isFormEmpty = !(form.getFieldValue().mint && form.getFieldValue().mint.length)
   const formFields = form.getFieldValue()
 
-  const formattedAddress = `${address.slice(0, 8)}...${address.slice(-10)}`
+  const formattedAddress = `${address.slice(0, 10)}...${address.slice(-15)}`
   const amount = addressState?.assets?.value
     ? parseInt(addressState.assets.value / 1000000, 10).toFixed(6)
     : '0.000000'
 
   return (
     <div className="ray__block">
-      <h1 className="mb-4 text-center">
-        Let's mint a Cardano token, creator! <span role="img" aria-label="">👋</span>
+      <h1 className="mb-5 pt-3 text-center">
+        Let's mint a Cardano token, creator.
+        <br />
+        Absolutely free of charge! <span role="img" aria-label="">👋</span>
       </h1>
       <div className="mb-5 pb-3 text-center">
         <ul className={style.faq}>
@@ -229,7 +233,7 @@ const MintingForm = () => {
             <i>5</i> Select token type
           </li>
           <li>
-            <i>6</i> Make a donation :)
+            <i>6</i> Make a donation if you want to :)
           </li>
           <li>
             <i>7</i> Complete the form

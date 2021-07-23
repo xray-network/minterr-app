@@ -1,0 +1,26 @@
+@import "@/styles/mixins";
+
+.input {
+  :global(.ant-input) {
+    &-lg {
+      font-size: rem(21);
+    }
+  
+    &-affix-wrapper {
+      &-lg {
+        height: rem(55);
+        padding: rem(8) rem(15);
+      }
+    }
+  
+  }
+
+  :global(.ant-input-search-button) {
+    font-size: rem(21);
+    height: rem(55) !important;
+  }
+}
+
+// dark theme
+[data-theme='dark'] {
+}

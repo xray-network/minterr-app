@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'gatsby'
 import { Modal, Button, Result, Tooltip, message } from 'antd'
 import { useSelector, useDispatch } from 'react-redux'
 import { LoadingOutlined } from '@ant-design/icons'
@@ -129,7 +130,7 @@ const TransactionModal = () => {
           />
         </div>
       )}
-      {success && (
+      {true && (
         <div className="text-center">
           <Result
             status="success"
@@ -141,6 +142,9 @@ const TransactionModal = () => {
                     <span className="link">Tx ID: {`${waitingHash.slice(0, 12)}...${waitingHash.slice(-14)}`}</span>
                   </Tooltip>
                 </CopyToClipboard>
+                <div>
+                  <Link to={`/explorer/transaction/${waitingHash}`}>View Transaction in Explorer</Link>
+                </div>
               </div>
             )}
             extra={[

@@ -20,8 +20,8 @@ const Footer = () => {
   return (
     <div className="ray__block mb-0">
       <div className="mb-5">
-        <div className="ray__line mb-5" />
         <div className={style.top}>
+          <div className="ray__line mb-5" />
           <div className="row">
             <div className="col-12 col-sm-8 mb-3">
               <div className="row">
@@ -30,7 +30,7 @@ const Footer = () => {
                     <span className="ray__icon me-2">
                       <SVGWallet />
                     </span>
-                    <strong>Solutions</strong>
+                    <strong>Cardano Solutions</strong>
                   </div>
                   <ul className="list-unstyled">
                     <li><a href="https://rraayy.com/ray-wallet/" className="text-muted">Ray Wallet</a></li>
@@ -233,10 +233,10 @@ const Footer = () => {
               Switch to {network === 'mainnet' ? 'Testnet' : 'Mainnet'}
             </span>
             {network === 'testnet' && (
-              <div className={style.testnet}>Testnet</div>
+              <span className={style.testnet}>Testnet</span>
             )}
             {network === 'testnet' && (
-              <a herf="https://developers.cardano.org/en/testnets/cardano/tools/faucet/" target="_blank" rel="noopener noreferrer" className={style.faucet}>tADA Faucet</a>
+              <a href="https://developers.cardano.org/en/testnets/cardano/tools/faucet/" target="_blank" rel="noopener noreferrer" className={style.faucet}>tADA Faucet</a>
             )}
           </p>
           <p className="mb-0 text-muted">{new Date().getFullYear()} &copy; Ray Labs DAO</p>

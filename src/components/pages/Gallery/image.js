@@ -4,7 +4,7 @@ import handleViewport from 'react-in-viewport'
 import { imageStringToCloudflare, fetchImageBlob, drawOnCanvas } from '@/utils/index'
 import * as style from "./style.module.scss"
 
-const Image = ({ nft, assetName, inViewport, forwardedRef }) => {
+const Image = ({ nft, minted, assetName, inViewport, forwardedRef }) => {
   const [loading, setLoading] = useState(true)
   const [image, setImage] = useState()
   const [observed, setObserved] = useState(false)
@@ -39,6 +39,9 @@ const Image = ({ nft, assetName, inViewport, forwardedRef }) => {
   return (
     <div className={style.image} ref={forwardedRef}>
       <span className={style.type}>{type}</span>
+      {minted && (
+        <span className={style.minted}>Newly Minted!</span>
+      )}
       {/* IMAGE CAN'T BE LOADED */}
       {isUnableToLoad && (
         <div className={style.placeholder}>

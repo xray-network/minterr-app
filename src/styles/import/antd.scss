@@ -27,6 +27,7 @@
 
   &-input {
     font-size: rem(14);
+    border-radius: 8px;
 
     &:hover,
     &:focus,
@@ -66,6 +67,15 @@
 
     &-number {
       border-radius: 8px;
+      font-size: rem(16);
+
+      &-lg {
+        input {
+          height: rem(40);
+          font-size: rem(16);
+          padding: rem(6.5) rem(11);
+        }
+      }
 
       &-handler-wrap {
         border-radius: 0 8px 8px 0;
@@ -147,6 +157,12 @@
 
   &-popover {
     &-inner {
+      border-radius: 8px;
+    }
+  }
+
+  &-notification {
+    &-notice {
       border-radius: 8px;
     }
   }
