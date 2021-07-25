@@ -1,11 +1,11 @@
 import React from "react"
 import { Link } from "gatsby"
 import * as style from "./style.module.scss"
-import { SVGMinterr, SVGWallet, SVGAddCircled, SVGSun, SVGZap, SVGSearch } from "@/svg"
+import { SVGMinterr, SVGWallet, SVGAddCircled, SVGSun, SVGZap, SVGSearch, SVGTrophy } from "@/svg"
 
 const Menu = () => {
   return (
-    <div className="ray__block mb-4">
+    <div className="ray__block mb-3">
       <div className={style.menu}>
         <Link to="/" className={`${style.menuLogo} me-4`}>
           <SVGMinterr />
@@ -41,9 +41,25 @@ const Menu = () => {
           activeClassName={style.SubmenuLinkActive}
         >
           <span className="ray__icon me-2">
+            <SVGSearch />
+          </span>
+          <span className={style.SubmenuLinkWidth}>
+            <span>Tokens Explorer</span>
+            <span>Tokens Explorer</span>
+          </span>
+        </Link>
+        <Link
+          to="/mint-tokens/"
+          className={style.SubmenuLink}
+          activeClassName={style.SubmenuLinkActive}
+        >
+          <span className="ray__icon me-2">
             <SVGAddCircled />
           </span>
-          <span>Mint Tokens</span>
+          <span className={style.SubmenuLinkWidth}>
+            <span>Mint Tokens</span>
+            <span>Mint Tokens</span>
+          </span>
         </Link>
         <Link
           to="/live/"
@@ -53,18 +69,23 @@ const Menu = () => {
           <span className="ray__icon me-2">
             <SVGZap />
           </span>
-          <span>Live Feed</span>
+          <span className={style.SubmenuLinkWidth}>
+            <span>Live Feed</span>
+            <span>Live Feed</span>
+          </span>
         </Link>
         <Link
-          to="/explorer/"
+          to="/top-nft-projects/"
           className={style.SubmenuLink}
           activeClassName={style.SubmenuLinkActive}
-          partiallyActive={true}
         >
           <span className="ray__icon me-2">
-            <SVGSearch />
+            <SVGTrophy />
           </span>
-          <span>Tokens Explorer</span>
+          <span className={style.SubmenuLinkWidth}>
+            <span>Top Projects</span>
+            <span>Top Projects</span>
+          </span>
         </Link>
       </div>
     </div>

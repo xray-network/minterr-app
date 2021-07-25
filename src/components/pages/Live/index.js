@@ -136,7 +136,7 @@ const Live = () => {
 
   return (
     <div className="ray__block">
-      <h1 className="mb-5 pt-3  text-center">
+      <h1 className="mb-4 pt-3  text-center">
         Oh no, there are so many NFTs!<br />Interplanetary file system is overloaded! <span role="img" aria-label="">💎</span>
       </h1>
       <div className="text-muted text-center mb-5 pb-4 max-width-800 ms-auto me-auto">
@@ -155,7 +155,7 @@ const Live = () => {
           return (
             <div className="mb-5" key={block.number}>
               <h5 className="text-center">
-                Block <Link to={`/explorer/block/${block.number}`} target="_blank" rel="noopener noreferrer" className="link--dashed">{block.number}</Link> outputs
+                Block <Link to={`/explorer/?block=${block.number}`} target="_blank" rel="noopener noreferrer" className="link--dashed">{block.number}</Link> outputs
               </h5>
               <Gallery tokens={block.tokens} />
             </div>

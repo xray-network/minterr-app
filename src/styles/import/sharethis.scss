@@ -1,0 +1,34 @@
+@import "@/styles/mixins";
+
+.st-btn {
+  font-size: rem(12) !important;
+  border-radius: rem(8) !important;
+  line-height: rem(40) !important;
+  padding: 0 rem(10) !important;
+  height: rem(40) !important;
+  border: none !important;
+  // background: $dark !important;
+
+  > img {
+    height: rem(24) !important;
+    width: rem(24) !important;
+    top: rem(8) !important;
+  }
+}
+
+.st-total {
+  line-height: rem(12) !important;
+  max-width: rem(80) !important;
+  padding: rem(8) rem(8) !important;
+  color: $gray-5 !important;
+
+  .st-label {
+    font-size: rem(16) !important;
+    line-height: rem(17) !important;
+  }
+
+  .st-shares {
+    font-size: rem(9) !important;
+    line-height: rem(9) !important;
+  }
+}

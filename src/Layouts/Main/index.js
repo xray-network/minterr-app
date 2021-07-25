@@ -14,7 +14,7 @@ const MainLayout = ({ children }) => {
         <meta property="og:url" content="https://minterr.org" />
         <meta
           name="description"
-          content="Mint Non-Fungible and Fungible Tokens in a few clicks with Minterr, Cardano minting tool and NFT explorer #1. Absolutely free!"
+          content="Mint NFT and Fungible Tokens online in a few clicks with Minterr — Cardano minting tool and NFT explorer #1. Absolutely free of charge!"
         />
       </Helmet>
       <div>

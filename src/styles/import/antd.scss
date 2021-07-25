@@ -20,6 +20,10 @@
   &-form {
     font-size: rem(16);
 
+    &-item {
+      font-size: rem(16);
+    }
+
     label {
       font-size: rem(16);
     }
@@ -70,6 +74,7 @@
       font-size: rem(16);
 
       &-lg {
+        height: rem(40);
         input {
           height: rem(40);
           font-size: rem(16);

@@ -40,12 +40,12 @@ const Crypto = function Crypto(pkg, settings) {
     this.BigNumber = BigNumber
 
     /**
-     * Cardano Serialization Lib
+     * Get Current Network
      */
-    this.Network =
-      settings.network === 'mainnet'
-        ? this.Cardano.NetworkInfo.mainnet().network_id()
-        : this.Cardano.NetworkInfo.testnet().network_id()
+
+    this.Network = settings.network === 'mainnet'
+      ? this.Cardano.NetworkInfo.mainnet().network_id()
+      : this.Cardano.NetworkInfo.testnet().network_id()
 
     /**
      * Protocol Parameters

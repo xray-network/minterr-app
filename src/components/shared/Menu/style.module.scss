@@ -45,13 +45,35 @@
 
 .Submenu {
   display: flex;
+  flex-wrap: wrap;
   padding: rem(20) 0;
 
   &Link {
     display: flex;
     margin-right: rem(25);
+    margin-bottom: rem(10);
     color: $dark;
     white-space: nowrap;
+
+    &Width {
+      position: relative;
+
+      span:first-child {
+        opacity: 0;
+        font-weight: 600;
+      }
+  
+      span:last-child {
+        position: absolute;
+        left: 0;
+        right: 0;
+        text-align: center;
+      }
+    }
+
+    &:last-child {
+      margin-right: rem(0);
+    }
 
     &Active {
       color: $blue;

@@ -21,6 +21,13 @@
   }
 }
 
+.mintButton {
+  font-size: rem(21);
+  height: rem(55) !important;
+  padding-left: rem(30);
+  padding-right: rem(30);
+}
+
 // dark theme
 [data-theme='dark'] {
 }

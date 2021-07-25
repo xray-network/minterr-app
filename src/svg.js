@@ -21,6 +21,11 @@ import SVGBook from '@/components/icons/book.svg'
 import SVGZap from '@/components/icons/zap.svg'
 import SVGCopy from '@/components/icons/copy.svg'
 import SVGClose from '@/components/icons/close.svg'
+import SVGMedal from '@/components/icons/medal.svg'
+import SVGLeaderboard from '@/components/icons/leaderboard.svg'
+import SVGTrophy from '@/components/icons/trophy.svg'
+import SVGBadge from '@/components/icons/badge.svg'
+import SVGChevronDoubleUp from '@/components/icons/chevron_double_up.svg'
 
 export {
   SVGMinterr,
@@ -46,4 +51,9 @@ export {
   SVGZap,
   SVGCopy,
   SVGClose,
+  SVGMedal,
+  SVGLeaderboard,
+  SVGTrophy,
+  SVGBadge,
+  SVGChevronDoubleUp,
 }

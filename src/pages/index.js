@@ -1,17 +1,15 @@
 import React from "react"
 import { Helmet } from "react-helmet"
 import MainLayout from '@/layouts/Main'
-import MintingForm from '@/components/pages/MintingForm'
-import TransactionModal from '@/components/pages/TransactionModal'
+import Explorer from '@/components/pages/Explorer'
 
-const PageIndex = () => {
+const PageExplorer = () => {
   return (
     <MainLayout>
-      <Helmet title="Mint Cardano NFT Token Online" />
-      <MintingForm />
-      <TransactionModal />
+      <Helmet title="Cardano NFT Asset Explorer" />
+      <Explorer />
     </MainLayout>
   )
 }
 
-export default PageIndex
+export default PageExplorer

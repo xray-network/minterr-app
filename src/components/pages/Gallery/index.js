@@ -8,7 +8,7 @@ const Gallery = ({ tokens }) => (
     {tokens.map((token) => {
       return (
         <Link
-          to={`/explorer/token/${token.fingerprint}`}
+          to={`/explorer/?asset=${token.fingerprint}`}
           className={style.nft}
           key={token.fingerprint}
         >

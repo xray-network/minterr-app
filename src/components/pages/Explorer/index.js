@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
-import { navigate } from "gatsby"
-import { Input, Form } from "antd"
+import { useSelector } from "react-redux"
+import { Link, navigate } from "gatsby"
+import { Input, Form, Button } from "antd"
 import * as style from "./style.module.scss"
 import Cardano from "../../../services/cardano"
 
@@ -26,47 +27,49 @@ const query = `
 
 const Explorer = () => {
   const [form] = Form.useForm()
+  const networkBlock = useSelector((state) => state.settings.networkBlock)
   const [stat, setStat] = useState({
     assets: 0,
     epochs: 0,
     mints: 0,
   })
-  const [search, setSearch] = useState('')
 
   useEffect(() => {
-    Cardano.explorer.query({
-      query,
-    }).then((result) => {
-      setStat({
-        assets: result?.data?.data?.assets_aggregate?.aggregate?.count || 0,
-        epochs: result?.data?.data?.epochs_aggregate?.aggregate?.count || 0,
-        mints: result?.data?.data?.tokenMints_aggregate?.aggregate?.count || 0,
+    if (networkBlock !== 0) {
+      Cardano.explorer.query({
+        query,
+      }).then((result) => {
+        setStat({
+          assets: result?.data?.data?.assets_aggregate?.aggregate?.count || 0,
+          epochs: result?.data?.data?.epochs_aggregate?.aggregate?.count || 0,
+          mints: result?.data?.data?.tokenMints_aggregate?.aggregate?.count || 0,
+        })
       })
-    })
-  }, [])
+    }
+  }, [networkBlock])
 
-  const onSearch = () => {
+  const onSearch = (value) => {
     const touched = form.isFieldsTouched()
     const hasValidationError = !!form.getFieldsError().filter(({ errors }) => errors.length).length
     if (!touched || hasValidationError) {
       return
     }
 
-    switch (detectEntity(search)) {
+    switch (detectEntity(value)) {
       case 'asset':
-        navigate(`/explorer/token/${search}`)
+        navigate(`/explorer/?asset=${value}`)
         break
       case 'block':
-        navigate(`/explorer/block/${search}`)
+        navigate(`/explorer/?block=${value}`)
         break
       case 'transaction':
-        navigate(`/explorer/transaction/${search}`)
+        navigate(`/explorer/?transaction=${value}`)
         break
       case 'policyId':
-        navigate(`/explorer/policyId/${search}`)
+        navigate(`/explorer/?policyID=${value}`)
         break
       case 'address':
-        navigate(`/explorer/address/${search}`)
+        navigate(`/explorer/?address=${value}`)
         break
       default:
         break
@@ -118,14 +121,21 @@ const Explorer = () => {
             size="large"
             className={style.input}
             enterButton="Search"
-            onChange={(e) => setSearch(e.target.value)}
             onSearch={onSearch}
+            autoComplete="off"
             placeholder="Search assets by fingerprint, policy id, transaction, block, or address"
           />
         </Form.Item>
       </Form>
+      <h1 className="text-center pt-3 mb-5">
+        Better yet, mint your NFT token!
+      </h1>
+      <div className="text-center mb-5">
+        <Button onClick={() => { navigate('/mint-tokens/') }} type="primary" className={style.mintButton}>Mint Token!</Button>
+      </div>
       <div className="text-muted text-center mb-5 max-width-800 ms-auto me-auto">
-        Already <strong>{stat.assets}</strong> tokens have been minted <strong>{stat.mints}</strong> times in <strong>{stat.epochs}</strong> epochs.
+        <p className="mb-2">Current epoch is <strong>{stat.epochs}</strong>. During this time, <strong>{stat.assets}</strong> tokens have been minted <strong>{stat.mints}</strong> times in <strong>{networkBlock}</strong> blocks.</p>
+        <p>Didn't find what you were looking for? Check out the <Link to="/top-nft-projects/">Top NFT Projects</Link>!</p>
       </div>
     </div>
   )

@@ -22,13 +22,16 @@ const Page404 = () => {
               </p>
               <div>
                 <Link className="me-4 ray__link" to="/">
-                  Mint Tokens (Home)
+                  Tokens Explorer (Home)
+                </Link>
+                <Link className="me-4 ray__link" to="/mint-tokens/">
+                  Mint Tokens
+                </Link>
+                <Link className="me-4 ray__link" to="/top-nft-projects/">
+                  Top Projects
                 </Link>
                 <Link className="me-4 ray__link" to="/live/">
                   Live Feed
-                </Link>
-                <Link className="me-4 ray__link" to="/explorer/">
-                  Tokens Explorer
                 </Link>
               </div>
             </div>

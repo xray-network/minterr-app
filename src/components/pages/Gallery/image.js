@@ -38,7 +38,7 @@ const Image = ({ nft, minted, assetName, inViewport, forwardedRef }) => {
 
   return (
     <div className={style.image} ref={forwardedRef}>
-      <span className={style.type}>{type}</span>
+      {type === 'image/gif' && <span className={style.type}>GIF</span>}
       {minted && (
         <span className={style.minted}>Newly Minted!</span>
       )}

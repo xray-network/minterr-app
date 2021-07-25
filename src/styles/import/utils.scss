@@ -60,6 +60,27 @@
     }
   }
 
+  &__point {
+    font-style: normal;
+    display: inline-flex;
+    margin-right: rem(3);
+    align-items: center;
+    justify-content: center;
+    width: rem(20);
+    height: rem(20);
+    border-radius: 100%;
+    border: 2px solid $black;
+    font-weight: bold;
+    font-size: rem(14);
+    background: $black;
+    color: $white;
+
+    &--outline {
+      background: transparent;
+      color: $black;
+    }
+  }
+
   &__table {
     overflow: auto;
     white-space: nowrap;

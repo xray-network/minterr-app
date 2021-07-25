@@ -1,5 +1,11 @@
 @import "@/styles/mixins";
 
+.outer {
+  border-radius: 8px;
+  background: $white;
+  padding: rem(40) rem(30);
+}
+
 .restoreInput {
   position: relative;
   padding-bottom: rem(12);
@@ -56,22 +62,6 @@
     margin: 0 rem(10) 0 0;
     display: inline;
     color: $gray-5;
-
-    i {
-      font-style: normal;
-      display: inline-flex;
-      margin-right: rem(5);
-      align-items: center;
-      justify-content: center;
-      width: rem(20);
-      height: rem(20);
-      border-radius: 100%;
-      // background: $black;
-      border: 2px solid $black;
-      color: $black;
-      font-weight: bold;
-      font-size: rem(14);
-    }
   }
 }
 

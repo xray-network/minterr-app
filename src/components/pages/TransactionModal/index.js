@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'gatsby'
+import { navigate } from 'gatsby'
 import { Modal, Button, Result, Tooltip, message } from 'antd'
 import { useSelector, useDispatch } from 'react-redux'
 import { LoadingOutlined } from '@ant-design/icons'
@@ -26,6 +26,11 @@ const TransactionModal = () => {
     setWaitingHash('')
     setSuccess('')
     clearInterval(txInterval)
+  }
+
+  const handleView = (hash) => {
+    handleCancel()
+    navigate(`/explorer/?transaction=${hash}`)
   }
 
   const sendTx = () => {
@@ -114,7 +119,7 @@ const TransactionModal = () => {
         <div>
           <Result
             icon={<LoadingOutlined style={{ fontSize: 72 }} spin />}
-            title={<strong>Sending...</strong>}
+            title={<strong>Minting...</strong>}
             subTitle={
               <div className="mb-2">
                 <div className="mb-2">
@@ -130,7 +135,7 @@ const TransactionModal = () => {
           />
         </div>
       )}
-      {true && (
+      {success && (
         <div className="text-center">
           <Result
             status="success"
@@ -142,14 +147,22 @@ const TransactionModal = () => {
                     <span className="link">Tx ID: {`${waitingHash.slice(0, 12)}...${waitingHash.slice(-14)}`}</span>
                   </Tooltip>
                 </CopyToClipboard>
-                <div>
-                  <Link to={`/explorer/transaction/${waitingHash}`}>View Transaction in Explorer</Link>
-                </div>
+                {/* <div>
+                  <span
+                    className="link"
+                    onClick={() => handleView(waitingHash)}
+                    onKeyPress={() => handleView(waitingHash)}
+                    role="button"
+                    tabIndex="0"
+                  >
+                    View Transaction in Explorer
+                  </span>
+                </div> */}
               </div>
             )}
             extra={[
-              <Button onClick={handleCancel} size="large" key="close">
-                Close
+              <Button onClick={() => handleView(waitingHash)} size="large">
+                View Transaction
               </Button>,
             ]}
           />

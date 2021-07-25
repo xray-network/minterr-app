@@ -94,12 +94,14 @@
   font-size: rem(11);
   position: absolute;
   z-index: 2;
-  background: $dark;
+  border: 2px solid $dark;
+  background: $white;
   padding: 0 rem(5);
   border-radius: 8px;
-  bottom: 0;
-  left: 0;
-  color: $gray-5;
+  bottom: rem(5);
+  left: rem(5);
+  color: $dark;
+  font-weight: bold;
 }
 
 .minted {

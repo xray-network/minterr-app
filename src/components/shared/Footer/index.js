@@ -73,7 +73,7 @@ const Footer = () => {
                     <strong>Minterr</strong>
                   </div>
                   <ul className="list-unstyled mb-5">
-                    <li><a href="https://twitter.com/MinterrNFT" className="text-muted">Twitter</a></li>
+                    <li><a href="https://twitter.com/MinterrApp" className="text-muted">Twitter</a></li>
                     <li><a href="https://discord.gg/dDVXcthYWn" className="text-muted">Discord</a></li>
                   </ul>
                   <div className="d-flex mb-4">
