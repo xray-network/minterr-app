@@ -1,8 +1,10 @@
-import React, { useState, useEffect, useRef } from "react"
+import React, { useState, useEffect } from "react"
 import { InlineShareButtons } from "sharethis-reactjs"
 import { useSelector } from "react-redux"
 import { Helmet } from "react-helmet"
-import { Tooltip, message } from "antd"
+import { Tooltip } from "antd"
+import { format } from 'date-fns'
+import ReactJson from 'react-json-view-ssr'
 import store from "store"
 import { Link } from "gatsby"
 import * as style from "./style.module.scss"
@@ -26,7 +28,7 @@ const query = (fingerpint) => `
       policyId
       fingerprint
       assetId
-      tokenMints {
+      tokenMints (order_by: { transaction: { includedAt: asc } }) {
         quantity
         transaction {
           hash
@@ -50,6 +52,7 @@ const Asset = ({ fingerprint }) => {
   const [loadingImg, setLoadingImg] = useState(true)
   const [found, setFound] = useState(false)
   const [assetInfo, setAssetInfo] = useState({})
+  const [selectedMint, setSelectedMint] = useState()
 
   useEffect(() => {
     if (networkBlock !== 0 && !found) {
@@ -72,7 +75,7 @@ const Asset = ({ fingerprint }) => {
           setLoading(false)
         })
     }
-  }, [networkBlock])
+  }, [networkBlock, fingerprint, found])
 
   const switchColor = () => {
     setIsLight(!isLight)
@@ -150,14 +153,14 @@ const Asset = ({ fingerprint }) => {
                 </h1>
                 <p className="text-muted mb-3">
                   Quantity: <strong>{assetInfo.quantity || 0}</strong> —{" "}
-                  {fingerprint}
+                  <span className="text-break">{fingerprint}</span>
                 </p>
               </div>
               {assetInfo.metadataNft?.image && (
                 <div>
                   <div className={style.by}>
-                    {assetInfo.minterr && "Minted in "}
-                    {!assetInfo.minterr && "Explored in "}
+                    {assetInfo.minterr && "Minted by "}
+                    {!assetInfo.minterr && "Explored by "}
                     <SVGMinterr />
                   </div>
                   <div className={style.image}>
@@ -185,7 +188,7 @@ const Asset = ({ fingerprint }) => {
                           <span className="visually-hidden">Loading...</span>
                         </div>
                         <div className="mt-3">
-                          Not loading?
+                          Image not loading?
                           <br />
                           <Tooltip
                             title={
@@ -210,7 +213,7 @@ const Asset = ({ fingerprint }) => {
                   </div>
                   {metadataNftTransformed.length > 0 && (
                     <div
-                      className={`${style.shortMetadata} max-width-800 ms-auto mt-5 me-auto`}
+                      className={`${style.shortMetadata} text-break max-width-800 ms-auto mt-5 me-auto`}
                     >
                       {metadataNftTransformed.map((item, index) => {
                         const [key, value] = item
@@ -284,12 +287,12 @@ const Asset = ({ fingerprint }) => {
               <h5 className="mb-2">View all assets under this Policy ID</h5>
               <Link
                 to={`/explorer?policyID=${assetInfo.policyId}`}
-                className="link--dashed"
+                className="link--dashed text-break"
               >
                 {assetInfo.policyId}
               </Link>
             </div>
-            <div className="mb-4">
+            <div className="mb-5">
               <Helmet>
                 <meta
                   property="og:title"
@@ -321,8 +324,36 @@ const Asset = ({ fingerprint }) => {
               />
             </div>
             <div className="text-center">
-              <h5 className="mb-4">Mints & Metadata Viewer</h5>
-              <div>[metadata viewer]</div>
+              <h5 className="mb-4">Mints Metadata Viewer</h5>
+              <div>
+                {assetInfo.tokenMints.map((mint) => {
+                  const { hash, includedAt } = mint.transaction
+                  return (
+                    <span
+                      key={hash}
+                      className={`${style.viewerLink} ${hash === selectedMint ? style.viewerLinkActive : ''}`}
+                      onClick={() => setSelectedMint(hash)}
+                      onKeyPress={() => setSelectedMint(hash)}
+                      role="button"
+                      tabIndex="0"
+                    >
+                      {format(new Date(includedAt), 'yyyy-MM-dd HH:mm:ss')}
+                    </span>
+                  )
+                })}
+              </div>
+              {selectedMint && (
+                <div className={`${style.viewer} mt-3`}>
+                  <ReactJson
+                    src={assetInfo.tokenMints.filter((mint) => mint.transaction.hash === selectedMint)[0]}
+                    enableClipboard={false}
+                    displayDataTypes={false}
+                    displayObjectSize={false}
+                    name={false}
+                  // theme="brewer"
+                  />
+                </div>
+              )}
             </div>
           </div>
         </div>

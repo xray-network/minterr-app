@@ -96,7 +96,7 @@ const Explorer = () => {
 
   return (
     <div className="ray__block pt-3">
-      <h1 className="text-center mb-5">
+      <h1 className="mb-5">
         Are you here to find NFT diamonds?
         <br />
         We've got something!{" "}
@@ -132,10 +132,10 @@ const Explorer = () => {
           />
         </Form.Item>
       </Form>
-      <h1 className="text-center pt-3 mb-5">
+      <h1 className="pt-3 mb-5">
         Better yet, mint your NFT token!
       </h1>
-      <div className="text-center mb-5">
+      <div className="mb-5">
         <Button
           onClick={() => {
             navigate("/mint-tokens/")
@@ -143,10 +143,10 @@ const Explorer = () => {
           type="primary"
           className={style.mintButton}
         >
-          Mint Token!
+          Mint a token!
         </Button>
       </div>
-      <div className="text-muted text-center mb-5 max-width-800 ms-auto me-auto">
+      <div className="text-muted mb-5 max-width-800">
         <p className="mb-2">
           Current epoch is <strong>{stat.epochs}</strong>. During this time,{" "}
           <strong>{stat.assets}</strong> tokens have been minted{" "}

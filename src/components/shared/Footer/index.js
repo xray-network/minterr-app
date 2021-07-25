@@ -105,7 +105,7 @@ const Footer = () => {
                       </a>
                     </li>
                     <li>
-                      <a href="https://minterr.org/" className="text-muted">
+                      <a href="https://minterr.io/" className="text-muted">
                         Minterr
                       </a>
                     </li>
@@ -285,7 +285,7 @@ const Footer = () => {
                   <div className="mb-4">
                     <div>
                       <Tooltip title="Web Version">
-                        <a href="https://raywallet.org/" className={style.app}>
+                        <a href="https://raywallet.io" className={style.app}>
                           <span className="ray__icon ray__icon--22">
                             <SVGInternet />
                           </span>
@@ -395,7 +395,7 @@ const Footer = () => {
                   allowClear
                   enterButton="Subscribe"
                   size="large"
-                  onSearch={() => {}}
+                  onSearch={() => { }}
                 />
               </div>
             </div>

@@ -52,7 +52,7 @@ export const fetchImageBlob = async (url) => {
           type: blob.type,
         }
       })
-      .catch((err) => {})
+      .catch((err) => { })
   } else {
     return Promise.reject("URL is not valid")
   }
@@ -87,7 +87,7 @@ export const processAsset = (asset) => {
       assetName
     )
     const minterr = metadataNft
-      ? metadataNft.publisher === "https://minterr.org"
+      ? metadataNft.publisher === "https://minterr.io"
       : false
     let quantity = 0
     asset.tokenMints.forEach((mint) => {

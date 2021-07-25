@@ -2,6 +2,7 @@ import React from "react"
 import { Helmet } from "react-helmet"
 import qs from "qs"
 import Asset from "@/components/pages/Explorer/Asset"
+import Block from "@/components/pages/Explorer/Block"
 import MainLayout from "@/layouts/Main"
 
 const Explorer = ({ location }) => {
@@ -17,7 +18,7 @@ const Explorer = ({ location }) => {
       {query.block && (
         <>
           <Helmet title={`Block ${query.block}`} />
-          {query.block}
+          <Block block={query.block} />
         </>
       )}
       {query.transaction && (

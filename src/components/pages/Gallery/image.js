@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react"
+import { Tooltip } from "antd"
 import { SVGFavicon } from "@/svg"
 import handleViewport from "react-in-viewport"
 import {
@@ -41,16 +42,37 @@ const Image = ({ nft, minted, assetName, inViewport, forwardedRef }) => {
   const isSuccess = image && !loading
 
   return (
-    <div className={style.image} ref={forwardedRef}>
+    <div className={`${style.image} ${isNotNft ? style.imageFungible : ''}`} ref={forwardedRef}>
       {type === "image/gif" && <span className={style.type}>GIF</span>}
-      {minted && <span className={style.minted}>Newly Minted!</span>}
+      {minted && <span className={style.minted}>Minted!</span>}
       {/* IMAGE CAN'T BE LOADED */}
       {isUnableToLoad && (
         <div className={style.placeholder}>
           <span className="ray__icon ray__icon--32">
             <SVGFavicon />
           </span>
-          <span>Unable To Load</span>
+          <Tooltip
+            title={
+              <div className="text-center">
+                If you see Ray Diamond on the following link,
+                you don't need to take any action, just surf
+                NFTs!
+              </div>
+            }
+          >
+            <a
+              href="https://cloudflare-ipfs.com/ipfs/QmaYWWWmrUJkWiKAaHRiYwLaSCNGT8he4ZpuQd5TddvRVJ"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              onKeyPress={(e) => e.stopPropagation()}
+              role="button"
+              tabIndex="0"
+            >
+              Unable To Load?
+            </a>
+          </Tooltip>
+          <span></span>
         </div>
       )}
       {/* WRONG IMAGE SCHEME */}

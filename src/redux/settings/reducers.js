@@ -21,7 +21,6 @@ const initialState = {
     mnemonic: "",
   }),
   storeSession: true,
-  init: false,
   networkInfo: {},
   networkSlot: 0,
   networkBlock: 0,
@@ -32,6 +31,7 @@ const initialState = {
   addressState: {},
   addressStateLoading: false,
   transaction: "",
+  Cardano: undefined,
 }
 
 export default function settingsReducer(state = initialState, action) {

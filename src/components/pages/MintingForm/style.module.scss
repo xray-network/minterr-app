@@ -1,11 +1,5 @@
 @import "@/styles/mixins";
 
-.outer {
-  border-radius: 8px;
-  background: $white;
-  padding: rem(40) rem(30);
-}
-
 .restoreInput {
   position: relative;
   padding-bottom: rem(12);
@@ -56,6 +50,7 @@
 .faq {
   margin: 0;
   padding: 0;
+  line-height: 1.7;
 
   li {
     padding: 0;

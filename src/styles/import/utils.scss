@@ -52,6 +52,14 @@
     padding: 0 rem(25);
   }
 
+  &__box {
+    &--bg {
+      border-radius: 8px;
+      background: $white;
+      padding: rem(40) rem(30);
+    }
+  }
+
   &__line {
     height: 1px;
     background: $border;

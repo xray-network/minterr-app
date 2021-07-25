@@ -175,7 +175,7 @@ const MintingForm = () => {
         delete itemProcesses.amount
         processedMetadata[item.ticker] = {
           ...item,
-          publisher: "https://minterr.org",
+          publisher: "https://minterr.io",
         }
       })
       metadata = {
@@ -188,7 +188,7 @@ const MintingForm = () => {
     if (tokenType === 0) {
       metadata = {
         0: {
-          publisher: "https://minterr.org",
+          publisher: "https://minterr.io",
         },
       }
     }
@@ -237,7 +237,7 @@ const MintingForm = () => {
 
   return (
     <div className="ray__block">
-      <h1 className="mb-4 pt-3 text-center">
+      <h1 className="mb-4 pt-3">
         Let's mint a Cardano token, creator.
         <br />
         Absolutely free of charge!{" "}
@@ -245,7 +245,7 @@ const MintingForm = () => {
           👋
         </span>
       </h1>
-      <div className="mb-5 pb-3 text-center">
+      <div className="mb-5 pb-3">
         <ul className={style.faq}>
           <li>
             <span className="ray__point ray__point--outline">1</span> Write down
@@ -281,7 +281,7 @@ const MintingForm = () => {
           </li>
         </ul>
       </div>
-      <div className={style.outer}>
+      <div className="ray__box ray__box--bg">
         <div className="row">
           <div className="col-12">
             <div className="mb-2">
@@ -560,9 +560,9 @@ const MintingForm = () => {
                           const image =
                             originalImage && originalImage.startsWith("ipfs://")
                               ? `https://cloudflare-ipfs.com/ipfs/${originalImage.replace(
-                                  "ipfs://",
-                                  ""
-                                )}`
+                                "ipfs://",
+                                ""
+                              )}`
                               : originalImage
                           return (
                             <div

@@ -32,9 +32,16 @@
   justify-content: center;
   background: #000000;
   border-radius: 8px;
-  // border: 1px solid $pastel-2;
-  margin-bottom: rem(5);
   overflow: hidden;
+  margin-bottom: rem(5);
+
+  &Fungible {
+    background: $primary;
+
+    .placeholder {
+      color: $white;
+    }
+  }
 
   canvas {
     max-width: 100% !important;
@@ -109,10 +116,10 @@
   position: absolute;
   z-index: 2;
   background: $success;
-  padding: rem(3) rem(8);
-  border-radius: 3px;
-  top: rem(-5);
-  left: rem(-5);
+  padding: 0 rem(5);
+  border-radius: 8px;
+  top: rem(5);
+  left: rem(5);
   color: $white;
   font-weight: bold;
 }

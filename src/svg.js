@@ -26,6 +26,10 @@ import SVGLeaderboard from "@/components/icons/leaderboard.svg"
 import SVGTrophy from "@/components/icons/trophy.svg"
 import SVGBadge from "@/components/icons/badge.svg"
 import SVGChevronDoubleUp from "@/components/icons/chevron_double_up.svg"
+import SVGChevronForward from "@/components/icons/chevron_forward.svg"
+import SVGChevronBackward from "@/components/icons/chevron_backward.svg"
+import SVGArrowForward from "@/components/icons/arrow_forward.svg"
+import SVGArrowBackward from "@/components/icons/arrow_backward.svg"
 
 export {
   SVGMinterr,
@@ -55,4 +59,8 @@ export {
   SVGTrophy,
   SVGBadge,
   SVGChevronDoubleUp,
+  SVGChevronForward,
+  SVGChevronBackward,
+  SVGArrowForward,
+  SVGArrowBackward,
 }

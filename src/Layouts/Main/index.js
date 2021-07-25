@@ -11,7 +11,7 @@ const MainLayout = ({ children }) => {
       <Helmet titleTemplate="%s | Minterr" title="Mint Cardano Tokens">
         <link rel="preload" href="/resources/font/circular.css" as="style" />
         <link rel="stylesheet" href="/resources/font/circular.css" />
-        <meta property="og:url" content="https://minterr.org" />
+        <meta property="og:url" content="https://minterr.io" />
         <meta
           name="description"
           content="Mint NFT and Fungible Tokens online in a few clicks with Minterr — Cardano minting tool and NFT explorer #1. Absolutely free of charge!"

@@ -33,17 +33,17 @@
     position: relative;
     z-index: 2;
   }
-
-  &:hover {
-    .shortMetadata {
-      opacity: 1;
-    }
-  }
 }
 
 .shortMetadata {
   transition: opacity 0.3s ease-in-out;
   opacity: 0.4;
+  padding-left: rem(25);
+  padding-right: rem(25);
+
+  &:hover {
+    opacity: 1;
+  }
 }
 
 .by {
@@ -106,6 +106,46 @@
 .pig {
   img {
     max-width: rem(300);
+  }
+}
+
+.viewer {
+  text-align: left;
+  padding: rem(30) rem(25);
+  border-radius: 8px;
+  background: $white;
+  white-space: nowrap;
+  overflow-x: auto;
+  font-size: rem(14);
+
+  :global(.react-json-view) {
+    background: $white !important;
+  }
+
+  &Link {
+    display: inline-block;
+    margin: 0 rem(10) rem(10) 0;
+    border: 3px solid $primary;
+    color: $primary;
+    padding: 0 rem(10);
+    font-weight: bold;
+    border-radius: 100px;
+    cursor: pointer;
+    @include transition-fast();
+
+    &Active {
+      background: $primary;
+      color: $white !important;
+
+      &:hover {
+        background: $blue-light;
+      }
+    }
+    
+    &:hover {
+      color: $blue-light;
+      border-color: $blue-light;
+    }
   }
 }
 

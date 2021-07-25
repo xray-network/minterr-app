@@ -1,12 +1,12 @@
 import React, { useState } from "react"
-import { formatDistance, subHours } from "date-fns"
+// import { formatDistance, subHours } from "date-fns"
 // import * as style from "./style.module.scss"
 
 const Top = () => {
-  const [projectsCount, setProjectsCount] = useState(52)
-  const [totalAdaVotes, setTotalAdaVotes] = useState(14231.125984)
-  const [updatedAt, setUpdatedAt] = useState(subHours(new Date(), 3))
-  const [loading, setLoading] = useState(true)
+  // const [projectsCount, setProjectsCount] = useState(52)
+  // const [totalAdaVotes, setTotalAdaVotes] = useState(14231.125984)
+  // const [updatedAt, setUpdatedAt] = useState(subHours(new Date(), 3))
+  const [loading] = useState(true)
 
   return (
     <div className="ray__block pt-3">
