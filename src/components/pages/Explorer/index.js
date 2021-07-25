@@ -132,9 +132,7 @@ const Explorer = () => {
           />
         </Form.Item>
       </Form>
-      <h1 className="pt-3 mb-5">
-        Better yet, mint your NFT token!
-      </h1>
+      <h1 className="pt-3 mb-5">Better yet, mint your NFT token!</h1>
       <div className="mb-5">
         <Button
           onClick={() => {

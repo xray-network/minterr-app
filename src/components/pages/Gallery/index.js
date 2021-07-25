@@ -31,8 +31,12 @@ const Gallery = ({ tokens }) => {
       {count < tokens.length && (
         <div className="mt-3 pb-2 text-center">
           <Button type="primary" onClick={() => setCount(count + diff)}>
-            {(tokens.length - count) >= diff && <strong>Show next {diff} assets</strong>}
-            {(tokens.length - count) < diff && <strong>Show last {tokens.length - count} assets</strong>}
+            {tokens.length - count >= diff && (
+              <strong>Show next {diff} assets</strong>
+            )}
+            {tokens.length - count < diff && (
+              <strong>Show last {tokens.length - count} assets</strong>
+            )}
           </Button>
         </div>
       )}

@@ -42,7 +42,10 @@ const Image = ({ nft, minted, assetName, inViewport, forwardedRef }) => {
   const isSuccess = image && !loading
 
   return (
-    <div className={`${style.image} ${isNotNft ? style.imageFungible : ''}`} ref={forwardedRef}>
+    <div
+      className={`${style.image} ${isNotNft ? style.imageFungible : ""}`}
+      ref={forwardedRef}
+    >
       {type === "image/gif" && <span className={style.type}>GIF</span>}
       {minted && <span className={style.minted}>Minted!</span>}
       {/* IMAGE CAN'T BE LOADED */}
@@ -54,9 +57,8 @@ const Image = ({ nft, minted, assetName, inViewport, forwardedRef }) => {
           <Tooltip
             title={
               <div className="text-center">
-                If you see Ray Diamond on the following link,
-                you don't need to take any action, just surf
-                NFTs!
+                If you see Ray Diamond on the following link, you don't need to
+                take any action, just surf NFTs!
               </div>
             }
           >

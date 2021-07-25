@@ -15,18 +15,14 @@ const Live = () => {
       const blocksToQuery = firstRun
         ? range(networkBlock - 4, networkBlock + 1).reverse() // query 5 blocks before from current
         : prevBlock
-          ? generateBlocksToQuery()
-          : [networkBlock]
-      setBlocks([
-        ...blocksToQuery,
-        ...blocks,
-      ])
+        ? generateBlocksToQuery()
+        : [networkBlock]
+      setBlocks([...blocksToQuery, ...blocks])
       serPrevBlock(networkBlock)
       setFirstRun(false)
     }
     // eslint-disable-next-line
   }, [networkBlock])
-
 
   const generateBlocksToQuery = () => {
     const diff = networkBlock - prevBlock
@@ -45,7 +41,9 @@ const Live = () => {
       </h1>
       <div className="text-muted mb-5 pb-4 max-width-800">
         <p className="mb-0">
-          The data is updated every minute and shows all found Native Tokens in new blocks. The pictures are downloaded directly from IPFS, so this may take some time.
+          The data is updated every minute and shows all found Native Tokens in
+          new blocks. The pictures are downloaded directly from IPFS, so this
+          may take some time.
         </p>
       </div>
       <div>
@@ -67,12 +65,8 @@ const Live = () => {
             >
               <span className="visually-hidden">Loading...</span>
             </div>
-            <div className="pt-3">
-              Waiting for a block with tokens.
-            </div>
-            <div>
-              Please wait for a while...
-            </div>
+            <div className="pt-3">Waiting for a block with tokens.</div>
+            <div>Please wait for a while...</div>
           </div>
         )}
       </div>

@@ -3,8 +3,8 @@ import { InlineShareButtons } from "sharethis-reactjs"
 import { useSelector } from "react-redux"
 import { Helmet } from "react-helmet"
 import { Tooltip } from "antd"
-import { format } from 'date-fns'
-import ReactJson from 'react-json-view-ssr'
+import { format } from "date-fns"
+import ReactJson from "react-json-view-ssr"
 import store from "store"
 import { Link } from "gatsby"
 import * as style from "./style.module.scss"
@@ -296,8 +296,9 @@ const Asset = ({ fingerprint }) => {
               <Helmet>
                 <meta
                   property="og:title"
-                  content={`${assetInfo.metadataNft?.name || assetInfo.assetName
-                    } — Cardano NFT Token`}
+                  content={`${
+                    assetInfo.metadataNft?.name || assetInfo.assetName
+                  } — Cardano NFT Token`}
                 />
                 <meta
                   property="og:image"
@@ -331,13 +332,15 @@ const Asset = ({ fingerprint }) => {
                   return (
                     <span
                       key={hash}
-                      className={`${style.viewerLink} ${hash === selectedMint ? style.viewerLinkActive : ''}`}
+                      className={`${style.viewerLink} ${
+                        hash === selectedMint ? style.viewerLinkActive : ""
+                      }`}
                       onClick={() => setSelectedMint(hash)}
                       onKeyPress={() => setSelectedMint(hash)}
                       role="button"
                       tabIndex="0"
                     >
-                      {format(new Date(includedAt), 'yyyy-MM-dd HH:mm:ss')}
+                      {format(new Date(includedAt), "yyyy-MM-dd HH:mm:ss")}
                     </span>
                   )
                 })}
@@ -345,12 +348,16 @@ const Asset = ({ fingerprint }) => {
               {selectedMint && (
                 <div className={`${style.viewer} mt-3`}>
                   <ReactJson
-                    src={assetInfo.tokenMints.filter((mint) => mint.transaction.hash === selectedMint)[0]}
+                    src={
+                      assetInfo.tokenMints.filter(
+                        (mint) => mint.transaction.hash === selectedMint
+                      )[0]
+                    }
                     enableClipboard={false}
                     displayDataTypes={false}
                     displayObjectSize={false}
                     name={false}
-                  // theme="brewer"
+                    // theme="brewer"
                   />
                 </div>
               )}

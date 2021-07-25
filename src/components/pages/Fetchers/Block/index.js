@@ -41,7 +41,11 @@ const query = (blockNumber) => `
   }
 `
 
-const BlockFetcher = ({ blockNumber, solo = true, setLoadingOuter = () => { } }) => {
+const BlockFetcher = ({
+  blockNumber,
+  solo = true,
+  setLoadingOuter = () => {},
+}) => {
   const [liveState, setLiveState] = useState([])
   const [loading, setLoading] = useState(true)
   const init = useSelector((state) => state.settings.init)
@@ -98,7 +102,7 @@ const BlockFetcher = ({ blockNumber, solo = true, setLoadingOuter = () => { } })
           })
         })
       })
-    } catch { }
+    } catch {}
     return tokens
   }
 
@@ -106,9 +110,7 @@ const BlockFetcher = ({ blockNumber, solo = true, setLoadingOuter = () => { } })
     <div className="mb-5">
       {solo && (
         <div className="text-left text-md-center">
-          <h5 className="mb-0">
-            Block {blockNumber} outputs
-          </h5>
+          <h5 className="mb-0">Block {blockNumber} outputs</h5>
         </div>
       )}
       {liveState.map((block) => {
@@ -129,23 +131,23 @@ const BlockFetcher = ({ blockNumber, solo = true, setLoadingOuter = () => { } })
               </h5>
             )}
             <div className="text-muted mb-4">
-              {formatDistance(new Date(block.forgedAt), new Date(), { addSuffix: true })}
+              {formatDistance(new Date(block.forgedAt), new Date(), {
+                addSuffix: true,
+              })}
             </div>
             <Gallery tokens={block.tokens} />
           </div>
         )
       })}
-      {(solo && liveState.length === 0 && !loading) && (
+      {solo && liveState.length === 0 && !loading && (
         <div className="text-center">
-          <h1 className="pt-5 mb-5">
-            Unable to find the block
-          </h1>
+          <h1 className="pt-5 mb-5">Unable to find the block</h1>
           <div className="pt-4">
             <h1>:(</h1>
           </div>
         </div>
       )}
-      {(solo && loading) && (
+      {solo && loading && (
         <div className="text-center ">
           <div className="pt-5 mb-5">
             <h1>Loading block data...</h1>

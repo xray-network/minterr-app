@@ -52,7 +52,7 @@ export const fetchImageBlob = async (url) => {
           type: blob.type,
         }
       })
-      .catch((err) => { })
+      .catch((err) => {})
   } else {
     return Promise.reject("URL is not valid")
   }
