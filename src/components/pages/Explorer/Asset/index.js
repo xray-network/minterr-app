@@ -165,7 +165,7 @@ const Asset = ({ fingerprint }) => {
                       )}
                     </div>
                     {(metadataNftTransformed.length > 0) && (
-                      <div className="max-width-800 ms-auto mt-5 me-auto">
+                      <div className={`${style.shortMetadata} max-width-800 ms-auto mt-5 me-auto`}>
                         {metadataNftTransformed.map((item, index) => {
                           const [key, value] = item
                           const stopWords = ['image', 'Image', 'name', 'Name']

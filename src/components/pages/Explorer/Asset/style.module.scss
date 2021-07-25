@@ -31,11 +31,22 @@
     position: relative;
     z-index: 2;
   }
+
+  &:hover {
+    .shortMetadata {
+      opacity: 1;
+    }
+  }
+}
+
+.shortMetadata {
+  transition: opacity .3s ease-in-out;
+  opacity: .4;
 }
 
 .by {
   color: $gray-5;
-  margin-bottom: rem(30);
+  margin-bottom: rem(40);
   svg {
     height: rem(30);
     width: auto;
