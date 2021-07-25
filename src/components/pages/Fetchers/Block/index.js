@@ -44,7 +44,7 @@ const query = (blockNumber) => `
 const BlockFetcher = ({
   blockNumber,
   solo = true,
-  setLoadingOuter = () => {},
+  setLoadingOuter = () => { },
 }) => {
   const [liveState, setLiveState] = useState([])
   const [loading, setLoading] = useState(true)
@@ -102,7 +102,7 @@ const BlockFetcher = ({
           })
         })
       })
-    } catch {}
+    } catch { }
     return tokens
   }
 
@@ -141,7 +141,7 @@ const BlockFetcher = ({
       })}
       {solo && liveState.length === 0 && !loading && (
         <div className="text-center">
-          <h1 className="pt-5 mb-5">Unable to find the block</h1>
+          <h1 className="pt-5 mb-5">Unable to find tokens in the block</h1>
           <div className="pt-4">
             <h1>:(</h1>
           </div>

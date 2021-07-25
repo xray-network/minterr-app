@@ -12,7 +12,6 @@ const Top = () => {
     <div className="ray__block pt-3">
       <h1 className="text-center mb-4">
         The highest quality Cardano projects are here!
-        <br />
         Vote for your idols!{" "}
         <span role="img" aria-label="">
           💫
@@ -20,8 +19,7 @@ const Top = () => {
       </h1>
       <h5 className="text-center">
         Vote by sending any amount of ADA to the project address to get it up on
-        the list.
-        <br />1 <span className="ray__ticker">ADA</span> = 10 points. Remember
+        the list. 1 <span className="ray__ticker">ADA</span> = 10 points. Remember
         stranger, the higher a project is on the list, the more attention it
         gets!
       </h5>

@@ -1,6 +1,6 @@
 import React from "react"
-import * as style from "./style.module.scss"
 import { Link } from "gatsby"
+import * as style from "./style.module.scss"
 
 const Page404 = () => {
   return (

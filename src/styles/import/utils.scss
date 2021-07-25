@@ -57,6 +57,10 @@
       border-radius: 8px;
       background: $white;
       padding: rem(40) rem(30);
+
+      @media(max-width: $sm-max-width) {
+        padding: rem(25);
+      }
     }
   }
 

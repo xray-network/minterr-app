@@ -35,6 +35,11 @@
   overflow: hidden;
   margin-bottom: rem(5);
 
+  @media (max-width: 360px) {
+    width: rem(110);
+    height: rem(130);
+  }
+
   &Fungible {
     background: $primary;
 
@@ -115,6 +120,7 @@
   font-size: rem(11);
   position: absolute;
   z-index: 2;
+  border: 2px solid $dark;
   background: $success;
   padding: 0 rem(5);
   border-radius: 8px;

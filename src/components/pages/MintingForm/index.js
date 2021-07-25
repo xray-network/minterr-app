@@ -291,7 +291,7 @@ const MintingForm = () => {
                 </strong>
               </span>
               {!restore && (
-                <span>
+                <span className="d-block d-sm-inline">
                   <span
                     className="link me-3"
                     onClick={generateNewSession}
@@ -560,9 +560,9 @@ const MintingForm = () => {
                           const image =
                             originalImage && originalImage.startsWith("ipfs://")
                               ? `https://cloudflare-ipfs.com/ipfs/${originalImage.replace(
-                                  "ipfs://",
-                                  ""
-                                )}`
+                                "ipfs://",
+                                ""
+                              )}`
                               : originalImage
                           return (
                             <div

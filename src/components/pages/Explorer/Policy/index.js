@@ -5,10 +5,10 @@ import { Helmet } from "react-helmet"
 import { message } from "antd"
 import store from "store"
 import { Link } from "gatsby"
-import * as style from "./style.module.scss"
 import { processAsset, imageStringToCloudflare } from "@/utils/index"
 import { SVGMinterr, SVGFavicon, SVGSun, SVGMoon } from "@/svg"
 import Cardano from "../../../../services/cardano"
+import * as style from "./style.module.scss"
 
 const query = (fingerpint) => `
   query blockByNumber {

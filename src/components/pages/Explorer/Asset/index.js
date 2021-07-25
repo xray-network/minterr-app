@@ -7,7 +7,6 @@ import { format } from "date-fns"
 import ReactJson from "react-json-view-ssr"
 import store from "store"
 import { Link } from "gatsby"
-import * as style from "./style.module.scss"
 import {
   processAsset,
   imageStringToCloudflare,
@@ -16,6 +15,7 @@ import {
 } from "@/utils/index"
 import { SVGMinterr, SVGFavicon, SVGSun, SVGMoon } from "@/svg"
 import Cardano from "../../../../services/cardano"
+import * as style from "./style.module.scss"
 
 const query = (fingerpint) => `
   query blockByNumber {
@@ -296,9 +296,8 @@ const Asset = ({ fingerprint }) => {
               <Helmet>
                 <meta
                   property="og:title"
-                  content={`${
-                    assetInfo.metadataNft?.name || assetInfo.assetName
-                  } — Cardano NFT Token`}
+                  content={`${assetInfo.metadataNft?.name || assetInfo.assetName
+                    } — Cardano NFT Token`}
                 />
                 <meta
                   property="og:image"
@@ -319,7 +318,7 @@ const Asset = ({ fingerprint }) => {
                     "discord",
                     "facebook",
                     "reddit",
-                    "other",
+                    "sharethis",
                   ],
                 }}
               />
@@ -332,9 +331,8 @@ const Asset = ({ fingerprint }) => {
                   return (
                     <span
                       key={hash}
-                      className={`${style.viewerLink} ${
-                        hash === selectedMint ? style.viewerLinkActive : ""
-                      }`}
+                      className={`${style.viewerLink} ${hash === selectedMint ? style.viewerLinkActive : ""
+                        }`}
                       onClick={() => setSelectedMint(hash)}
                       onKeyPress={() => setSelectedMint(hash)}
                       role="button"
@@ -357,7 +355,7 @@ const Asset = ({ fingerprint }) => {
                     displayDataTypes={false}
                     displayObjectSize={false}
                     name={false}
-                    // theme="brewer"
+                  // theme="brewer"
                   />
                 </div>
               )}

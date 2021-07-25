@@ -12,12 +12,41 @@
     }
   }
 
+  &Switch {
+    svg {
+      width: rem(24) !important;
+      height: rem(24) !important;
+    }
+  }
+
+  @media (max-width: $md-max-width) {
+    &Switch {
+      svg {
+        width: rem(26) !important;
+        height: rem(26) !important;
+      }
+    }
+  }
+
   &Icon {
     height: rem(20);
     width: rem(20);
     position: relative;
     cursor: pointer;
     margin-right: rem(10);
+
+
+    @media (max-width: $md-max-width) {
+      width: rem(25);
+
+      &:before {
+        top: rem(5) !important;
+      }
+
+      &:after {
+        top: rem(14) !important;
+      }
+    }
 
     &:after,
     &:before {
@@ -57,12 +86,21 @@
     color: $dark;
     white-space: nowrap;
 
+    @media(max-width: $sm-max-width) {
+      border: 2px solid $dark;
+      margin-right: rem(15);
+      font-weight: 900;
+      font-size: rem(18);
+      border-radius: 20px;
+      padding: 0 rem(10);
+    }
+
     &Width {
       position: relative;
 
       span:first-child {
         opacity: 0;
-        font-weight: 600;
+        font-weight: 700;
       }
 
       span:last-child {
@@ -80,6 +118,17 @@
     &Active {
       color: $blue;
       font-weight: 700;
+
+      @media(max-width: $sm-max-width) {
+        font-weight: 900;
+        border-color: $blue;
+
+        svg {
+          * {
+            fill: $blue;
+          }
+        }
+      }
     }
   }
 }

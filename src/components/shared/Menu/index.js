@@ -1,6 +1,5 @@
 import React from "react"
 import { Link } from "gatsby"
-import * as style from "./style.module.scss"
 import {
   SVGMinterr,
   SVGWallet,
@@ -10,6 +9,7 @@ import {
   SVGSearch,
   SVGTrophy,
 } from "@/svg"
+import * as style from "./style.module.scss"
 
 const Menu = () => {
   return (
@@ -21,7 +21,7 @@ const Menu = () => {
         <span className="text-muted d-sm-inline d-none">
           Cardano minting tool and NFT explorer #1
         </span>
-        <span className="ms-auto me-3">
+        <span className="ms-auto me-3 d-none d-sm-inline">
           <a
             href="https://raywallet.io"
             className="ant-btn ray__btn ray__btn--round"
@@ -34,8 +34,8 @@ const Menu = () => {
             </span>
           </a>
         </span>
-        <span role="button" tabIndex="0" className="cursor-pointer me-3">
-          <span className="ray__icon ray__icon--22">
+        <span role="button" tabIndex="0" className={`cursor-pointer me-3 ms-auto ms-sm-0 ${style.menuSwitch}`}>
+          <span className="ray__icon">
             <SVGSun />
           </span>
         </span>

@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react"
 import { useSelector } from "react-redux"
 import { Link, navigate } from "gatsby"
 import { Input, Form, Button } from "antd"
-import * as style from "./style.module.scss"
 import Cardano from "../../../services/cardano"
+import * as style from "./style.module.scss"
 
 const query = `
   query aggregate {

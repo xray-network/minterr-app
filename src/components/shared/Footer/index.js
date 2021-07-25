@@ -38,14 +38,14 @@ const Footer = () => {
           <div className="row">
             <div className="col-12 col-sm-8 mb-3">
               <div className="row">
-                <div className="col-4">
-                  <div className="d-flex mb-4">
-                    <span className="ray__icon me-2">
+                <div className="col-6 col-sm-4 ">
+                  <div className="d-flex flex-column flex-sm-row mb-4">
+                    <span className="ray__icon me-2 mb-1 mb-sm-0">
                       <SVGWallet />
                     </span>
                     <strong>Cardano Solutions</strong>
                   </div>
-                  <ul className="list-unstyled">
+                  <ul className="list-unstyled mb-4">
                     <li>
                       <a
                         href="https://rraayy.com/ray-wallet/"
@@ -127,14 +127,14 @@ const Footer = () => {
                     </li>
                   </ul>
                 </div>
-                <div className="col-4">
-                  <div className="d-flex mb-4">
-                    <span className="ray__icon me-2">
+                <div className="col-6 col-sm-4">
+                  <div className="d-flex flex-column flex-sm-row mb-4">
+                    <span className="ray__icon me-2 mb-1 mb-sm-0">
                       <SVGAtSign />
                     </span>
                     <strong>Information</strong>
                   </div>
-                  <ul className="list-unstyled">
+                  <ul className="list-unstyled mb-5">
                     <li>
                       <a
                         href="https://rraayy.com/xray-token/"
@@ -203,76 +203,82 @@ const Footer = () => {
                     </li>
                   </ul>
                 </div>
-                <div className="col-4">
-                  <div className="d-flex mb-4">
-                    <span className="ray__icon me-2">
-                      <SVGTwitter />
-                    </span>
-                    <strong>Minterr</strong>
+                <div className="col-12 col-sm-4">
+                  <div className="row">
+                    <div className="col-6 col-sm-12 order-1 order-sm-0">
+                      <div className="d-flex flex-column flex-sm-row mb-4">
+                        <span className="ray__icon me-2 mb-1 mb-sm-0">
+                          <SVGTwitter />
+                        </span>
+                        <strong>Minterr</strong>
+                      </div>
+                      <ul className="list-unstyled mb-5">
+                        <li>
+                          <a
+                            href="https://twitter.com/MinterrApp"
+                            className="text-muted"
+                          >
+                            Twitter
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            href="https://discord.gg/dDVXcthYWn"
+                            className="text-muted"
+                          >
+                            Discord
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                    <div className="col-6 col-sm-12 order-0 order-sm-1">
+                      <div className="d-flex flex-column flex-sm-row mb-4">
+                        <span className="ray__icon me-2 mb-1 mb-sm-0">
+                          <SVGTwitter />
+                        </span>
+                        <strong>Ray Network</strong>
+                      </div>
+                      <ul className="list-unstyled mb-4">
+                        <li>
+                          <a
+                            href="https://twitter.com/RayWallet"
+                            className="text-muted"
+                          >
+                            Twitter
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            href="https://t.me/RayWalletCommunity"
+                            className="text-muted"
+                          >
+                            Telegram Chat
+                          </a>
+                        </li>
+                        <li>
+                          <a href="https://t.me/RayWallet" className="text-muted">
+                            Telegram
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            href="https://discord.gg/WhZmm46APN"
+                            className="text-muted"
+                          >
+                            Discord
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            href="https://www.reddit.com/r/RayWallet"
+                            className="text-muted"
+                          >
+                            Reddit
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
-                  <ul className="list-unstyled mb-5">
-                    <li>
-                      <a
-                        href="https://twitter.com/MinterrApp"
-                        className="text-muted"
-                      >
-                        Twitter
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="https://discord.gg/dDVXcthYWn"
-                        className="text-muted"
-                      >
-                        Discord
-                      </a>
-                    </li>
-                  </ul>
-                  <div className="d-flex mb-4">
-                    <span className="ray__icon me-2">
-                      <SVGTwitter />
-                    </span>
-                    <strong>Ray Network</strong>
-                  </div>
-                  <ul className="list-unstyled">
-                    <li>
-                      <a
-                        href="https://twitter.com/RayWallet"
-                        className="text-muted"
-                      >
-                        Twitter
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="https://t.me/RayWalletCommunity"
-                        className="text-muted"
-                      >
-                        Telegram Chat
-                      </a>
-                    </li>
-                    <li>
-                      <a href="https://t.me/RayWallet" className="text-muted">
-                        Telegram
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="https://discord.gg/WhZmm46APN"
-                        className="text-muted"
-                      >
-                        Discord
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="https://www.reddit.com/r/RayWallet"
-                        className="text-muted"
-                      >
-                        Reddit
-                      </a>
-                    </li>
-                  </ul>
                 </div>
               </div>
             </div>
@@ -395,7 +401,7 @@ const Footer = () => {
                   allowClear
                   enterButton="Subscribe"
                   size="large"
-                  onSearch={() => {}}
+                  onSearch={() => { }}
                 />
               </div>
             </div>
