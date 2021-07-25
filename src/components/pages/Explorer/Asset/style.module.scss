@@ -18,7 +18,9 @@
       color: $dark;
     }
 
-    .by, .notFound, .switchTheme {
+    .by,
+    .notFound,
+    .switchTheme {
       svg {
         * {
           fill: $dark;
@@ -40,8 +42,8 @@
 }
 
 .shortMetadata {
-  transition: opacity .3s ease-in-out;
-  opacity: .4;
+  transition: opacity 0.3s ease-in-out;
+  opacity: 0.4;
 }
 
 .by {
@@ -108,5 +110,5 @@
 }
 
 // dark theme
-[data-theme='dark'] {
+[data-theme="dark"] {
 }

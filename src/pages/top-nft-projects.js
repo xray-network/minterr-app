@@ -1,7 +1,7 @@
 import React from "react"
 import { Helmet } from "react-helmet"
-import MainLayout from '@/layouts/Main'
-import Top from '@/components/pages/Top'
+import MainLayout from "@/layouts/Main"
+import Top from "@/components/pages/Top"
 
 const PageLive = () => {
   return (

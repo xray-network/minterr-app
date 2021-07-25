@@ -54,11 +54,13 @@
     }
 
     &-search {
-      > .ant-input-group > .ant-input-group-addon:last-child .ant-input-search-button,
+      > .ant-input-group
+        > .ant-input-group-addon:last-child
+        .ant-input-search-button,
       > .ant-input-group > .ant-input-group-addon:last-child {
         border-radius: 0 8px 8px 0;
       }
-  
+
       .ant-input-group .ant-input-affix-wrapper:not(:last-child) {
         border-top-left-radius: 8px;
         border-bottom-left-radius: 8px;
@@ -118,7 +120,7 @@
     &-notice-content {
       border-radius: 8px;
     }
-    
+
     &-success .anticon {
       color: $success;
     }
@@ -213,16 +215,16 @@
       border-radius: 12px !important;
       box-shadow: none;
     }
-  
+
     &-header {
       background: transparent !important;
     }
-  
+
     &-body {
       font-size: rem(16) !important;
       color: $black;
     }
-  
+
     &-title {
       color: $black !important;
     }
@@ -230,7 +232,7 @@
 }
 
 // dark theme
-[data-theme='dark'] {
+[data-theme="dark"] {
   // .ant {
   //   &-input {
   //     background: $dark-gray-4;
@@ -250,7 +252,7 @@
   //   &-popover {
   //     &-inner {
   //       background: darken($dark-gray-3, 15%);
-        
+
   //       &-content {
   //         color: $white
   //       }
@@ -318,15 +320,15 @@
   //     &-content {
   //       background: $dark-gray-4 !important;
   //     }
-  
+
   //     &-header {
   //       border-color: $dark-border;
   //     }
-  
+
   //     &-body {
   //       color: $dark-gray-1 !important;
   //     }
-  
+
   //     &-title {
   //       color: $dark-gray-1 !important;
   //     }

@@ -9,7 +9,11 @@ const Page404 = () => {
         <div className="row">
           <div className="col-lg-6">
             <div className={style.pig}>
-              <img src="/resources/images/pig.svg" title="Ray Piglet" alt="Ray Piglet" />
+              <img
+                src="/resources/images/pig.svg"
+                title="Ray Piglet"
+                alt="Ray Piglet"
+              />
             </div>
           </div>
           <div className="col-lg-6">

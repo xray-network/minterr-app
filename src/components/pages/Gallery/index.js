@@ -1,6 +1,6 @@
-import React from 'react'
-import { Link } from 'gatsby'
-import Image from './image'
+import React from "react"
+import { Link } from "gatsby"
+import Image from "./image"
 import * as style from "./style.module.scss"
 
 const Gallery = ({ tokens }) => (
@@ -17,9 +17,7 @@ const Gallery = ({ tokens }) => (
             minted={token.minted}
             assetName={token.assetName}
           />
-          <div className={style.name}>
-            {token.assetName}
-          </div>
+          <div className={style.name}>{token.assetName}</div>
         </Link>
       )
     })}

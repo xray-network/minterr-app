@@ -17,9 +17,9 @@
   &-primary {
     background: $blue;
   }
-  
+
   &-transparent {
-    background: rgba($white, .2);
+    background: rgba($white, 0.2);
     color: $white;
   }
 }
@@ -92,7 +92,7 @@
 }
 
 // dark theme
-[data-theme='dark'] {
+[data-theme="dark"] {
   .badge {
     &-token {
       background: $dark-gray-4;

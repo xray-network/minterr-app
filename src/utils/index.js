@@ -3,29 +3,29 @@ export const randomHSL = () => {
 }
 
 export const imageStringToCloudflare = (i) => {
-  if (!(typeof i === 'string')) {
-    return ''
+  if (!(typeof i === "string")) {
+    return ""
   }
-  if (i.startsWith('ipfs://ipfs/')) {
-    return `https://cloudflare-ipfs.com/ipfs/${i.replace('ipfs://ipfs/', '')}`
+  if (i.startsWith("ipfs://ipfs/")) {
+    return `https://cloudflare-ipfs.com/ipfs/${i.replace("ipfs://ipfs/", "")}`
   }
-  if (i.startsWith('ipfs://')) {
-    return `https://cloudflare-ipfs.com/ipfs/${i.replace('ipfs://', '')}`
+  if (i.startsWith("ipfs://")) {
+    return `https://cloudflare-ipfs.com/ipfs/${i.replace("ipfs://", "")}`
   }
-  if (i.startsWith('https://') || i.startsWith('http://')) {
+  if (i.startsWith("https://") || i.startsWith("http://")) {
     return i
   }
   if (i) {
     return `https://cloudflare-ipfs.com/ipfs/${i}`
   }
-  return ''
+  return ""
 }
 
 export const drawOnCanvas = (canvasRef, blob) => {
   const canvas = canvasRef.current
   const scale = 6
   const img = new Image()
-  const ctx = canvas.getContext('2d')
+  const ctx = canvas.getContext("2d")
   img.onload = function () {
     const width = img.width / scale
     const height = img.height / scale
@@ -37,28 +37,30 @@ export const drawOnCanvas = (canvasRef, blob) => {
 }
 
 export const validUrl = (value) => {
-  return /^(?:(?:(?:https?|ftp):)?\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:[/?#]\S*)?$/i.test(value);
+  return /^(?:(?:(?:https?|ftp):)?\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:[/?#]\S*)?$/i.test(
+    value
+  )
 }
 
 export const fetchImageBlob = async (url) => {
   if (validUrl(url)) {
     return fetch(url)
-      .then(response => response.blob())
-      .then(blob => {
+      .then((response) => response.blob())
+      .then((blob) => {
         return {
           url: URL.createObjectURL(blob),
           type: blob.type,
         }
       })
-      .catch(err => { })
+      .catch((err) => {})
   } else {
-    return Promise.reject('URL is not valid')
+    return Promise.reject("URL is not valid")
   }
 }
 
 export const process721Metadata = (metadata, policyId, assetName) => {
   if (metadata) {
-    const pickedBy721 = metadata.filter(item => item.key === "721")[0]
+    const pickedBy721 = metadata.filter((item) => item.key === "721")[0]
     if (pickedBy721) {
       const { value } = pickedBy721
       const pickedByPolicy = value[policyId]
@@ -77,14 +79,16 @@ export const process721Metadata = (metadata, policyId, assetName) => {
 
 export const processAsset = (asset) => {
   if (asset) {
-    const assetName = Buffer.from(asset.assetName, 'hex').toString()
+    const assetName = Buffer.from(asset.assetName, "hex").toString()
     const metadataRaw = asset.tokenMints[0]?.transaction?.metadata
     const metadataNft = process721Metadata(
       metadataRaw,
       asset.policyId,
-      assetName,
+      assetName
     )
-    const minterr = metadataNft ? metadataNft.publisher === 'https://minterr.org' : false
+    const minterr = metadataNft
+      ? metadataNft.publisher === "https://minterr.org"
+      : false
     let quantity = 0
     asset.tokenMints.forEach((mint) => {
       quantity = quantity + parseInt(mint.quantity, 10)

@@ -1,18 +1,31 @@
 import React, { useState } from "react"
 import { useSelector } from "react-redux"
-import { Input, Tooltip } from 'antd'
-import store from 'store'
-import { SVGRay, SVGCardano, SVGWallet, SVGTwitter, SVGAtSign, SVGChrome, SVGApple, SVGCategory, SVGAndroid, SVGInternet } from "@/svg"
+import { Input, Tooltip } from "antd"
+import store from "store"
+import {
+  SVGRay,
+  SVGCardano,
+  SVGWallet,
+  SVGTwitter,
+  SVGAtSign,
+  SVGChrome,
+  SVGApple,
+  SVGCategory,
+  SVGAndroid,
+  SVGInternet,
+} from "@/svg"
 import * as style from "./style.module.scss"
 
 const Footer = () => {
   const networkSlot = useSelector((state) => state.settings.networkSlot)
   const networkBlock = useSelector((state) => state.settings.networkBlock)
-  const [network, setNetwork] = useState(store.get('app.settings.network') || 'mainnet')
+  const [network, setNetwork] = useState(
+    store.get("app.settings.network") || "mainnet"
+  )
 
   const switchNetwork = () => {
-    const nextNetwork = network === 'mainnet' ? 'testnet' : 'mainnet'
-    store.set('app.settings.network', nextNetwork)
+    const nextNetwork = network === "mainnet" ? "testnet" : "mainnet"
+    store.set("app.settings.network", nextNetwork)
     setNetwork(nextNetwork)
     window.location.reload()
   }
@@ -33,17 +46,85 @@ const Footer = () => {
                     <strong>Cardano Solutions</strong>
                   </div>
                   <ul className="list-unstyled">
-                    <li><a href="https://rraayy.com/ray-wallet/" className="text-muted">Ray Wallet</a></li>
-                    <li><a href="https://rraayy.com/stake/" className="text-muted">Ray Stake</a></li>
-                    <li><a href="https://rraayy.com/rewards/" className="text-muted">Ray Rewards</a></li>
-                    <li><a href="https://rraayy.com/swap/" className="text-muted">Ray Swap</a></li>
-                    <li><a href="https://rraayy.com/kickstart/" className="text-muted">Ray Kickstart</a></li>
-                    <li><a href="https://rraayy.com/nft-marketplace/" className="text-muted">Ray NFT</a></li>
-                    <li><a href="https://rraayy.com/graph/" className="text-muted">Ray Graph</a></li>
-                    <li><a href="https://rraayy.com/data/" className="text-muted">Ray Data</a></li>
-                    <li><a href="https://minterr.org/" className="text-muted">Minterr</a></li>
-                    <li><a href="https://rraayy.com/cardano-web3/" className="text-muted">CardanoWeb3.js</a></li>
-                    <li><a href="https://rraayy.com/tokens-list/" className="text-muted">Tokens List</a></li>
+                    <li>
+                      <a
+                        href="https://rraayy.com/ray-wallet/"
+                        className="text-muted"
+                      >
+                        Ray Wallet
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="https://rraayy.com/stake/"
+                        className="text-muted"
+                      >
+                        Ray Stake
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="https://rraayy.com/rewards/"
+                        className="text-muted"
+                      >
+                        Ray Rewards
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://rraayy.com/swap/" className="text-muted">
+                        Ray Swap
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="https://rraayy.com/kickstart/"
+                        className="text-muted"
+                      >
+                        Ray Kickstart
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="https://rraayy.com/nft-marketplace/"
+                        className="text-muted"
+                      >
+                        Ray NFT
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="https://rraayy.com/graph/"
+                        className="text-muted"
+                      >
+                        Ray Graph
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://rraayy.com/data/" className="text-muted">
+                        Ray Data
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://minterr.org/" className="text-muted">
+                        Minterr
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="https://rraayy.com/cardano-web3/"
+                        className="text-muted"
+                      >
+                        CardanoWeb3.js
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="https://rraayy.com/tokens-list/"
+                        className="text-muted"
+                      >
+                        Tokens List
+                      </a>
+                    </li>
                   </ul>
                 </div>
                 <div className="col-4">
@@ -54,15 +135,72 @@ const Footer = () => {
                     <strong>Information</strong>
                   </div>
                   <ul className="list-unstyled">
-                    <li><a href="https://rraayy.com/xray-token/" className="text-muted">XRAY Token</a></li>
-                    <li><a href="https://rraayy.com/updates/" className="text-muted">Roadmap & Updates</a></li>
-                    <li><a href="https://rraayy.com/wiki/" className="text-muted">Wiki</a></li>
-                    <li><a href="https://status.rraayy.com/" className="text-muted">Status</a></li>
-                    <li><a href="https://rraayy.com/about/" className="text-muted">About</a></li>
-                    <li><a href="https://rraayy.com/whitepaper/" className="text-muted">Whitepaper</a></li>
-                    <li><a href="https://docs.rraayy.com/" className="text-muted">Docs</a></li>
-                    <li><a href="https://rraayy.com/audit/" className="text-muted">Audit</a></li>
-                    <li><a href="https://rraayy.com/terms-of-use/" className="text-muted">Terms of Use</a></li>
+                    <li>
+                      <a
+                        href="https://rraayy.com/xray-token/"
+                        className="text-muted"
+                      >
+                        XRAY Token
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="https://rraayy.com/updates/"
+                        className="text-muted"
+                      >
+                        Roadmap & Updates
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://rraayy.com/wiki/" className="text-muted">
+                        Wiki
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="https://status.rraayy.com/"
+                        className="text-muted"
+                      >
+                        Status
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="https://rraayy.com/about/"
+                        className="text-muted"
+                      >
+                        About
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="https://rraayy.com/whitepaper/"
+                        className="text-muted"
+                      >
+                        Whitepaper
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://docs.rraayy.com/" className="text-muted">
+                        Docs
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="https://rraayy.com/audit/"
+                        className="text-muted"
+                      >
+                        Audit
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="https://rraayy.com/terms-of-use/"
+                        className="text-muted"
+                      >
+                        Terms of Use
+                      </a>
+                    </li>
                   </ul>
                 </div>
                 <div className="col-4">
@@ -73,8 +211,22 @@ const Footer = () => {
                     <strong>Minterr</strong>
                   </div>
                   <ul className="list-unstyled mb-5">
-                    <li><a href="https://twitter.com/MinterrApp" className="text-muted">Twitter</a></li>
-                    <li><a href="https://discord.gg/dDVXcthYWn" className="text-muted">Discord</a></li>
+                    <li>
+                      <a
+                        href="https://twitter.com/MinterrApp"
+                        className="text-muted"
+                      >
+                        Twitter
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="https://discord.gg/dDVXcthYWn"
+                        className="text-muted"
+                      >
+                        Discord
+                      </a>
+                    </li>
                   </ul>
                   <div className="d-flex mb-4">
                     <span className="ray__icon me-2">
@@ -83,11 +235,43 @@ const Footer = () => {
                     <strong>Ray Network</strong>
                   </div>
                   <ul className="list-unstyled">
-                    <li><a href="https://twitter.com/RayWallet" className="text-muted">Twitter</a></li>
-                    <li><a href="https://t.me/RayWalletCommunity" className="text-muted">Telegram Chat</a></li>
-                    <li><a href="https://t.me/RayWallet" className="text-muted">Telegram</a></li>
-                    <li><a href="https://discord.gg/WhZmm46APN" className="text-muted">Discord</a></li>
-                    <li><a href="https://www.reddit.com/r/RayWallet" className="text-muted">Reddit</a></li>
+                    <li>
+                      <a
+                        href="https://twitter.com/RayWallet"
+                        className="text-muted"
+                      >
+                        Twitter
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="https://t.me/RayWalletCommunity"
+                        className="text-muted"
+                      >
+                        Telegram Chat
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://t.me/RayWallet" className="text-muted">
+                        Telegram
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="https://discord.gg/WhZmm46APN"
+                        className="text-muted"
+                      >
+                        Discord
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="https://www.reddit.com/r/RayWallet"
+                        className="text-muted"
+                      >
+                        Reddit
+                      </a>
+                    </li>
                   </ul>
                 </div>
               </div>
@@ -108,21 +292,30 @@ const Footer = () => {
                         </a>
                       </Tooltip>
                       <Tooltip title="Chrome Extension">
-                        <a href="https://rraayy.com/ray-wallet/" className={style.app}>
+                        <a
+                          href="https://rraayy.com/ray-wallet/"
+                          className={style.app}
+                        >
                           <span className="ray__icon ray__icon--22">
                             <SVGChrome />
                           </span>
                         </a>
                       </Tooltip>
                       <Tooltip title="macOS App">
-                        <a href="https://rraayy.com/ray-wallet/" className={style.app}>
+                        <a
+                          href="https://rraayy.com/ray-wallet/"
+                          className={style.app}
+                        >
                           <span className="ray__icon ray__icon--22">
                             <SVGApple />
                           </span>
                         </a>
                       </Tooltip>
                       <Tooltip title="Windows App">
-                        <a href="https://rraayy.com/ray-wallet/" className={style.app}>
+                        <a
+                          href="https://rraayy.com/ray-wallet/"
+                          className={style.app}
+                        >
                           <span className="ray__icon ray__icon--22">
                             <SVGCategory />
                           </span>
@@ -131,14 +324,20 @@ const Footer = () => {
                     </div>
                     <div>
                       <Tooltip title="iOS App">
-                        <a href="https://rraayy.com/ray-wallet/" className={style.app}>
+                        <a
+                          href="https://rraayy.com/ray-wallet/"
+                          className={style.app}
+                        >
                           <span className="ray__icon ray__icon--22">
                             <SVGApple />
                           </span>
                         </a>
                       </Tooltip>
                       <Tooltip title="Android App">
-                        <a href="https://rraayy.com/ray-wallet/" className={style.app}>
+                        <a
+                          href="https://rraayy.com/ray-wallet/"
+                          className={style.app}
+                        >
                           <span className="ray__icon ray__icon--22">
                             <SVGAndroid />
                           </span>
@@ -154,21 +353,30 @@ const Footer = () => {
                   <div className="mb-4">
                     <div>
                       <Tooltip title="Web Version">
-                        <a href="https://rraayy.com/stake/" className={style.app}>
+                        <a
+                          href="https://rraayy.com/stake/"
+                          className={style.app}
+                        >
                           <span className="ray__icon ray__icon--22">
                             <SVGInternet />
                           </span>
                         </a>
                       </Tooltip>
                       <Tooltip title="iOS App">
-                        <a href="https://rraayy.com/stake/" className={style.app}>
+                        <a
+                          href="https://rraayy.com/stake/"
+                          className={style.app}
+                        >
                           <span className="ray__icon ray__icon--22">
                             <SVGApple />
                           </span>
                         </a>
                       </Tooltip>
                       <Tooltip title="Android App">
-                        <a href="https://rraayy.com/stake/" className={style.app}>
+                        <a
+                          href="https://rraayy.com/stake/"
+                          className={style.app}
+                        >
                           <span className="ray__icon ray__icon--22">
                             <SVGAndroid />
                           </span>
@@ -187,7 +395,7 @@ const Footer = () => {
                   allowClear
                   enterButton="Subscribe"
                   size="large"
-                  onSearch={() => { }}
+                  onSearch={() => {}}
                 />
               </div>
             </div>
@@ -206,9 +414,9 @@ const Footer = () => {
             </a>
           </div>
           <p className="mb-2 text-muted">
-            Advanced Ecosystem for Cardano Blockchain Platform.{' '}
+            Advanced Ecosystem for Cardano Blockchain Platform.{" "}
             <span>
-              <span>Powered with</span>{' '}
+              <span>Powered with</span>{" "}
               <a
                 href="https://cardano.org/"
                 rel="noopener noreferrer"
@@ -222,7 +430,9 @@ const Footer = () => {
             </span>
           </p>
           <p className="mb-2 text-muted">
-            <span className="me-2 text-capitalize">Cardano {network} Status: Block {networkBlock}, Slot {networkSlot}</span>
+            <span className="me-2 text-capitalize">
+              Cardano {network} Status: Block {networkBlock}, Slot {networkSlot}
+            </span>
             <span
               className="link"
               onClick={switchNetwork}
@@ -230,16 +440,25 @@ const Footer = () => {
               role="button"
               tabIndex="0"
             >
-              Switch to {network === 'mainnet' ? 'Testnet' : 'Mainnet'}
+              Switch to {network === "mainnet" ? "Testnet" : "Mainnet"}
             </span>
-            {network === 'testnet' && (
+            {network === "testnet" && (
               <span className={style.testnet}>Testnet</span>
             )}
-            {network === 'testnet' && (
-              <a href="https://developers.cardano.org/en/testnets/cardano/tools/faucet/" target="_blank" rel="noopener noreferrer" className={style.faucet}>tADA Faucet</a>
+            {network === "testnet" && (
+              <a
+                href="https://developers.cardano.org/en/testnets/cardano/tools/faucet/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={style.faucet}
+              >
+                tADA Faucet
+              </a>
             )}
           </p>
-          <p className="mb-0 text-muted">{new Date().getFullYear()} &copy; Ray Labs DAO</p>
+          <p className="mb-0 text-muted">
+            {new Date().getFullYear()} &copy; Ray Labs DAO
+          </p>
         </div>
       </div>
     </div>

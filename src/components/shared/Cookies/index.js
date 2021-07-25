@@ -10,9 +10,9 @@ const Cookies = () => {
 
   const setCookiesHidden = () => {
     dispatch({
-      type: 'settings/CHANGE_SETTING',
+      type: "settings/CHANGE_SETTING",
       payload: {
-        setting: 'cookiesViewed',
+        setting: "cookiesViewed",
         value: true,
       },
     })
@@ -27,7 +27,9 @@ const Cookies = () => {
 
   return (
     <div
-      className={`${style.cookies} ${cookiesViewed && 'd-none'} ${cookiesAnimation && style.cookiesAnimated}`}
+      className={`${style.cookies} ${cookiesViewed && "d-none"} ${
+        cookiesAnimation && style.cookiesAnimated
+      }`}
     >
       <h5 className="mb-3">
         <strong>
@@ -38,14 +40,14 @@ const Cookies = () => {
         </strong>
       </h5>
       <p className={style.description}>
-        Cookies can enable us to track and target the interests of our users
-        to enhance the experience on our site, and for advertising purposes.
-        Usage of a cookie is in no way linked to any personally identifiable
+        Cookies can enable us to track and target the interests of our users to
+        enhance the experience on our site, and for advertising purposes. Usage
+        of a cookie is in no way linked to any personally identifiable
         information on our website.
       </p>
       <a
         href="/"
-        onClick={e => {
+        onClick={(e) => {
           e.preventDefault()
           setCookiesHidden(true)
         }}

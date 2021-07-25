@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react"
-import { InlineShareButtons } from 'sharethis-reactjs'
+import { InlineShareButtons } from "sharethis-reactjs"
 import { useSelector } from "react-redux"
 import { Helmet } from "react-helmet"
 import { message } from "antd"
@@ -38,7 +38,9 @@ const query = (fingerpint) => `
 
 const Transaction = ({ block }) => {
   const networkBlock = useSelector((state) => state.settings.networkBlock)
-  const [isLight, setIsLight] = useState(store.get('app.settings.viewerLight') || false)
+  const [isLight, setIsLight] = useState(
+    store.get("app.settings.viewerLight") || false
+  )
   const [loading, setLoading] = useState(true)
   const [loadingImg, setLoadingImg] = useState(true)
   const [found, setFound] = useState(false)
@@ -46,28 +48,31 @@ const Transaction = ({ block }) => {
 
   useEffect(() => {
     if (networkBlock !== 0) {
-      Cardano.explorer.query({
-        query: query(fingerprint),
-      }).then((result) => {
-        const asset = result?.data?.data?.assets.length && result?.data?.data?.assets[0]
-        if (asset) {
-          setAssetInfo(processAsset(asset))
-          setFound(true)
-        } else {
-          setFound(false)
-        }
-        setLoading(false)
-      })
+      Cardano.explorer
+        .query({
+          query: query(fingerprint),
+        })
+        .then((result) => {
+          const asset =
+            result?.data?.data?.assets.length && result?.data?.data?.assets[0]
+          if (asset) {
+            setAssetInfo(processAsset(asset))
+            setFound(true)
+          } else {
+            setFound(false)
+          }
+          setLoading(false)
+        })
     }
   }, [networkBlock])
 
   const onCopy = () => {
-    message.success('Copied to clipboard')
+    message.success("Copied to clipboard")
   }
 
   const switchColor = () => {
     setIsLight(!isLight)
-    store.set('app.settings.viewerLight', !isLight)
+    store.set("app.settings.viewerLight", !isLight)
   }
 
   return (
@@ -79,34 +84,37 @@ const Transaction = ({ block }) => {
             <p>Searching for a token with the fingerprint "{fingerprint}"</p>
           </div>
           <div className="text-center pt-4">
-            <div className="spinner-border spinner-border-lg text-primary" role="status">
+            <div
+              className="spinner-border spinner-border-lg text-primary"
+              role="status"
+            >
               <span className="visually-hidden">Loading...</span>
             </div>
           </div>
         </div>
       )}
-      {(!loading && !found) && (
+      {!loading && !found && (
         <div>
           <div className={style.preview}>
             <div className={style.previewInner}>
               <h1 className="mb-1">
                 <span className={style.title}>Couldn't find token</span>
               </h1>
-              <p className="text-muted mb-4">We couldn't locate the fingerprint "{fingerprint}"</p>
+              <p className="text-muted mb-4">
+                We couldn't locate the fingerprint "{fingerprint}"
+              </p>
               <div className={style.pig}>
-                <img src="/resources/images/pig.svg" title="Ray Piglet" alt="Ray Piglet" />
+                <img
+                  src="/resources/images/pig.svg"
+                  title="Ray Piglet"
+                  alt="Ray Piglet"
+                />
               </div>
             </div>
           </div>
         </div>
       )}
-      {
-        (!loading && found) && (
-          <div>
-            [transaction]
-          </div>
-        )
-      }
+      {!loading && found && <div>[transaction]</div>}
     </div>
   )
 }

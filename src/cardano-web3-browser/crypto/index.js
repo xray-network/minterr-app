@@ -20,16 +20,16 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-import { bech32 as Bech32 } from 'bech32'
-import BigNumber from 'bignumber.js'
-import Bip39 from 'bip39-light'
+import { bech32 as Bech32 } from "bech32"
+import BigNumber from "bignumber.js"
+import Bip39 from "bip39-light"
 
 const Crypto = function Crypto(pkg, settings) {
   return (async () => {
     /**
      * Cardano Serialization Lib
      */
-    this.Cardano = await import('@emurgo/cardano-serialization-lib-browser')
+    this.Cardano = await import("@emurgo/cardano-serialization-lib-browser")
 
     /**
      * Lib proxies
@@ -43,9 +43,10 @@ const Crypto = function Crypto(pkg, settings) {
      * Get Current Network
      */
 
-    this.Network = settings.network === 'mainnet'
-      ? this.Cardano.NetworkInfo.mainnet().network_id()
-      : this.Cardano.NetworkInfo.testnet().network_id()
+    this.Network =
+      settings.network === "mainnet"
+        ? this.Cardano.NetworkInfo.mainnet().network_id()
+        : this.Cardano.NetworkInfo.testnet().network_id()
 
     /**
      * Protocol Parameters
@@ -68,16 +69,18 @@ const Crypto = function Crypto(pkg, settings) {
      */
 
     const ErrorMessages = {
-      DEFAULT: 'An unspecified error has occurred',
-      NOT_ENOUGH: 'Not enough funds to send a transaction',
-      TOKENS_NOT_ENOUGH: 'Token output must be greater than 1',
-      ADA_LESS_THAN_MIN: 'Minimum 1 ADA',
-      ADA_NOT_NUMBER: 'Wrong ADA value',
-      ADA_WRONG_VALUE: 'Wrong ADA value',
-      ADDRESS_WRONG: 'Wrong Cardano address',
-      NO_OUTPUTS: 'Transaction requires at least 1 output, but no output was added',
-      NO_CHANGE: 'No change added even though it should be forced',
-      ASSET_OVERFLOW: 'Maximum value of a token inside a UTXO exceeded (overflow)',
+      DEFAULT: "An unspecified error has occurred",
+      NOT_ENOUGH: "Not enough funds to send a transaction",
+      TOKENS_NOT_ENOUGH: "Token output must be greater than 1",
+      ADA_LESS_THAN_MIN: "Minimum 1 ADA",
+      ADA_NOT_NUMBER: "Wrong ADA value",
+      ADA_WRONG_VALUE: "Wrong ADA value",
+      ADDRESS_WRONG: "Wrong Cardano address",
+      NO_OUTPUTS:
+        "Transaction requires at least 1 output, but no output was added",
+      NO_CHANGE: "No change added even though it should be forced",
+      ASSET_OVERFLOW:
+        "Maximum value of a token inside a UTXO exceeded (overflow)",
     }
 
     const ErrorException = (type) => {
@@ -144,14 +147,17 @@ const Crypto = function Crypto(pkg, settings) {
 
         const entropy = Bip39.mnemonicToEntropy(mnemonic)
         const rootKey = Cardano.Bip32PrivateKey.from_bip39_entropy(
-          Buffer.from(entropy, 'hex'),
-          Buffer.from(''),
+          Buffer.from(entropy, "hex"),
+          Buffer.from("")
         )
-        const privateKey = rootKey.derive(harden(1852)).derive(harden(1815)).derive(harden(0))
+        const privateKey = rootKey
+          .derive(harden(1852))
+          .derive(harden(1815))
+          .derive(harden(0))
         const stakeKey = privateKey.derive(2).derive(0).to_public()
         const rewardAddress = Cardano.RewardAddress.new(
           Network,
-          Cardano.StakeCredential.from_keyhash(stakeKey.to_raw_key().hash()),
+          Cardano.StakeCredential.from_keyhash(stakeKey.to_raw_key().hash())
         )
 
         const privateKeyBech32 = privateKey.to_bech32()
@@ -181,7 +187,12 @@ const Crypto = function Crypto(pkg, settings) {
      * @return {array} addresses array
      */
 
-    this.getAccountAddresses = (publicKeyBech32, page = 20, type = [0], shift = 0) => {
+    this.getAccountAddresses = (
+      publicKeyBech32,
+      page = 20,
+      type = [0],
+      shift = 0
+    ) => {
       const { Cardano, Network } = this
 
       try {
@@ -198,8 +209,10 @@ const Crypto = function Crypto(pkg, settings) {
               .derive(0)
             const baseAddr = Cardano.BaseAddress.new(
               Network,
-              Cardano.StakeCredential.from_keyhash(utxoPubKey.to_raw_key().hash()),
-              Cardano.StakeCredential.from_keyhash(stakeKey.to_raw_key().hash()),
+              Cardano.StakeCredential.from_keyhash(
+                utxoPubKey.to_raw_key().hash()
+              ),
+              Cardano.StakeCredential.from_keyhash(stakeKey.to_raw_key().hash())
             )
             tmpAddresses.push({
               address: baseAddr.to_address().to_bech32(),
@@ -227,13 +240,15 @@ const Crypto = function Crypto(pkg, settings) {
       const { Cardano } = this
 
       try {
-        if (Cardano.ByronAddress.is_valid(address)) return 'byron'
+        if (Cardano.ByronAddress.is_valid(address)) return "byron"
         const shelleyAddress = Cardano.Address.from_bech32(address)
-        if (Cardano.ByronAddress.from_address(shelleyAddress)) return 'byron'
-        if (Cardano.BaseAddress.from_address(shelleyAddress)) return 'base'
-        if (Cardano.PointerAddress.from_address(shelleyAddress)) return 'pointer'
-        if (Cardano.EnterpriseAddress.from_address(shelleyAddress)) return 'enterprise'
-        if (Cardano.RewardAddress.from_address(shelleyAddress)) return 'reward'
+        if (Cardano.ByronAddress.from_address(shelleyAddress)) return "byron"
+        if (Cardano.BaseAddress.from_address(shelleyAddress)) return "base"
+        if (Cardano.PointerAddress.from_address(shelleyAddress))
+          return "pointer"
+        if (Cardano.EnterpriseAddress.from_address(shelleyAddress))
+          return "enterprise"
+        if (Cardano.RewardAddress.from_address(shelleyAddress)) return "reward"
         return false
       } catch (error) {
         errorHandler(error)
@@ -252,7 +267,7 @@ const Crypto = function Crypto(pkg, settings) {
           const tmp = Bech32.decode(str, 1000)
           return {
             prefix: tmp.prefix,
-            data: Buffer.from(Bech32.fromWords(tmp.words)).toString('hex'),
+            data: Buffer.from(Bech32.fromWords(tmp.words)).toString("hex"),
           }
         } catch (error) {
           errorHandler(error)
@@ -282,8 +297,10 @@ const Crypto = function Crypto(pkg, settings) {
             if (amount == null) continue
 
             const parsedQuantity = amount.to_str()
-            const parsedName = Buffer.from(assetName.name()).toString('hex')
-            const parsedPolicyId = Buffer.from(policyId.to_bytes()).toString('hex')
+            const parsedName = Buffer.from(assetName.name()).toString("hex")
+            const parsedPolicyId = Buffer.from(policyId.to_bytes()).toString(
+              "hex"
+            )
             const parsedAssetId = `${parsedPolicyId}${parsedName}`
 
             result.push({
@@ -331,8 +348,12 @@ const Crypto = function Crypto(pkg, settings) {
 
         const assets = Cardano.MultiAsset.new()
         tokens.forEach((token) => {
-          const policyId = Cardano.ScriptHash.from_bytes(Buffer.from(token.asset.policyId, 'hex'))
-          const assetName = Cardano.AssetName.new(Buffer.from(token.asset.assetName || '', 'hex'))
+          const policyId = Cardano.ScriptHash.from_bytes(
+            Buffer.from(token.asset.policyId, "hex")
+          )
+          const assetName = Cardano.AssetName.new(
+            Buffer.from(token.asset.assetName || "", "hex")
+          )
           const quantity = Cardano.BigNum.from_str(token.quantity)
 
           const asset = assets.get(policyId) ?? Cardano.Assets.new()
@@ -360,8 +381,12 @@ const Crypto = function Crypto(pkg, settings) {
 
         const assets = Cardano.MultiAsset.new()
         tokens.forEach((token) => {
-          const policyId = Cardano.ScriptHash.from_bytes(Buffer.from(token.asset.policyId, 'hex'))
-          const assetName = Cardano.AssetName.new(Buffer.from(token.asset.assetName || ''))
+          const policyId = Cardano.ScriptHash.from_bytes(
+            Buffer.from(token.asset.policyId, "hex")
+          )
+          const assetName = Cardano.AssetName.new(
+            Buffer.from(token.asset.assetName || "")
+          )
           const quantity = Cardano.BigNum.from_str(token.quantity)
 
           const asset = assets.get(policyId) ?? Cardano.Assets.new()
@@ -381,7 +406,9 @@ const Crypto = function Crypto(pkg, settings) {
       cardanoValueFromRemoteFormat: (utxo) => {
         const { Cardano } = this
 
-        const cardanoValue = Cardano.Value.new(Cardano.BigNum.from_str(utxo.value))
+        const cardanoValue = Cardano.Value.new(
+          Cardano.BigNum.from_str(utxo.value)
+        )
 
         if (utxo.tokens.length === 0) {
           return cardanoValue
@@ -390,8 +417,12 @@ const Crypto = function Crypto(pkg, settings) {
         const assets = Cardano.MultiAsset.new()
 
         utxo.tokens.forEach((token) => {
-          const policyId = Cardano.ScriptHash.from_bytes(Buffer.from(token.asset.policyId, 'hex'))
-          const assetName = Cardano.AssetName.new(Buffer.from(token.asset.assetName || '', 'hex'))
+          const policyId = Cardano.ScriptHash.from_bytes(
+            Buffer.from(token.asset.policyId, "hex")
+          )
+          const assetName = Cardano.AssetName.new(
+            Buffer.from(token.asset.assetName || "", "hex")
+          )
           const quantity = Cardano.BigNum.from_str(token.quantity)
 
           const policyContent = assets.get(policyId) ?? Cardano.Assets.new()
@@ -414,11 +445,13 @@ const Crypto = function Crypto(pkg, settings) {
         const mint = Cardano.Mint.new()
 
         tokens.forEach((token) => {
-          const scriptHash = Cardano.ScriptHash.from_bytes(Buffer.from(token.asset.policyId, 'hex'))
+          const scriptHash = Cardano.ScriptHash.from_bytes(
+            Buffer.from(token.asset.policyId, "hex")
+          )
           const mintAssets = mint.get(scriptHash) ?? Cardano.MintAssets.new()
           mintAssets.insert(
-            Cardano.AssetName.new(Buffer.from(token.asset.assetName || '')),
-            Cardano.Int.new_i32(token.quantity),
+            Cardano.AssetName.new(Buffer.from(token.asset.assetName || "")),
+            Cardano.Int.new_i32(token.quantity)
           )
           mint.insert(scriptHash, mintAssets)
         })
@@ -431,29 +464,37 @@ const Crypto = function Crypto(pkg, settings) {
         const { Cardano } = this
 
         const MetadateTypesEnum = {
-          Number: 'int',
-          String: 'string',
-          Bytes: 'bytes',
-          List: 'list',
-          Map: 'map',
+          Number: "int",
+          String: "string",
+          Bytes: "bytes",
+          List: "list",
+          Map: "map",
         }
 
         const getMetadataObject = (data) => {
           const result = {}
           const type = typeof data
-          if (type === 'number') {
+          if (type === "number") {
             result[MetadateTypesEnum.Number] = data
-          } else if (type === 'string' && Buffer.byteLength(data, 'utf-8') <= 64) {
+          } else if (
+            type === "string" &&
+            Buffer.byteLength(data, "utf-8") <= 64
+          ) {
             result[MetadateTypesEnum.String] = data
-          } else if (Buffer.isBuffer(data) && Buffer.byteLength(data, 'hex') <= 64) {
-            result[MetadateTypesEnum.Bytes] = data.toString('hex')
-          } else if (type === 'boolean') {
+          } else if (
+            Buffer.isBuffer(data) &&
+            Buffer.byteLength(data, "hex") <= 64
+          ) {
+            result[MetadateTypesEnum.Bytes] = data.toString("hex")
+          } else if (type === "boolean") {
             result[MetadateTypesEnum.String] = data.toString()
-          } else if (type === 'undefined') {
-            result[MetadateTypesEnum.String] = 'undefined'
+          } else if (type === "undefined") {
+            result[MetadateTypesEnum.String] = "undefined"
           } else if (Array.isArray(data)) {
-            result[MetadateTypesEnum.List] = data.map((a) => getMetadataObject(a))
-          } else if (type === 'object') {
+            result[MetadateTypesEnum.List] = data.map((a) =>
+              getMetadataObject(a)
+            )
+          } else if (type === "object") {
             if (data) {
               result[MetadateTypesEnum.Map] = Object.keys(data).map((k) => {
                 return {
@@ -462,7 +503,7 @@ const Crypto = function Crypto(pkg, settings) {
                 }
               })
             } else {
-              result[MetadateTypesEnum.String] = 'null'
+              result[MetadateTypesEnum.String] = "null"
             }
           }
           return result
@@ -494,15 +535,17 @@ const Crypto = function Crypto(pkg, settings) {
         const getTransactionMetadatum = (value) => {
           if (value.hasOwnProperty(MetadateTypesEnum.Number)) {
             return Cardano.TransactionMetadatum.new_int(
-              Cardano.Int.new_i32(value[MetadateTypesEnum.Number]),
+              Cardano.Int.new_i32(value[MetadateTypesEnum.Number])
             )
           }
           if (value.hasOwnProperty(MetadateTypesEnum.String)) {
-            return Cardano.TransactionMetadatum.new_text(value[MetadateTypesEnum.String])
+            return Cardano.TransactionMetadatum.new_text(
+              value[MetadateTypesEnum.String]
+            )
           }
           if (value.hasOwnProperty(MetadateTypesEnum.Bytes)) {
             return Cardano.TransactionMetadatum.new_bytes(
-              Buffer.from(value[MetadateTypesEnum.Bytes], 'hex'),
+              Buffer.from(value[MetadateTypesEnum.Bytes], "hex")
             )
           }
           if (value.hasOwnProperty(MetadateTypesEnum.List)) {
@@ -518,7 +561,10 @@ const Crypto = function Crypto(pkg, settings) {
             let metamap = Cardano.MetadataMap.new()
             for (let i = 0; i < map.length; i++) {
               let { k, v } = map[i]
-              metamap.insert(getTransactionMetadatum(k), getTransactionMetadatum(v))
+              metamap.insert(
+                getTransactionMetadatum(k),
+                getTransactionMetadatum(v)
+              )
             }
             return Cardano.TransactionMetadatum.new_map(metamap)
           }
@@ -529,7 +575,10 @@ const Crypto = function Crypto(pkg, settings) {
         //eslint-disable-next-line
         for (const key in metadata) {
           const value = metadata[key]
-          generalMetatada.insert(Cardano.BigNum.from_str(key), getTransactionMetadatum(value))
+          generalMetatada.insert(
+            Cardano.BigNum.from_str(key),
+            getTransactionMetadatum(value)
+          )
         }
         return Cardano.TransactionMetadata.new(generalMetatada)
       },
@@ -540,7 +589,7 @@ const Crypto = function Crypto(pkg, settings) {
 
         const minimumAda = Cardano.min_ada_required(
           value,
-          Cardano.BigNum.from_str(protocolParams.minimumUtxoVal),
+          Cardano.BigNum.from_str(protocolParams.minimumUtxoVal)
         )
 
         const baseValue = (() => {
@@ -557,7 +606,10 @@ const Crypto = function Crypto(pkg, settings) {
 
         const minRequired = txBuilder
           .fee_for_output(
-            Cardano.TransactionOutput.new(Cardano.Address.from_bech32(address), baseValue),
+            Cardano.TransactionOutput.new(
+              Cardano.Address.from_bech32(address),
+              baseValue
+            )
           )
           .checked_add(minimumAda)
 
@@ -570,8 +622,10 @@ const Crypto = function Crypto(pkg, settings) {
 
         const txAddr = Cardano.Address.from_bech32(input.address)
         const txInput = Cardano.TransactionInput.new(
-          Cardano.TransactionHash.from_bytes(Buffer.from(input.transaction.hash, 'hex')),
-          input.index,
+          Cardano.TransactionHash.from_bytes(
+            Buffer.from(input.transaction.hash, "hex")
+          ),
+          input.index
         )
         const txAmount = Utils.cardanoValueFromRemoteFormat(input)
 
@@ -591,15 +645,22 @@ const Crypto = function Crypto(pkg, settings) {
         const skipInput = () => {
           if (remaining == null) return skipOverflow()
 
-          const tokenSetInInput = new Set(input.tokens.map((token) => token.asset.assetId))
+          const tokenSetInInput = new Set(
+            input.tokens.map((token) => token.asset.assetId)
+          )
           const remainingAda = remaining.value.coin().to_str()
-          const remainingTokens = Utils.parseTokenList(remaining.value.multiasset())
+          const remainingTokens = Utils.parseTokenList(
+            remaining.value.multiasset()
+          )
           const includedTargets = remainingTokens.filter((entry) =>
-            tokenSetInInput.has(entry.asset.assetId),
+            tokenSetInInput.has(entry.asset.assetId)
           )
 
-          if (new BigNumber(remainingAda).gt(0) && new BigNumber(input.value).gt(0)) {
-            includedTargets.push('lovelace')
+          if (
+            new BigNumber(remainingAda).gt(0) &&
+            new BigNumber(input.value).gt(0)
+          ) {
+            includedTargets.push("lovelace")
           }
 
           if (includedTargets.length === 0 && remaining.hasInput) {
@@ -607,11 +668,11 @@ const Crypto = function Crypto(pkg, settings) {
           }
 
           const onlyDefaultEntry =
-            includedTargets.length === 1 && includedTargets.includes('lovelace')
+            includedTargets.length === 1 && includedTargets.includes("lovelace")
 
           if (onlyDefaultEntry && excludeIfSmall) {
             const feeForInput = new BigNumber(
-              txBuilder.fee_for_input(txAddr, txInput, txAmount).to_str(),
+              txBuilder.fee_for_input(txAddr, txInput, txAmount).to_str()
             )
             if (feeForInput.gt(input.value)) {
               return AddInputResult.TOO_SMALL
@@ -641,14 +702,22 @@ const Crypto = function Crypto(pkg, settings) {
     this.generatePolicyForPubkey = (publicKeyBech32) => {
       const { Cardano } = this
 
-      const keyHash = Cardano.Bip32PublicKey.from_bech32(publicKeyBech32).to_raw_key().hash()
-      const scriptPubKey = Cardano.NativeScript.new_script_pubkey(Cardano.ScriptPubkey.new(keyHash))
+      const keyHash = Cardano.Bip32PublicKey.from_bech32(publicKeyBech32)
+        .to_raw_key()
+        .hash()
+      const scriptPubKey = Cardano.NativeScript.new_script_pubkey(
+        Cardano.ScriptPubkey.new(keyHash)
+      )
 
-      const scriptPubKeyHash = scriptPubKey.hash(Cardano.ScriptHashNamespace.NativeScript)
-      const scriptHash = Cardano.ScriptHash.from_bytes(scriptPubKeyHash.to_bytes())
+      const scriptPubKeyHash = scriptPubKey.hash(
+        Cardano.ScriptHashNamespace.NativeScript
+      )
+      const scriptHash = Cardano.ScriptHash.from_bytes(
+        scriptPubKeyHash.to_bytes()
+      )
 
-      const policyId = Buffer.from(scriptHash.to_bytes()).toString('hex')
-      const script = Buffer.from(scriptPubKey.to_bytes()).toString('hex')
+      const policyId = Buffer.from(scriptHash.to_bytes()).toString("hex")
+      const script = Buffer.from(scriptPubKey.to_bytes()).toString("hex")
 
       return {
         script,
@@ -670,12 +739,12 @@ const Crypto = function Crypto(pkg, settings) {
       utxos = [],
       currentSlot,
       metadata,
-      donate,
+      donate
     ) => {
       const { Cardano, Utils } = this
 
       try {
-        if (this.validateAddress(toAddress) !== 'base') {
+        if (this.validateAddress(toAddress) !== "base") {
           throw ErrorException(ErrorMessages.ADDRESS_WRONG)
         }
 
@@ -683,11 +752,11 @@ const Crypto = function Crypto(pkg, settings) {
         const txBuilder = Cardano.TransactionBuilder.new(
           Cardano.LinearFee.new(
             Cardano.BigNum.from_str(protocolParams.linearFeeCoefficient),
-            Cardano.BigNum.from_str(protocolParams.linearFeeConstant),
+            Cardano.BigNum.from_str(protocolParams.linearFeeConstant)
           ),
           Cardano.BigNum.from_str(protocolParams.minimumUtxoVal),
           Cardano.BigNum.from_str(protocolParams.poolDeposit),
-          Cardano.BigNum.from_str(protocolParams.keyDeposit),
+          Cardano.BigNum.from_str(protocolParams.keyDeposit)
         )
 
         // set ttl
@@ -709,50 +778,63 @@ const Crypto = function Crypto(pkg, settings) {
         })
 
         // set donate address
-        let donateSubtract = '0'
+        let donateSubtract = "0"
         if (donate) {
           donateSubtract = donate.donateValue
           txBuilder.add_output(
             Cardano.TransactionOutput.new(
               Cardano.Address.from_bech32(donate.donateAddress),
-              Cardano.Value.new(Cardano.BigNum.from_str(donate.donateValue)),
-            ),
+              Cardano.Value.new(Cardano.BigNum.from_str(donate.donateValue))
+            )
           )
         }
 
         // manually calculcate output values depends on output fee
-        const mintValue = Utils.cardanoValueFromMint(protocolParams.minimumUtxoVal, tokensToMint)
+        const mintValue = Utils.cardanoValueFromMint(
+          protocolParams.minimumUtxoVal,
+          tokensToMint
+        )
         const minimumAda = Cardano.min_ada_required(
           mintValue,
-          Cardano.BigNum.from_str(protocolParams.minimumUtxoVal),
+          Cardano.BigNum.from_str(protocolParams.minimumUtxoVal)
         )
-        const tokensValue = Utils.cardanoValueFromMint(minimumAda.to_str(), tokensToMint)
+        const tokensValue = Utils.cardanoValueFromMint(
+          minimumAda.to_str(),
+          tokensToMint
+        )
 
         const inputValue = txBuilder.get_explicit_input()
         const minValueSubtract = Cardano.Value.new(
-          Cardano.BigNum.from_str(tokensValue.coin().to_str()),
+          Cardano.BigNum.from_str(tokensValue.coin().to_str())
         )
-        const mergedValue = inputValue.checked_add(tokensValue).checked_sub(minValueSubtract)
+        const mergedValue = inputValue
+          .checked_add(tokensValue)
+          .checked_sub(minValueSubtract)
 
         const outputTx = Cardano.TransactionOutput.new(
           Cardano.Address.from_bech32(toAddress),
-          mergedValue,
+          mergedValue
         )
         const outputTxFee = txBuilder.fee_for_output(outputTx).to_str()
         const currentFee = txBuilder.min_fee().to_str()
 
         // TODO: as we can't set_mint() before txBuilder.build(), we can't calculate fee, that's why we should add compensation
-        const COMPENSATE = '50000'
+        const COMPENSATE = "50000"
 
         const finalValue = mergedValue
           .checked_sub(Cardano.Value.new(Cardano.BigNum.from_str(outputTxFee)))
           .checked_sub(Cardano.Value.new(Cardano.BigNum.from_str(currentFee)))
           .checked_sub(Cardano.Value.new(Cardano.BigNum.from_str(COMPENSATE)))
-          .checked_sub(Cardano.Value.new(Cardano.BigNum.from_str(donateSubtract)))
+          .checked_sub(
+            Cardano.Value.new(Cardano.BigNum.from_str(donateSubtract))
+          )
 
         // add output
         txBuilder.add_output(
-          Cardano.TransactionOutput.new(Cardano.Address.from_bech32(toAddress), finalValue),
+          Cardano.TransactionOutput.new(
+            Cardano.Address.from_bech32(toAddress),
+            finalValue
+          )
         )
 
         // add
@@ -760,15 +842,19 @@ const Crypto = function Crypto(pkg, settings) {
         // set fee
         txBuilder.set_fee(
           Cardano.BigNum.from_str(
-            (parseInt(txBuilder.min_fee().to_str(), 10) + parseInt(COMPENSATE, 10)).toString(),
-          ),
+            (
+              parseInt(txBuilder.min_fee().to_str(), 10) +
+              parseInt(COMPENSATE, 10)
+            ).toString()
+          )
         )
 
         // build
         const txBody = txBuilder.build()
         const mint = Utils.mint(tokensToMint)
         txBody.set_mint(mint)
-        const outputs = txBody.outputs().len() > 0 ? Utils.parseOutputs(txBody) : []
+        const outputs =
+          txBody.outputs().len() > 0 ? Utils.parseOutputs(txBody) : []
         const txHash = Cardano.hash_transaction(txBody)
 
         // TODO: sign tx and calculate exact fee
@@ -795,8 +881,8 @@ const Crypto = function Crypto(pkg, settings) {
 
         return {
           data: {
-            txBodyHex: Buffer.from(txBody.to_bytes()).toString('hex'),
-            txHashHex: Buffer.from(txHash.to_bytes()).toString('hex'),
+            txBodyHex: Buffer.from(txBody.to_bytes()).toString("hex"),
+            txHashHex: Buffer.from(txHash.to_bytes()).toString("hex"),
             minFee: txBuilder.min_fee().to_str(),
             fee: txBuilder.get_fee_if_set().to_str(),
             spending: {
@@ -834,7 +920,7 @@ const Crypto = function Crypto(pkg, settings) {
       const { Cardano, Utils } = this
 
       try {
-        if (this.validateAddress(toAddress) !== 'base') {
+        if (this.validateAddress(toAddress) !== "base") {
           throw ErrorException(ErrorMessages.ADDRESS_WRONG)
         }
 
@@ -846,7 +932,11 @@ const Crypto = function Crypto(pkg, settings) {
           throw ErrorException(ErrorMessages.NOT_ENOUGH)
         }
 
-        if (new BigNumber(totalBalance).lt(new BigNumber(protocolParams.minimumUtxoVal))) {
+        if (
+          new BigNumber(totalBalance).lt(
+            new BigNumber(protocolParams.minimumUtxoVal)
+          )
+        ) {
           throw ErrorException(ErrorMessages.ADA_LESS_THAN_MIN)
         }
 
@@ -854,11 +944,11 @@ const Crypto = function Crypto(pkg, settings) {
         const txBuilder = Cardano.TransactionBuilder.new(
           Cardano.LinearFee.new(
             Cardano.BigNum.from_str(protocolParams.linearFeeCoefficient),
-            Cardano.BigNum.from_str(protocolParams.linearFeeConstant),
+            Cardano.BigNum.from_str(protocolParams.linearFeeConstant)
           ),
           Cardano.BigNum.from_str(protocolParams.minimumUtxoVal),
           Cardano.BigNum.from_str(protocolParams.poolDeposit),
-          Cardano.BigNum.from_str(protocolParams.keyDeposit),
+          Cardano.BigNum.from_str(protocolParams.keyDeposit)
         )
 
         // set ttl
@@ -899,7 +989,8 @@ const Crypto = function Crypto(pkg, settings) {
         // tx build
         const txBody = txBuilder.build()
         const txHash = Cardano.hash_transaction(txBody)
-        const outputs = txBody.outputs().len() > 0 ? Utils.parseOutputs(txBody) : []
+        const outputs =
+          txBody.outputs().len() > 0 ? Utils.parseOutputs(txBody) : []
 
         const targetOutput = txBuilder
           .get_explicit_output()
@@ -907,8 +998,8 @@ const Crypto = function Crypto(pkg, settings) {
 
         return {
           data: {
-            txBodyHex: Buffer.from(txBody.to_bytes()).toString('hex'),
-            txHashHex: Buffer.from(txHash.to_bytes()).toString('hex'),
+            txBodyHex: Buffer.from(txBody.to_bytes()).toString("hex"),
+            txHashHex: Buffer.from(txHash.to_bytes()).toString("hex"),
             minFee: txBuilder.min_fee().to_str(),
             fee: txBuilder.get_fee_if_set().to_str(),
             spending: {
@@ -955,14 +1046,14 @@ const Crypto = function Crypto(pkg, settings) {
       metadata,
       certificates = [],
       withdrawals = [],
-      allowNoOutputs = false,
+      allowNoOutputs = false
     ) => {
       const { Cardano, Utils } = this
 
       try {
         // initial checks for errors
         outputs.forEach((output) => {
-          if (this.validateAddress(output.address) !== 'base') {
+          if (this.validateAddress(output.address) !== "base") {
             throw ErrorException(ErrorMessages.ADDRESS_WRONG)
           }
 
@@ -970,7 +1061,11 @@ const Crypto = function Crypto(pkg, settings) {
             throw ErrorException(ErrorMessages.ADA_NOT_NUMBER)
           }
 
-          if (new BigNumber(output.value).lt(new BigNumber(protocolParams.minimumUtxoVal))) {
+          if (
+            new BigNumber(output.value).lt(
+              new BigNumber(protocolParams.minimumUtxoVal)
+            )
+          ) {
             throw ErrorException(ErrorMessages.ADA_LESS_THAN_MIN)
           }
 
@@ -1005,11 +1100,11 @@ const Crypto = function Crypto(pkg, settings) {
         const txBuilder = Cardano.TransactionBuilder.new(
           Cardano.LinearFee.new(
             Cardano.BigNum.from_str(protocolParams.linearFeeCoefficient),
-            Cardano.BigNum.from_str(protocolParams.linearFeeConstant),
+            Cardano.BigNum.from_str(protocolParams.linearFeeConstant)
           ),
           Cardano.BigNum.from_str(protocolParams.minimumUtxoVal),
           Cardano.BigNum.from_str(protocolParams.poolDeposit),
-          Cardano.BigNum.from_str(protocolParams.keyDeposit),
+          Cardano.BigNum.from_str(protocolParams.keyDeposit)
         )
 
         // set ttl
@@ -1053,8 +1148,8 @@ const Crypto = function Crypto(pkg, settings) {
           txBuilder.add_output(
             Cardano.TransactionOutput.new(
               Cardano.Address.from_bech32(output.address),
-              Utils.cardanoValueFromTokens(output.value, output.tokens),
-            ),
+              Utils.cardanoValueFromTokens(output.value, output.tokens)
+            )
           )
         })
 
@@ -1072,26 +1167,35 @@ const Crypto = function Crypto(pkg, settings) {
 
           // add utxos until we have enough to send the transaction
           utxos.forEach((utxo) => {
-            const currentInputSum = txBuilder.get_explicit_input().checked_add(implicitSum)
-            const output = targetOutput.checked_add(Cardano.Value.new(txBuilder.min_fee()))
+            const currentInputSum = txBuilder
+              .get_explicit_input()
+              .checked_add(implicitSum)
+            const output = targetOutput.checked_add(
+              Cardano.Value.new(txBuilder.min_fee())
+            )
             const remainingNeeded = output.clamped_sub(currentInputSum)
 
             // update amount required to make sure we have ADA required for change UTXO entry
             if (
               shouldForceChange(
-                currentInputSum.multiasset()?.sub(output.multiasset() ?? emptyAsset),
+                currentInputSum
+                  .multiasset()
+                  ?.sub(output.multiasset() ?? emptyAsset)
               )
             ) {
-              if (changeAddress == null) throw ErrorException(ErrorMessages.NO_OUTPUTS)
+              if (changeAddress == null)
+                throw ErrorException(ErrorMessages.NO_OUTPUTS)
               const difference = currentInputSum.clamped_sub(output)
 
               const minimumNeededForChange = Utils.minRequiredForChange(
                 txBuilder,
                 changeAddress,
-                difference,
+                difference
               )
 
-              const adaNeededLeftForChange = minimumNeededForChange.clamped_sub(difference.coin())
+              const adaNeededLeftForChange = minimumNeededForChange.clamped_sub(
+                difference.coin()
+              )
 
               if (remainingNeeded.coin().compare(adaNeededLeftForChange) < 0) {
                 remainingNeeded.set_coin(adaNeededLeftForChange)
@@ -1103,7 +1207,8 @@ const Crypto = function Crypto(pkg, settings) {
               const remainingAssets = remainingNeeded.multiasset()
 
               if (
-                remainingNeeded.coin().compare(Cardano.BigNum.from_str('0')) === 0 &&
+                remainingNeeded.coin().compare(Cardano.BigNum.from_str("0")) ===
+                  0 &&
                 (remainingAssets == null || remainingAssets.len() === 0) &&
                 usedUtxos.length > 0
               ) {
@@ -1119,7 +1224,7 @@ const Crypto = function Crypto(pkg, settings) {
                 hasInput: usedUtxos.length > 0,
               },
               utxo,
-              true,
+              true
             )
 
             if (added !== AddInputResult.VALID) {
@@ -1135,16 +1240,23 @@ const Crypto = function Crypto(pkg, settings) {
 
           {
             // check to see if we have enough balance in the wallet to cover the transaction
-            const currentInputSum = txBuilder.get_explicit_input().checked_add(implicitSum)
-            const output = targetOutput.checked_add(Cardano.Value.new(txBuilder.min_fee()))
+            const currentInputSum = txBuilder
+              .get_explicit_input()
+              .checked_add(implicitSum)
+            const output = targetOutput.checked_add(
+              Cardano.Value.new(txBuilder.min_fee())
+            )
             const compare = currentInputSum.compare(output)
             const enoughInput = compare != null && compare >= 0
             const forceChange = shouldForceChange(
-              currentInputSum.multiasset()?.sub(output.multiasset() ?? emptyAsset),
+              currentInputSum
+                .multiasset()
+                ?.sub(output.multiasset() ?? emptyAsset)
             )
 
             if (forceChange) {
-              if (changeAddress == null) throw ErrorException(ErrorMessages.NO_OUTPUTS)
+              if (changeAddress == null)
+                throw ErrorException(ErrorMessages.NO_OUTPUTS)
               if (!enoughInput) {
                 throw ErrorException(ErrorMessages.NOT_ENOUGH)
               }
@@ -1152,7 +1264,7 @@ const Crypto = function Crypto(pkg, settings) {
               const minimumNeededForChange = Utils.minRequiredForChange(
                 txBuilder,
                 changeAddress,
-                difference,
+                difference
               )
               if (difference.coin().compare(minimumNeededForChange) < 0) {
                 throw ErrorException(ErrorMessages.NOT_ENOUGH)
@@ -1172,7 +1284,9 @@ const Crypto = function Crypto(pkg, settings) {
 
           const difference = totalInput.checked_sub(targetOutput)
 
-          const forceChange = shouldForceChange(difference.multiasset() ?? emptyAsset)
+          const forceChange = shouldForceChange(
+            difference.multiasset() ?? emptyAsset
+          )
           if (changeAddress == null) {
             if (forceChange) {
               throw ErrorException(ErrorMessages.NO_OUTPUTS)
@@ -1183,13 +1297,16 @@ const Crypto = function Crypto(pkg, settings) {
             }
             // recall: min fee assumes the largest fee possible
             // so no worries of cbor issue by including larger fee
-            txBuilder.set_fee(Cardano.BigNum.from_str(difference.coin().to_str()))
+            txBuilder.set_fee(
+              Cardano.BigNum.from_str(difference.coin().to_str())
+            )
             return []
           }
           const outputBeforeChange = txBuilder.get_explicit_output()
 
           const calcChangeAddress = Cardano.Address.from_bech32(changeAddress)
-          const changeWasAdded = txBuilder.add_change_if_needed(calcChangeAddress)
+          const changeWasAdded =
+            txBuilder.add_change_if_needed(calcChangeAddress)
 
           if (forceChange && !changeWasAdded) {
             // note: this should never happened since it should have been handled by earlier code
@@ -1202,17 +1319,20 @@ const Crypto = function Crypto(pkg, settings) {
             .coin()
             .to_str()
           const changeTokens = Utils.parseTokenList(
-            txBuilder.get_explicit_output().checked_sub(outputBeforeChange).multiasset(),
+            txBuilder
+              .get_explicit_output()
+              .checked_sub(outputBeforeChange)
+              .multiasset()
           )
 
           return changeWasAdded
             ? [
-              {
-                address: changeAddress,
-                value: changeAda,
-                tokens: changeTokens,
-              },
-            ]
+                {
+                  address: changeAddress,
+                  value: changeAda,
+                  tokens: changeTokens,
+                },
+              ]
             : []
         })()
 
@@ -1222,8 +1342,8 @@ const Crypto = function Crypto(pkg, settings) {
 
         return {
           data: {
-            txBodyHex: Buffer.from(txBody.to_bytes()).toString('hex'),
-            txHashHex: Buffer.from(txHash.to_bytes()).toString('hex'),
+            txBodyHex: Buffer.from(txBody.to_bytes()).toString("hex"),
+            txHashHex: Buffer.from(txHash.to_bytes()).toString("hex"),
             minFee: txBuilder.min_fee().to_str(),
             fee: txBuilder.get_fee_if_set().to_str(),
             spending: {
@@ -1262,10 +1382,21 @@ const Crypto = function Crypto(pkg, settings) {
       const { Cardano, Utils } = this
 
       try {
-        const { txHashHex, txBodyHex, usedUtxos, metadata, certificates, withdrawals } = transaction
+        const {
+          txHashHex,
+          txBodyHex,
+          usedUtxos,
+          metadata,
+          certificates,
+          withdrawals,
+        } = transaction
 
-        const txHash = Cardano.TransactionHash.from_bytes(Buffer.from(txHashHex, 'hex'))
-        const txBody = Cardano.TransactionBody.from_bytes(Buffer.from(txBodyHex, 'hex'))
+        const txHash = Cardano.TransactionHash.from_bytes(
+          Buffer.from(txHashHex, "hex")
+        )
+        const txBody = Cardano.TransactionBody.from_bytes(
+          Buffer.from(txBodyHex, "hex")
+        )
 
         const witnesses = Cardano.TransactionWitnessSet.new()
         const vkeyWitnesses = Cardano.Vkeywitnesses.new()
@@ -1273,8 +1404,10 @@ const Crypto = function Crypto(pkg, settings) {
         const keyHashes = []
         usedUtxos.forEach((senderUtxo) => {
           const keyAddress = Cardano.Address.from_bech32(senderUtxo.address)
-          const keyHash = Cardano.BaseAddress.from_address(keyAddress).payment_cred().to_keyhash()
-          const keyHex = Buffer.from(keyHash.to_bytes()).toString('hex')
+          const keyHash = Cardano.BaseAddress.from_address(keyAddress)
+            .payment_cred()
+            .to_keyhash()
+          const keyHex = Buffer.from(keyHash.to_bytes()).toString("hex")
           if (!keyHashes.includes(keyHex)) {
             keyHashes.push(keyHex)
             deduped.push(senderUtxo)
@@ -1290,7 +1423,10 @@ const Crypto = function Crypto(pkg, settings) {
           vkeyWitnesses.add(vkeyWitness)
         })
 
-        if ((certificates && certificates.length > 0) || (withdrawals && withdrawals.length > 0)) {
+        if (
+          (certificates && certificates.length > 0) ||
+          (withdrawals && withdrawals.length > 0)
+        ) {
           const prvKey = Cardano.Bip32PrivateKey.from_bech32(privateKey)
             .derive(2)
             .derive(0)
@@ -1300,23 +1436,32 @@ const Crypto = function Crypto(pkg, settings) {
         }
 
         if (script) {
-          const prvKey2 = Cardano.Bip32PrivateKey.from_bech32(privateKey).to_raw_key()
+          const prvKey2 =
+            Cardano.Bip32PrivateKey.from_bech32(privateKey).to_raw_key()
           const stakeKeyVitness = Cardano.make_vkey_witness(txHash, prvKey2)
           vkeyWitnesses.add(stakeKeyVitness)
         }
 
         if (script) {
           const nativeScripts = Cardano.NativeScripts.new()
-          nativeScripts.add(Cardano.NativeScript.from_bytes(Buffer.from(script, 'hex')))
+          nativeScripts.add(
+            Cardano.NativeScript.from_bytes(Buffer.from(script, "hex"))
+          )
           witnesses.set_scripts(nativeScripts)
         }
 
         witnesses.set_vkeys(vkeyWitnesses)
 
-        const transformedMetadata = metadata ? Utils.metadata(metadata) : undefined
+        const transformedMetadata = metadata
+          ? Utils.metadata(metadata)
+          : undefined
 
-        const signedTxRaw = Cardano.Transaction.new(txBody, witnesses, transformedMetadata)
-        const signedTx = Buffer.from(signedTxRaw.to_bytes()).toString('hex')
+        const signedTxRaw = Cardano.Transaction.new(
+          txBody,
+          witnesses,
+          transformedMetadata
+        )
+        const signedTx = Buffer.from(signedTxRaw.to_bytes()).toString("hex")
 
         return signedTx
       } catch (error) {
@@ -1345,19 +1490,22 @@ const Crypto = function Crypto(pkg, settings) {
         const certificates = []
 
         if (!hasStakingKey) {
-          const registrationCertificate = Cardano.Certificate.new_stake_registration(
-            Cardano.StakeRegistration.new(
-              Cardano.StakeCredential.from_keyhash(stakeKey.to_raw_key().hash()),
-            ),
-          )
+          const registrationCertificate =
+            Cardano.Certificate.new_stake_registration(
+              Cardano.StakeRegistration.new(
+                Cardano.StakeCredential.from_keyhash(
+                  stakeKey.to_raw_key().hash()
+                )
+              )
+            )
           certificates.push(registrationCertificate)
         }
 
         const delegationCertificate = Cardano.Certificate.new_stake_delegation(
           Cardano.StakeDelegation.new(
             Cardano.StakeCredential.from_keyhash(stakeKey.to_raw_key().hash()),
-            Cardano.Ed25519KeyHash.from_bech32(poolId),
-          ),
+            Cardano.Ed25519KeyHash.from_bech32(poolId)
+          )
         )
         certificates.push(delegationCertificate)
 
@@ -1385,11 +1533,12 @@ const Crypto = function Crypto(pkg, settings) {
 
         const certificates = []
 
-        const deregistrationCertificate = Cardano.Certificate.new_stake_deregistration(
-          Cardano.StakeDeregistration.new(
-            Cardano.StakeCredential.from_keyhash(stakeKey.to_raw_key().hash()),
-          ),
-        )
+        const deregistrationCertificate =
+          Cardano.Certificate.new_stake_deregistration(
+            Cardano.StakeDeregistration.new(
+              Cardano.StakeCredential.from_keyhash(stakeKey.to_raw_key().hash())
+            )
+          )
         certificates.push(deregistrationCertificate)
 
         return certificates

@@ -1,7 +1,15 @@
 import React from "react"
 import { Link } from "gatsby"
 import * as style from "./style.module.scss"
-import { SVGMinterr, SVGWallet, SVGAddCircled, SVGSun, SVGZap, SVGSearch, SVGTrophy } from "@/svg"
+import {
+  SVGMinterr,
+  SVGWallet,
+  SVGAddCircled,
+  SVGSun,
+  SVGZap,
+  SVGSearch,
+  SVGTrophy,
+} from "@/svg"
 
 const Menu = () => {
   return (

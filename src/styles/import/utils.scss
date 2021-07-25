@@ -8,7 +8,7 @@
     svg {
       height: rem(18) !important;
       width: auto !important;
-      
+
       * {
         fill: $dark;
       }
@@ -31,7 +31,8 @@
     }
 
     @at-root {
-      a:not(.ray__btn), .cursor-pointer {
+      a:not(.ray__btn),
+      .cursor-pointer {
         &:hover {
           .ray__icon {
             svg {
@@ -113,7 +114,7 @@
     text-align: center;
     font-weight: 700;
     border-radius: 8px;
-    border: 1px solid transparent !important; 
+    border: 1px solid transparent !important;
     @include transition-middle();
 
     svg {
@@ -181,7 +182,7 @@
 }
 
 // dark theme
-[data-theme='dark'] {
+[data-theme="dark"] {
   .ray {
     &__block {
       &--top {
@@ -215,7 +216,7 @@
       &--white {
         &[disabled] {
           background: transparent !important;
-          border-color: rgba($border, .2) !important;
+          border-color: rgba($border, 0.2) !important;
           color: $dark-gray-1 !important;
         }
       }

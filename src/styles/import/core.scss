@@ -1,6 +1,7 @@
 @import "@/styles/mixins";
 
-html, body {
+html,
+body {
   height: auto;
   width: auto;
   min-height: 100%;
@@ -45,11 +46,12 @@ body {
   }
 }
 
-a, .link {
+a,
+.link {
   text-decoration: none;
   color: $blue;
   cursor: pointer;
-  
+
   @include transition-color();
 
   &:hover,
@@ -90,7 +92,12 @@ strong {
   }
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: $dark;
   margin-bottom: rem(20);
   font-weight: 700;
@@ -146,13 +153,18 @@ code {
 }
 
 // dark theme
-[data-theme='dark'] {
+[data-theme="dark"] {
   body {
     background: $dark;
     color: $dark-gray-2;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     color: $white;
   }
 

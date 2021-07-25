@@ -1,7 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef } from "react"
 import { SVGFavicon } from "@/svg"
-import handleViewport from 'react-in-viewport'
-import { imageStringToCloudflare, fetchImageBlob, drawOnCanvas } from '@/utils/index'
+import handleViewport from "react-in-viewport"
+import {
+  imageStringToCloudflare,
+  fetchImageBlob,
+  drawOnCanvas,
+} from "@/utils/index"
 import * as style from "./style.module.scss"
 
 const Image = ({ nft, minted, assetName, inViewport, forwardedRef }) => {
@@ -38,19 +42,15 @@ const Image = ({ nft, minted, assetName, inViewport, forwardedRef }) => {
 
   return (
     <div className={style.image} ref={forwardedRef}>
-      {type === 'image/gif' && <span className={style.type}>GIF</span>}
-      {minted && (
-        <span className={style.minted}>Newly Minted!</span>
-      )}
+      {type === "image/gif" && <span className={style.type}>GIF</span>}
+      {minted && <span className={style.minted}>Newly Minted!</span>}
       {/* IMAGE CAN'T BE LOADED */}
       {isUnableToLoad && (
         <div className={style.placeholder}>
           <span className="ray__icon ray__icon--32">
             <SVGFavicon />
           </span>
-          <span>
-            Unable To Load
-          </span>
+          <span>Unable To Load</span>
         </div>
       )}
       {/* WRONG IMAGE SCHEME */}
@@ -59,9 +59,7 @@ const Image = ({ nft, minted, assetName, inViewport, forwardedRef }) => {
           <span className="ray__icon ray__icon--32">
             <SVGFavicon />
           </span>
-          <span>
-            Image Not Found
-          </span>
+          <span>Image Not Found</span>
         </div>
       )}
       {/* REGULAR TOKEN */}
@@ -70,23 +68,22 @@ const Image = ({ nft, minted, assetName, inViewport, forwardedRef }) => {
           <span className="ray__icon ray__icon--32">
             <SVGFavicon />
           </span>
-          <span>
-            Fungible Token
-          </span>
+          <span>Fungible Token</span>
         </div>
       )}
       {/* LOADING */}
       {isLoading && (
         <div className={style.loading}>
-          <div className="spinner-border spinner-border text-primary" role="status">
+          <div
+            className="spinner-border spinner-border text-primary"
+            role="status"
+          >
             <span className="visually-hidden">Loading...</span>
           </div>
         </div>
       )}
       {/* IMAGE LOADED */}
-      {isSuccess && !isUnableToLoad && (
-        <canvas ref={canvasRef} />
-      )}
+      {isSuccess && !isUnableToLoad && <canvas ref={canvasRef} />}
     </div>
   )
 }

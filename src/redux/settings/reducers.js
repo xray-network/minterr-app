@@ -1,24 +1,24 @@
-import store from 'store'
-import actions from './actions'
+import store from "store"
+import actions from "./actions"
 
 const STORED_SETTINGS = (storedSettings) => {
   const settings = {}
-  const skip = ['modalEncrypt']
+  const skip = ["modalEncrypt"]
   Object.keys(storedSettings).forEach((key) => {
     if (skip.includes(key)) {
       return
     }
     const item = store.get(`app.settings.${key}`)
-    settings[key] = typeof item !== 'undefined' ? item : storedSettings[key]
+    settings[key] = typeof item !== "undefined" ? item : storedSettings[key]
   })
   return settings
 }
 
 const initialState = {
   ...STORED_SETTINGS({
-    theme: 'default',
+    theme: "default",
     cookiesViewed: false,
-    mnemonic: '',
+    mnemonic: "",
   }),
   storeSession: true,
   init: false,
@@ -26,12 +26,12 @@ const initialState = {
   networkSlot: 0,
   networkBlock: 0,
   accountKeys: {},
-  address: '',
-  policyId: '',
-  script: '',
+  address: "",
+  policyId: "",
+  script: "",
   addressState: {},
   addressStateLoading: false,
-  transaction: '',
+  transaction: "",
 }
 
 export default function settingsReducer(state = initialState, action) {

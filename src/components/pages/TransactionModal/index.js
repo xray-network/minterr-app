@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
-import { navigate } from 'gatsby'
-import { Modal, Button, Result, Tooltip, message } from 'antd'
-import { useSelector, useDispatch } from 'react-redux'
-import { LoadingOutlined } from '@ant-design/icons'
-import { CopyToClipboard } from 'react-copy-to-clipboard'
+import React, { useState } from "react"
+import { navigate } from "gatsby"
+import { Modal, Button, Result, Tooltip, message } from "antd"
+import { useSelector, useDispatch } from "react-redux"
+import { LoadingOutlined } from "@ant-design/icons"
+import { CopyToClipboard } from "react-copy-to-clipboard"
 import { SVGZap } from "@/svg"
 import Cardano from "../../../services/cardano"
 
@@ -12,19 +12,19 @@ const TransactionModal = () => {
   const transaction = useSelector((state) => state.settings.transaction)
   const accountKeys = useSelector((state) => state.settings.accountKeys)
   const script = useSelector((state) => state.settings.script)
-  const [waitingHash, setWaitingHash] = useState('')
+  const [waitingHash, setWaitingHash] = useState("")
   const [success, setSuccess] = useState(false)
   const [txInterval, setTxInterval] = useState()
 
   const handleCancel = () => {
     dispatch({
-      type: 'settings/SET_STATE',
+      type: "settings/SET_STATE",
       payload: {
-        transaction: '',
-      }
+        transaction: "",
+      },
     })
-    setWaitingHash('')
-    setSuccess('')
+    setWaitingHash("")
+    setSuccess("")
     clearInterval(txInterval)
   }
 
@@ -34,29 +34,35 @@ const TransactionModal = () => {
   }
 
   const sendTx = () => {
-    const signedTx = Cardano.crypto.txSign(transaction.data, accountKeys.privateKey, script)
+    const signedTx = Cardano.crypto.txSign(
+      transaction.data,
+      accountKeys.privateKey,
+      script
+    )
     Cardano.explorer.txSend(signedTx).then((sendResult) => {
       const hash = sendResult?.data?.data?.submitTransaction?.hash
       if (hash) {
         setWaitingHash(hash)
-        setTxInterval(setInterval(() => {
-          Cardano.explorer.getTxByHash([hash]).then((checkResult) => {
-            const transactions = checkResult?.data?.data?.transactions
-            if (transactions.length) {
-              setSuccess(true)
-              clearInterval(txInterval)
-              dispatch({
-                type: 'settings/FETCH_NETWORK_STATE'
-              })
-            }
-          })
-        }, 5000))
+        setTxInterval(
+          setInterval(() => {
+            Cardano.explorer.getTxByHash([hash]).then((checkResult) => {
+              const transactions = checkResult?.data?.data?.transactions
+              if (transactions.length) {
+                setSuccess(true)
+                clearInterval(txInterval)
+                dispatch({
+                  type: "settings/FETCH_NETWORK_STATE",
+                })
+              }
+            })
+          }, 5000)
+        )
       }
     })
   }
 
   const onCopy = () => {
-    message.success('Copied to clipboard')
+    message.success("Copied to clipboard")
   }
 
   return (
@@ -70,11 +76,14 @@ const TransactionModal = () => {
       maskClosable={!waitingHash || success}
       keyboard={!waitingHash || success}
     >
-      {(!waitingHash && !success) && (
+      {!waitingHash && !success && (
         <div>
           <div className="mb-4 pt-5 pb-3 text-center">
             {transaction?.data?.outputs.reverse().map((output, outputIndex) => {
-              const formattedAddress = `${output.address.slice(0, 12)}...${output.address.slice(-14)}`
+              const formattedAddress = `${output.address.slice(
+                0,
+                12
+              )}...${output.address.slice(-14)}`
               return (
                 <div className="mb-3" key={outputIndex}>
                   <h5 className="mb-2">Output</h5>
@@ -86,14 +95,18 @@ const TransactionModal = () => {
                     </CopyToClipboard>
                   </div>
                   <span className="pe-3">
-                    <strong>{(parseInt(output.value, 10) / 1000000).toFixed(6)}</strong>{' '}
+                    <strong>
+                      {(parseInt(output.value, 10) / 1000000).toFixed(6)}
+                    </strong>{" "}
                     <span className="ray__ticker">ADA</span>
                   </span>
                   {output.tokens.map((token, tokenIndex) => {
                     return (
                       <span className="pe-3" key={tokenIndex}>
-                        <strong>{token.quantity}</strong>{' '}
-                        <span className="ray__ticker">{Buffer.from(token.asset.assetName, 'hex').toString()}</span>
+                        <strong>{token.quantity}</strong>{" "}
+                        <span className="ray__ticker">
+                          {Buffer.from(token.asset.assetName, "hex").toString()}
+                        </span>
                       </span>
                     )
                   })}
@@ -107,7 +120,11 @@ const TransactionModal = () => {
               </div>
             )} */}
           </div>
-          <Button size="large" className="ray__btn ray__btn--success w-100" onClick={sendTx}>
+          <Button
+            size="large"
+            className="ray__btn ray__btn--success w-100"
+            onClick={sendTx}
+          >
             <span className="ray__icon me-2">
               <SVGZap />
             </span>
@@ -115,7 +132,7 @@ const TransactionModal = () => {
           </Button>
         </div>
       )}
-      {(waitingHash && !success) && (
+      {waitingHash && !success && (
         <div>
           <Result
             icon={<LoadingOutlined style={{ fontSize: 72 }} spin />}
@@ -125,7 +142,12 @@ const TransactionModal = () => {
                 <div className="mb-2">
                   <CopyToClipboard text={waitingHash} onCopy={onCopy}>
                     <Tooltip title="Copy to clipboard">
-                      <span className="link">Tx ID: {`${waitingHash.slice(0, 12)}...${waitingHash.slice(-14)}`}</span>
+                      <span className="link">
+                        Tx ID:{" "}
+                        {`${waitingHash.slice(0, 12)}...${waitingHash.slice(
+                          -14
+                        )}`}
+                      </span>
                     </Tooltip>
                   </CopyToClipboard>
                 </div>
@@ -140,11 +162,16 @@ const TransactionModal = () => {
           <Result
             status="success"
             title={<strong>Successfully minted!</strong>}
-            subTitle={(
+            subTitle={
               <div>
                 <CopyToClipboard text={waitingHash} onCopy={onCopy}>
                   <Tooltip title="Copy to clipboard">
-                    <span className="link">Tx ID: {`${waitingHash.slice(0, 12)}...${waitingHash.slice(-14)}`}</span>
+                    <span className="link">
+                      Tx ID:{" "}
+                      {`${waitingHash.slice(0, 12)}...${waitingHash.slice(
+                        -14
+                      )}`}
+                    </span>
                   </Tooltip>
                 </CopyToClipboard>
                 {/* <div>
@@ -159,7 +186,7 @@ const TransactionModal = () => {
                   </span>
                 </div> */}
               </div>
-            )}
+            }
             extra={[
               <Button onClick={() => handleView(waitingHash)} size="large">
                 View Transaction

@@ -1,13 +1,13 @@
-import React from 'react'
+import React from "react"
 
-import { applyMiddleware, createStore } from 'redux'
-import { Provider } from 'react-redux'
+import { applyMiddleware, createStore } from "redux"
+import { Provider } from "react-redux"
 
-import createSagaMiddleware from 'redux-saga'
+import createSagaMiddleware from "redux-saga"
 
-import reducers from './reducers'
-import root from './sagas'
-import Runner from './runner'
+import reducers from "./reducers"
+import root from "./sagas"
+import Runner from "./runner"
 
 const ReduxProvider = ({ element }) => {
   const middleware = createSagaMiddleware()
@@ -17,9 +17,7 @@ const ReduxProvider = ({ element }) => {
 
   return (
     <Provider store={store}>
-      <Runner>
-        {element}
-      </Runner>
+      <Runner>{element}</Runner>
     </Provider>
   )
 }

@@ -46,15 +46,15 @@ module.exports = {
       resolve: "gatsby-plugin-react-svg",
       options: {
         rule: {
-          include: /\.*\.svg$/
-        }
-      }
+          include: /\.*\.svg$/,
+        },
+      },
     },
     {
-      resolve: 'gatsby-plugin-html-attributes',
+      resolve: "gatsby-plugin-html-attributes",
       options: {
-        'data-theme': 'default'
-      }
+        "data-theme": "default",
+      },
     },
   ],
-};
+}

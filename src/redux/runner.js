@@ -5,7 +5,7 @@ const Runner = ({ children }) => {
 
   setInterval(() => {
     dispatch({
-      type: 'settings/FETCH_NETWORK_STATE'
+      type: "settings/FETCH_NETWORK_STATE",
     })
   }, 60 * 1000)
 

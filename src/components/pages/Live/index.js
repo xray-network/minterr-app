@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
-import { Link } from 'gatsby'
-import { useSelector } from 'react-redux'
-import { range } from 'lodash'
+import { Link } from "gatsby"
+import { useSelector } from "react-redux"
+import { range } from "lodash"
 
 import Cardano from "../../../services/cardano"
 import Gallery from "@/components/pages/Gallery"
@@ -55,14 +55,18 @@ const Live = () => {
     if (networkBlock !== 0 && networkBlock !== prevBlock) {
       const blocksToQuery = firstRun
         ? range(networkBlock - 4, networkBlock + 1) // query 5 blocks before from current
-        : prevBlock ? generateBlocksToQuery() : [networkBlock]
+        : prevBlock
+        ? generateBlocksToQuery()
+        : [networkBlock]
       serPrevBlock(networkBlock)
-      Cardano.explorer.query({
-        query: query(blocksToQuery),
-      }).then((result) => {
-        setLoading(false)
-        processBlocks(result?.data?.data?.blocks || [])
-      })
+      Cardano.explorer
+        .query({
+          query: query(blocksToQuery),
+        })
+        .then((result) => {
+          setLoading(false)
+          processBlocks(result?.data?.data?.blocks || [])
+        })
       setFirstRun(false)
     }
   }
@@ -77,7 +81,7 @@ const Live = () => {
       return {
         number: block.number,
         forgedAt: block.forgedAt,
-        tokens: processTransactions(block.transactions)
+        tokens: processTransactions(block.transactions),
       }
     })
     const newLiveState = [...liveState]
@@ -91,7 +95,10 @@ const Live = () => {
       txs.forEach((tx) => {
         tx.outputs.forEach((output) => {
           output.tokens.forEach((token) => {
-            const assetName = Buffer.from(token.asset.assetName, 'hex').toString()
+            const assetName = Buffer.from(
+              token.asset.assetName,
+              "hex"
+            ).toString()
             const tk = {
               assetName,
               assetId: token.asset.assetId,
@@ -104,20 +111,21 @@ const Live = () => {
               metadataNft: process721Metadata(
                 token.asset.tokenMints[0]?.transaction?.metadata,
                 token.asset.policyId,
-                assetName,
-              )
+                assetName
+              ),
             }
             tokens.push(tk)
           })
         })
       })
-    } catch { }
+    } catch {}
     return tokens
   }
 
   const process721Metadata = (metadata, policyId, assetName) => {
     if (metadata) {
-      const pickedBy721 = metadata.filter(item => item.key === "721")[0] || undefined
+      const pickedBy721 =
+        metadata.filter((item) => item.key === "721")[0] || undefined
       if (pickedBy721) {
         const { value } = pickedBy721
         const pickedByPolicy = value[policyId]
@@ -137,15 +145,38 @@ const Live = () => {
   return (
     <div className="ray__block">
       <h1 className="mb-4 pt-3  text-center">
-        Oh no, there are so many NFTs!<br />Interplanetary file system is overloaded! <span role="img" aria-label="">💎</span>
+        Oh no, there are so many NFTs!
+        <br />
+        Interplanetary file system is overloaded!{" "}
+        <span role="img" aria-label="">
+          💎
+        </span>
       </h1>
       <div className="text-muted text-center mb-5 pb-4 max-width-800 ms-auto me-auto">
-        <p className="mb-2">The data is updated every minute and shows all transferred Native Tokens in new blocks.</p>
-        <p className="mb-0">Too many "Unable to Load" messages? Go through the captcha at the following <a href="https://cloudflare-ipfs.com/ipfs/QmaYWWWmrUJkWiKAaHRiYwLaSCNGT8he4ZpuQd5TddvRVJ" target="_blank" rel="noopener noreferrer">link</a>. If you see Ray Diamond, you don't need to take any action, just surf NFTs!</p>
+        <p className="mb-2">
+          The data is updated every minute and shows all transferred Native
+          Tokens in new blocks.
+        </p>
+        <p className="mb-0">
+          Too many "Unable to Load" messages? Go through the captcha at the
+          following{" "}
+          <a
+            href="https://cloudflare-ipfs.com/ipfs/QmaYWWWmrUJkWiKAaHRiYwLaSCNGT8he4ZpuQd5TddvRVJ"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            link
+          </a>
+          . If you see Ray Diamond, you don't need to take any action, just surf
+          NFTs!
+        </p>
       </div>
       {loading && (
         <div className="text-center">
-          <div className="spinner-border spinner-border-lg text-primary" role="status">
+          <div
+            className="spinner-border spinner-border-lg text-primary"
+            role="status"
+          >
             <span className="visually-hidden">Loading...</span>
           </div>
         </div>
@@ -155,15 +186,25 @@ const Live = () => {
           return (
             <div className="mb-5" key={block.number}>
               <h5 className="text-center">
-                Block <Link to={`/explorer/?block=${block.number}`} target="_blank" rel="noopener noreferrer" className="link--dashed">{block.number}</Link> outputs
+                Block{" "}
+                <Link
+                  to={`/explorer/?block=${block.number}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="link--dashed"
+                >
+                  {block.number}
+                </Link>{" "}
+                outputs
               </h5>
               <Gallery tokens={block.tokens} />
             </div>
           )
         })}
-        {(liveState.length < 1 && !loading) && (
+        {liveState.length < 1 && !loading && (
           <h5 className="text-center">
-            No NFTs have been found in the last 5 blocks. Please wait a few minutes...
+            No NFTs have been found in the last 5 blocks. Please wait a few
+            minutes...
           </h5>
         )}
       </div>

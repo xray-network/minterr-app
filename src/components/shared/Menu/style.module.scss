@@ -19,7 +19,8 @@
     cursor: pointer;
     margin-right: rem(10);
 
-    &:after, &:before {
+    &:after,
+    &:before {
       content: "";
       display: block;
       position: absolute;
@@ -36,7 +37,8 @@
     }
 
     &:hover {
-      &:after, &:before {
+      &:after,
+      &:before {
         background: $blue;
       }
     }
@@ -62,7 +64,7 @@
         opacity: 0;
         font-weight: 600;
       }
-  
+
       span:last-child {
         position: absolute;
         left: 0;
@@ -83,6 +85,5 @@
 }
 
 // dark theme
-[data-theme='dark'] {
-  
+[data-theme="dark"] {
 }

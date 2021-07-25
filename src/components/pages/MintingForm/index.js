@@ -1,15 +1,27 @@
 import React, { useState, useEffect } from "react"
-import { useSelector, useDispatch } from 'react-redux'
-import QRCode from 'qrcode.react'
-import { Popover, Form, Input, Tooltip, Upload, Button, Checkbox, Radio, InputNumber, Alert, message } from "antd"
-import { InboxOutlined } from '@ant-design/icons'
-import { CopyToClipboard } from 'react-copy-to-clipboard'
+import { useSelector, useDispatch } from "react-redux"
+import QRCode from "qrcode.react"
+import {
+  Popover,
+  Form,
+  Input,
+  Tooltip,
+  Upload,
+  Button,
+  Checkbox,
+  Radio,
+  InputNumber,
+  Alert,
+  message,
+} from "antd"
+import { InboxOutlined } from "@ant-design/icons"
+import { CopyToClipboard } from "react-copy-to-clipboard"
 import { SVGCopy, SVGZap, SVGClose } from "@/svg"
-import store from 'store'
+import store from "store"
 import Cardano from "../../../services/cardano"
 import * as style from "./style.module.scss"
 
-const network = store.get('app.settings.network')
+const network = store.get("app.settings.network")
 
 const MintingForm = () => {
   const [form] = Form.useForm()
@@ -17,13 +29,15 @@ const MintingForm = () => {
   const mnemonic = useSelector((state) => state.settings.mnemonic)
   const address = useSelector((state) => state.settings.address)
   // const storeSession = useSelector((state) => state.settings.storeSession)
-  const addressStateLoading = useSelector((state) => state.settings.addressStateLoading)
+  const addressStateLoading = useSelector(
+    (state) => state.settings.addressStateLoading
+  )
   const addressState = useSelector((state) => state.settings.addressState)
   const networkSlot = useSelector((state) => state.settings.networkSlot)
   const policyId = useSelector((state) => state.settings.policyId)
   const [restore, setRestore] = useState(false)
   const [isMnemonicValid, setIsMnemonicValid] = useState(true)
-  const [mnemonicToRestore, setMnemonicToRestore] = useState('')
+  const [mnemonicToRestore, setMnemonicToRestore] = useState("")
   const [, forceUpdate] = useState()
   const [donateState, setDonateState] = useState(true)
   const [tokenType, setTokenType] = useState(721)
@@ -31,12 +45,12 @@ const MintingForm = () => {
 
   useEffect(() => {
     dispatch({
-      type: 'settings/GET_BALANCE'
+      type: "settings/GET_BALANCE",
     })
   }, [networkSlot, dispatch])
 
   const onCopy = () => {
-    message.success('Copied to clipboard')
+    message.success("Copied to clipboard")
   }
 
   // const changeStoreSession = (e) => {
@@ -49,13 +63,13 @@ const MintingForm = () => {
 
   const refreshBalance = () => {
     dispatch({
-      type: 'settings/GET_BALANCE',
+      type: "settings/GET_BALANCE",
     })
   }
 
   const showRestore = () => setRestore(true)
   const hideRestore = () => {
-    setMnemonicToRestore('')
+    setMnemonicToRestore("")
     setRestore(false)
     setRestore(false)
     setIsMnemonicValid(true)
@@ -65,7 +79,7 @@ const MintingForm = () => {
     const { value } = e.target
     const isValid = Cardano.crypto.validateMnemonic(value)
     setMnemonicToRestore(value)
-    if (value === '' || isValid) {
+    if (value === "" || isValid) {
       setIsMnemonicValid(true)
     } else {
       setIsMnemonicValid(false)
@@ -74,24 +88,32 @@ const MintingForm = () => {
 
   const restoreMnemonic = (value) => {
     if (isMnemonicValid && value) {
-      if (!window.confirm('Proceed with caution!\nThis will replace the current mnemonic with the new one. Click Cancel and write down the old mnemonic if you want to keep it.')) {
+      if (
+        !window.confirm(
+          "Proceed with caution!\nThis will replace the current mnemonic with the new one. Click Cancel and write down the old mnemonic if you want to keep it."
+        )
+      ) {
         return
       }
       dispatch({
-        type: 'settings/LOAD_APP',
+        type: "settings/LOAD_APP",
         mnemonic: value,
       })
-      setMnemonicToRestore('')
+      setMnemonicToRestore("")
       setRestore(false)
     }
   }
 
   const generateNewSession = () => {
-    if (!window.confirm('Proceed with caution!\nThis will replace the current mnemonic with the new one. Click Cancel and write down the old mnemonic if you want to keep it.')) {
+    if (
+      !window.confirm(
+        "Proceed with caution!\nThis will replace the current mnemonic with the new one. Click Cancel and write down the old mnemonic if you want to keep it."
+      )
+    ) {
       return
     }
     dispatch({
-      type: 'settings/LOAD_APP',
+      type: "settings/LOAD_APP",
       mnemonic: Cardano.crypto.generateMnemonic(),
     })
   }
@@ -105,7 +127,7 @@ const MintingForm = () => {
     })
     const newFields = mint.map((item, index) => {
       return {
-        name: ['mint', index],
+        name: ["mint", index],
         value: item,
       }
     })
@@ -116,7 +138,9 @@ const MintingForm = () => {
   const mintNft = () => {
     setError(false)
     const touched = form.isFieldsTouched()
-    const hasValidationError = !!form.getFieldsError().filter(({ errors }) => errors.length).length
+    const hasValidationError = !!form
+      .getFieldsError()
+      .filter(({ errors }) => errors.length).length
     if (!touched || hasValidationError) {
       return
     }
@@ -125,19 +149,20 @@ const MintingForm = () => {
 
     const tokensToMint = values.mint.map((item) => {
       return {
-        quantity: (item.amount).toString(),
+        quantity: item.amount.toString(),
         asset: {
           assetName: item.ticker,
-          policyId
-        }
+          policyId,
+        },
       }
     })
 
     const donateOpts = {
-      donateAddress: network === 'testnet'
-        ? 'addr_test1qzd2ulz7jx0zn3t90vep26f7gl9wkj03lx0w5ca0vhnl5u6nfathe437695m4cwzlgn959uswtm56dkkmvxjx6h6mfssh7t4zy'
-        : 'addr1q9ky2t5najzxwsvjl2e6q60vvkcewfwr0ft63vcvce7hwmr30hw5ksyahzstrqal7g45aug24r8sdf5842lfwzg4c99qvvuqv3',
-      donateValue: '1000000',
+      donateAddress:
+        network === "testnet"
+          ? "addr_test1qzd2ulz7jx0zn3t90vep26f7gl9wkj03lx0w5ca0vhnl5u6nfathe437695m4cwzlgn959uswtm56dkkmvxjx6h6mfssh7t4zy"
+          : "addr1q9ky2t5najzxwsvjl2e6q60vvkcewfwr0ft63vcvce7hwmr30hw5ksyahzstrqal7g45aug24r8sdf5842lfwzg4c99qvvuqv3",
+      donateValue: "1000000",
     }
     const donate = donateState ? donateOpts : undefined
 
@@ -145,7 +170,7 @@ const MintingForm = () => {
     let metadata = {}
 
     if (tokenType === 721) {
-      values.mint.forEach(item => {
+      values.mint.forEach((item) => {
         const itemProcesses = Object.assign({}, item)
         delete itemProcesses.amount
         processedMetadata[item.ticker] = {
@@ -154,7 +179,7 @@ const MintingForm = () => {
         }
       })
       metadata = {
-        "721": {
+        721: {
           [policyId]: processedMetadata,
         },
       }
@@ -162,8 +187,8 @@ const MintingForm = () => {
 
     if (tokenType === 0) {
       metadata = {
-        "0": {
-          "publisher": "https://minterr.org",
+        0: {
+          publisher: "https://minterr.org",
         },
       }
     }
@@ -174,7 +199,7 @@ const MintingForm = () => {
       addressState.utxos,
       networkSlot,
       metadata,
-      donate,
+      donate
     )
 
     console.log(metadata)
@@ -186,19 +211,19 @@ const MintingForm = () => {
 
     if (tx.data) {
       dispatch({
-        type: 'settings/SET_STATE',
+        type: "settings/SET_STATE",
         payload: {
           transaction: {
             data: tx.data,
             donate,
           },
-        }
+        },
       })
     }
   }
 
   const uploadFiles = ({ file }) => {
-    if (file.status === 'done') {
+    if (file.status === "done") {
       addField(`ipfs://${file.response.Hash}`)
       form.validateFields()
     }
@@ -208,37 +233,51 @@ const MintingForm = () => {
   const formattedAddress = `${address.slice(0, 8)}...${address.slice(-12)}`
   const amount = addressState?.assets?.value
     ? parseInt(addressState.assets.value / 1000000, 10).toFixed(6)
-    : '0.000000'
+    : "0.000000"
 
   return (
     <div className="ray__block">
       <h1 className="mb-4 pt-3 text-center">
         Let's mint a Cardano token, creator.
         <br />
-        Absolutely free of charge! <span role="img" aria-label="">👋</span>
+        Absolutely free of charge!{" "}
+        <span role="img" aria-label="">
+          👋
+        </span>
       </h1>
       <div className="mb-5 pb-3 text-center">
         <ul className={style.faq}>
           <li>
-            <span className="ray__point ray__point--outline">1</span> Write down the mnemonic before you send the funds
+            <span className="ray__point ray__point--outline">1</span> Write down
+            the mnemonic before you send the funds
           </li>
           <li>
-            <span className="ray__point ray__point--outline">2</span> Send at least 3 <span className="ray__ticker">ADA</span> (or 2 <span className="ray__ticker">ADA</span> if you don't want to donate) to the session address (~1.7 <span className="ray__ticker">ADA</span> will be sent back with minted tokens)
+            <span className="ray__point ray__point--outline">2</span> Send at
+            least 3 <span className="ray__ticker">ADA</span> (or 2{" "}
+            <span className="ray__ticker">ADA</span> if you don't want to
+            donate) to the session address (~1.7{" "}
+            <span className="ray__ticker">ADA</span> will be sent back with
+            minted tokens)
           </li>
           <li>
-            <span className="ray__point ray__point--outline">3</span> Make sure the balance is topped up
+            <span className="ray__point ray__point--outline">3</span> Make sure
+            the balance is topped up
           </li>
           <li>
-            <span className="ray__point ray__point--outline">4</span> Enter the recipient address of minted tokens
+            <span className="ray__point ray__point--outline">4</span> Enter the
+            recipient address of minted tokens
           </li>
           <li>
-            <span className="ray__point ray__point--outline">5</span> Select token type
+            <span className="ray__point ray__point--outline">5</span> Select
+            token type
           </li>
           <li>
-            <span className="ray__point ray__point--outline">6</span> Make sure the checkbox is checked :)
+            <span className="ray__point ray__point--outline">6</span> Make sure
+            the checkbox is checked :)
           </li>
           <li>
-            <span className="ray__point ray__point--outline">7</span> Complete the form
+            <span className="ray__point ray__point--outline">7</span> Complete
+            the form
           </li>
         </ul>
       </div>
@@ -246,7 +285,11 @@ const MintingForm = () => {
         <div className="row">
           <div className="col-12">
             <div className="mb-2">
-              <span className="me-3"><strong><span className="ray__point">1</span> Session Mnemonic</strong></span>
+              <span className="me-3">
+                <strong>
+                  <span className="ray__point">1</span> Session Mnemonic
+                </strong>
+              </span>
               {!restore && (
                 <span>
                   <span
@@ -290,14 +333,16 @@ const MintingForm = () => {
                   <CopyToClipboard text={mnemonic} onCopy={onCopy}>
                     <Tooltip title="Copy to clipboard">
                       <h5 className="d-inline cursor-pointer mb-0">
-                        <span className="me-2">{mnemonic || '—'}</span>
+                        <span className="me-2">{mnemonic || "—"}</span>
                         <span className="ray__icon ray__icon--inline">
                           <SVGCopy />
                         </span>
                       </h5>
                     </Tooltip>
                   </CopyToClipboard>
-                  <div className="text-muted mt-2 text-break">PolicyID (no timelocks): {policyId}</div>
+                  <div className="text-muted mt-2 text-break">
+                    PolicyID (no timelocks): {policyId}
+                  </div>
                 </div>
               )}
               {restore && (
@@ -312,7 +357,9 @@ const MintingForm = () => {
                     onSearch={(e) => restoreMnemonic(e)}
                   />
                   {!isMnemonicValid && (
-                    <div className={`${style.restoreError} form-text text-danger`}>
+                    <div
+                      className={`${style.restoreError} form-text text-danger`}
+                    >
                       Wrong mnemonic
                     </div>
                   )}
@@ -324,10 +371,10 @@ const MintingForm = () => {
         <div className="row">
           <div className="col-12 col-sm-6">
             <div className="mb-2">
-              <strong className="me-2"><span className="ray__point">2</span> Session Address</strong>
-              <Popover
-                content={<QRCode value={address} size="50" />}
-              >
+              <strong className="me-2">
+                <span className="ray__point">2</span> Session Address
+              </strong>
+              <Popover content={<QRCode value={address} size="50" />}>
                 <span className="link">QR Code</span>
               </Popover>
             </div>
@@ -336,7 +383,9 @@ const MintingForm = () => {
                 <CopyToClipboard text={address} onCopy={onCopy}>
                   <Tooltip title="Copy to clipboard">
                     <span className="cursor-pointer">
-                      <span className="me-2 text-break">{address ? formattedAddress : '—'}</span>
+                      <span className="me-2 text-break">
+                        {address ? formattedAddress : "—"}
+                      </span>
                       <span className="ray__icon ray__icon--inline">
                         <SVGCopy />
                       </span>
@@ -348,7 +397,11 @@ const MintingForm = () => {
           </div>
           <div className="col-12 col-sm-6">
             <div className="mb-2">
-              <span className="me-3"><strong><span className="ray__point">3</span> Address Balance</strong></span>
+              <span className="me-3">
+                <strong>
+                  <span className="ray__point">3</span> Address Balance
+                </strong>
+              </span>
               {!addressStateLoading && (
                 <span
                   className="link"
@@ -361,12 +414,17 @@ const MintingForm = () => {
                 </span>
               )}
               {addressStateLoading && (
-                <div className="spinner-border spinner-border-sm text-primary" role="status">
+                <div
+                  className="spinner-border spinner-border-sm text-primary"
+                  role="status"
+                >
                   <span className="visually-hidden">Loading...</span>
                 </div>
               )}
             </div>
-            <h5 className="mb-5">{amount} <span className="ray__ticker">ADA</span></h5>
+            <h5 className="mb-5">
+              {amount} <span className="ray__ticker">ADA</span>
+            </h5>
           </div>
         </div>
         <Form
@@ -379,19 +437,28 @@ const MintingForm = () => {
           <div className="row">
             <div className="col-12">
               <div className="pb-4">
-                <div className="mb-2"><strong><span className="ray__point">4</span> Mint To Address</strong></div>
+                <div className="mb-2">
+                  <strong>
+                    <span className="ray__point">4</span> Mint To Address
+                  </strong>
+                </div>
                 <Form.Item
                   name="toAddress"
                   rules={[
-                    { required: true, message: 'Required' },
+                    { required: true, message: "Required" },
                     () => ({
                       validator(_, value) {
-                        if (!value || (Cardano.crypto.validateAddress(value) === 'base')) {
+                        if (
+                          !value ||
+                          Cardano.crypto.validateAddress(value) === "base"
+                        ) {
                           return Promise.resolve()
                         }
-                        return Promise.reject(new Error('Must be a valid Shelley address'))
+                        return Promise.reject(
+                          new Error("Must be a valid Shelley address")
+                        )
                       },
-                    })
+                    }),
                   ]}
                 >
                   <Input
@@ -407,23 +474,43 @@ const MintingForm = () => {
           <div className="row">
             <div className="col-12 col-sm-6">
               <div className="mb-5">
-                <div className="mb-2"><strong><span className="ray__point">5</span> Token Type</strong></div>
-                <Radio.Group value={tokenType} onChange={(e) => {
-                  setTokenType(e.target.value)
-                  form.resetFields(['mint'])
-                }}>
-                  <Radio value={721} className="me-3">NFT</Radio>
-                  <Radio value={0} className="me-3">Regular</Radio>
+                <div className="mb-2">
+                  <strong>
+                    <span className="ray__point">5</span> Token Type
+                  </strong>
+                </div>
+                <Radio.Group
+                  value={tokenType}
+                  onChange={(e) => {
+                    setTokenType(e.target.value)
+                    form.resetFields(["mint"])
+                  }}
+                >
+                  <Radio value={721} className="me-3">
+                    NFT
+                  </Radio>
+                  <Radio value={0} className="me-3">
+                    Regular
+                  </Radio>
                 </Radio.Group>
               </div>
             </div>
             <div className="col-12 col-sm-6">
               <div className="mb-5">
                 <div className="mb-2">
-                  <span className="me-3"><strong><span className="ray__point">6</span> Donation</strong></span>
+                  <span className="me-3">
+                    <strong>
+                      <span className="ray__point">6</span> Donation
+                    </strong>
+                  </span>
                 </div>
-                <Checkbox className="cursor-pointer" checked={donateState} onChange={(e) => setDonateState(e.target.checked)}>
-                  Donate 1 <span className="ray__ticker">ADA</span> for the further development
+                <Checkbox
+                  className="cursor-pointer"
+                  checked={donateState}
+                  onChange={(e) => setDonateState(e.target.checked)}
+                >
+                  Donate 1 <span className="ray__ticker">ADA</span> for the
+                  further development
                 </Checkbox>
               </div>
             </div>
@@ -432,13 +519,16 @@ const MintingForm = () => {
             <div>
               <Form.Item
                 name="mint"
-                rules={[
-                  { required: true, message: 'Required' },
-                ]}
+                rules={[{ required: true, message: "Required" }]}
               >
                 <div className="row">
                   <div className="col-12">
-                    <div className="mb-3"><strong><span className="ray__point">7</span> Upload Files (Up to 30) and Fill In Token Fields</strong></div>
+                    <div className="mb-3">
+                      <strong>
+                        <span className="ray__point">7</span> Upload Files (Up
+                        to 30) and Fill In Token Fields
+                      </strong>
+                    </div>
                     <div>
                       <Upload.Dragger
                         maxCount={30}
@@ -452,7 +542,8 @@ const MintingForm = () => {
                           </p>
                           <p>Click or drag file to this area to upload</p>
                           <p className="text-muted mb-4">
-                            Support for a single or bulk upload. Strictly forbidden to upload pirated files or NSFW content
+                            Support for a single or bulk upload. Strictly
+                            forbidden to upload pirated files or NSFW content
                           </p>
                         </div>
                       </Upload.Dragger>
@@ -466,11 +557,18 @@ const MintingForm = () => {
                       <>
                         {fields.map((field, index) => {
                           const originalImage = formFields.mint[index].image
-                          const image = originalImage && originalImage.startsWith('ipfs://')
-                            ? `https://cloudflare-ipfs.com/ipfs/${originalImage.replace('ipfs://', '')}`
-                            : originalImage
+                          const image =
+                            originalImage && originalImage.startsWith("ipfs://")
+                              ? `https://cloudflare-ipfs.com/ipfs/${originalImage.replace(
+                                  "ipfs://",
+                                  ""
+                                )}`
+                              : originalImage
                           return (
-                            <div className="col-12 col-lg-6 mt-4" key={field.key}>
+                            <div
+                              className="col-12 col-lg-6 mt-4"
+                              key={field.key}
+                            >
                               <div className="row">
                                 <div className="col-6">
                                   <div className={style.image}>
@@ -497,11 +595,14 @@ const MintingForm = () => {
                                 <div className="col-6">
                                   <Form.Item
                                     {...field.restField}
-                                    name={[field.name, 'ticker']}
-                                    fieldKey={[field.fieldKey, 'ticker']}
+                                    name={[field.name, "ticker"]}
+                                    fieldKey={[field.fieldKey, "ticker"]}
                                     rules={[
-                                      { required: true, message: 'Required' },
-                                      { pattern: new RegExp(/^[a-zA-Z0-9]+$/i), message: 'No special characters' }
+                                      { required: true, message: "Required" },
+                                      {
+                                        pattern: new RegExp(/^[a-zA-Z0-9]+$/i),
+                                        message: "No special characters",
+                                      },
                                     ]}
                                   >
                                     <Input
@@ -513,11 +614,16 @@ const MintingForm = () => {
                                   </Form.Item>
                                   <Form.Item
                                     {...field.restField}
-                                    name={[field.name, 'name']}
-                                    fieldKey={[field.fieldKey, 'name']}
+                                    name={[field.name, "name"]}
+                                    fieldKey={[field.fieldKey, "name"]}
                                     rules={[
-                                      { required: true, message: 'Required' },
-                                      { pattern: new RegExp(/^[a-zA-Z0-9()\-+&#!?.,\s]+$/i), message: 'No special characters' }
+                                      { required: true, message: "Required" },
+                                      {
+                                        pattern: new RegExp(
+                                          /^[a-zA-Z0-9()\-+&#!?.,\s]+$/i
+                                        ),
+                                        message: "No special characters",
+                                      },
                                     ]}
                                   >
                                     <Input
@@ -530,9 +636,11 @@ const MintingForm = () => {
                                   <Form.Item
                                     className="mb-0"
                                     {...field.restField}
-                                    name={[field.name, 'amount']}
-                                    fieldKey={[field.fieldKey, 'amount']}
-                                    rules={[{ required: true, message: 'Required' }]}
+                                    name={[field.name, "amount"]}
+                                    fieldKey={[field.fieldKey, "amount"]}
+                                    rules={[
+                                      { required: true, message: "Required" },
+                                    ]}
                                   >
                                     <InputNumber
                                       size="large"
@@ -546,8 +654,8 @@ const MintingForm = () => {
                                   </Form.Item>
                                   <Form.Item
                                     {...field.restField}
-                                    name={[field.name, 'image']}
-                                    fieldKey={[field.fieldKey, 'image']}
+                                    name={[field.name, "image"]}
+                                    fieldKey={[field.fieldKey, "image"]}
                                     hidden
                                   >
                                     <Input />
@@ -571,12 +679,19 @@ const MintingForm = () => {
           )}
           {tokenType === 0 && (
             <div>
-              <div className="mb-3"><strong><span className="ray__point">7</span> Fill In Token Fields</strong></div>
+              <div className="mb-3">
+                <strong>
+                  <span className="ray__point">7</span> Fill In Token Fields
+                </strong>
+              </div>
               <Form.Item
-                name={['mint', 0, 'ticker']}
+                name={["mint", 0, "ticker"]}
                 rules={[
-                  { required: true, message: 'Required' },
-                  { pattern: new RegExp(/^[a-zA-Z0-9]+$/i), message: 'No special characters' }
+                  { required: true, message: "Required" },
+                  {
+                    pattern: new RegExp(/^[a-zA-Z0-9]+$/i),
+                    message: "No special characters",
+                  },
                 ]}
               >
                 <Input
@@ -587,10 +702,13 @@ const MintingForm = () => {
                 />
               </Form.Item>
               <Form.Item
-                name={['mint', 0, 'name']}
+                name={["mint", 0, "name"]}
                 rules={[
-                  { required: true, message: 'Required' },
-                  { pattern: new RegExp(/^[a-zA-Z0-9()\-+&#!?.,\s]+$/i), message: 'No special characters' }
+                  { required: true, message: "Required" },
+                  {
+                    pattern: new RegExp(/^[a-zA-Z0-9()\-+&#!?.,\s]+$/i),
+                    message: "No special characters",
+                  },
                 ]}
               >
                 <Input
@@ -601,8 +719,8 @@ const MintingForm = () => {
                 />
               </Form.Item>
               <Form.Item
-                name={['mint', 0, 'amount']}
-                rules={[{ required: true, message: 'Required' }]}
+                name={["mint", 0, "amount"]}
+                rules={[{ required: true, message: "Required" }]}
               >
                 <InputNumber
                   size="large"
@@ -627,7 +745,11 @@ const MintingForm = () => {
                   afterClose={() => setError(false)}
                 />
               )}
-              <Button htmlType="submit" size="large" className="ray__btn ray__btn--success w-100">
+              <Button
+                htmlType="submit"
+                size="large"
+                className="ray__btn ray__btn--success w-100"
+              >
                 <span className="ray__icon me-2">
                   <SVGZap />
                 </span>

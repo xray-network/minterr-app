@@ -1,8 +1,8 @@
 import React from "react"
 import { Helmet } from "react-helmet"
-import Menu from '@/components/shared/Menu'
-import Footer from '@/components/shared/Footer'
-import Cookies from '@/components/shared/Cookies'
+import Menu from "@/components/shared/Menu"
+import Footer from "@/components/shared/Footer"
+import Cookies from "@/components/shared/Cookies"
 import * as style from "./style.module.scss"
 
 const MainLayout = ({ children }) => {

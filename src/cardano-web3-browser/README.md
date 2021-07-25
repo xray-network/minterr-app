@@ -1,4 +1,5 @@
 # cardano-web3.js
+
 Cardano javascript API with fetching network data via cardano-graphql
 Demo App: https://ray-network.github.io/cardano-web3.js/
 
@@ -7,9 +8,11 @@ Demo App: https://ray-network.github.io/cardano-web3.js/
 ```
 
 # Funding
+
 - https://cardano.ideascale.com/a/dtd/Cardano-JS-API/350707-48088
 
 # Milestones
+
 - [x] cardano-web3.js (beta)
 - [ ] testing UI
 - [ ] cardano-web3.js (release)
@@ -19,15 +22,18 @@ Demo App: https://ray-network.github.io/cardano-web3.js/
 - [ ] test coverage
 
 # Environments
+
 - [x] browser
 - [ ] node.js
 
 # API Reference
 
 ### init method
+
 - [ ] init
 
 ### crypto (cardano crypto entities)
+
 - [ ] crypto.setErrorsHandler
 - [ ] crypto.getMnemonic
 - [ ] crypto.getRootKey
@@ -38,6 +44,7 @@ Demo App: https://ray-network.github.io/cardano-web3.js/
 - [ ] ...
 
 ### network (gql queries wrappers)
+
 - [ ] network.setErrorsHandler
 - [ ] network.transmitQuery
 - [ ] network.getBalances
@@ -48,6 +55,6 @@ Demo App: https://ray-network.github.io/cardano-web3.js/
 - [ ] network.withdrawTx
 - [ ] ...
 
-
 ### contract (smart contracts interaction)
+
 - [ ] ...

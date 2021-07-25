@@ -20,5 +20,5 @@ import "antd/es/result/style/index.css"
 import "bootstrap/dist/css/bootstrap.min.css"
 import "@/styles/style.scss"
 
-import store from '@/redux/provider'
+import store from "@/redux/provider"
 export const wrapRootElement = store
