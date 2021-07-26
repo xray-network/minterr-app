@@ -256,7 +256,10 @@ const Footer = () => {
                           </a>
                         </li>
                         <li>
-                          <a href="https://t.me/RayWallet" className="text-muted">
+                          <a
+                            href="https://t.me/RayWallet"
+                            className="text-muted"
+                          >
                             Telegram
                           </a>
                         </li>
@@ -401,7 +404,7 @@ const Footer = () => {
                   allowClear
                   enterButton="Subscribe"
                   size="large"
-                  onSearch={() => { }}
+                  onSearch={() => {}}
                 />
               </div>
             </div>

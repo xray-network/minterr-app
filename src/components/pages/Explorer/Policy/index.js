@@ -31,9 +31,7 @@ const query = (policyID) => `
   }
 `
 
-const BlockFetcher = ({
-  policyID,
-}) => {
+const BlockFetcher = ({ policyID }) => {
   const [liveState, setLiveState] = useState([])
   const [loading, setLoading] = useState(true)
   const [prevSearch, setPrevSearch] = useState()
@@ -68,13 +66,16 @@ const BlockFetcher = ({
   return (
     <div className="mb-5">
       <div className="text-left text-md-center">
-        <h5 className="mb-1">Policy ID <span className="text-break">{policyID}</span></h5>
+        <h5 className="mb-1">
+          Policy ID <span className="text-break">{policyID}</span>
+        </h5>
       </div>
       {liveState.length > 0 && (
         <div>
           <div className="mb-4 text-muted text-left text-md-center">
             {liveState.length < 2500 && `Total ${liveState.length} tokens`}
-            {liveState.length >= 2500 && `Total more than ${liveState.length} tokens`}
+            {liveState.length >= 2500 &&
+              `Total more than ${liveState.length} tokens`}
           </div>
           <Gallery tokens={liveState} />
         </div>

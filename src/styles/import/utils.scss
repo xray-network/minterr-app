@@ -64,7 +64,7 @@
       background: $white;
       padding: rem(40) rem(30);
 
-      @media(max-width: $sm-max-width) {
+      @media (max-width: $sm-max-width) {
         padding: rem(25);
       }
     }

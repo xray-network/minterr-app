@@ -41,10 +41,7 @@ const query = (blockNumber) => `
   }
 `
 
-const BlockLive = ({
-  blockNumber,
-  setLoadingOuter = () => { },
-}) => {
+const BlockLive = ({ blockNumber, setLoadingOuter = () => {} }) => {
   const [liveState, setLiveState] = useState([])
   const init = useSelector((state) => state.settings.init)
 
@@ -95,7 +92,7 @@ const BlockLive = ({
           })
         })
       })
-    } catch { }
+    } catch {}
     return tokens
   }
 
@@ -117,8 +114,11 @@ const BlockLive = ({
               outputs
             </h5>
             <div className="text-muted mb-4">
-              {block.tokens.length < 2500 && `Total ${block.tokens.length} token(s)`}
-              {block.tokens.length >= 2500 && `Total more than ${block.tokens.length} token(s)`}{', '}
+              {block.tokens.length < 2500 &&
+                `Total ${block.tokens.length} token(s)`}
+              {block.tokens.length >= 2500 &&
+                `Total more than ${block.tokens.length} token(s)`}
+              {", "}
               {formatDistance(new Date(block.forgedAt), new Date(), {
                 addSuffix: true,
               })}

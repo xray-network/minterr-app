@@ -1,6 +1,6 @@
 import React from "react"
 import { Link } from "gatsby"
-import SearchInputHeader from '@/components/pages/SearchInputHeader'
+import SearchInputHeader from "@/components/pages/SearchInputHeader"
 import {
   SVGMinterr,
   SVGWallet,

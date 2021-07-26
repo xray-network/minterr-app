@@ -5,7 +5,6 @@ import Cardano from "../../../services/cardano"
 import { SVGSearch } from "@/svg"
 import * as style from "./style.module.scss"
 
-
 const SearchInputHeader = () => {
   const [form] = Form.useForm()
 
@@ -35,7 +34,7 @@ const SearchInputHeader = () => {
         navigate(`/explorer/search/?address=${value}`)
         break
       default:
-        if (value) message.error('Wrong Cardano entity', 1)
+        if (value) message.error("Wrong Cardano entity", 1)
         break
     }
   }
@@ -54,17 +53,20 @@ const SearchInputHeader = () => {
   }
 
   return (
-    <Form form={form} className={style.input} layout="vertical" requiredMark={false}>
-      <Form.Item
-        name="searchEntity"
-      >
+    <Form
+      form={form}
+      className={style.input}
+      layout="vertical"
+      requiredMark={false}
+    >
+      <Form.Item name="searchEntity">
         <Input.Search
           allowClear
-          enterButton={(
+          enterButton={
             <span className="ray__icon ray__icon--22">
               <SVGSearch />
             </span>
-          )}
+          }
           onSearch={onSearch}
           autoComplete="off"
           placeholder="Search assets by fingerprint, policy id, transaction, block, or address"

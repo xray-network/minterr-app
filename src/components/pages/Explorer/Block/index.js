@@ -40,9 +40,7 @@ const query = (blockNumber) => `
   }
 `
 
-const Block = ({
-  blockNumber,
-}) => {
+const Block = ({ blockNumber }) => {
   const [liveState, setLiveState] = useState([])
   const [loading, setLoading] = useState(true)
   const [prevSearch, setPrevSearch] = useState()
@@ -96,7 +94,7 @@ const Block = ({
           })
         })
       })
-    } catch { }
+    } catch {}
     return tokens
   }
 
@@ -109,8 +107,11 @@ const Block = ({
         return (
           <div className="text-left mb-5 text-md-center" key={block.number}>
             <div className="text-muted mb-4">
-              {block.tokens.length < 2500 && `Total ${block.tokens.length} token(s)`}
-              {block.tokens.length >= 2500 && `Total more than ${block.tokens.length} token(s)`}{', '}
+              {block.tokens.length < 2500 &&
+                `Total ${block.tokens.length} token(s)`}
+              {block.tokens.length >= 2500 &&
+                `Total more than ${block.tokens.length} token(s)`}
+              {", "}
               {formatDistance(new Date(block.forgedAt), new Date(), {
                 addSuffix: true,
               })}

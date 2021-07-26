@@ -35,7 +35,6 @@
     cursor: pointer;
     margin-right: rem(10);
 
-
     @media (max-width: $md-max-width) {
       width: rem(25);
 
@@ -86,7 +85,7 @@
     color: $dark;
     white-space: nowrap;
 
-    @media(max-width: $sm-max-width) {
+    @media (max-width: $sm-max-width) {
       border: 2px solid $dark;
       margin-right: rem(15);
       font-weight: 900;
@@ -119,7 +118,7 @@
       color: $blue;
       font-weight: 700;
 
-      @media(max-width: $sm-max-width) {
+      @media (max-width: $sm-max-width) {
         font-weight: 900;
         border-color: $blue;
 

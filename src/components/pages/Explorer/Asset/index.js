@@ -131,14 +131,13 @@ const Asset = ({ fingerprint }) => {
           <Helmet title={assetInfo.metadataNft?.name || assetInfo.assetName}>
             <meta
               property="og:title"
-              content={`${assetInfo.metadataNft?.name || assetInfo.assetName
-                } — Cardano NFT Token`}
+              content={`${
+                assetInfo.metadataNft?.name || assetInfo.assetName
+              } — Cardano NFT Token`}
             />
             <meta
               property="og:image"
-              content={imageStringToCloudflare(
-                assetInfo.metadataNft?.image
-              )}
+              content={imageStringToCloudflare(assetInfo.metadataNft?.image)}
             />
           </Helmet>
           <div
@@ -165,7 +164,8 @@ const Asset = ({ fingerprint }) => {
                   Quantity: <strong>{assetInfo.quantity || 0}</strong> —{" "}
                   <span className="text-break">{fingerprint}</span>
                   <div>
-                    Policy ID <Link
+                    Policy ID{" "}
+                    <Link
                       to={`/explorer/search/?policyID=${assetInfo.policyId}`}
                       className="link--dashed text-break"
                     >
@@ -308,7 +308,9 @@ const Asset = ({ fingerprint }) => {
                   alignment: "center",
                   min_count: 0,
                   image: imageStringToCloudflare(assetInfo.metadataNft?.image),
-                  title: `${assetInfo.metadataNft?.name || assetInfo.assetName} — Cardano NFT Token`,
+                  title: `${
+                    assetInfo.metadataNft?.name || assetInfo.assetName
+                  } — Cardano NFT Token`,
                   show_total: true,
                   networks: [
                     "twitter",
@@ -329,8 +331,9 @@ const Asset = ({ fingerprint }) => {
                   return (
                     <span
                       key={hash}
-                      className={`${style.viewerLink} ${hash === selectedMint ? style.viewerLinkActive : ""
-                        }`}
+                      className={`${style.viewerLink} ${
+                        hash === selectedMint ? style.viewerLinkActive : ""
+                      }`}
                       onClick={() => setSelectedMint(hash)}
                       onKeyPress={() => setSelectedMint(hash)}
                       role="button"
@@ -353,7 +356,7 @@ const Asset = ({ fingerprint }) => {
                     displayDataTypes={false}
                     displayObjectSize={false}
                     name={false}
-                  // theme="brewer"
+                    // theme="brewer"
                   />
                 </div>
               )}

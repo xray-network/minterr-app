@@ -15,8 +15,8 @@ const Live = () => {
       const blocksToQuery = firstRun
         ? range(networkBlock - 4, networkBlock + 1).reverse() // query 5 blocks before from current
         : prevBlock
-          ? generateBlocksToQuery()
-          : [networkBlock]
+        ? generateBlocksToQuery()
+        : [networkBlock]
       setBlocks([...blocksToQuery, ...blocks])
       serPrevBlock(networkBlock)
       setFirstRun(false)

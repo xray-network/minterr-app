@@ -4,7 +4,6 @@ import { Input, Form } from "antd"
 import Cardano from "../../../services/cardano"
 import * as style from "./style.module.scss"
 
-
 const SearchInput = () => {
   const [form] = Form.useForm()
 
@@ -62,9 +61,7 @@ const SearchInput = () => {
               if (!value || detectEntity(value)) {
                 return Promise.resolve()
               }
-              return Promise.reject(
-                new Error("Must be a valid Cardano entity")
-              )
+              return Promise.reject(new Error("Must be a valid Cardano entity"))
             },
           }),
         ]}

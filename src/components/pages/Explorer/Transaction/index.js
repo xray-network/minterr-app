@@ -40,9 +40,7 @@ const query = (transaction) => `
   }
 `
 
-const Transaction = ({
-  transaction,
-}) => {
+const Transaction = ({ transaction }) => {
   const [liveState, setLiveState] = useState([])
   const [loading, setLoading] = useState(true)
   const [prevSearch, setPrevSearch] = useState()
@@ -82,7 +80,7 @@ const Transaction = ({
           })
         })
       })
-    } catch { }
+    } catch {}
 
     setLoading(false)
     setLiveState(tokens)
@@ -91,13 +89,16 @@ const Transaction = ({
   return (
     <div className="mb-5">
       <div className="text-left text-md-center">
-        <h5 className="mb-1">Transaction <span className="text-break">{transaction}</span></h5>
+        <h5 className="mb-1">
+          Transaction <span className="text-break">{transaction}</span>
+        </h5>
       </div>
       {liveState.length > 0 && (
         <div>
           <div className="mb-4 text-muted text-left text-md-center">
             {liveState.length < 2500 && `Total ${liveState.length} tokens`}
-            {liveState.length >= 2500 && `Total more than ${liveState.length} tokens`}
+            {liveState.length >= 2500 &&
+              `Total more than ${liveState.length} tokens`}
           </div>
           <Gallery tokens={liveState} />
         </div>

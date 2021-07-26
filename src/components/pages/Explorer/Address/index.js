@@ -34,9 +34,7 @@ const query = (address, networkBlock) => `
   }
 `
 
-const Address = ({
-  address,
-}) => {
+const Address = ({ address }) => {
   const [liveState, setLiveState] = useState([])
   const [loading, setLoading] = useState(true)
   const [prevSearch, setPrevSearch] = useState()
@@ -69,7 +67,7 @@ const Address = ({
     let ada = 0
     addresses.forEach((address) => {
       address?.summary?.assetBalances.forEach((token) => {
-        if (token.asset.assetId === 'a') {
+        if (token.asset.assetId === "a") {
           ada = (parseInt(token.quantity, 10) / 1e6).toFixed(6)
           return
         }
@@ -87,12 +85,15 @@ const Address = ({
   return (
     <div className="mb-5">
       <div className="text-left text-md-center">
-        <h5 className="mb-1">Address <span className="text-break">{address}</span></h5>
+        <h5 className="mb-1">
+          Address <span className="text-break">{address}</span>
+        </h5>
       </div>
       {liveState.length > 0 && (
         <div>
           <div className="mb-4 text-muted text-left text-md-center">
-            Total: {totalAda} <span className="ray__ticker">ADA</span>{', '}
+            Total: {totalAda} <span className="ray__ticker">ADA</span>
+            {", "}
             {liveState.length < 2500 && `${liveState.length} tokens`}
             {liveState.length >= 2500 && `more than ${liveState.length} tokens`}
           </div>
