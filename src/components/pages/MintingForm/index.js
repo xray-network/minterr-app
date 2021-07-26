@@ -202,9 +202,6 @@ const MintingForm = () => {
       donate
     )
 
-    console.log(metadata)
-    console.log(tx)
-
     if (tx.error) {
       setError(tx.error)
     }

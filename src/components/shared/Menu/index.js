@@ -5,7 +5,7 @@ import {
   SVGMinterr,
   SVGWallet,
   SVGAddCircled,
-  SVGSun,
+  // SVGSun,
   SVGZap,
   SVGSearch,
   SVGTrophy,
@@ -22,7 +22,7 @@ const Menu = () => {
         <span className="flex-grow-1 pe-2 pe-md-4">
           <SearchInputHeader />
         </span>
-        <span className="ms-auto me-3 d-none d-sm-inline">
+        <span className="ms-auto me-0 d-none d-sm-inline">
           <a
             href="https://raywallet.io"
             className="ant-btn ray__btn ray__btn--round"
@@ -35,12 +35,12 @@ const Menu = () => {
             </span>
           </a>
         </span>
-        <span role="button" tabIndex="0" className={`cursor-pointer me-3 ms-auto ms-sm-0 ${style.menuSwitch}`}>
+        {/* <span role="button" tabIndex="0" className={`cursor-pointer me-3 ms-auto ms-sm-0 ${style.menuSwitch}`}>
           <span className="ray__icon">
             <SVGSun />
           </span>
         </span>
-        <span className={`${style.menuIcon} cursor-pointer`} />
+        <span className={`${style.menuIcon} cursor-pointer`} /> */}
       </div>
       <div className="ray__line" />
       <div className={style.Submenu}>

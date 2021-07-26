@@ -64,9 +64,6 @@ const Asset = ({ fingerprint }) => {
           const asset =
             result?.data?.data?.assets.length && result?.data?.data?.assets[0]
           if (asset) {
-            console.log(result)
-            console.log(processAsset(asset))
-
             setAssetInfo(processAsset(asset))
             setFound(true)
           } else {
@@ -131,6 +128,19 @@ const Asset = ({ fingerprint }) => {
       )}
       {!loading && found && (
         <div>
+          <Helmet title={assetInfo.metadataNft?.name || assetInfo.assetName}>
+            <meta
+              property="og:title"
+              content={`${assetInfo.metadataNft?.name || assetInfo.assetName
+                } — Cardano NFT Token`}
+            />
+            <meta
+              property="og:image"
+              content={imageStringToCloudflare(
+                assetInfo.metadataNft?.image
+              )}
+            />
+          </Helmet>
           <div
             className={`${style.preview} ${isLight ? style.previewLight : ""}`}
           >
@@ -151,10 +161,18 @@ const Asset = ({ fingerprint }) => {
                     {assetInfo.metadataNft?.name || assetInfo.assetName}
                   </span>
                 </h1>
-                <p className="text-muted mb-3">
+                <div className="text-muted mb-3">
                   Quantity: <strong>{assetInfo.quantity || 0}</strong> —{" "}
                   <span className="text-break">{fingerprint}</span>
-                </p>
+                  <div>
+                    Policy ID <Link
+                      to={`/explorer/search/?policyID=${assetInfo.policyId}`}
+                      className="link--dashed text-break"
+                    >
+                      {assetInfo.policyId}
+                    </Link>
+                  </div>
+                </div>
               </div>
               {assetInfo.metadataNft?.image && (
                 <div>
@@ -200,7 +218,7 @@ const Asset = ({ fingerprint }) => {
                             }
                           >
                             <a
-                              href="https://cloudflare-ipfs.com/ipfs/QmaYWWWmrUJkWiKAaHRiYwLaSCNGT8he4ZpuQd5TddvRVJ"
+                              href={`https://cloudflare-ipfs.com/ipfs/QmaYWWWmrUJkWiKAaHRiYwLaSCNGT8he4ZpuQd5TddvRVJ?v=${Math.random()}`}
                               target="_blank"
                               rel="noopener noreferrer"
                             >
@@ -219,10 +237,10 @@ const Asset = ({ fingerprint }) => {
                         const [key, value] = item
                         const stopWords = ["image", "Image", "name", "Name"]
                         if (stopWords.includes(key)) {
-                          return ""
+                          return <span key={index} />
                         } else if (validUrl(value)) {
                           return (
-                            <span style={{ color: randomHSL() }}>
+                            <span style={{ color: randomHSL() }} key={index}>
                               <span className="text-capitalize">{key}</span>:{" "}
                               <a
                                 href={value}
@@ -241,7 +259,7 @@ const Asset = ({ fingerprint }) => {
                           typeof value === "number"
                         ) {
                           return (
-                            <span style={{ color: randomHSL() }}>
+                            <span style={{ color: randomHSL() }} key={index}>
                               <span className="text-capitalize text-break">
                                 {key}
                               </span>
@@ -253,7 +271,7 @@ const Asset = ({ fingerprint }) => {
                           )
                         }
                         return (
-                          <span style={{ color: randomHSL() }}>
+                          <span style={{ color: randomHSL() }} key={index}>
                             <span className="text-capitalize text-break">
                               {key}
                             </span>
@@ -283,34 +301,14 @@ const Asset = ({ fingerprint }) => {
             </div>
           </div>
           <div>
-            <div className="text-center mb-4">
-              <h5 className="mb-2">View all assets under this Policy ID</h5>
-              <Link
-                to={`/explorer/search/?policyID=${assetInfo.policyId}`}
-                className="link--dashed text-break"
-              >
-                {assetInfo.policyId}
-              </Link>
-            </div>
             <div className="mb-5">
-              <Helmet>
-                <meta
-                  property="og:title"
-                  content={`${assetInfo.metadataNft?.name || assetInfo.assetName
-                    } — Cardano NFT Token`}
-                />
-                <meta
-                  property="og:image"
-                  content={imageStringToCloudflare(
-                    assetInfo.metadataNft?.image
-                  )}
-                />
-              </Helmet>
               <InlineShareButtons
                 config={{
                   enabled: true,
                   alignment: "center",
                   min_count: 0,
+                  image: imageStringToCloudflare(assetInfo.metadataNft?.image),
+                  title: `${assetInfo.metadataNft?.name || assetInfo.assetName} — Cardano NFT Token`,
                   show_total: true,
                   networks: [
                     "twitter",

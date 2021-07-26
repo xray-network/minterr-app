@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { useSelector } from "react-redux"
 import { range } from "lodash"
-import BlockFetcher from "@/components/pages/Fetchers/Block"
+import BlockLive from "@/components/pages/Explorer/BlockLive"
 
 const Live = () => {
   const networkBlock = useSelector((state) => state.settings.networkBlock)
@@ -32,7 +32,7 @@ const Live = () => {
   return (
     <div className="ray__block">
       <h1 className="mb-4 pt-3">
-        Oh no, there are so many NFTs!
+        Oh yes, there are so many NFTs!
         <br />
         Interplanetary file system is overloaded!{" "}
         <span role="img" aria-label="">
@@ -49,11 +49,10 @@ const Live = () => {
       <div>
         {blocks.map((blockNumber) => {
           return (
-            <BlockFetcher
+            <BlockLive
               key={blockNumber}
               blockNumber={blockNumber}
               setLoadingOuter={setLoading}
-              solo={false}
             />
           )
         })}

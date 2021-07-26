@@ -63,7 +63,7 @@ const Image = ({ nft, minted, assetName, inViewport, forwardedRef }) => {
             }
           >
             <a
-              href="https://cloudflare-ipfs.com/ipfs/QmaYWWWmrUJkWiKAaHRiYwLaSCNGT8he4ZpuQd5TddvRVJ"
+              href={`https://cloudflare-ipfs.com/ipfs/QmaYWWWmrUJkWiKAaHRiYwLaSCNGT8he4ZpuQd5TddvRVJ?v=${Math.random()}`}
               target="_blank"
               rel="noopener noreferrer"
               onClick={(e) => e.stopPropagation()}

@@ -6,7 +6,7 @@ import { processAsset } from "@/utils/index"
 import Cardano from "../../../../services/cardano"
 import Gallery from "@/components/pages/Gallery"
 
-const query = (blockNumber, solo) => `
+const query = (blockNumber) => `
   query blockByNumber {
     blocks(where: { number: { _eq: ${blockNumber} } }) {
       hash
@@ -22,7 +22,7 @@ const query = (blockNumber, solo) => `
               policyId
               fingerprint
               assetId
-              tokenMints (limit: ${solo ? 2500 : 1}, order_by: { transaction: { includedAt: asc } }) {
+              tokenMints (limit: 1, order_by: { transaction: { includedAt: asc } }) {
                 transaction {
                   hash
                   includedAt
@@ -41,13 +41,11 @@ const query = (blockNumber, solo) => `
   }
 `
 
-const BlockFetcher = ({
+const BlockLive = ({
   blockNumber,
-  solo = true,
   setLoadingOuter = () => { },
 }) => {
   const [liveState, setLiveState] = useState([])
-  const [loading, setLoading] = useState(true)
   const init = useSelector((state) => state.settings.init)
 
   useEffect(() => {
@@ -60,7 +58,7 @@ const BlockFetcher = ({
   const fetchData = () => {
     Cardano.explorer
       .query({
-        query: query(blockNumber, solo),
+        query: query(blockNumber),
       })
       .then((result) => {
         processBlocks(result?.data?.data?.blocks || [])
@@ -78,12 +76,9 @@ const BlockFetcher = ({
     const updatedLiveState = [...liveState]
     const updatedResult = result.filter((item) => item.tokens.length > 0)
 
-    setLoading(false)
-    if (updatedResult.length > 0) {
-      setLoadingOuter(false)
-      updatedLiveState.push(...updatedResult)
-      setLiveState(updatedLiveState)
-    }
+    setLoadingOuter(false)
+    updatedLiveState.push(...updatedResult)
+    setLiveState(updatedLiveState)
   }
 
   const processTransactions = (txs) => {
@@ -94,8 +89,6 @@ const BlockFetcher = ({
           output.tokens.forEach((token) => {
             const tk = {
               ...processAsset(token.asset),
-              toAddress: output.address,
-              txHash: tx.hash,
               minted: tx.hash === token.asset.tokenMints[0]?.transaction?.hash,
             }
             tokens.push(tk)
@@ -108,29 +101,24 @@ const BlockFetcher = ({
 
   return (
     <div className="mb-5">
-      {solo && (
-        <div className="text-left text-md-center">
-          <h5 className="mb-0">Block {blockNumber} outputs</h5>
-        </div>
-      )}
       {liveState.map((block) => {
         return (
           <div className="text-left mb-5 text-md-center" key={block.number}>
-            {!solo && (
-              <h5 className="mb-1">
-                Block{" "}
-                <Link
-                  to={`/explorer/search/?block=${block.number}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="link--dashed"
-                >
-                  {block.number}
-                </Link>{" "}
-                outputs
-              </h5>
-            )}
+            <h5 className="mb-1">
+              Block{" "}
+              <Link
+                to={`/explorer/search/?block=${block.number}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="link--dashed"
+              >
+                {block.number}
+              </Link>{" "}
+              outputs
+            </h5>
             <div className="text-muted mb-4">
+              {block.tokens.length < 2500 && `Total ${block.tokens.length} token(s)`}
+              {block.tokens.length >= 2500 && `Total more than ${block.tokens.length} token(s)`}{', '}
               {formatDistance(new Date(block.forgedAt), new Date(), {
                 addSuffix: true,
               })}
@@ -139,31 +127,8 @@ const BlockFetcher = ({
           </div>
         )
       })}
-      {solo && liveState.length === 0 && !loading && (
-        <div className="text-center">
-          <h1 className="pt-5 mb-5">Unable to find tokens in the block</h1>
-          <div className="pt-4">
-            <h1>:(</h1>
-          </div>
-        </div>
-      )}
-      {solo && loading && (
-        <div className="text-center ">
-          <div className="pt-5 mb-5">
-            <h1>Loading block data...</h1>
-          </div>
-          <div className="pt-4">
-            <div
-              className="spinner-border spinner-border-lg text-primary"
-              role="status"
-            >
-              <span className="visually-hidden">Loading...</span>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   )
 }
 
-export default BlockFetcher
+export default BlockLive
