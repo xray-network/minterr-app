@@ -6,7 +6,7 @@ import { processAsset } from "@/utils/index"
 import Cardano from "../../../../services/cardano"
 import Gallery from "@/components/pages/Gallery"
 
-const query = (blockNumber) => `
+const query = (blockNumber, solo) => `
   query blockByNumber {
     blocks(where: { number: { _eq: ${blockNumber} } }) {
       hash
@@ -22,7 +22,7 @@ const query = (blockNumber) => `
               policyId
               fingerprint
               assetId
-              tokenMints (order_by: { transaction: { includedAt: asc } }) {
+              tokenMints (limit: ${solo ? 2500 : 1}, order_by: { transaction: { includedAt: asc } }) {
                 transaction {
                   hash
                   includedAt
@@ -52,15 +52,15 @@ const BlockFetcher = ({
 
   useEffect(() => {
     if (init) {
-      fetchData(0)
+      fetchData()
     }
     // eslint-disable-next-line
   }, [init])
 
-  const fetchData = (fetchIndex) => {
+  const fetchData = () => {
     Cardano.explorer
       .query({
-        query: query(blockNumber, fetchIndex),
+        query: query(blockNumber, solo),
       })
       .then((result) => {
         processBlocks(result?.data?.data?.blocks || [])
@@ -120,7 +120,7 @@ const BlockFetcher = ({
               <h5 className="mb-1">
                 Block{" "}
                 <Link
-                  to={`/explorer/?block=${block.number}`}
+                  to={`/explorer/search/?block=${block.number}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="link--dashed"

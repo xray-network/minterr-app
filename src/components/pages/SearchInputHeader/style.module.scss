@@ -1,0 +1,54 @@
+@import "@/styles/mixins";
+
+.input {
+  img, svg {
+    vertical-align: baseline;
+  }
+
+  :global(.ant-form-item) {
+    margin-bottom: rem(0) !important;
+  }
+
+  :global(.ant-input) {
+    font-size: rem(16);
+    background: transparent;
+    border-radius: 0px !important;
+    height: rem(30) !important;
+
+    @media (max-width: $lg-max-width) {
+      height: rem(35) !important;
+    }
+
+    @media (max-width: $md-max-width) {
+      height: rem(40) !important;
+    }
+
+    &-group-addon {
+      background: transparent;
+      border: none;
+    }
+
+    &-affix-wrapper {
+      background: transparent;
+      border: none;
+      box-shadow: none;
+      outline: none;
+      padding: 0 !important;
+    }
+  }
+
+  :global(.ant-btn) {
+    background: transparent;
+    border: none;
+  }
+
+  @media (max-width: $sm-max-width) {
+    :global(.ant-input-suffix) {
+      display: none;
+    }
+  }
+}
+
+// dark theme
+[data-theme="dark"] {
+}

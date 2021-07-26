@@ -24,6 +24,12 @@
       }
     }
 
+    &--24 {
+      svg {
+        height: rem(24) !important;
+      }
+    }
+
     &--32 {
       svg {
         height: rem(32) !important;
@@ -169,6 +175,13 @@
     &--large {
       padding: 0 rem(40);
       font-size: rem(21);
+    }
+
+    &--extra {
+      font-size: rem(21);
+      height: rem(50) !important;
+      padding-left: rem(30);
+      padding-right: rem(30);
     }
 
     &--primary {

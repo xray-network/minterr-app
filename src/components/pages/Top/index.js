@@ -10,20 +10,20 @@ const Top = () => {
 
   return (
     <div className="ray__block pt-3">
-      <h1 className="text-center mb-4">
+      <h1 className="mb-4">
         The highest quality Cardano projects are here!
-        Vote for your idols!{" "}
+        Vote for your favorites!{" "}
         <span role="img" aria-label="">
           💫
         </span>
       </h1>
-      <h5 className="text-center">
+      <h5>
         Vote by sending any amount of ADA to the project address to get it up on
         the list. 1 <span className="ray__ticker">ADA</span> = 10 points. Remember
         stranger, the higher a project is on the list, the more attention it
         gets!
       </h5>
-      <div className="text-muted text-center mb-5 pb-4 max-width-800 ms-auto me-auto">
+      <div className="text-muted mb-5 pb-4 max-width-800">
         {/* <p className="mb-2">A total of <strong className="text-nowrap">{totalAdaVotes}</strong> ADA votes were cast for <strong className="text-nowrap">{projectsCount}</strong> projects. The last vote was <strong className="text-nowrap">{formatDistance(updatedAt, new Date(), { addSuffix: true })}</strong>.</p> */}
         <p className="mb-0">
           Do you want to promote the NFT project? Send us a direct message on{" "}
@@ -38,6 +38,14 @@ const Top = () => {
         </p>
       </div>
       {loading && (
+        // <div className="text-center">
+        //   <div
+        //     className="spinner-border spinner-border-lg text-primary"
+        //     role="status"
+        //   >
+        //     <span className="visually-hidden">Loading...</span>
+        //   </div>
+        // </div>
         <div className="text-center">
           <div
             className="spinner-border spinner-border-lg text-primary"
@@ -45,6 +53,8 @@ const Top = () => {
           >
             <span className="visually-hidden">Loading...</span>
           </div>
+          <div className="pt-3">Waiting for a list of projects.</div>
+          <div>Please wait for a while...</div>
         </div>
       )}
     </div>

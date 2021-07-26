@@ -1,5 +1,6 @@
 import React from "react"
 import { Link } from "gatsby"
+import SearchInputHeader from '@/components/pages/SearchInputHeader'
 import {
   SVGMinterr,
   SVGWallet,
@@ -18,8 +19,8 @@ const Menu = () => {
         <Link to="/" className={`${style.menuLogo} me-4`}>
           <SVGMinterr />
         </Link>
-        <span className="text-muted d-sm-inline d-none">
-          Cardano minting tool and NFT explorer #1
+        <span className="flex-grow-1 pe-2 pe-md-4">
+          <SearchInputHeader />
         </span>
         <span className="ms-auto me-3 d-none d-sm-inline">
           <a
@@ -57,7 +58,7 @@ const Menu = () => {
           </span>
         </Link>
         <Link
-          to="/mint-tokens/"
+          to="/mint-cardano-tokens/"
           className={style.SubmenuLink}
           activeClassName={style.SubmenuLinkActive}
         >

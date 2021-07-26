@@ -171,10 +171,10 @@ const MintingForm = () => {
 
     if (tokenType === 721) {
       values.mint.forEach((item) => {
-        const itemProcesses = Object.assign({}, item)
-        delete itemProcesses.amount
+        const itemProcessed = Object.assign({}, item)
+        delete itemProcessed.amount
         processedMetadata[item.ticker] = {
-          ...item,
+          ...itemProcessed,
           publisher: "https://minterr.io",
         }
       })
@@ -753,7 +753,7 @@ const MintingForm = () => {
                 <span className="ray__icon me-2">
                   <SVGZap />
                 </span>
-                <span>Mint NFT Tokens</span>
+                <span>Mint Tokens!</span>
               </Button>
             </div>
           </div>

@@ -6,7 +6,7 @@ import Explorer from "@/components/pages/Explorer"
 const PageExplorer = () => {
   return (
     <MainLayout>
-      <Helmet title="Cardano NFT Asset Explorer" />
+      <Helmet title="Mint Cardano Tokens & Explore Asset" />
       <Explorer />
     </MainLayout>
   )

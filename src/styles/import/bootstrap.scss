@@ -86,6 +86,9 @@
 }
 
 .max-width {
+  &-700 {
+    max-width: rem(700);
+  }
   &-800 {
     max-width: rem(800);
   }

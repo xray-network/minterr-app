@@ -213,7 +213,7 @@ const Asset = ({ fingerprint }) => {
                   </div>
                   {metadataNftTransformed.length > 0 && (
                     <div
-                      className={`${style.shortMetadata} text-break max-width-800 ms-auto mt-5 me-auto`}
+                      className={`${style.shortMetadata} text-break max-width-700 ms-auto mt-5 me-auto`}
                     >
                       {metadataNftTransformed.map((item, index) => {
                         const [key, value] = item
@@ -229,7 +229,7 @@ const Asset = ({ fingerprint }) => {
                                 target="_blank"
                                 rel="noopener noreferrer"
                               >
-                                Link
+                                {value}
                               </a>
                               {metadataNftTransformed.length === index + 1
                                 ? ""
@@ -286,7 +286,7 @@ const Asset = ({ fingerprint }) => {
             <div className="text-center mb-4">
               <h5 className="mb-2">View all assets under this Policy ID</h5>
               <Link
-                to={`/explorer?policyID=${assetInfo.policyId}`}
+                to={`/explorer/search/?policyID=${assetInfo.policyId}`}
                 className="link--dashed text-break"
               >
                 {assetInfo.policyId}

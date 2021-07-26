@@ -30,7 +30,7 @@ const TransactionModal = () => {
 
   const handleView = (hash) => {
     handleCancel()
-    navigate(`/explorer/?transaction=${hash}`)
+    navigate(`/explorer/search/?transaction=${hash}`)
   }
 
   const sendTx = () => {

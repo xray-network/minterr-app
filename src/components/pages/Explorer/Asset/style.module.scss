@@ -37,7 +37,7 @@
 
 .shortMetadata {
   transition: opacity 0.3s ease-in-out;
-  opacity: 0.4;
+  opacity: 0.5;
   padding-left: rem(25);
   padding-right: rem(25);
 
@@ -125,7 +125,7 @@
   &Link {
     display: inline-block;
     margin: 0 rem(10) rem(10) 0;
-    border: 3px solid $primary;
+    border: 2px solid $primary;
     color: $primary;
     padding: 0 rem(10);
     font-weight: bold;

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react"
 import { useSelector } from "react-redux"
 import { Link, navigate } from "gatsby"
-import { Input, Form, Button } from "antd"
+import { Button } from "antd"
 import Cardano from "../../../services/cardano"
-import * as style from "./style.module.scss"
+import SerchInput from "@/components/pages/SearchInput"
 
 const query = `
   query aggregate {
@@ -26,7 +26,6 @@ const query = `
 `
 
 const Explorer = () => {
-  const [form] = Form.useForm()
   const networkBlock = useSelector((state) => state.settings.networkBlock)
   const [stat, setStat] = useState({
     assets: 0,
@@ -51,49 +50,6 @@ const Explorer = () => {
     }
   }, [networkBlock])
 
-  const onSearch = (value) => {
-    const touched = form.isFieldsTouched()
-    const hasValidationError = !!form
-      .getFieldsError()
-      .filter(({ errors }) => errors.length).length
-    if (!touched || hasValidationError) {
-      return
-    }
-
-    switch (detectEntity(value)) {
-      case "asset":
-        navigate(`/explorer/?asset=${value}`)
-        break
-      case "block":
-        navigate(`/explorer/?block=${value}`)
-        break
-      case "transaction":
-        navigate(`/explorer/?transaction=${value}`)
-        break
-      case "policyId":
-        navigate(`/explorer/?policyID=${value}`)
-        break
-      case "address":
-        navigate(`/explorer/?address=${value}`)
-        break
-      default:
-        break
-    }
-  }
-
-  const detectEntity = (search) => {
-    try {
-      if (search.startsWith("asset")) return "asset"
-      if (Number(search)) return "block"
-      if (search.length === 64) return "transaction"
-      if (search.length === 56) return "policyId"
-      if (Cardano.crypto.validateAddress(search)) return "address"
-      return false
-    } catch {
-      return false
-    }
-  }
-
   return (
     <div className="ray__block pt-3">
       <h1 className="mb-5">
@@ -104,42 +60,15 @@ const Explorer = () => {
           🧐
         </span>
       </h1>
-      <Form className="pb-4" form={form} layout="vertical" requiredMark={false}>
-        <Form.Item
-          name="searchEntity"
-          rules={[
-            { required: true, message: "Required" },
-            () => ({
-              validator(_, value) {
-                if (!value || detectEntity(value)) {
-                  return Promise.resolve()
-                }
-                return Promise.reject(
-                  new Error("Must be a valid Cardano entity")
-                )
-              },
-            }),
-          ]}
-        >
-          <Input.Search
-            allowClear
-            size="large"
-            className={style.input}
-            enterButton="Search"
-            onSearch={onSearch}
-            autoComplete="off"
-            placeholder="Search assets by fingerprint, policy id, transaction, block, or address"
-          />
-        </Form.Item>
-      </Form>
+      <SerchInput />
       <h1 className="pt-3 mb-5">Better yet, mint your NFT token!</h1>
       <div className="mb-5">
         <Button
           onClick={() => {
-            navigate("/mint-tokens/")
+            navigate("/mint-cardano-tokens/")
           }}
           type="primary"
-          className={style.mintButton}
+          className="ray__btn--extra"
         >
           Mint a token!
         </Button>
