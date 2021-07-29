@@ -41,7 +41,7 @@ const query = (blockNumber) => `
   }
 `
 
-const BlockLive = ({ blockNumber, setLoadingOuter = () => {} }) => {
+const BlockLive = ({ blockNumber, setLoadingOuter = () => { } }) => {
   const [liveState, setLiveState] = useState([])
   const init = useSelector((state) => state.settings.init)
 
@@ -73,7 +73,9 @@ const BlockLive = ({ blockNumber, setLoadingOuter = () => {} }) => {
     const updatedLiveState = [...liveState]
     const updatedResult = result.filter((item) => item.tokens.length > 0)
 
-    setLoadingOuter(false)
+    if (updatedResult.length > 0) {
+      setLoadingOuter(false)
+    }
     updatedLiveState.push(...updatedResult)
     setLiveState(updatedLiveState)
   }
@@ -92,7 +94,7 @@ const BlockLive = ({ blockNumber, setLoadingOuter = () => {} }) => {
           })
         })
       })
-    } catch {}
+    } catch { }
     return tokens
   }
 

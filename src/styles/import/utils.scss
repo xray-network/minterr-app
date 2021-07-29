@@ -208,14 +208,37 @@
 
 // dark theme
 [data-theme="dark"] {
-  .ray {
-    &__block {
-      &--top {
-        border-top: 1px solid $dark-border;
+  a:not(.ray__btn),
+  .ant-btn,
+  .cursor-pointer {
+    &:hover {
+      .ray__icon {
+        svg {
+          * {
+            fill: $white !important;
+          }
+        }
       }
+    }
+  }
 
-      &--bottom {
-        border-bottom: 1px solid $dark-border;
+  .ray {
+    // &__block {
+    //   &--top {
+    //     border-top: 1px solid $dark-border;
+    //   }
+
+    //   &--bottom {
+    //     border-bottom: 1px solid $dark-border;
+    //   }
+    // }
+
+    &__icon {
+      svg {
+        * {
+          @include transition-fast();
+          fill: $blue-light;
+        }
       }
     }
 
@@ -227,11 +250,23 @@
       border: 1px solid $dark-gray-3;
     }
 
-    &__copy {
-      color: $dark-gray-3;
+    &__box {
+      &--bg {
+        background: $dark-gray-5;
+      }
     }
 
-    &__button {
+    &__btn {
+      color: $white !important;
+
+      svg {
+        height: rem(18) !important;
+        width: auto !important;
+        * {
+          fill: $white !important;
+        }
+      }
+
       &[disabled] {
         background: $dark-gray-4 !important;
         color: $dark-gray-3 !important;
@@ -244,6 +279,17 @@
           border-color: rgba($border, 0.2) !important;
           color: $dark-gray-1 !important;
         }
+      }
+    }
+
+    &__point {
+      border: 2px solid $dark-gray-2;
+      background: $dark-gray-2;
+      color: $dark;
+  
+      &--outline {
+        background: transparent;
+        color: $dark-gray-2;
       }
     }
   }

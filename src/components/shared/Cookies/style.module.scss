@@ -3,9 +3,8 @@
 .cookies {
   position: fixed;
   z-index: 100;
-  left: 15px;
-  bottom: 15px;
-  width: 100%;
+  left: rem(15);
+  bottom: rem(15);
   max-width: rem(400);
   padding: rem(30) rem(30) rem(25);
   border-radius: 15px;
@@ -14,8 +13,7 @@
   @include transition-slow();
 
   @media (max-width: $sm-max-width) {
-    // max-width: none;
-    // width: calc(100% - 30px);
+    right: 15px;
   }
 }
 

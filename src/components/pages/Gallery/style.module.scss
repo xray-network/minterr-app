@@ -132,4 +132,22 @@
 
 // dark theme
 [data-theme="dark"] {
+  .nft {
+    color: $blue-light;
+  
+    &:hover {
+      color: $blue-light;
+      .name {
+        color: $white;
+      }
+    }
+  }
+
+  .image {
+    background: $white;
+  }
+
+  // .type, .minted {
+  //   border-color: $white;
+  // }
 }

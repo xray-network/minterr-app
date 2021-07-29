@@ -57,13 +57,12 @@ const Image = ({ nft, minted, assetName, inViewport, forwardedRef }) => {
           <Tooltip
             title={
               <div className="text-center">
-                If you see Ray Diamond on the following link, you don't need to
-                take any action, just surf NFTs!
+                If you see the image in the following link, you don't need to take any action, just surf the NFT!
               </div>
             }
           >
             <a
-              href={`https://cloudflare-ipfs.com/ipfs/QmaYWWWmrUJkWiKAaHRiYwLaSCNGT8he4ZpuQd5TddvRVJ?v=${Math.random()}`}
+              href={`${url}?v=${Math.random()}`}
               target="_blank"
               rel="noopener noreferrer"
               onClick={(e) => e.stopPropagation()}
@@ -71,7 +70,7 @@ const Image = ({ nft, minted, assetName, inViewport, forwardedRef }) => {
               role="button"
               tabIndex="0"
             >
-              Unable To Load?
+              Image not loading?
             </a>
           </Tooltip>
           <span></span>

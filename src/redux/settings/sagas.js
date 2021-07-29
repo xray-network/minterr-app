@@ -156,10 +156,38 @@ export function* GENERATE_NEW_SESSION({ mnemonic }) {
   })
 }
 
+export function* SWITCH_MEGA_MENU() {
+  const megaMenu = yield select((state) => state.settings.megaMenu)
+  document.getElementsByTagName('body')[0].classList.toggle('overflow-hidden')
+  yield put({
+    type: "settings/SET_STATE",
+    payload: {
+      megaMenu: !megaMenu,
+    },
+  })
+}
+
+export function* CHANGE_THEME({ theme }) {
+  document.querySelector('html').setAttribute('data-disable-transitions', "true")
+  document.querySelector('html').setAttribute('data-theme', theme)
+  setTimeout(() => {
+    document.querySelector('html').removeAttribute('data-disable-transitions')
+  }, 500)
+  yield put({
+    type: "settings/CHANGE_SETTING",
+    payload: {
+      setting: "theme",
+      value: theme,
+    },
+  })
+}
+
 export function* SETUP() {
   const storeSession = yield select((state) => state.settings.storeSession)
   const mnemonic = yield select((state) => state.settings.mnemonic)
+  const theme = yield select((state) => state.settings.theme)
 
+  yield call(CHANGE_THEME, { theme })
   yield Cardano.init()
   yield put({
     type: "settings/SET_STATE",
@@ -181,6 +209,8 @@ export default function* rootSaga() {
     takeEvery(actions.GET_BALANCE, GET_BALANCE),
     takeEvery(actions.GENERATE_NEW_SESSION, GENERATE_NEW_SESSION),
     takeEvery(actions.FETCH_NETWORK_STATE, FETCH_NETWORK_STATE),
+    takeEvery(actions.SWITCH_MEGA_MENU, SWITCH_MEGA_MENU),
+    takeEvery(actions.CHANGE_THEME, CHANGE_THEME),
     SETUP(),
   ])
 }

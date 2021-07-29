@@ -7,7 +7,7 @@ import TransactionModal from "@/components/pages/TransactionModal"
 const PageIndex = () => {
   return (
     <MainLayout>
-      <Helmet title="Mint Cardano NFT Token Online" />
+      <Helmet title="Mint Cardano NFT Tokens" />
       <MintingForm />
       <TransactionModal />
     </MainLayout>

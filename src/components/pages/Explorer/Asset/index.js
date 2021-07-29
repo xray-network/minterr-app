@@ -87,6 +87,9 @@ const Asset = ({ fingerprint }) => {
       return [key, value]
     })
 
+  const imageName = assetInfo.metadataNft?.name || assetInfo.assetName
+  const imageUrl = imageStringToCloudflare(assetInfo.metadataNft?.image)
+
   return (
     <div className="ray__block pt-3">
       {loading && (
@@ -128,16 +131,15 @@ const Asset = ({ fingerprint }) => {
       )}
       {!loading && found && (
         <div>
-          <Helmet title={assetInfo.metadataNft?.name || assetInfo.assetName}>
+          <Helmet title={imageName}>
             <meta
               property="og:title"
-              content={`${
-                assetInfo.metadataNft?.name || assetInfo.assetName
-              } — Cardano NFT Token`}
+              content={`${imageName
+                } — Cardano NFT Token`}
             />
             <meta
               property="og:image"
-              content={imageStringToCloudflare(assetInfo.metadataNft?.image)}
+              content={imageUrl}
             />
           </Helmet>
           <div
@@ -157,7 +159,7 @@ const Asset = ({ fingerprint }) => {
               <div className="px-5">
                 <h1 className="mb-1">
                   <span className={style.title}>
-                    {assetInfo.metadataNft?.name || assetInfo.assetName}
+                    {imageName}
                   </span>
                 </h1>
                 <div className="text-muted mb-3">
@@ -192,10 +194,8 @@ const Asset = ({ fingerprint }) => {
                           setLoadingImg(false)
                         }
                       }}
-                      alt={assetInfo.metadataNft?.name || assetInfo.assetName}
-                      src={imageStringToCloudflare(
-                        assetInfo.metadataNft?.image
-                      )}
+                      alt={imageName}
+                      src={imageUrl}
                     />
                     {loadingImg && (
                       <div className="text-center mt-3 pt-5 pb-5">
@@ -206,19 +206,17 @@ const Asset = ({ fingerprint }) => {
                           <span className="visually-hidden">Loading...</span>
                         </div>
                         <div className="mt-3">
-                          Image not loading?
+                          Unable to load?
                           <br />
                           <Tooltip
                             title={
                               <div className="text-center">
-                                If you see Ray Diamond on the following link,
-                                you don't need to take any action, just surf
-                                NFTs!
+                                If you see the image in the following link, you don't need to take any action, just surf the NFT!
                               </div>
                             }
                           >
                             <a
-                              href={`https://cloudflare-ipfs.com/ipfs/QmaYWWWmrUJkWiKAaHRiYwLaSCNGT8he4ZpuQd5TddvRVJ?v=${Math.random()}`}
+                              href={`${imageUrl}?v=${Math.random()}`}
                               target="_blank"
                               rel="noopener noreferrer"
                             >
@@ -307,10 +305,8 @@ const Asset = ({ fingerprint }) => {
                   enabled: true,
                   alignment: "center",
                   min_count: 0,
-                  image: imageStringToCloudflare(assetInfo.metadataNft?.image),
-                  title: `${
-                    assetInfo.metadataNft?.name || assetInfo.assetName
-                  } — Cardano NFT Token`,
+                  image: imageUrl,
+                  title: `${imageName} — Cardano NFT Token`,
                   show_total: true,
                   networks: [
                     "twitter",
@@ -331,9 +327,8 @@ const Asset = ({ fingerprint }) => {
                   return (
                     <span
                       key={hash}
-                      className={`${style.viewerLink} ${
-                        hash === selectedMint ? style.viewerLinkActive : ""
-                      }`}
+                      className={`${style.viewerLink} ${hash === selectedMint ? style.viewerLinkActive : ""
+                        }`}
                       onClick={() => setSelectedMint(hash)}
                       onKeyPress={() => setSelectedMint(hash)}
                       role="button"
@@ -356,7 +351,7 @@ const Asset = ({ fingerprint }) => {
                     displayDataTypes={false}
                     displayObjectSize={false}
                     name={false}
-                    // theme="brewer"
+                  // theme="brewer"
                   />
                 </div>
               )}

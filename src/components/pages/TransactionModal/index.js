@@ -136,7 +136,7 @@ const TransactionModal = () => {
         <div>
           <Result
             icon={<LoadingOutlined style={{ fontSize: 72 }} spin />}
-            title={<strong>Minting...</strong>}
+            title={<h4>Minting...</h4>}
             subTitle={
               <div className="mb-2">
                 <div className="mb-2">
@@ -161,7 +161,7 @@ const TransactionModal = () => {
         <div className="text-center">
           <Result
             status="success"
-            title={<strong>Successfully minted!</strong>}
+            title={<h4>Successfully minted!</h4>}
             subTitle={
               <div>
                 <CopyToClipboard text={waitingHash} onCopy={onCopy}>
@@ -188,7 +188,7 @@ const TransactionModal = () => {
               </div>
             }
             extra={[
-              <Button onClick={() => handleView(waitingHash)} size="large">
+              <Button className="ray__btn ray__btn--success mx-auto" onClick={() => handleView(waitingHash)} size="large">
                 View Transaction
               </Button>,
             ]}

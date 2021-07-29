@@ -1,4 +1,4 @@
-import axios from "axios"
+import axios from 'axios'
 
 const Explorer = function Explorer(pkg, settings) {
   const Cardano = pkg
@@ -18,15 +18,15 @@ const Explorer = function Explorer(pkg, settings) {
     },
     (error) => {
       return errorHandler(error)
-    }
+    },
   )
 
   this.query = (query) => {
-    return client.post("/", query)
+    return client.post('/', query)
   }
 
   this.getNetworkInfo = () => {
-    return client.post("/", {
+    return client.post('/', {
       query: `
         {
           cardano {
@@ -49,11 +49,11 @@ const Explorer = function Explorer(pkg, settings) {
     // init config
 
     const config = {
-      aggregateString: "",
+      aggregateString: '',
       limit: 100,
       maxPages: 100,
       offset: 0,
-      query: () => "",
+      query: () => '',
       variables: {},
       ...params,
     }
@@ -66,7 +66,7 @@ const Explorer = function Explorer(pkg, settings) {
         const propA = a[prop]
         const propB = b[prop]
 
-        if (typeof propA === typeof propB && typeof propA === "object") {
+        if (typeof propA === typeof propB && typeof propA === 'object') {
           if (Array.isArray(propA)) {
             ret[prop] = propA.concat(propB)
           } else {
@@ -82,11 +82,11 @@ const Explorer = function Explorer(pkg, settings) {
     let response = {}
     let iteration = 0
     async function mergeDeep() {
-      const update = await client.post("/", {
+      const update = await client.post('/', {
         query: config.query(
           config.aggregateString,
           config.limit,
-          iteration * config.limit + config.offset
+          iteration * config.limit + config.offset,
         ),
         variables: config.variables,
       })
@@ -95,9 +95,7 @@ const Explorer = function Explorer(pkg, settings) {
         return
       }
       iteration += 1
-      const totalCount = Number(
-        update?.data?.data[config.aggregateString]?.aggregate?.count
-      )
+      const totalCount = Number(update?.data?.data[config.aggregateString]?.aggregate?.count)
       const currentPage = iteration * config.limit + config.offset
       const limitReason = iteration < config.maxPages
       if (currentPage < totalCount && limitReason) {
@@ -126,7 +124,7 @@ const Explorer = function Explorer(pkg, settings) {
       }`
 
     return this.fetchComplete({
-      aggregateString: "stakePools_aggregate",
+      aggregateString: 'stakePools_aggregate',
       query,
     })
   }
@@ -169,7 +167,7 @@ const Explorer = function Explorer(pkg, settings) {
     `
 
     return this.fetchComplete({
-      aggregateString: "utxos_aggregate",
+      aggregateString: 'utxos_aggregate',
       query,
       variables: {
         addresses,
@@ -213,7 +211,7 @@ const Explorer = function Explorer(pkg, settings) {
       `
 
     return this.fetchComplete({
-      aggregateString: "transactions_aggregate",
+      aggregateString: 'transactions_aggregate',
       query,
       variables: {
         addresses,
@@ -257,7 +255,7 @@ const Explorer = function Explorer(pkg, settings) {
       `
 
     return this.fetchComplete({
-      aggregateString: "transactions_aggregate",
+      aggregateString: 'transactions_aggregate',
       query,
       variables: {
         addresses,
@@ -337,7 +335,7 @@ const Explorer = function Explorer(pkg, settings) {
       `
 
     return this.fetchComplete({
-      aggregateString: "transactions_aggregate",
+      aggregateString: 'transactions_aggregate',
       query,
       variables: {
         hashes,
@@ -349,7 +347,7 @@ const Explorer = function Explorer(pkg, settings) {
     publicKey,
     pageSize = 20,
     maxShiftIndex = 10,
-    type = [0]
+    type = [0],
   ) => {
     // generate address pack and get addresses utxos with addressing paths
 
@@ -358,7 +356,7 @@ const Explorer = function Explorer(pkg, settings) {
         publicKey,
         checkPageSize,
         checkType,
-        checkShift
+        checkShift,
       )
 
       const checkedAdresses = tmpAddresses.map((addr) => addr.address)
@@ -368,76 +366,41 @@ const Explorer = function Explorer(pkg, settings) {
 
       const adressesWithUTXOs = tmpAddresssesUTXO.utxos
         ? tmpAddresssesUTXO.utxos.map((utxo) => {
-            const filteredUtxo = tmpAddresses.filter(
-              (addr) => addr.address === utxo.address
-            )[0]
-            return {
-              ...utxo,
-              addressing: {
-                type: filteredUtxo.type,
-                path: filteredUtxo.path,
-              },
-            }
-          })
+          const filteredUtxo = tmpAddresses.filter((addr) => addr.address === utxo.address)[0]
+          return {
+            ...utxo,
+            addressing: {
+              type: filteredUtxo.type,
+              path: filteredUtxo.path,
+            },
+          }
+        })
         : []
 
       return [adressesWithUTXOs, checkedAdresses]
     }
 
-    // check addresses utxos with shift until next pack will be with zero utxos
-
-    const utxos = []
-    const adressesArray = []
-
-    async function checkAddressesUTXOWithShift(
-      checkType,
-      checkPageSize,
-      checkShift
-    ) {
-      const [adressesWithUTXOs, checkedAdresses] = await checkAddressesUTXO(
-        checkType,
-        checkPageSize,
-        checkShift
-      )
-
-      adressesArray.push(...checkedAdresses)
-      if (adressesWithUTXOs.length) {
-        utxos.push(...adressesWithUTXOs)
-      }
-      if (checkShift < maxShiftIndex) {
-        checkShift += 1
-        await checkAddressesUTXOWithShift(checkType, checkPageSize, checkShift)
-      }
-    }
-
-    await checkAddressesUTXOWithShift(type, pageSize, 0)
 
     // get transactions by hashes and transform to readable object
 
-    const {
-      data: { data: rawTxInputs },
-    } = await Cardano.explorer.getTxHashFromInputs(adressesArray)
-    const {
-      data: { data: rawTxOutputs },
-    } = await Cardano.explorer.getTxHashFromOutputs(adressesArray)
-    const rawTransactions = [
-      ...(rawTxInputs?.transactions || []),
-      ...(rawTxOutputs?.transactions || []),
-    ]
+    async function getTransactions(addressesArray) {
 
-    const {
-      data: { data: transactionsInputsOutputs },
-    } = await Cardano.explorer.getTxByHash(rawTransactions.map((tx) => tx.hash))
+      const getTxHashFromInputs = await Cardano.explorer.getTxHashFromInputs(addressesArray)
+      const getTxHashFromOutputs = await Cardano.explorer.getTxHashFromOutputs(addressesArray)
+      const rawTransactions = [
+        ...(getTxHashFromInputs?.data?.data?.transactions || []),
+        ...(getTxHashFromOutputs?.data?.data?.transactions || []),
+      ]
 
-    const transactions = (transactionsInputsOutputs?.transactions || []).map(
-      (tx) => {
+      const getTxByHash = await Cardano.explorer.getTxByHash(rawTransactions.map((tx) => tx.hash))
+      const transactions = (getTxByHash?.data?.data?.transactions || []).map((tx) => {
         // let inputAmount = new BigNumber(0)
         // let outputAmount = new BigNumber(0)
         let amount = new BigNumber(0)
         const tokens = {}
 
         tx.inputs.forEach((input) => {
-          if (input && adressesArray.includes(input.address)) {
+          if (input && addressesArray.includes(input.address)) {
             amount = amount.minus(input.value)
             input.tokens.forEach((token) => {
               const { asset, quantity } = token
@@ -451,18 +414,14 @@ const Explorer = function Explorer(pkg, settings) {
                 ...tokens[assetId],
                 ...asset,
                 ticker:
-                  asset.ticker ||
-                  Buffer.from(asset.assetName || "", "hex").toString("utf-8") ||
-                  "?",
-                quantity: new BigNumber(tokens[assetId].quantity).minus(
-                  quantity
-                ),
+                  asset.ticker || Buffer.from(asset.assetName || '', 'hex').toString('utf-8') || '?',
+                quantity: new BigNumber(tokens[assetId].quantity).minus(quantity),
               }
             })
           }
         })
         tx.outputs.forEach((output) => {
-          if (output && adressesArray.includes(output.address)) {
+          if (output && addressesArray.includes(output.address)) {
             amount = amount.plus(output.value)
             output.tokens.forEach((token) => {
               const { asset, quantity } = token
@@ -476,12 +435,8 @@ const Explorer = function Explorer(pkg, settings) {
                 ...tokens[assetId],
                 ...asset,
                 ticker:
-                  asset.ticker ||
-                  Buffer.from(asset.assetName || "", "hex").toString("utf-8") ||
-                  "?",
-                quantity: new BigNumber(tokens[assetId].quantity).plus(
-                  quantity
-                ),
+                  asset.ticker || Buffer.from(asset.assetName || '', 'hex').toString('utf-8') || '?',
+                quantity: new BigNumber(tokens[assetId].quantity).plus(quantity),
               }
             })
           }
@@ -489,7 +444,7 @@ const Explorer = function Explorer(pkg, settings) {
 
         return {
           ...tx,
-          type: new BigNumber(amount).lt(0) ? "send" : "receive",
+          type: new BigNumber(amount).lt(0) ? 'send' : 'receive',
           value: new BigNumber(amount).abs(),
           tokens: Object.keys(tokens).map((key) => {
             return {
@@ -498,8 +453,36 @@ const Explorer = function Explorer(pkg, settings) {
             }
           }),
         }
+      })
+
+      return transactions
+    }
+
+    // check addresses utxos with shift until next pack will be with zero utxos
+
+    const utxos = []
+    const transactions = []
+
+    async function checkAddressesUTXOWithShift(checkType, checkPageSize, checkShift) {
+      const [adressesWithUTXOs, checkedAdresses] = await checkAddressesUTXO(
+        checkType,
+        checkPageSize,
+        checkShift,
+      )
+
+      const txs = await getTransactions(checkedAdresses)
+      transactions.push(...txs)
+
+      if (checkShift <= maxShiftIndex) {
+        if (adressesWithUTXOs.length) {
+          utxos.push(...adressesWithUTXOs)
+          checkShift += 1
+          await checkAddressesUTXOWithShift(checkType, checkPageSize, checkShift)
+        }
       }
-    )
+    }
+
+    await checkAddressesUTXOWithShift(type, pageSize, 0)
 
     // get account assets summary from utxos
 
@@ -525,12 +508,8 @@ const Explorer = function Explorer(pkg, settings) {
               ...assetsSummary.tokens[assetId],
               ...asset,
               ticker:
-                asset.ticker ||
-                Buffer.from(asset.assetName || "", "hex").toString("utf-8") ||
-                "?",
-              quantity: new BigNumber(
-                assetsSummary.tokens[assetId].quantity
-              ).plus(quantity),
+                asset.ticker || Buffer.from(asset.assetName || '', 'hex').toString('utf-8') || '?',
+              quantity: new BigNumber(assetsSummary.tokens[assetId].quantity).plus(quantity),
             }
           })
         }
@@ -538,9 +517,7 @@ const Explorer = function Explorer(pkg, settings) {
 
       return {
         value: new BigNumber(assetsSummary.value).toFixed(),
-        tokens: Object.keys(assetsSummary.tokens).map(
-          (key) => assetsSummary.tokens[key]
-        ),
+        tokens: Object.keys(assetsSummary.tokens).map((key) => assetsSummary.tokens[key]),
       }
     }
 
@@ -556,7 +533,7 @@ const Explorer = function Explorer(pkg, settings) {
   }
 
   this.txSend = (transaction) => {
-    return client.post("/", {
+    return client.post('/', {
       query: `
           mutation submitTransaction($transaction: String!) {
             submitTransaction(transaction: $transaction) {

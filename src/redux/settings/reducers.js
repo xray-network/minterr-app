@@ -31,6 +31,7 @@ const initialState = {
   addressState: {},
   addressStateLoading: false,
   transaction: "",
+  megaMenu: false,
   Cardano: undefined,
 }
 

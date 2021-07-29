@@ -12,7 +12,7 @@
 
   :global(.ant-input) {
     font-size: rem(16);
-    background: transparent;
+    background: transparent !important;
     border-radius: 0px !important;
     height: rem(30) !important;
 
@@ -25,12 +25,12 @@
     }
 
     &-group-addon {
-      background: transparent;
+      background: transparent !important;
       border: none;
     }
 
     &-affix-wrapper {
-      background: transparent;
+      background: transparent !important;
       border: none;
       box-shadow: none;
       outline: none;
@@ -39,7 +39,7 @@
   }
 
   :global(.ant-btn) {
-    background: transparent;
+    background: transparent !important;
     border: none;
   }
 

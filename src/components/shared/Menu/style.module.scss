@@ -4,6 +4,7 @@
   display: flex;
   align-items: center;
   padding: rem(15) 0;
+  height: rem(65);
 
   &Logo {
     svg {
@@ -30,14 +31,12 @@
 
   &Icon {
     height: rem(20);
-    width: rem(20);
+    width: rem(21);
     position: relative;
     cursor: pointer;
     margin-right: rem(10);
 
     @media (max-width: $md-max-width) {
-      width: rem(25);
-
       &:before {
         top: rem(5) !important;
       }
@@ -73,7 +72,7 @@
   }
 }
 
-.Submenu {
+.submenu {
   display: flex;
   flex-wrap: wrap;
   padding: rem(20) 0;
@@ -134,4 +133,27 @@
 
 // dark theme
 [data-theme="dark"] {
+  .menu {
+    &Logo {
+      svg {
+        * {
+          fill: $white;
+        }
+      }
+    }
+
+    &Icon {
+      &:after,
+      &:before {
+        background: $blue-light;
+      }
+  
+      &:hover {
+        &:after,
+        &:before {
+          background: $white;
+        }
+      }
+    }
+  }
 }

@@ -1,12 +1,24 @@
 @import "@/styles/mixins";
 
-.top {
-  margin-bottom: rem(40);
-  padding-top: rem(50);
-}
+.footer {
+  &Top {
+    margin-bottom: rem(40);
+    padding-top: rem(50);
+  }
 
-.bottom {
-  .ray {
+
+
+  &Lists {
+    :global(.ray__icon) {
+      svg {
+        * {
+          fill: $blue !important;
+        }
+      }
+    }
+  }
+  
+  &Ray {
     display: inline-flex;
     align-items: center;
     font-weight: 700;
@@ -24,7 +36,7 @@
     }
   }
 
-  .cardano {
+  &Cardano {
     display: inline-flex;
     margin-right: rem(5);
     position: relative;
@@ -41,54 +53,50 @@
       }
     }
   }
-}
-
-.app {
-  width: rem(40);
-  height: rem(40);
-  background: $dark;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 rem(10) rem(10) 0;
-  border-radius: 8px;
-
-  &:hover {
-    background: lighten($dark, 10%);
-  }
-
-  svg {
-    * {
-      fill: $white !important;
+  
+  &App {
+    width: rem(40);
+    height: rem(40);
+    background: $dark;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 rem(10) rem(10) 0;
+    border-radius: 8px;
+  
+    &:hover {
+      background: lighten($dark, 10%);
+    }
+  
+    svg {
+      * {
+        fill: $white !important;
+      }
     }
   }
-}
 
-.testnet {
-  position: fixed;
-  z-index: 9999;
-  top: 20%;
-  right: 0;
-  border-radius: 8px 0 0 8px;
-  background: $danger;
-  color: $white !important;
-  padding: rem(5) rem(10);
-}
+  &Testnet {
+    position: fixed;
+    z-index: 9999;
+    top: 20%;
+    right: 0;
+    border-radius: 8px 0 0 8px;
+    background: $danger;
+    color: $white !important;
+    padding: rem(5) rem(10);
+  }
 
-.faucet {
-  position: fixed;
-  z-index: 9999;
-  top: calc(20% + 2.5rem);
-  right: 0;
-  border-radius: 8px 0 0 8px;
-  background: $danger;
-  color: $white !important;
-  padding: rem(5) rem(10);
+  &Faucet {
+    position: fixed;
+    z-index: 9999;
+    top: calc(20% + 2.5rem);
+    right: 0;
+    border-radius: 8px 0 0 8px;
+    background: $danger;
+    color: $white !important;
+    padding: rem(5) rem(10);
+  }
 }
 
 // dark theme
-[data-theme="dark"] {
-  .logo {
-    color: $white;
-  }
-}
+[data-theme="dark"] {}

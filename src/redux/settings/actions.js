@@ -6,6 +6,8 @@ const actions = {
   GET_BALANCE: "settings/GET_BALANCE",
   GENERATE_NEW_SESSION: "settings/GENERATE_NEW_SESSION",
   FETCH_NETWORK_STATE: "settings/FETCH_NETWORK_STATE",
+  SWITCH_MEGA_MENU: "settings/SWITCH_MEGA_MENU",
+  CHANGE_THEME: "settings/CHANGE_THEME",
 }
 
 export default actions

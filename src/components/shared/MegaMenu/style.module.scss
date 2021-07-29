@@ -1,0 +1,240 @@
+@import "@/styles/mixins";
+
+.wallets {
+  position: relative;
+  min-height: rem(500);
+
+  img {
+    position: absolute;
+    right: rem(130);
+    top: rem(0);
+    height: rem(500);
+
+    &:last-child {
+      right: 0;
+      top: rem(-100)
+    }
+  }
+  
+  @media (max-width: $md-max-width) {
+    margin-bottom: rem(60);
+    margin-top: rem(80);
+  }
+
+  @media (max-width: $sm-max-width) {
+    img {
+      right: auto;
+      left: 0;
+
+      &:last-child {
+        right: 0;
+        left: auto;
+        top: rem(-100)
+      }
+    }
+  }
+}
+
+.fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+  background: $pastel-1;
+  overflow-y: auto;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  padding: rem(15) 0;
+  height: rem(65);
+
+  &Logo {
+    display: flex;
+    align-items: center;
+    font-size: rem(18);
+    font-weight: bold;
+    color: $dark !important;
+
+    svg {
+      margin-right: rem(10);
+      height: rem(30) !important;
+      width: auto !important;
+    }
+
+    @media (max-width: $md-max-width) {
+      height: rem(40) !important;
+      font-size: rem(21);
+    }
+  }
+
+  &Cardano {
+    position: relative;
+    top: -2px;
+    svg {
+      width: auto !important;
+      height: rem(16);
+      * {
+        fill: $blue;
+      }
+    }
+  }
+
+  &Switch {
+    svg {
+      width: rem(24) !important;
+      height: rem(24) !important;
+    }
+  }
+
+  @media (max-width: $md-max-width) {
+    &Switch {
+      svg {
+        width: rem(26) !important;
+        height: rem(26) !important;
+      }
+    }
+  }
+
+  &Icon {
+    height: rem(20);
+    width: rem(21);
+    position: relative;
+    cursor: pointer;
+    margin-right: rem(10);
+
+    &:after,
+    &:before {
+      content: "";
+      display: block;
+      position: absolute;
+      top: rem(10);
+      height: 2px;
+      width: 100%;
+      border-radius: 3px;
+      background: $dark;
+      @include transition-fast();
+      transform: rotate(-45deg);
+    }
+
+    &:after {
+      top: rem(10);
+      transform: rotate(45deg);
+    }
+
+    &:hover {
+      &:after,
+      &:before {
+        background: $blue;
+      }
+    }
+  }
+}
+
+.footer {
+  &Top {
+    padding-top: rem(50);
+  }
+
+  &Lists {
+    :global(.ray__icon) {
+      svg {
+        * {
+          fill: $blue !important;
+        }
+      }
+    }
+  }
+  
+  &Ray {
+    display: inline-flex;
+    align-items: center;
+    font-weight: 700;
+    font-size: rem(18);
+    color: $dark;
+
+    &:hover {
+      color: $blue;
+    }
+
+    svg {
+      margin-right: rem(10);
+      height: rem(24) !important;
+      width: auto !important;
+    }
+  }
+
+  &Cardano {
+    display: inline-flex;
+    margin-right: rem(5);
+    position: relative;
+    z-index: 1;
+    top: rem(3);
+    color: $dark;
+
+    svg {
+      height: rem(18) !important;
+      width: auto !important;
+
+      * {
+        fill: blue;
+      }
+    }
+  }
+  
+  &App {
+    width: rem(40);
+    height: rem(40);
+    background: $dark;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 rem(10) rem(10) 0;
+    border-radius: 8px;
+  
+    &:hover {
+      background: lighten($dark, 10%);
+    }
+  
+    svg {
+      * {
+        fill: $white !important;
+      }
+    }
+  }
+}
+
+// dark theme
+[data-theme="dark"] {
+  .fixed {
+    background: $dark-gray-6;
+  }
+
+  .menu {
+    display: flex;
+    align-items: center;
+    padding: rem(15) 0;
+    height: rem(65);
+  
+    &Logo {
+      color: $white !important;
+    }
+
+    &Icon {
+      &:after,
+      &:before {
+        background: $blue-light;
+      }
+
+      &:hover {
+        &:after,
+        &:before {
+          background: $white;
+        }
+      }
+    }
+  }
+}
