@@ -1,6 +1,6 @@
 ### Minterr
 
-https://minterr.org
+https://minterr.io
 
 ### Gatsby Documentation
 
