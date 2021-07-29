@@ -60,16 +60,16 @@ const Menu = () => {
           role="button"
           tabIndex="0"
         >
-          {theme === 'default' && (
+          <span className={theme === 'default' ? '' : 'd-none'}>
             <span className="ray__icon">
               <SVGSun />
             </span>
-          )}
-          {theme !== 'default' && (
+          </span>
+          <span className={theme !== 'default' ? '' : 'd-none'}>
             <span className="ray__icon">
               <SVGMoon />
             </span>
-          )}
+          </span>
         </span>
         <span
           className={`${style.menuIcon} cursor-pointer`}
