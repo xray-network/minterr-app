@@ -557,9 +557,9 @@ const MintingForm = () => {
                           const image =
                             originalImage && originalImage.startsWith("ipfs://")
                               ? `https://cloudflare-ipfs.com/ipfs/${originalImage.replace(
-                                  "ipfs://",
-                                  ""
-                                )}`
+                                "ipfs://",
+                                ""
+                              )}`
                               : originalImage
                           return (
                             <div

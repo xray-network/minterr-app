@@ -21,6 +21,7 @@
   display: flex;
   align-content: center;
   justify-content: center;
+  align-items: center;
   padding: rem(10);
   position: relative;
   z-index: 1;
@@ -45,6 +46,11 @@
   justify-content: center;
   background: $gray-1;
   border-radius: 8px;
+  @include transition-fast();
+
+  &:hover {
+    background: darken($gray-1, 3%);
+  }
 }
 
 .faq {
@@ -62,4 +68,16 @@
 
 // dark theme
 [data-theme="dark"] {
+  .image {
+    background: $dark-gray-4;
+    border-color: $dark-gray-3;
+  }
+
+  .remove {
+    background: darken($dark-gray-3, 10%);
+
+    &:hover {
+      background: $dark-gray-3;
+    }
+  }
 }
