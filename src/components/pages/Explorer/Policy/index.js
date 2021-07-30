@@ -3,6 +3,7 @@ import { useSelector } from "react-redux"
 import { processAsset } from "@/utils/index"
 import Cardano from "../../../../services/cardano"
 import Gallery from "@/components/pages/Gallery"
+import Confetti from "@/components/pages/Confetti"
 
 const query = (policyID) => `
   query blockByNumber {
@@ -65,6 +66,7 @@ const BlockFetcher = ({ policyID }) => {
 
   return (
     <div className="mb-5">
+      <Confetti policyId={policyID} />
       <div className="text-left text-md-center">
         <h5 className="mb-1">
           Policy ID <span className="text-break">{policyID}</span>

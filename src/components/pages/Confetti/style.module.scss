@@ -1,0 +1,47 @@
+@import "@/styles/mixins";
+
+.banner {
+  margin-bottom: rem(30);
+  display: block;
+
+  :global(.ray__icon) {
+    position: relative;
+    top: 3px;
+  }
+  
+  &Inner {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    background: $white;
+    padding: rem(20) rem(20);
+    border-radius: 12px;
+    box-shadow: 0 5px 10px -5px rgba(0, 0, 0, 0.1);
+  }
+
+  &Confetti {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 12px;
+    pointer-events: none;
+  }
+  
+  &Text {
+    position: relative;
+    z-index: 2;
+  }
+}
+
+// dark theme
+[data-theme="dark"] {
+  .banner {
+    &Inner {
+      background: $dark-gray-5;
+    }
+  }
+}

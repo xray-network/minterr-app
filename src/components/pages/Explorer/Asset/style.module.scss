@@ -151,4 +151,11 @@
 
 // dark theme
 [data-theme="dark"] {
+  .viewer {
+    background: $dark-gray-5;
+
+    :global(.react-json-view) {
+      background: $dark-gray-5 !important;
+    }
+  }
 }

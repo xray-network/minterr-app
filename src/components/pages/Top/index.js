@@ -45,17 +45,12 @@ const Top = () => {
           }
         `
       })
-
       const paymentAddresses = result?.data?.data?.paymentAddresses || []
       const paymentAddressesResults = {}
       paymentAddresses.forEach((item) => {
         const ada = item.summary.assetBalances.filter((asset) => asset.asset.assetId === 'a')[0] || {}
-        console.log(item.summary)
         paymentAddressesResults[item.address] = ada.quantity || 0
       })
-
-      console.log(paymentAddressesResults)
-
       setProjects(
         projectsData
           .map((item) => {

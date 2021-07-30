@@ -14,6 +14,7 @@ import {
   validUrl,
 } from "@/utils/index"
 import { SVGMinterr, SVGFavicon, SVGSun, SVGMoon } from "@/svg"
+import Confetti from "@/components/pages/Confetti"
 import Cardano from "../../../../services/cardano"
 import * as style from "./style.module.scss"
 
@@ -45,6 +46,7 @@ const query = (fingerpint) => `
 
 const Asset = ({ fingerprint }) => {
   const networkBlock = useSelector((state) => state.settings.networkBlock)
+  const theme = useSelector((state) => state.settings.theme)
   const [isLight, setIsLight] = useState(
     store.get("app.settings.viewerLight") || false
   )
@@ -138,6 +140,7 @@ const Asset = ({ fingerprint }) => {
             />
             <meta property="og:image" content={imageUrl} />
           </Helmet>
+          <Confetti policyId={assetInfo.policyId} />
           <div
             className={`${style.preview} ${isLight ? style.previewLight : ""}`}
           >
@@ -332,9 +335,8 @@ const Asset = ({ fingerprint }) => {
                   return (
                     <span
                       key={hash}
-                      className={`${style.viewerLink} ${
-                        hash === selectedMint ? style.viewerLinkActive : ""
-                      }`}
+                      className={`${style.viewerLink} ${hash === selectedMint ? style.viewerLinkActive : ""
+                        }`}
                       onClick={() => setSelectedMint(hash)}
                       onKeyPress={() => setSelectedMint(hash)}
                       role="button"
@@ -357,7 +359,7 @@ const Asset = ({ fingerprint }) => {
                     displayDataTypes={false}
                     displayObjectSize={false}
                     name={false}
-                    // theme="brewer"
+                    theme={theme === 'default' ? 'rjv-default' : 'railscasts'}
                   />
                 </div>
               )}
