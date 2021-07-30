@@ -158,7 +158,7 @@ export function* GENERATE_NEW_SESSION({ mnemonic }) {
 
 export function* SWITCH_MEGA_MENU() {
   const megaMenu = yield select((state) => state.settings.megaMenu)
-  document.getElementsByTagName('body')[0].classList.toggle('overflow-hidden')
+  document.getElementsByTagName("body")[0].classList.toggle("overflow-hidden")
   yield put({
     type: "settings/SET_STATE",
     payload: {
@@ -168,10 +168,12 @@ export function* SWITCH_MEGA_MENU() {
 }
 
 export function* CHANGE_THEME({ theme }) {
-  document.querySelector('html').setAttribute('data-disable-transitions', "true")
-  document.querySelector('html').setAttribute('data-theme', theme)
+  document
+    .querySelector("html")
+    .setAttribute("data-disable-transitions", "true")
+  document.querySelector("html").setAttribute("data-theme", theme)
   setTimeout(() => {
-    document.querySelector('html').removeAttribute('data-disable-transitions')
+    document.querySelector("html").removeAttribute("data-disable-transitions")
   }, 500)
   yield put({
     type: "settings/CHANGE_SETTING",

@@ -20,14 +20,14 @@ const Menu = () => {
 
   const changeTheme = () => {
     dispatch({
-      type: 'settings/CHANGE_THEME',
-      theme: theme === 'default' ? 'dark' : 'default',
+      type: "settings/CHANGE_THEME",
+      theme: theme === "default" ? "dark" : "default",
     })
   }
 
   const switchMegaMenu = () => {
     dispatch({
-      type: 'settings/SWITCH_MEGA_MENU',
+      type: "settings/SWITCH_MEGA_MENU",
     })
   }
 
@@ -60,12 +60,12 @@ const Menu = () => {
           role="button"
           tabIndex="0"
         >
-          <span className={theme === 'default' ? '' : 'd-none'}>
+          <span className={theme === "default" ? "" : "d-none"}>
             <span className="ray__icon">
               <SVGSun />
             </span>
           </span>
-          <span className={theme !== 'default' ? '' : 'd-none'}>
+          <span className={theme !== "default" ? "" : "d-none"}>
             <span className="ray__icon">
               <SVGMoon />
             </span>

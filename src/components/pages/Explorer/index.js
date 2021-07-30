@@ -42,7 +42,8 @@ const Explorer = () => {
         .then((result) => {
           setStat({
             assets: result?.data?.data?.assets_aggregate?.aggregate?.count || 0,
-            epochs: result?.data?.data?.epochs_aggregate?.aggregate?.count - 1 || 0,
+            epochs:
+              result?.data?.data?.epochs_aggregate?.aggregate?.count - 1 || 0,
             mints:
               result?.data?.data?.tokenMints_aggregate?.aggregate?.count || 0,
           })

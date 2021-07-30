@@ -1,9 +1,9 @@
 import React, { useState, useEffect, forwardRef } from "react"
 import { InlineShareButtons } from "sharethis-reactjs"
-import Project from './project'
-import FlipMove from 'react-flip-move'
+import Project from "./project"
+import FlipMove from "react-flip-move"
 import * as style from "./style.module.scss"
-import projectsData from './ray-top-nft-projects.json'
+import projectsData from "./ray-top-nft-projects.json"
 
 const ProjectFlip = forwardRef(({ rank, project }, ref) => {
   return (
@@ -33,7 +33,7 @@ const Top = () => {
           .map((item) => {
             return {
               ...item,
-              votes: voteResults[item.voteAddress]
+              votes: voteResults[item.voteAddress],
             }
           })
           .sort((a, b) => b.votes.localeCompare(a.votes))
@@ -71,9 +71,7 @@ const Top = () => {
       <FlipMove>
         {projects.map((item, index) => {
           const id = item.policies[0]
-          return (
-            <ProjectFlip key={id} rank={index + 1} project={item} />
-          )
+          return <ProjectFlip key={id} rank={index + 1} project={item} />
         })}
       </FlipMove>
       <div className={style.share}>

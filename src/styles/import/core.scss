@@ -167,7 +167,8 @@ code {
 
     &:before {
       opacity: 0.07;
-      background: transparent repeat url(/resources/pattern-white.svg) top center;
+      background: transparent repeat url(/resources/pattern-white.svg) top
+        center;
     }
   }
 
@@ -180,7 +181,8 @@ code {
     color: $white;
   }
 
-  a, .link {
+  a,
+  .link {
     color: $blue-light;
 
     &:hover,

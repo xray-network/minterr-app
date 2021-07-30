@@ -16,7 +16,13 @@ import {
 } from "antd"
 import { InboxOutlined } from "@ant-design/icons"
 import { CopyToClipboard } from "react-copy-to-clipboard"
-import { SVGCopy, SVGZap, SVGClose, SVGCloseCircled, SVGAddCircled } from "@/svg"
+import {
+  SVGCopy,
+  SVGZap,
+  SVGClose,
+  SVGCloseCircled,
+  SVGAddCircled,
+} from "@/svg"
 import store from "store"
 import { imageStringToCloudflare } from "@/utils/index"
 import Cardano from "../../../services/cardano"
@@ -43,16 +49,6 @@ const MintingForm = () => {
   const [donateState, setDonateState] = useState(true)
   const [tokenType, setTokenType] = useState(721)
   const [error, setError] = useState(false)
-  const [metadataFields, setMetadataFields] = useState([
-    {
-      name: '',
-      value: '',
-    },
-    {
-      name: '',
-      value: '',
-    },
-  ])
 
   useEffect(() => {
     dispatch({
@@ -180,7 +176,6 @@ const MintingForm = () => {
     const processedMetadata = {}
     let metadata = {}
 
-    const extra = {}
     if (tokenType === 721) {
       values.mint.forEach((item) => {
         const extra = {}
@@ -563,7 +558,7 @@ const MintingForm = () => {
             <div>
               <Form.Item
                 name="mint"
-              // rules={[{ required: true, message: "Required" }]}
+                // rules={[{ required: true, message: "Required" }]}
               >
                 <div className="row">
                   <div className="col-12">
@@ -604,10 +599,7 @@ const MintingForm = () => {
                           const image = imageStringToCloudflare(originalImage)
 
                           return (
-                            <div
-                              className="col-12 mt-4"
-                              key={field.key}
-                            >
+                            <div className="col-12 mt-4" key={field.key}>
                               <div className="row">
                                 <div className="col-12 col-sm-4 col-md-3 mb-4 mb-sm-0">
                                   <div className={style.image}>
@@ -640,10 +632,11 @@ const MintingForm = () => {
                                   >
                                     <Input />
                                   </Form.Item>
-                                  <Input.Group compact className={style.assetGroup}>
-                                    <Form.Item
-                                      className={style.assetKey}
-                                    >
+                                  <Input.Group
+                                    compact
+                                    className={style.assetGroup}
+                                  >
+                                    <Form.Item className={style.assetKey}>
                                       <Input
                                         allowClear
                                         autoComplete="off"
@@ -668,10 +661,11 @@ const MintingForm = () => {
                                       />
                                     </Form.Item>
                                   </Input.Group>
-                                  <Input.Group compact className={style.assetGroup}>
-                                    <Form.Item
-                                      className={style.assetKey}
-                                    >
+                                  <Input.Group
+                                    compact
+                                    className={style.assetGroup}
+                                  >
+                                    <Form.Item className={style.assetKey}>
                                       <Input
                                         allowClear
                                         autoComplete="off"
@@ -696,10 +690,11 @@ const MintingForm = () => {
                                       />
                                     </Form.Item>
                                   </Input.Group>
-                                  <Input.Group compact className={style.assetGroup}>
-                                    <Form.Item
-                                      className={style.assetKey}
-                                    >
+                                  <Input.Group
+                                    compact
+                                    className={style.assetGroup}
+                                  >
+                                    <Form.Item className={style.assetKey}>
                                       <Input
                                         allowClear
                                         autoComplete="off"
@@ -712,9 +707,7 @@ const MintingForm = () => {
                                       {...field.restField}
                                       name={[field.name, "amount"]}
                                       fieldKey={[field.fieldKey, "amount"]}
-                                      rules={[
-                                        validationRules.required,
-                                      ]}
+                                      rules={[validationRules.required]}
                                     >
                                       <InputNumber
                                         placeholder="Integer Number"
@@ -727,62 +720,88 @@ const MintingForm = () => {
                                     </Form.Item>
                                   </Input.Group>
                                   <Form.List name={[field.name, "extra"]}>
-                                    {(extraFields, { add: extraAdd, remove: extraRemove }) => (
+                                    {(
+                                      extraFields,
+                                      { add: extraAdd, remove: extraRemove }
+                                    ) => (
                                       <>
-                                        {extraFields.map((extraField, extraIndex) => {
-                                          return (
-                                            <div key={extraIndex}>
-                                              <Input.Group compact className={style.assetGroup}>
-                                                <Form.Item
-                                                  className={style.assetKey}
-                                                  {...extraField.restField}
-                                                  name={[extraField.name, "key"]}
-                                                  fieldKey={[extraField.fieldKey, "key"]}
-                                                  rules={[
-                                                    validationRules.required,
-                                                    validationRules.noSpecialSpace,
-                                                    validationRules.noReservedWords,
-                                                  ]}
+                                        {extraFields.map(
+                                          (extraField, extraIndex) => {
+                                            return (
+                                              <div key={extraIndex}>
+                                                <Input.Group
+                                                  compact
+                                                  className={style.assetGroup}
                                                 >
-                                                  <Input
-                                                    allowClear
-                                                    autoComplete="off"
-                                                    placeholder="eg, url, twiter, author..."
-                                                  />
-                                                </Form.Item>
-                                                <Form.Item
-                                                  className={style.assetValueShort}
-                                                  {...extraField.restField}
-                                                  name={[extraField.name, "value"]}
-                                                  fieldKey={[extraField.fieldKey, "value"]}
-                                                  rules={[
-                                                    validationRules.required,
-                                                    validationRules.noSpecialSoft,
-                                                  ]}
-                                                >
-                                                  <Input
-                                                    allowClear
-                                                    autoComplete="off"
-                                                  />
-                                                </Form.Item>
-                                                <Form.Item
-                                                  className={style.assetRemove}
-                                                >
-                                                  <Button
-                                                    className="ray__btn ray__btn--small ray__btn--transparent ps-2 pe-2"
-                                                    onClick={() => {
-                                                      extraRemove(extraField.name)
-                                                    }}
+                                                  <Form.Item
+                                                    className={style.assetKey}
+                                                    {...extraField.restField}
+                                                    name={[
+                                                      extraField.name,
+                                                      "key",
+                                                    ]}
+                                                    fieldKey={[
+                                                      extraField.fieldKey,
+                                                      "key",
+                                                    ]}
+                                                    rules={[
+                                                      validationRules.required,
+                                                      validationRules.noSpecialSpace,
+                                                      validationRules.noReservedWords,
+                                                    ]}
                                                   >
-                                                    <span className="ray__icon ray__icon--16 ray__icon--inline">
-                                                      <SVGCloseCircled />
-                                                    </span>
-                                                  </Button>
-                                                </Form.Item>
-                                              </Input.Group>
-                                            </div>
-                                          )
-                                        })}
+                                                    <Input
+                                                      allowClear
+                                                      autoComplete="off"
+                                                      placeholder="eg, url, twiter, author..."
+                                                    />
+                                                  </Form.Item>
+                                                  <Form.Item
+                                                    className={
+                                                      style.assetValueShort
+                                                    }
+                                                    {...extraField.restField}
+                                                    name={[
+                                                      extraField.name,
+                                                      "value",
+                                                    ]}
+                                                    fieldKey={[
+                                                      extraField.fieldKey,
+                                                      "value",
+                                                    ]}
+                                                    rules={[
+                                                      validationRules.required,
+                                                      validationRules.noSpecialSoft,
+                                                    ]}
+                                                  >
+                                                    <Input
+                                                      allowClear
+                                                      autoComplete="off"
+                                                    />
+                                                  </Form.Item>
+                                                  <Form.Item
+                                                    className={
+                                                      style.assetRemove
+                                                    }
+                                                  >
+                                                    <Button
+                                                      className="ray__btn ray__btn--small ray__btn--transparent ps-2 pe-2"
+                                                      onClick={() => {
+                                                        extraRemove(
+                                                          extraField.name
+                                                        )
+                                                      }}
+                                                    >
+                                                      <span className="ray__icon ray__icon--16 ray__icon--inline">
+                                                        <SVGCloseCircled />
+                                                      </span>
+                                                    </Button>
+                                                  </Form.Item>
+                                                </Input.Group>
+                                              </div>
+                                            )
+                                          }
+                                        )}
                                         <Button
                                           className="ray__btn ray__btn--small ray__btn--transparent"
                                           onClick={() => extraAdd()}
@@ -820,9 +839,7 @@ const MintingForm = () => {
                 </strong>
               </div>
               <Input.Group compact className={style.assetGroup}>
-                <Form.Item
-                  className={style.assetKey}
-                >
+                <Form.Item className={style.assetKey}>
                   <Input
                     allowClear
                     autoComplete="off"
@@ -833,28 +850,14 @@ const MintingForm = () => {
                 <Form.Item
                   className={style.assetValue}
                   name={["mint", 0, "ticker"]}
-                  rules={[
-                    validationRules.required,
-                    validationRules.noSpecial,
-                  ]}
+                  rules={[validationRules.required, validationRules.noSpecial]}
                 >
-                  <Input
-                    placeholder="eg, XRAY"
-                    allowClear
-                    autoComplete="off"
-                  />
+                  <Input placeholder="eg, XRAY" allowClear autoComplete="off" />
                 </Form.Item>
               </Input.Group>
               <Input.Group compact className={style.assetGroup}>
-                <Form.Item
-                  className={style.assetKey}
-                >
-                  <Input
-                    allowClear
-                    autoComplete="off"
-                    value="name"
-                    disabled
-                  />
+                <Form.Item className={style.assetKey}>
+                  <Input allowClear autoComplete="off" value="name" disabled />
                 </Form.Item>
                 <Form.Item
                   className={style.assetValue}
@@ -872,9 +875,7 @@ const MintingForm = () => {
                 </Form.Item>
               </Input.Group>
               <Input.Group compact className={style.assetGroup}>
-                <Form.Item
-                  className={style.assetKey}
-                >
+                <Form.Item className={style.assetKey}>
                   <Input
                     allowClear
                     autoComplete="off"
@@ -885,9 +886,7 @@ const MintingForm = () => {
                 <Form.Item
                   className={style.assetValue}
                   name={["mint", 0, "amount"]}
-                  rules={[
-                    validationRules.required,
-                  ]}
+                  rules={[validationRules.required]}
                 >
                   <InputNumber
                     placeholder="Amount"
@@ -933,14 +932,9 @@ const MintingForm = () => {
                                 validationRules.noSpecialSoft,
                               ]}
                             >
-                              <Input
-                                allowClear
-                                autoComplete="off"
-                              />
+                              <Input allowClear autoComplete="off" />
                             </Form.Item>
-                            <Form.Item
-                              className={style.assetRemove}
-                            >
+                            <Form.Item className={style.assetRemove}>
                               <Button
                                 className="ray__btn ray__btn--small ray__btn--transparent ps-2 pe-2"
                                 onClick={() => {

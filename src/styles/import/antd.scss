@@ -251,9 +251,9 @@
       &-affix-wrapper {
         background: $dark-gray-5 !important;
         border-color: $dark-gray-3;
-        
+
         &-disabled {
-          opacity: .5;
+          opacity: 0.5;
         }
       }
 
@@ -262,7 +262,7 @@
         border-color: $dark-gray-3;
         color: $white;
         font-size: rem(14);
-  
+
         input {
           background: transparent;
           color: $white;
@@ -281,7 +281,8 @@
       }
     }
 
-    &-radio-wrapper, &-checkbox-wrapper {
+    &-radio-wrapper,
+    &-checkbox-wrapper {
       color: $white;
     }
 
@@ -385,6 +386,4 @@
   //       }
   //     }
   //   }
-
-
 }

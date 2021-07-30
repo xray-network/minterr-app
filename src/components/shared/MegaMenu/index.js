@@ -17,8 +17,8 @@ import {
   SVGInternet,
 } from "@/svg"
 import * as style from "./style.module.scss"
-import imgWallet1 from './wallet1.png'
-import imgWallet2 from './wallet2.png'
+import imgWallet1 from "./wallet1.png"
+import imgWallet2 from "./wallet2.png"
 
 const MegaMenu = () => {
   const dispatch = useDispatch()
@@ -30,14 +30,14 @@ const MegaMenu = () => {
 
   const changeTheme = () => {
     dispatch({
-      type: 'settings/CHANGE_THEME',
-      theme: theme === 'default' ? 'dark' : 'default',
+      type: "settings/CHANGE_THEME",
+      theme: theme === "default" ? "dark" : "default",
     })
   }
 
   const switchMegaMenu = () => {
     dispatch({
-      type: 'settings/SWITCH_MEGA_MENU',
+      type: "settings/SWITCH_MEGA_MENU",
     })
   }
 
@@ -50,10 +50,10 @@ const MegaMenu = () => {
             <span>Ray Network</span>
           </Link>
           <span className="flex-grow-1 d-none d-sm-inline pe-2 pe-md-4">
-            Powered with{' '}
+            Powered with{" "}
             <span className={style.menuCardano}>
               <SVGCardano />
-            </span>{' '}
+            </span>{" "}
             Cardano
           </span>
           <span className="ms-auto me-3 d-none d-sm-inline">
@@ -76,12 +76,12 @@ const MegaMenu = () => {
             role="button"
             tabIndex="0"
           >
-            <span className={theme === 'default' ? '' : 'd-none'}>
+            <span className={theme === "default" ? "" : "d-none"}>
               <span className="ray__icon">
                 <SVGSun />
               </span>
             </span>
-            <span className={theme !== 'default' ? '' : 'd-none'}>
+            <span className={theme !== "default" ? "" : "d-none"}>
               <span className="ray__icon">
                 <SVGMoon />
               </span>
@@ -99,7 +99,8 @@ const MegaMenu = () => {
         <div className="ray__line" />
       </div>
       <div className="ray__block pt-5 mb-0">
-        <h1 data-aos="fade-down" data-aos-delay="0">Welcome to Ray Network, mate.{' '}
+        <h1 data-aos="fade-down" data-aos-delay="0">
+          Welcome to Ray Network, mate.{" "}
           <span role="img" aria-label="">
             👋
           </span>
@@ -111,7 +112,11 @@ const MegaMenu = () => {
             <div className="row">
               <div className="col-12 col-sm-8 mb-3">
                 <div className={`${style.footerLists} row`}>
-                  <div className="col-6 col-sm-4" data-aos="fade-down" data-aos-delay="200">
+                  <div
+                    className="col-6 col-sm-4"
+                    data-aos="fade-down"
+                    data-aos-delay="200"
+                  >
                     <div className="d-flex mb-4">
                       <span className="ray__icon me-2 mb-1 mb-sm-0">
                         <SVGWallet />
@@ -144,7 +149,10 @@ const MegaMenu = () => {
                         </a>
                       </li>
                       <li>
-                        <a href="https://rraayy.com/swap/" className="text-muted">
+                        <a
+                          href="https://rraayy.com/swap/"
+                          className="text-muted"
+                        >
                           Ray Swap
                         </a>
                       </li>
@@ -173,7 +181,10 @@ const MegaMenu = () => {
                         </a>
                       </li>
                       <li>
-                        <a href="https://rraayy.com/data/" className="text-muted">
+                        <a
+                          href="https://rraayy.com/data/"
+                          className="text-muted"
+                        >
                           Ray Data
                         </a>
                       </li>
@@ -200,7 +211,11 @@ const MegaMenu = () => {
                       </li>
                     </ul>
                   </div>
-                  <div className="col-6 col-sm-4" data-aos="fade-down" data-aos-delay="400">
+                  <div
+                    className="col-6 col-sm-4"
+                    data-aos="fade-down"
+                    data-aos-delay="400"
+                  >
                     <div className="d-flex mb-4">
                       <span className="ray__icon me-2 mb-1 mb-sm-0">
                         <SVGAtSign />
@@ -225,7 +240,10 @@ const MegaMenu = () => {
                         </a>
                       </li>
                       <li>
-                        <a href="https://rraayy.com/wiki/" className="text-muted">
+                        <a
+                          href="https://rraayy.com/wiki/"
+                          className="text-muted"
+                        >
                           Wiki
                         </a>
                       </li>
@@ -254,7 +272,10 @@ const MegaMenu = () => {
                         </a>
                       </li>
                       <li>
-                        <a href="https://docs.rraayy.com/" className="text-muted">
+                        <a
+                          href="https://docs.rraayy.com/"
+                          className="text-muted"
+                        >
                           Docs
                         </a>
                       </li>
@@ -276,7 +297,11 @@ const MegaMenu = () => {
                       </li>
                     </ul>
                   </div>
-                  <div className="col-12 col-sm-4" data-aos="fade-down" data-aos-delay="600">
+                  <div
+                    className="col-12 col-sm-4"
+                    data-aos="fade-down"
+                    data-aos-delay="600"
+                  >
                     <div className="row">
                       <div className="col-6 col-sm-12 order-1 order-sm-0">
                         <div className="d-flex mb-4">
@@ -386,7 +411,10 @@ const MegaMenu = () => {
                   <div className="mb-4">
                     <div>
                       <Tooltip title="Web Version">
-                        <a href="https://raywallet.io" className={style.footerApp}>
+                        <a
+                          href="https://raywallet.io"
+                          className={style.footerApp}
+                        >
                           <span className="ray__icon ray__icon--22">
                             <SVGInternet />
                           </span>

@@ -3,7 +3,7 @@ export const randomHSL = () => {
 }
 
 export const imageStringToCloudflare = (i) => {
-  const provider = 'https://ipfs.blockfrost.dev/ipfs/'
+  const provider = "https://ipfs.blockfrost.dev/ipfs/"
   // const provider = 'https://cloudflare-ipfs.com/ipfs/'
 
   if (!(typeof i === "string")) {
@@ -55,7 +55,7 @@ export const fetchImageBlob = async (url) => {
           type: blob.type,
         }
       })
-      .catch((err) => { })
+      .catch((err) => {})
   } else {
     return Promise.reject("URL is not valid")
   }

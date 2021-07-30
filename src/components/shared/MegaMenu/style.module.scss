@@ -12,10 +12,10 @@
 
     &:last-child {
       right: 0;
-      top: rem(-100)
+      top: rem(-100);
     }
   }
-  
+
   @media (max-width: $md-max-width) {
     margin-bottom: rem(60);
     margin-top: rem(80);
@@ -29,7 +29,7 @@
       &:last-child {
         right: 0;
         left: auto;
-        top: rem(-100)
+        top: rem(-100);
       }
     }
   }
@@ -148,7 +148,7 @@
       }
     }
   }
-  
+
   &Ray {
     display: inline-flex;
     align-items: center;
@@ -184,7 +184,7 @@
       }
     }
   }
-  
+
   &App {
     width: rem(40);
     height: rem(40);
@@ -194,11 +194,11 @@
     justify-content: center;
     margin: 0 rem(10) rem(10) 0;
     border-radius: 8px;
-  
+
     &:hover {
       background: lighten($dark, 10%);
     }
-  
+
     svg {
       * {
         fill: $white !important;
@@ -218,7 +218,7 @@
     align-items: center;
     padding: rem(15) 0;
     height: rem(65);
-  
+
     &Logo {
       color: $white !important;
     }

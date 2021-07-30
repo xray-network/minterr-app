@@ -6,8 +6,6 @@
     padding-top: rem(50);
   }
 
-
-
   &Lists {
     :global(.ray__icon) {
       svg {
@@ -17,7 +15,7 @@
       }
     }
   }
-  
+
   &Ray {
     display: inline-flex;
     align-items: center;
@@ -53,7 +51,7 @@
       }
     }
   }
-  
+
   &App {
     width: rem(40);
     height: rem(40);
@@ -63,11 +61,11 @@
     justify-content: center;
     margin: 0 rem(10) rem(10) 0;
     border-radius: 8px;
-  
+
     &:hover {
       background: lighten($dark, 10%);
     }
-  
+
     svg {
       * {
         fill: $white !important;
@@ -99,4 +97,5 @@
 }
 
 // dark theme
-[data-theme="dark"] {}
+[data-theme="dark"] {
+}

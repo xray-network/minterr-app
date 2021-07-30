@@ -134,13 +134,9 @@ const Asset = ({ fingerprint }) => {
           <Helmet title={imageName}>
             <meta
               property="og:title"
-              content={`${imageName
-                } — Cardano NFT Token`}
+              content={`${imageName} — Cardano NFT Token`}
             />
-            <meta
-              property="og:image"
-              content={imageUrl}
-            />
+            <meta property="og:image" content={imageUrl} />
           </Helmet>
           <div
             className={`${style.preview} ${isLight ? style.previewLight : ""}`}
@@ -158,9 +154,7 @@ const Asset = ({ fingerprint }) => {
             <div className={style.previewInner}>
               <div className="px-5">
                 <h1 className="mb-1">
-                  <span className={style.title}>
-                    {imageName}
-                  </span>
+                  <span className={style.title}>{imageName}</span>
                 </h1>
                 <div className="text-muted mb-3">
                   Quantity: <strong>{assetInfo.quantity || 0}</strong> —{" "}
@@ -338,8 +332,9 @@ const Asset = ({ fingerprint }) => {
                   return (
                     <span
                       key={hash}
-                      className={`${style.viewerLink} ${hash === selectedMint ? style.viewerLinkActive : ""
-                        }`}
+                      className={`${style.viewerLink} ${
+                        hash === selectedMint ? style.viewerLinkActive : ""
+                      }`}
                       onClick={() => setSelectedMint(hash)}
                       onKeyPress={() => setSelectedMint(hash)}
                       role="button"
@@ -362,7 +357,7 @@ const Asset = ({ fingerprint }) => {
                     displayDataTypes={false}
                     displayObjectSize={false}
                     name={false}
-                  // theme="brewer"
+                    // theme="brewer"
                   />
                 </div>
               )}

@@ -1,7 +1,7 @@
-import Crypto from './crypto'
-import Explorer from './explorer'
-import Contract from './contract'
-import packageInfo from './package.json'
+import Crypto from "./crypto"
+import Explorer from "./explorer"
+import Contract from "./contract"
+import packageInfo from "./package.json"
 
 const CardanoWeb3 = function CardanoWeb3(settings = {}) {
   this.version = packageInfo.version
@@ -9,11 +9,11 @@ const CardanoWeb3 = function CardanoWeb3(settings = {}) {
   this.settings = {
     crypto: {
       protocolParams: {
-        linearFeeCoefficient: '44',
-        linearFeeConstant: '155381',
-        minimumUtxoVal: '1000000',
-        poolDeposit: '500000000',
-        keyDeposit: '2000000',
+        linearFeeCoefficient: "44",
+        linearFeeConstant: "155381",
+        minimumUtxoVal: "1000000",
+        poolDeposit: "500000000",
+        keyDeposit: "2000000",
       },
       harden: 0x80000000,
       ttl: 7200,
@@ -61,7 +61,7 @@ const CardanoWeb3 = function CardanoWeb3(settings = {}) {
 
 CardanoWeb3.version = packageInfo.version
 
-if (typeof window === 'object') {
+if (typeof window === "object") {
   if (!window.CardanoWeb3) {
     window.CardanoWeb3 = CardanoWeb3
   }

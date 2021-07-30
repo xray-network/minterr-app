@@ -188,7 +188,11 @@ const TransactionModal = () => {
               </div>
             }
             extra={[
-              <Button className="ray__btn ray__btn--success mx-auto" onClick={() => handleView(waitingHash)} size="large">
+              <Button
+                className="ray__btn ray__btn--success mx-auto"
+                onClick={() => handleView(waitingHash)}
+                size="large"
+              >
                 View Transaction
               </Button>,
             ]}

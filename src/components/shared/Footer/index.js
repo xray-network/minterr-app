@@ -310,7 +310,10 @@ const Footer = () => {
                   <div className="mb-4">
                     <div>
                       <Tooltip title="Web Version">
-                        <a href="https://raywallet.io" className={style.footerApp}>
+                        <a
+                          href="https://raywallet.io"
+                          className={style.footerApp}
+                        >
                           <span className="ray__icon ray__icon--22">
                             <SVGInternet />
                           </span>
@@ -420,7 +423,7 @@ const Footer = () => {
                   allowClear
                   enterButton="Subscribe"
                   size="large"
-                  onSearch={() => { }}
+                  onSearch={() => {}}
                 />
               </div>
             </div>
