@@ -3,20 +3,23 @@ export const randomHSL = () => {
 }
 
 export const imageStringToCloudflare = (i) => {
+  const provider = 'https://ipfs.blockfrost.dev/ipfs/'
+  // const provider = 'https://cloudflare-ipfs.com/ipfs/'
+
   if (!(typeof i === "string")) {
     return ""
   }
   if (i.startsWith("ipfs://ipfs/")) {
-    return `https://cloudflare-ipfs.com/ipfs/${i.replace("ipfs://ipfs/", "")}`
+    return `${provider}${i.replace("ipfs://ipfs/", "")}`
   }
   if (i.startsWith("ipfs://")) {
-    return `https://cloudflare-ipfs.com/ipfs/${i.replace("ipfs://", "")}`
+    return `${provider}${i.replace("ipfs://", "")}`
   }
   if (i.startsWith("https://") || i.startsWith("http://")) {
     return i
   }
   if (i) {
-    return `https://cloudflare-ipfs.com/ipfs/${i}`
+    return `${provider}${i}`
   }
   return ""
 }
@@ -52,7 +55,7 @@ export const fetchImageBlob = async (url) => {
           type: blob.type,
         }
       })
-      .catch((err) => {})
+      .catch((err) => { })
   } else {
     return Promise.reject("URL is not valid")
   }

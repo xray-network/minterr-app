@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react"
-import { Tooltip } from "antd"
+// import { Tooltip } from "antd"
 import { SVGFavicon } from "@/svg"
 import handleViewport from "react-in-viewport"
 import {
@@ -54,7 +54,20 @@ const Image = ({ nft, minted, assetName, inViewport, forwardedRef }) => {
           <span className="ray__icon ray__icon--32">
             <SVGFavicon />
           </span>
-          <Tooltip
+          <a
+            href={`${url}?v=${Math.random()}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
+            onKeyPress={(e) => e.stopPropagation()}
+            role="button"
+            tabIndex="0"
+          >
+            Unable to load
+            <br />
+            Link to image
+          </a>
+          {/* <Tooltip
             title={
               <div className="text-center">
                 If you see the image in the following link, you don't need to take any action, just surf the NFT!
@@ -72,7 +85,7 @@ const Image = ({ nft, minted, assetName, inViewport, forwardedRef }) => {
             >
               Image not loading?
             </a>
-          </Tooltip>
+          </Tooltip> */}
           <span></span>
         </div>
       )}

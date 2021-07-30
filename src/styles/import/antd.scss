@@ -92,7 +92,6 @@
 
   &-btn {
     border-radius: 8px;
-    border-color: transparent;
 
     &-lg {
       font-size: rem(16);
@@ -102,6 +101,7 @@
 
     &-primary {
       background: $blue;
+      border-color: transparent;
 
       &:hover {
         background: $blue-light;
@@ -251,12 +251,17 @@
       &-affix-wrapper {
         background: $dark-gray-5 !important;
         border-color: $dark-gray-3;
+        
+        &-disabled {
+          opacity: .5;
+        }
       }
 
       &-number {
         background: $dark-gray-5;
         border-color: $dark-gray-3;
         color: $white;
+        font-size: rem(14);
   
         input {
           background: transparent;
@@ -333,26 +338,6 @@
   }
 
   // .ant {
-
-  //   &-popover {
-  //     &-inner {
-  //       background: darken($dark-gray-3, 15%);
-
-  //       &-content {
-  //         color: $white
-  //       }
-  //     }
-
-  //     &-title {
-  //       color: $white;
-  //       border-color: $dark-gray-3;
-  //     }
-
-  //     &-arrow {
-  //       border-right-color: darken($dark-gray-3, 15%) !important;
-  //       border-bottom-color: darken($dark-gray-3, 15%) !important;
-  //     }
-  //   }
 
   //   &-alert {
   //     background: darken($dark-gray-3, 15%);

@@ -1,0 +1,46 @@
+[
+  {
+    "name": "X Diamonds",
+    "policies": [
+      "b6798a74fb7441ef5f7af1ff4ea6150bbb7aaeb0aca0113e558592f6"
+    ],
+    "image": "/resources/nft/b6798a74fb7441ef5f7af1ff4ea6150bbb7aaeb0aca0113e558592f6.jpeg",
+    "description": "A Ray Network collectible for Ray ecosystem enthusiasts and early adopters. You can get these NFTs only for social media activity and giveaways. You can redeem it for XRAY tokens!",
+    "url": "https://rraayy.com/rewards/xdiamonds",
+    "twitter": "https://twitter.com/RayNetwork",
+    "voteAddress": "addr1q90ewfafpamylsv7z3tsq4xe8rmfjfhxjujhmcx54f6yay7qv8k55etg7xam7nmg7xkurgdk8vrjj2pqfsspgk5xv29qzs9qf7"
+  },
+  {
+    "name": "Unsigs",
+    "policies": [
+      "0e14267a8020229adc0184dd25fa3174c3f7d6caadcb4425c70e7c04"
+    ],
+    "image": "/resources/nft/0e14267a8020229adc0184dd25fa3174c3f7d6caadcb4425c70e7c04.jpeg",
+    "description": "The first algorithmically generated art living on Cardano. Mathematically derived and designed, generated using computers and advanced algorithms.",
+    "url": "https://www.unsigs.com",
+    "twitter": "https://twitter.com/unsigned_algo",
+    "voteAddress": "addr1qx09atgvv7ap8a5dalq5hyxry4u32wlgfrg936uneuhnxu7qv8k55etg7xam7nmg7xkurgdk8vrjj2pqfsspgk5xv29qnte9wn"
+  },
+  {
+    "name": "SpaceBudz",
+    "policies": [
+      "d5e6bf0500378d4f0da4e8dde6becec7621cd8cbf5cbb9b87013d4cc"
+    ],
+    "image": "/resources/nft/d5e6bf0500378d4f0da4e8dde6becec7621cd8cbf5cbb9b87013d4cc.jpeg",
+    "description": "Animated GIFs Minted on the Cardano Blockchain",
+    "url": "https://spacebudz.io",
+    "twitter": "https://twitter.com/spacebudzNFT",
+    "voteAddress": "addr1q8e8hwvly6sas0chfuvxknutkxfe7p0rmktk6k5wdnlla0xqv8k55etg7xam7nmg7xkurgdk8vrjj2pqfsspgk5xv29qx5ptww"
+  },
+  {
+    "name": "Time Trotter",
+    "policies": [
+      "a9176c08153787508fd6109b8b4861f6da927c072c6e660260694f54"
+    ],
+    "image": "/resources/nft/a9176c08153787508fd6109b8b4861f6da927c072c6e660260694f54.jpeg",
+    "description": "All biodiversity on Earth was completely lost. Fast forward to 110 million (human) years later, an evolved civilization learned to time-travel for increased survival — Time Trotters.",
+    "url": "https://timetrotters.io",
+    "twitter": "https://twitter.com/Time_Trotters",
+    "voteAddress": "addr1qxvk9q87jagwng60zstpd3shqsmppguw0ducrr7nsuddur7qv8k55etg7xam7nmg7xkurgdk8vrjj2pqfsspgk5xv29q9ssmp7"
+  }
+]

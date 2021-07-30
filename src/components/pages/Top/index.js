@@ -1,12 +1,45 @@
-import React, { useState } from "react"
-// import { formatDistance, subHours } from "date-fns"
-// import * as style from "./style.module.scss"
+import React, { useState, useEffect, forwardRef } from "react"
+import { InlineShareButtons } from "sharethis-reactjs"
+import Project from './project'
+import FlipMove from 'react-flip-move'
+import * as style from "./style.module.scss"
+import projectsData from './ray-top-nft-projects.json'
+
+const ProjectFlip = forwardRef(({ rank, project }, ref) => {
+  return (
+    <div ref={ref}>
+      <Project rank={rank} project={project} />
+    </div>
+  )
+})
 
 const Top = () => {
-  // const [projectsCount, setProjectsCount] = useState(52)
-  // const [totalAdaVotes, setTotalAdaVotes] = useState(14231.125984)
-  // const [updatedAt, setUpdatedAt] = useState(subHours(new Date(), 3))
-  const [loading] = useState(true)
+  const [projects, setProjects] = useState(projectsData)
+
+  useEffect(() => {
+    fetchVotes()
+    // eslint-disable-next-line
+  }, [])
+
+  const fetchVotes = () => {
+    const voteAddresses = projects.map((item) => item.voteAddress)
+    const voteResults = {}
+    voteAddresses.forEach((item) => {
+      voteResults[item] = (Math.random() * 10000).toFixed(0)
+    })
+    setTimeout(() => {
+      setProjects(
+        projects
+          .map((item) => {
+            return {
+              ...item,
+              votes: voteResults[item.voteAddress]
+            }
+          })
+          .sort((a, b) => b.votes.localeCompare(a.votes))
+      )
+    }, 2000)
+  }
 
   return (
     <div className="ray__block pt-3">
@@ -23,7 +56,6 @@ const Top = () => {
         attention it gets!
       </h5>
       <div className="text-muted mb-5 pb-4 max-width-800">
-        {/* <p className="mb-2">A total of <strong className="text-nowrap">{totalAdaVotes}</strong> ADA votes were cast for <strong className="text-nowrap">{projectsCount}</strong> projects. The last vote was <strong className="text-nowrap">{formatDistance(updatedAt, new Date(), { addSuffix: true })}</strong>.</p> */}
         <p className="mb-0">
           Do you want to promote the NFT project? Send us a direct message on{" "}
           <a
@@ -36,26 +68,33 @@ const Top = () => {
           .
         </p>
       </div>
-      {loading && (
-        // <div className="text-center">
-        //   <div
-        //     className="spinner-border spinner-border-lg text-primary"
-        //     role="status"
-        //   >
-        //     <span className="visually-hidden">Loading...</span>
-        //   </div>
-        // </div>
-        <div className="text-center">
-          <div
-            className="spinner-border spinner-border-lg text-primary"
-            role="status"
-          >
-            <span className="visually-hidden">Loading...</span>
-          </div>
-          <div className="pt-3">Waiting for a list of projects.</div>
-          <div>Please wait for a while...</div>
-        </div>
-      )}
+      <FlipMove>
+        {projects.map((item, index) => {
+          const id = item.policies[0]
+          return (
+            <ProjectFlip key={id} rank={index + 1} project={item} />
+          )
+        })}
+      </FlipMove>
+      <div className={style.share}>
+        <InlineShareButtons
+          config={{
+            enabled: true,
+            alignment: "center",
+            min_count: 0,
+            title: `The best Cardano NFT projects are here!`,
+            show_total: true,
+            networks: [
+              "twitter",
+              "telegram",
+              "discord",
+              "facebook",
+              "reddit",
+              "sharethis",
+            ],
+          }}
+        />
+      </div>
     </div>
   )
 }

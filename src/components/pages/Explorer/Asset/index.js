@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import { InlineShareButtons } from "sharethis-reactjs"
 import { useSelector } from "react-redux"
 import { Helmet } from "react-helmet"
-import { Tooltip } from "antd"
+// import { Tooltip } from "antd"
 import { format } from "date-fns"
 import ReactJson from "react-json-view-ssr"
 import store from "store"
@@ -206,6 +206,17 @@ const Asset = ({ fingerprint }) => {
                           <span className="visually-hidden">Loading...</span>
                         </div>
                         <div className="mt-3">
+                          Loading...
+                          <br />
+                          <a
+                            href={`${imageUrl}?v=${Math.random()}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            Link to image
+                          </a>
+                        </div>
+                        {/* <div className="mt-3">
                           Unable to load?
                           <br />
                           <Tooltip
@@ -223,7 +234,7 @@ const Asset = ({ fingerprint }) => {
                               Pass the captcha!
                             </a>
                           </Tooltip>
-                        </div>
+                        </div> */}
                       </div>
                     )}
                   </div>

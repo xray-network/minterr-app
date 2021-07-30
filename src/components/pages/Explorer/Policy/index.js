@@ -73,7 +73,7 @@ const BlockFetcher = ({ policyID }) => {
       {liveState.length > 0 && (
         <div>
           <div className="mb-4 text-muted text-left text-md-center">
-            {liveState.length < 2500 && `Total ${liveState.length} tokens`}
+            {liveState.length < 2500 && `Total ${liveState.length} token(s)`}
             {liveState.length >= 2500 &&
               `Total more than ${liveState.length} tokens`}
           </div>

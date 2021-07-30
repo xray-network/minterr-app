@@ -13,10 +13,10 @@ const Live = () => {
   useEffect(() => {
     if (networkBlock !== 0 && networkBlock !== prevBlock) {
       const blocksToQuery = firstRun
-        ? range(networkBlock - 4, networkBlock + 1).reverse() // query 5 blocks before from current
+        ? range(networkBlock - 9, networkBlock + 1).reverse() // query 5 blocks before from current
         : prevBlock
-        ? generateBlocksToQuery()
-        : [networkBlock]
+          ? generateBlocksToQuery()
+          : [networkBlock]
       setBlocks([...blocksToQuery, ...blocks])
       serPrevBlock(networkBlock)
       setFirstRun(false)
@@ -65,7 +65,7 @@ const Live = () => {
               <span className="visually-hidden">Loading...</span>
             </div>
             <div className="pt-3">Waiting for a block with tokens.</div>
-            <div>Please wait for a while...</div>
+            <div>Please wait a few minutes...</div>
           </div>
         )}
       </div>

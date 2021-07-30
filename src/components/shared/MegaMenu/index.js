@@ -24,6 +24,10 @@ const MegaMenu = () => {
   const dispatch = useDispatch()
   const theme = useSelector((state) => state.settings.theme)
 
+  // useEffect(() => {
+  //   AOS.init()
+  // }, [])
+
   const changeTheme = () => {
     dispatch({
       type: 'settings/CHANGE_THEME',
@@ -95,7 +99,7 @@ const MegaMenu = () => {
         <div className="ray__line" />
       </div>
       <div className="ray__block pt-5 mb-0">
-        <h1>Welcome to Ray Network, mate.{' '}
+        <h1 data-aos="fade-down" data-aos-delay="0">Welcome to Ray Network, mate.{' '}
           <span role="img" aria-label="">
             👋
           </span>
@@ -107,7 +111,7 @@ const MegaMenu = () => {
             <div className="row">
               <div className="col-12 col-sm-8 mb-3">
                 <div className={`${style.footerLists} row`}>
-                  <div className="col-6 col-sm-4 ">
+                  <div className="col-6 col-sm-4" data-aos="fade-down" data-aos-delay="200">
                     <div className="d-flex mb-4">
                       <span className="ray__icon me-2 mb-1 mb-sm-0">
                         <SVGWallet />
@@ -196,7 +200,7 @@ const MegaMenu = () => {
                       </li>
                     </ul>
                   </div>
-                  <div className="col-6 col-sm-4">
+                  <div className="col-6 col-sm-4" data-aos="fade-down" data-aos-delay="400">
                     <div className="d-flex mb-4">
                       <span className="ray__icon me-2 mb-1 mb-sm-0">
                         <SVGAtSign />
@@ -272,7 +276,7 @@ const MegaMenu = () => {
                       </li>
                     </ul>
                   </div>
-                  <div className="col-12 col-sm-4">
+                  <div className="col-12 col-sm-4" data-aos="fade-down" data-aos-delay="600">
                     <div className="row">
                       <div className="col-6 col-sm-12 order-1 order-sm-0">
                         <div className="d-flex mb-4">
@@ -372,7 +376,7 @@ const MegaMenu = () => {
               </div>
             </div>
           </div>
-          <div className="row">
+          <div className="row" data-aos="fade-down" data-aos-delay="900">
             <div className="col-12 col-md-6">
               <div className="row">
                 <div className="col-6 col-md-12">

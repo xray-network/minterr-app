@@ -16,7 +16,7 @@
   background: $white;
   border-radius: 8px;
   border: 1px solid $border;
-  height: rem(170);
+  height: rem(200);
   overflow: hidden;
   display: flex;
   align-content: center;
@@ -63,6 +63,52 @@
     margin: 0 rem(10) 0 0;
     display: inline;
     color: $gray-5;
+  }
+}
+
+.asset {
+  &Group {
+    :global(.ant-input-number),
+    :global(.ant-btn),
+    :global(.ant-input-affix-wrapper) {
+      border-radius: 0 !important;
+    }
+
+    :global(.ant-form-item:first-child) {
+      :global(.ant-input-number),
+      :global(.ant-btn),
+      :global(.ant-input-affix-wrapper) {
+        border-radius: 8px 0 0 8px !important;
+      }
+    }
+
+    :global(.ant-form-item:last-child) {
+      :global(.ant-input-number),
+      :global(.ant-btn),
+      :global(.ant-input-affix-wrapper) {
+        border-radius: 0 8px 8px 0 !important;
+      }
+    }
+  }
+
+  &Key {
+    width: 35%;
+  }
+
+  &Value {
+    width: 65%;
+  }
+
+  &ValueShort {
+    width: calc(65% - 30px);
+  }
+
+  &Remove {
+    width: 30px;
+
+    :global(.ant-btn) {
+      width: 30px;
+    }
   }
 }
 
