@@ -16,12 +16,10 @@ const Top = ({ project, rank }) => {
     message.success("Copied to clipboard")
   }
 
-  const cutLink = (link) =>
-    link.replaceAll("https://www.", "").replaceAll("https://", "")
-  const formattedAddress = `${project.voteAddress.slice(
-    0,
-    8
-  )}...${project.voteAddress.slice(-12)}`
+  const cutLink = (link) => {
+    return link.replace("https://www.", "").replace("https://", "")
+  }
+  const formattedAddress = `${project.voteAddress.slice(0, 8)}...${project.voteAddress.slice(-12)}`
   const policies = showAll ? project.policies : [project.policies[0]]
 
   return (

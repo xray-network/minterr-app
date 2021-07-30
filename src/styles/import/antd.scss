@@ -258,13 +258,27 @@
       }
 
       &-number {
-        background: $dark-gray-5;
+        background: $dark-gray-5 !important;
         border-color: $dark-gray-3;
         color: $white;
         font-size: rem(14);
 
+        @at-root {
+          [data-theme="dark"] {
+            .ant-form-item-has-error {
+              .ant-input-number {
+                border-color: $ant-red;
+              }
+            }
+          }
+        }
+
+        &:hover {
+          border-color: $ant-blue;
+        }
+
         input {
-          background: transparent;
+          background: transparent !important;
           color: $white;
         }
 
