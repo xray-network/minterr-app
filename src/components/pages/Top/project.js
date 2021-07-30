@@ -116,7 +116,7 @@ const Top = ({ project, rank }) => {
           <div className="mb-2">
             {policies.map((policy) => {
               return (
-                <div>
+                <div key={policy}>
                   <Link
                     to={`/explorer/search/?policyID=${policy}`}
                     className="link--dashed text-truncate"

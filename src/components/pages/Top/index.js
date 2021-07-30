@@ -1,9 +1,10 @@
 import React, { useState, useEffect, forwardRef } from "react"
+import { useSelector } from "react-redux"
 import { InlineShareButtons } from "sharethis-reactjs"
 import Project from "./project"
 import FlipMove from "react-flip-move"
+import Cardano from "../../../services/cardano"
 import * as style from "./style.module.scss"
-import projectsData from "./ray-top-nft-projects.json"
 
 const ProjectFlip = forwardRef(({ rank, project }, ref) => {
   return (
@@ -14,31 +15,59 @@ const ProjectFlip = forwardRef(({ rank, project }, ref) => {
 })
 
 const Top = () => {
-  const [projects, setProjects] = useState(projectsData)
+  const [projects, setProjects] = useState()
+  const projectsData = useSelector((state) => state.settings.projectsData)
+  const init = useSelector((state) => state.settings.init)
+  const processedProjects = projects || projectsData
 
   useEffect(() => {
     fetchVotes()
     // eslint-disable-next-line
-  }, [])
+  }, [init])
 
   const fetchVotes = () => {
-    const voteAddresses = projects.map((item) => item.voteAddress)
-    const voteResults = {}
-    voteAddresses.forEach((item) => {
-      voteResults[item] = (Math.random() * 10000).toFixed(0)
-    })
-    setTimeout(() => {
+    async function fetchAddressesBalances() {
+      const voteAddresses = projectsData.map((item) => item.voteAddress)
+      const result = await Cardano.explorer.query({
+        query: `
+          query paymentAddressSummary {
+            paymentAddresses (addresses: ${JSON.stringify(voteAddresses)}) {
+              address
+              summary {
+                assetBalances {
+                  quantity
+                  asset {
+                    assetId
+                  }
+                }
+              }
+            }
+          }
+        `
+      })
+
+      const paymentAddresses = result?.data?.data?.paymentAddresses || []
+      const paymentAddressesResults = {}
+      paymentAddresses.forEach((item) => {
+        const ada = item.summary.assetBalances.filter((asset) => asset.asset.assetId === 'a')[0] || {}
+        console.log(item.summary)
+        paymentAddressesResults[item.address] = ada.quantity || 0
+      })
+
+      console.log(paymentAddressesResults)
+
       setProjects(
-        projects
+        projectsData
           .map((item) => {
             return {
               ...item,
-              votes: voteResults[item.voteAddress],
+              votes: (parseInt(parseInt(paymentAddressesResults[item.voteAddress]) / 1000000 * 10)).toString(),
             }
           })
           .sort((a, b) => b.votes.localeCompare(a.votes))
       )
-    }, 2000)
+    }
+    fetchAddressesBalances()
   }
 
   return (
@@ -51,7 +80,7 @@ const Top = () => {
       </h1>
       <h5>
         Vote by sending any amount of ADA to the project address to get it up on
-        the list. 1 <span className="ray__ticker">ADA</span> = 10 points.
+        the list. 1 <span className="ray__ticker">ADA</span> = 10 votes.
         Remember stranger, the higher a project is on the list, the more
         attention it gets!
       </h5>
@@ -69,7 +98,7 @@ const Top = () => {
         </p>
       </div>
       <FlipMove>
-        {projects.map((item, index) => {
+        {processedProjects.map((item, index) => {
           const id = item.policies[0]
           return <ProjectFlip key={id} rank={index + 1} project={item} />
         })}

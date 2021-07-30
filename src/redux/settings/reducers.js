@@ -1,5 +1,6 @@
 import store from "store"
 import actions from "./actions"
+import projectsData from "@/services/projects"
 
 const STORED_SETTINGS = (storedSettings) => {
   const settings = {}
@@ -33,6 +34,7 @@ const initialState = {
   transaction: "",
   megaMenu: false,
   Cardano: undefined,
+  projectsData,
 }
 
 export default function settingsReducer(state = initialState, action) {
