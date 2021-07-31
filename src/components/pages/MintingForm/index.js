@@ -266,6 +266,10 @@ const MintingForm = () => {
       pattern: new RegExp(/^(?!(image|ticker|name|amount|publisher)$)/),
       message: "No reserved words",
     },
+    max64bytes: {
+      max: 64,
+      message: "Max 64 symbols",
+    },
   }
 
   const formFields = form.getFieldValue()
@@ -558,7 +562,7 @@ const MintingForm = () => {
             <div>
               <Form.Item
                 name="mint"
-                // rules={[{ required: true, message: "Required" }]}
+              // rules={[{ required: true, message: "Required" }]}
               >
                 <div className="row">
                   <div className="col-12">
@@ -652,6 +656,7 @@ const MintingForm = () => {
                                       rules={[
                                         validationRules.required,
                                         validationRules.noSpecial,
+                                        validationRules.max64bytes,
                                       ]}
                                     >
                                       <Input
@@ -681,6 +686,7 @@ const MintingForm = () => {
                                       rules={[
                                         validationRules.required,
                                         validationRules.noSpecialSoft,
+                                        validationRules.max64bytes,
                                       ]}
                                     >
                                       <Input
@@ -707,7 +713,9 @@ const MintingForm = () => {
                                       {...field.restField}
                                       name={[field.name, "amount"]}
                                       fieldKey={[field.fieldKey, "amount"]}
-                                      rules={[validationRules.required]}
+                                      rules={[
+                                        validationRules.required,
+                                      ]}
                                     >
                                       <InputNumber
                                         placeholder="Integer Number"
@@ -748,6 +756,7 @@ const MintingForm = () => {
                                                       validationRules.required,
                                                       validationRules.noSpecialSpace,
                                                       validationRules.noReservedWords,
+                                                      validationRules.max64bytes,
                                                     ]}
                                                   >
                                                     <Input
@@ -772,6 +781,7 @@ const MintingForm = () => {
                                                     rules={[
                                                       validationRules.required,
                                                       validationRules.noSpecialSoft,
+                                                      validationRules.max64bytes,
                                                     ]}
                                                   >
                                                     <Input
@@ -850,7 +860,11 @@ const MintingForm = () => {
                 <Form.Item
                   className={style.assetValue}
                   name={["mint", 0, "ticker"]}
-                  rules={[validationRules.required, validationRules.noSpecial]}
+                  rules={[
+                    validationRules.required,
+                    validationRules.noSpecial,
+                    validationRules.max64bytes,
+                  ]}
                 >
                   <Input placeholder="eg, XRAY" allowClear autoComplete="off" />
                 </Form.Item>
@@ -865,6 +879,7 @@ const MintingForm = () => {
                   rules={[
                     validationRules.required,
                     validationRules.noSpecialSoft,
+                    validationRules.max64bytes,
                   ]}
                 >
                   <Input
@@ -914,6 +929,7 @@ const MintingForm = () => {
                                 validationRules.required,
                                 validationRules.noSpecialSpace,
                                 validationRules.noReservedWords,
+                                validationRules.max64bytes,
                               ]}
                             >
                               <Input
@@ -930,6 +946,7 @@ const MintingForm = () => {
                               rules={[
                                 validationRules.required,
                                 validationRules.noSpecialSoft,
+                                validationRules.max64bytes,
                               ]}
                             >
                               <Input allowClear autoComplete="off" />

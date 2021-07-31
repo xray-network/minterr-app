@@ -48,7 +48,7 @@ const Footer = () => {
                   <ul className="list-unstyled mb-4">
                     <li>
                       <a
-                        href="https://rraayy.com/ray-wallet/"
+                        href="https://rraayy.com/wallet/"
                         className="text-muted"
                       >
                         Ray Wallet
@@ -205,56 +205,14 @@ const Footer = () => {
                 </div>
                 <div className="col-12 col-sm-4">
                   <div className="row">
-                    <div className="col-6 col-sm-12 order-1 order-sm-0">
-                      <div className="d-flex mb-4">
-                        <span className="ray__icon me-2 mb-1 mb-sm-0">
-                          <SVGTwitter />
-                        </span>
-                        <h6 className="mb-0">Minterr</h6>
-                      </div>
-                      <ul className="list-unstyled mb-5">
-                        <li>
-                          <a
-                            href="https://twitter.com/MinterrApp"
-                            className="text-muted"
-                          >
-                            Twitter
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            href="https://discord.gg/dDVXcthYWn"
-                            className="text-muted"
-                          >
-                            Discord
-                          </a>
-                        </li>
-                      </ul>
-                      <div className="d-flex mb-4">
-                        <span className="ray__icon me-2 mb-1 mb-sm-0">
-                          <SVGTwitter />
-                        </span>
-                        <h6 className="mb-0">Ray Wallet</h6>
-                      </div>
-                      <ul className="list-unstyled mb-5">
-                        <li>
-                          <a
-                            href="https://twitter.com/RayWallet"
-                            className="text-muted"
-                          >
-                            Twitter
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                    <div className="col-6 col-sm-12 order-0 order-sm-1">
+                    <div className="col-6 col-sm-12">
                       <div className="d-flex mb-4">
                         <span className="ray__icon me-2 mb-1 mb-sm-0">
                           <SVGTwitter />
                         </span>
                         <h6 className="mb-0">Ray Network</h6>
                       </div>
-                      <ul className="list-unstyled mb-4">
+                      <ul className="list-unstyled mb-5">
                         <li>
                           <a
                             href="https://twitter.com/RayNetwork"
@@ -297,6 +255,48 @@ const Footer = () => {
                         </li>
                       </ul>
                     </div>
+                    <div className="col-6 col-sm-12">
+                      <div className="d-flex mb-4">
+                        <span className="ray__icon me-2 mb-1 mb-sm-0">
+                          <SVGTwitter />
+                        </span>
+                        <h6 className="mb-0">Ray Wallet</h6>
+                      </div>
+                      <ul className="list-unstyled mb-5">
+                        <li>
+                          <a
+                            href="https://twitter.com/RayWallet"
+                            className="text-muted"
+                          >
+                            Twitter
+                          </a>
+                        </li>
+                      </ul>
+                      <div className="d-flex mb-4">
+                        <span className="ray__icon me-2 mb-1 mb-sm-0">
+                          <SVGTwitter />
+                        </span>
+                        <h6 className="mb-0">Minterr</h6>
+                      </div>
+                      <ul className="list-unstyled mb-4">
+                        <li>
+                          <a
+                            href="https://twitter.com/MinterrApp"
+                            className="text-muted"
+                          >
+                            Twitter
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            href="https://discord.gg/dDVXcthYWn"
+                            className="text-muted"
+                          >
+                            Discord
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -321,7 +321,7 @@ const Footer = () => {
                       </Tooltip>
                       <Tooltip title="Chrome Extension">
                         <a
-                          href="https://rraayy.com/ray-wallet/"
+                          href="https://rraayy.com/wallet/"
                           className={style.footerApp}
                         >
                           <span className="ray__icon ray__icon--22">
@@ -331,7 +331,7 @@ const Footer = () => {
                       </Tooltip>
                       <Tooltip title="macOS App">
                         <a
-                          href="https://rraayy.com/ray-wallet/"
+                          href="https://rraayy.com/wallet/"
                           className={style.footerApp}
                         >
                           <span className="ray__icon ray__icon--22">
@@ -341,7 +341,7 @@ const Footer = () => {
                       </Tooltip>
                       <Tooltip title="Windows App">
                         <a
-                          href="https://rraayy.com/ray-wallet/"
+                          href="https://rraayy.com/wallet/"
                           className={style.footerApp}
                         >
                           <span className="ray__icon ray__icon--22">
@@ -353,7 +353,7 @@ const Footer = () => {
                     <div>
                       <Tooltip title="iOS App">
                         <a
-                          href="https://rraayy.com/ray-wallet/"
+                          href="https://rraayy.com/wallet/"
                           className={style.footerApp}
                         >
                           <span className="ray__icon ray__icon--22">
@@ -363,7 +363,7 @@ const Footer = () => {
                       </Tooltip>
                       <Tooltip title="Android App">
                         <a
-                          href="https://rraayy.com/ray-wallet/"
+                          href="https://rraayy.com/wallet/"
                           className={style.footerApp}
                         >
                           <span className="ray__icon ray__icon--22">
@@ -423,7 +423,7 @@ const Footer = () => {
                   allowClear
                   enterButton="Subscribe"
                   size="large"
-                  onSearch={() => {}}
+                  onSearch={() => { }}
                 />
               </div>
             </div>

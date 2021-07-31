@@ -22,7 +22,6 @@ const initialState = {
     mnemonic: "",
   }),
   storeSession: true,
-  networkInfo: {},
   networkSlot: 0,
   networkBlock: 0,
   accountKeys: {},
