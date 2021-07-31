@@ -159,6 +159,15 @@ code {
   }
 }
 
+@media (pointer:none), (pointer:coarse) {
+  [data-aos^=fade][data-aos^=fade],
+  [data-aos=fade-down],
+  [data-aos=fade-up] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
 // dark theme
 [data-theme="dark"] {
   body {

@@ -7,6 +7,7 @@ import { CopyToClipboard } from "react-copy-to-clipboard"
 import { SVGTwitter, SVGHome, SVGCopy } from "@/svg"
 import * as style from "./style.module.scss"
 
+
 const Top = ({ project, rank }) => {
   const [showAll, setShowAll] = useState(false)
   // const [loading] = useState(false)
@@ -119,7 +120,7 @@ const Top = ({ project, rank }) => {
                 <div key={policy}>
                   <Link
                     to={`/explorer/search/?policyID=${policy}`}
-                    className="link--dashed text-truncate"
+                    className="link--dashed text-break"
                   >
                     {policy}
                   </Link>

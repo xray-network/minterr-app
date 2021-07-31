@@ -24,10 +24,6 @@ const MegaMenu = () => {
   const dispatch = useDispatch()
   const theme = useSelector((state) => state.settings.theme)
 
-  // useEffect(() => {
-  //   AOS.init()
-  // }, [])
-
   const changeTheme = () => {
     dispatch({
       type: "settings/CHANGE_THEME",

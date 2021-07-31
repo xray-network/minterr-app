@@ -17,8 +17,8 @@
   }
 
   &Image {
-    width: rem(200);
-    height: rem(200);
+    width: rem(240);
+    height: rem(240);
     background: $white;
     border-radius: 8px;
     display: flex;
@@ -32,7 +32,8 @@
       margin-bottom: rem(20);
       width: auto;
       height: auto;
-      max-width: rem(300);
+      max-width: none;
+      margin-right: 0;
     }
 
     img {
@@ -75,6 +76,10 @@
     color: $dark;
     line-height: 1;
     margin-left: rem(-10);
+
+    @media (max-width: $sm-max-width) {
+      margin-left: 0;
+    }
 
     > div {
       flex-grow: 1;
