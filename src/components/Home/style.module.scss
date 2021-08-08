@@ -1,0 +1,16 @@
+@import "@/styles/mixins";
+
+.block {
+  border: 1px solid $border;
+  border-radius: 64px;
+  overflow: hidden;
+  padding: rem(80) rem(30);
+  text-align: center;
+}
+
+// dark theme
+[data-theme="dark"] {
+  .block {
+    border: 1px solid $dark-border;
+  }
+}

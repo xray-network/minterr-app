@@ -1,10 +1,10 @@
 import React from "react"
 import { Helmet } from "react-helmet"
 import { useSelector } from "react-redux"
-import Menu from "@/components/shared/Menu"
-import MegaMenu from "@/components/shared/MegaMenu"
-import Footer from "@/components/shared/Footer"
-import Cookies from "@/components/shared/Cookies"
+import Menu from "@/components/Menu"
+import MegaMenu from "@/components/MegaMenu"
+import Footer from "@/components/Footer"
+import Cookies from "@/components/Cookies"
 import * as style from "./style.module.scss"
 
 const MainLayout = ({ children }) => {
@@ -13,8 +13,17 @@ const MainLayout = ({ children }) => {
   return (
     <div className={style.layout}>
       <Helmet titleTemplate="%s | Minterr" title="Mint Cardano Tokens">
-        <link rel="preload" href="/resources/font/circular.css" as="style" />
-        <link rel="stylesheet" href="/resources/font/circular.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+          rel="preload"
+          href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;700&display=swap"
+          as="style"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;700&display=swap"
+          rel="stylesheet"
+        />
         <meta property="og:url" content="https://minterr.io" />
         <meta
           name="description"

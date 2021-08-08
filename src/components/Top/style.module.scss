@@ -1,0 +1,135 @@
+@import "@/styles/mixins";
+
+.project {
+  margin-bottom: rem(40);
+  display: flex;
+
+  @media (max-width: $sm-max-width) {
+    flex-direction: column;
+  }
+
+  :global(.ray__icon) {
+    svg {
+      height: rem(16);
+      position: relative;
+      top: rem(2);
+    }
+  }
+
+  &Image {
+    width: rem(240);
+    height: rem(240);
+    background: $white;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-right: rem(40);
+    position: relative;
+
+    @media (max-width: $sm-max-width) {
+      margin-bottom: rem(20);
+      width: auto;
+      height: auto;
+      max-width: none;
+      margin-right: 0;
+    }
+
+    img {
+      max-width: 100%;
+      max-height: 100%;
+      border-radius: 100%;
+      border: 8px solid $gray-1;
+    }
+
+    &Count {
+      position: absolute;
+      z-index: 2;
+      top: 0;
+      left: 0;
+      background: $dark-gray-4;
+      color: $white;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: rem(32);
+      font-weight: 900;
+      padding: rem(5) rem(10);
+    }
+  }
+
+  &Info {
+    flex-grow: 1;
+  }
+
+  &Label {
+    font-size: rem(14);
+    text-transform: uppercase;
+  }
+
+  &Vote {
+    display: flex;
+    padding: rem(8) rem(10);
+    border-radius: 5px;
+    background: $white;
+    color: $dark;
+    line-height: 1;
+    margin-left: rem(-10);
+
+    @media (max-width: $sm-max-width) {
+      margin-left: 0;
+    }
+
+    > div {
+      flex-grow: 1;
+    }
+
+    &Label {
+      font-size: rem(14);
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: rem(5);
+    }
+
+    &Address {
+      font-weight: 900;
+      font-size: rem(21);
+    }
+  }
+}
+
+.share {
+  background: $white;
+  border-radius: 8px;
+  padding: rem(20) rem(10);
+  margin-top: rem(40);
+}
+
+// dark theme
+[data-theme="dark"] {
+  .project {
+    &Image {
+      background: $dark-gray-5;
+
+      img {
+        border: 8px solid $dark-gray-4;
+      }
+
+      &Count {
+        background: $white;
+        color: $dark;
+      }
+    }
+
+    &Vote {
+      background: $dark-gray-5;
+      color: $white;
+    }
+  }
+
+  .share {
+    background: $dark-gray-5;
+  }
+}

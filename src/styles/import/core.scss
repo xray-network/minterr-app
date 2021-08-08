@@ -22,7 +22,6 @@ body {
   color: $text;
   overflow-x: hidden;
   position: relative;
-  background-color: $pastel-1;
   position: relative;
 
   * {
@@ -30,20 +29,20 @@ body {
     font-feature-settings: normal !important;
   }
 
-  &:before {
-    content: "";
-    display: block;
-    position: absolute;
-    z-index: -1;
-    pointer-events: none;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    opacity: 0.05;
-    background: transparent repeat url(/resources/pattern.svg) top center;
-    background-size: 400px 400px;
-  }
+  // &:before {
+  //   content: "";
+  //   display: block;
+  //   position: absolute;
+  //   z-index: -1;
+  //   pointer-events: none;
+  //   top: 0;
+  //   bottom: 0;
+  //   left: 0;
+  //   right: 0;
+  //   opacity: 0.1;
+  //   background: transparent repeat url(/resources/pattern.svg) top center;
+  //   background-size: 400px 400px;
+  // }
 }
 
 a,
@@ -171,7 +170,7 @@ code {
 // dark theme
 [data-theme="dark"] {
   body {
-    background: $dark-gray-6;
+    background: $dark-gray-5;
     color: $dark-gray-2;
 
     &:before {

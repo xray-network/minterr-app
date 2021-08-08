@@ -1,0 +1,169 @@
+@import "@/styles/mixins";
+
+.preview {
+  background: #000000;
+  border: 1px solid #000000;
+  border-radius: rem(16);
+  color: $white;
+  padding: rem(60) 0 rem(70);
+  margin: 0 auto rem(40);
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+
+  &Light {
+    color: $dark;
+    background: #ffffff;
+    border: 1px solid $border;
+
+    .title {
+      color: $dark;
+    }
+
+    .by,
+    .notFound,
+    .switchTheme {
+      svg {
+        * {
+          fill: $dark;
+        }
+      }
+    }
+  }
+
+  &Inner {
+    position: relative;
+    z-index: 2;
+  }
+}
+
+.shortMetadata {
+  transition: opacity 0.3s ease-in-out;
+  padding-left: rem(25);
+  padding-right: rem(25);
+}
+
+.by {
+  color: $gray-5;
+  margin-bottom: rem(40);
+  svg {
+    height: rem(30);
+    width: auto;
+    * {
+      fill: $white;
+    }
+  }
+}
+
+.notFound {
+  font-weight: bold;
+  svg {
+    height: rem(170);
+    width: auto;
+    * {
+      fill: $white;
+    }
+  }
+}
+
+.switchTheme {
+  position: absolute;
+  z-index: 2;
+  top: rem(10);
+  right: rem(10);
+
+  svg {
+    height: rem(30);
+    width: auto;
+    * {
+      fill: $white;
+    }
+  }
+}
+
+.image {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  overflow: hidden;
+
+  img {
+    max-width: rem(600);
+    max-height: rem(400);
+    width: auto !important;
+    height: auto !important;
+  }
+}
+
+.title {
+  color: $white;
+  word-wrap: break-word;
+}
+
+.pig {
+  img {
+    max-width: rem(300);
+  }
+}
+
+.mints {
+  border: 1px solid $border;
+  border-radius: rem(16);
+  padding: rem(30);
+}
+
+.viewer {
+  text-align: left;
+  padding-top: rem(30);
+  // padding: rem(30) rem(25);
+  // border-radius: 8px;
+  // background: $white;
+  white-space: nowrap;
+  overflow-x: auto;
+  font-size: rem(14);
+
+  :global(.react-json-view) {
+    background: $white !important;
+  }
+
+  &Link {
+    display: inline-block;
+    margin: 0 rem(10) rem(10) 0;
+    border: 2px solid $primary;
+    color: $primary;
+    padding: 0 rem(10);
+    font-weight: bold;
+    border-radius: 100px;
+    cursor: pointer;
+    @include transition-fast();
+
+    &Active {
+      background: $primary;
+      color: $white !important;
+
+      &:hover {
+        background: $blue-light;
+      }
+    }
+
+    &:hover {
+      color: $blue-light;
+      border-color: $blue-light;
+    }
+  }
+}
+
+// dark theme
+[data-theme="dark"] {
+  .mints {
+    border: 1px solid $dark-border;
+  }
+
+  .viewer {
+    background: $dark-gray-5;
+
+    :global(.react-json-view) {
+      background: $dark-gray-5 !important;
+    }
+  }
+}

@@ -1,8 +1,8 @@
 import React from "react"
 import { Helmet } from "react-helmet"
 import MainLayout from "@/layouts/Main"
-import MintingForm from "@/components/pages/MintingForm"
-import TransactionModal from "@/components/pages/TransactionModal"
+import MintingForm from "@/components/MintingForm"
+import TransactionModal from "@/components/TransactionModal"
 
 const PageIndex = () => {
   return (

@@ -1,15 +1,15 @@
 import React from "react"
 import { Helmet } from "react-helmet"
 import MainLayout from "@/layouts/Main"
-import Home from "@/components/Home"
+import Explorer from "@/components/Explorer/Explorer"
 
-const PageHome = () => {
+const PageExplorer = () => {
   return (
     <MainLayout>
       <Helmet title="Mint Cardano Tokens & Explore Assets" />
-      <Home />
+      <Explorer />
     </MainLayout>
   )
 }
 
-export default PageHome
+export default PageExplorer
