@@ -395,6 +395,46 @@
           }
         }
       }
+
+      &-wrapper {
+        .ant-spin-container {
+          &:after {
+            background: $dark-gray-5 !important;
+          }
+        }
+      }
+    }
+
+    &-pagination {
+      &-item {
+        color: $white;
+        background: transparent;
+        border-color: $dark-border;
+
+        &-active,
+        &:hover {
+          border-color: $blue-light;
+        }
+
+        &-ellipsis {
+          color: $white !important;
+        }
+      }
+
+      &-item-link {
+        color: $white;
+        background: transparent;
+        border-color: $dark-border;
+
+        svg {
+          position: relative;
+          top: -2px;
+        }
+
+        &:hover {
+          border-color: $blue-light;
+        }
+      }
     }
   }
 }

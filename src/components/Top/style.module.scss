@@ -29,8 +29,6 @@
     flex-shrink: 0;
     margin-right: rem(30);
     position: relative;
-    border-radius: 100%;
-    background: $gray-1;
 
     @media (max-width: $sm-max-width) {
       margin-bottom: rem(20);
@@ -115,9 +113,6 @@
     border-color: $dark-border;
 
     &Image {
-      border-radius: 100%;
-      background: $dark-gray-4;
-
       &Count {
         background: $white;
         color: $dark;

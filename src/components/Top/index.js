@@ -7,10 +7,8 @@ import Cardano from "@/services/cardano"
 import * as style from "./style.module.scss"
 
 const Top = () => {
-  const [projects, setProjects] = useState()
-  const projectsData = useSelector((state) => state.settings.projectsData)
+  const [projects, setProjects] = useState([])
   const init = useSelector((state) => state.settings.init)
-  const processedProjects = projects || projectsData
 
   useEffect(() => {
     fetchVotes()
@@ -18,43 +16,46 @@ const Top = () => {
   }, [init])
 
   const fetchVotes = () => {
-    async function fetchAddressesBalances() {
-      const voteAddresses = projectsData.map((item) => item.voteAddress)
-      const result = await Cardano.explorer.query({
-        query: `
-          query paymentAddressSummary {
-            paymentAddresses (addresses: ${JSON.stringify(voteAddresses)}) {
-              address
-              summary {
-                assetBalances {
-                  quantity
-                  asset {
-                    assetId
+    fetch('https://raw.githubusercontent.com/ray-network/cardano-verified-nft-projects/main/list.json')
+      .then(response => response.json())
+      .then(projectsData => {
+        const voteAddresses = projectsData.map((item) => item.voteAddress)
+        Cardano.explorer.query({
+          query: `
+            query paymentAddressSummary {
+              paymentAddresses (addresses: ${JSON.stringify(voteAddresses)}) {
+                address
+                summary {
+                  assetBalances {
+                    quantity
+                    asset {
+                      assetId
+                    }
                   }
                 }
               }
             }
-          }
-        `
-      })
-      const paymentAddresses = result?.data?.data?.paymentAddresses || []
-      const paymentAddressesResults = {}
-      paymentAddresses.forEach((item) => {
-        const ada = item.summary.assetBalances.filter((asset) => asset.asset.assetId === 'ada')[0] || {}
-        paymentAddressesResults[item.address] = ada.quantity || 0
-      })
-      setProjects(
-        projectsData
-          .map((item) => {
-            return {
-              ...item,
-              votes: (parseInt(parseInt(paymentAddressesResults[item.voteAddress]) / 1000000 * 10)).toString(),
-            }
+          `
+        })
+          .then((result) => {
+            const paymentAddresses = result?.data?.data?.paymentAddresses || []
+            const paymentAddressesResults = {}
+            paymentAddresses.forEach((item) => {
+              const ada = item.summary.assetBalances.filter((asset) => asset.asset.assetId === 'ada')[0] || {}
+              paymentAddressesResults[item.address] = ada.quantity || 0
+            })
+            setProjects(
+              projectsData
+                .map((item) => {
+                  return {
+                    ...item,
+                    votes: (parseInt(parseInt(paymentAddressesResults[item.voteAddress]) / 1000000 * 10)).toString(),
+                  }
+                })
+                .sort((a, b) => b.votes.localeCompare(a.votes))
+            )
           })
-          .sort((a, b) => b.votes.localeCompare(a.votes))
-      )
-    }
-    fetchAddressesBalances()
+      })
   }
 
   return (
@@ -89,7 +90,7 @@ const Top = () => {
           .
         </p>
       </div>
-      {processedProjects.map((item, index) => {
+      {projects.map((item, index) => {
         return (
           <Project key={index} rank={index + 1} project={item} />
         )

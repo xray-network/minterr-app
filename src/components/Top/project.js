@@ -27,7 +27,7 @@ const Top = ({ project, rank }) => {
       <div className={style.project}>
         <div className={style.projectImage}>
           <span className={style.projectImageCount}>#{rank}</span>
-          <img src={project.image} alt={project.name} />
+          <img src={`https://raw.githubusercontent.com/ray-network/cardano-verified-nft-projects/main/logo/${project.image}`} alt={project.name} />
         </div>
         <div className={style.projectInfo}>
           <div className={style.projectVote}>
