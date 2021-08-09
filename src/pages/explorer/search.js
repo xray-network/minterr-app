@@ -21,7 +21,7 @@ const Explorer = ({ location }) => {
       {query.block && (
         <>
           <Helmet title={`Block ${query.block}`} />
-          <div className="ray__block pt-3">
+          <div className="ray__block">
             <Block blockNumber={query.block} />
           </div>
         </>
@@ -29,7 +29,7 @@ const Explorer = ({ location }) => {
       {query.transaction && (
         <>
           <Helmet title={`Transaction ${query.transaction}`} />
-          <div className="ray__block pt-3">
+          <div className="ray__block">
             <Transaction transaction={query.transaction} />
           </div>
         </>
@@ -37,7 +37,7 @@ const Explorer = ({ location }) => {
       {query.address && (
         <>
           <Helmet title={`Address ${query.address}`} />
-          <div className="ray__block pt-3">
+          <div className="ray__block">
             <Address address={query.address} />
           </div>
         </>
@@ -45,7 +45,7 @@ const Explorer = ({ location }) => {
       {query.policyID && (
         <>
           <Helmet title={`Policy ID ${query.policyID}`} />
-          <div className="ray__block pt-3">
+          <div className="ray__block">
             <Policy policyID={query.policyID} />
           </div>
         </>

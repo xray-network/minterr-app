@@ -90,7 +90,22 @@ const Top = () => {
           .
         </p>
       </div>
-      {projects.map((item, index) => {
+      {projects.length < 1 && (
+        <div className="text-center mb-5 pb-5">
+          <div className="pt-5 mb-5">
+            <h1>Observing...</h1>
+          </div>
+          <div className="pt-4">
+            <div
+              className="spinner-border spinner-border-lg text-primary"
+              role="status"
+            >
+              <span className="visually-hidden">Loading...</span>
+            </div>
+          </div>
+        </div>
+      )}
+      {projects.length > 0 && projects.map((item, index) => {
         return (
           <Project key={index} rank={index + 1} project={item} />
         )

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import { Link } from "gatsby"
 import { useSelector } from "react-redux"
 import { formatDistance } from "date-fns"
-import { processAsset, truncate } from "@/utils/index"
+import { processAsset } from "@/utils/index"
 import Cardano from "@/services/cardano"
 import Gallery from "@/components/Gallery"
 
@@ -107,7 +107,7 @@ const Block = ({ blockNumber }) => {
         <i>/</i>
         <Link to="/explorer/">Explorer</Link>
         <i>/</i>
-        <span>Block {truncate(blockNumber)}</span>
+        <span>Block {blockNumber}</span>
       </div>
       <div className="text-left text-md-center">
         <h5 className="mb-1">Block {blockNumber} outputs</h5>

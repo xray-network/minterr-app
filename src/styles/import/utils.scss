@@ -352,7 +352,7 @@
         height: rem(18) !important;
         width: auto !important;
         * {
-          fill: $dark !important;
+          fill: $white !important;
         }
       }
 
@@ -372,6 +372,12 @@
 
       &--orange {
         color: $dark !important;
+
+        svg {
+          * {
+            fill: $dark !important;
+          }
+        }
       }
 
       &--success {

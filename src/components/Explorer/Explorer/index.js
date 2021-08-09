@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { Table, Input } from "antd"
 import { Link } from "gatsby"
+import { useSelector } from "react-redux"
 import Cardano from "@/services/cardano"
 import { format as formatDate } from "date-fns"
 import { processAsset, format, truncate } from "@/utils/index"
@@ -72,6 +73,7 @@ const columns = [
 ]
 
 const Explorer = () => {
+  const init = useSelector((state) => state.settings.init)
   const [totalCount, setTotalCount] = useState(0)
   const [dataSource, setDataSource] = useState([])
   const [loading, setLoading] = useState(true)
@@ -85,7 +87,7 @@ const Explorer = () => {
   useEffect(() => {
     fetchData(0)
     // eslint-disable-next-line
-  }, [])
+  }, [init])
 
   const fetchData = (offset, name = '') => {
     setLoading(true)
@@ -121,7 +123,7 @@ const Explorer = () => {
       <div className="ray__breadcrumbs">
         <Link to="/">Home</Link>
         <i>/</i>
-        <span>Cardano NFT Explorer</span>
+        <span>Explorer</span>
       </div>
       <div className="ray__left mb-4">
         <h2 className="mb-0">
