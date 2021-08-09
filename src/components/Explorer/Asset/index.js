@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react"
 import { InlineShareButtons } from "sharethis-reactjs"
 import { useSelector } from "react-redux"
 import { Helmet } from "react-helmet"
-// import { Tooltip } from "antd"
-import { format } from "date-fns"
+import { Tooltip } from "antd"
+import { format as formatDate } from "date-fns"
 import ReactJson from "react-json-view-ssr"
 import store from "store"
 import { Link } from "gatsby"
@@ -13,9 +13,10 @@ import {
   randomHSL,
   validUrl,
 } from "@/utils/index"
-import { SVGMinterr, SVGFavicon, SVGSun, SVGMoon } from "@/svg"
+import { SVGFavicon, SVGSun, SVGMoon } from "@/svg"
 import Confetti from "@/components/Confetti"
 import Cardano from "@/services/cardano"
+import { format, truncate } from "@/utils/index"
 import * as style from "./style.module.scss"
 
 const query = (fingerpint) => `
@@ -93,7 +94,14 @@ const Asset = ({ fingerprint }) => {
   const imageUrl = imageStringToCloudflare(assetInfo.metadataNft?.image)
 
   return (
-    <div className="ray__block pt-3">
+    <div className="ray__block">
+      <div className="ray__breadcrumbs">
+        <Link to="/">Home</Link>
+        <i>/</i>
+        <Link to="/explorer/">Explorer</Link>
+        <i>/</i>
+        <span>Asset {truncate(fingerprint)}</span>
+      </div>
       {loading && (
         <div>
           <div className="text-center mb-5">
@@ -159,8 +167,8 @@ const Asset = ({ fingerprint }) => {
                 <h1 className="mb-1">
                   <span className={style.title}>{imageName}</span>
                 </h1>
-                <div className="text-muted mb-3">
-                  Quantity: <strong>{assetInfo.quantity || 0}</strong> —{" "}
+                <div className="mb-3">
+                  Quantity: <strong>{format(assetInfo.quantity || 0)}</strong> —{" "}
                   <span className="text-break">{fingerprint}</span>
                   <div>
                     Policy ID{" "}
@@ -205,17 +213,6 @@ const Asset = ({ fingerprint }) => {
                         <div className="mt-3">
                           Loading...
                           <br />
-                          <a
-                            href={`${imageUrl}?v=${Math.random()}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            Link to image
-                          </a>
-                        </div>
-                        {/* <div className="mt-3">
-                          Unable to load?
-                          <br />
                           <Tooltip
                             title={
                               <div className="text-center">
@@ -228,10 +225,10 @@ const Asset = ({ fingerprint }) => {
                               target="_blank"
                               rel="noopener noreferrer"
                             >
-                              Pass the captcha!
+                              Unable to load?
                             </a>
                           </Tooltip>
-                        </div> */}
+                        </div>
                       </div>
                     )}
                   </div>
@@ -343,7 +340,7 @@ const Asset = ({ fingerprint }) => {
                         role="button"
                         tabIndex="0"
                       >
-                        {format(new Date(includedAt), "yyyy-MM-dd HH:mm:ss")}
+                        {formatDate(new Date(includedAt), "yyyy-MM-dd HH:mm:ss")}
                       </span>
                     )
                   })}

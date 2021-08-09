@@ -34,6 +34,17 @@
   &Inner {
     position: relative;
     z-index: 2;
+    color: $gray-6;
+
+    :global(.link--dashed) {
+      color: $gray-6;
+      border-bottom: 1px dashed $gray-6;
+
+      &:hover {
+        color: $blue-light;
+        border-bottom: 1px dashed $blue-light;
+      }
+    }
   }
 }
 

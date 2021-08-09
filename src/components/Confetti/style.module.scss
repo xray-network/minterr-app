@@ -13,7 +13,7 @@
     position: relative;
     z-index: 10;
     text-align: center;
-    background: $white;
+    background: $pastel-1;
     padding: rem(20) rem(20);
     border-radius: 12px;
   }
@@ -40,7 +40,7 @@
 [data-theme="dark"] {
   .banner {
     &Inner {
-      background: $dark-gray-5;
+      background: $dark-gray-6;
     }
   }
 }

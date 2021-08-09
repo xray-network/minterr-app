@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import { Link } from "gatsby"
 import { useSelector } from "react-redux"
 import { InlineShareButtons } from "sharethis-reactjs"
 import Project from "./project"
@@ -58,6 +59,11 @@ const Top = () => {
 
   return (
     <div className="ray__block">
+      <div className="ray__breadcrumbs">
+        <Link to="/">Home</Link>
+        <i>/</i>
+        <span>Cardano Top 20 NFT Projects</span>
+      </div>
       <div className="ray__left mb-5">
         <h2 className="mb-4">
           The highest quality Cardano projects are here! Vote for your favorites!{" "}

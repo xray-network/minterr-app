@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react"
+import { Link } from "gatsby"
 import { useSelector } from "react-redux"
+import { Checkbox } from "antd"
 import { range } from "lodash"
 import BlockLive from "@/components/Explorer/BlockLive"
 
@@ -9,6 +11,7 @@ const Live = () => {
   const [firstRun, setFirstRun] = useState(true)
   const [blocks, setBlocks] = useState([])
   const [loading, setLoading] = useState(true)
+  const [showEmpty, setShowEmpty] = useState(false)
 
   useEffect(() => {
     if (networkBlock !== 0 && networkBlock !== prevBlock) {
@@ -31,18 +34,30 @@ const Live = () => {
 
   return (
     <div className="ray__block">
+      <div className="ray__breadcrumbs">
+        <Link to="/">Home</Link>
+        <i>/</i>
+        <span>Cardano NFT Live Feed Explorer</span>
+      </div>
       <div className="ray__left mb-5">
-        <h2 className="mb-0">
+        <h2 className="mb-4">
           Live Feed: Interplanetary file system is overloaded!{" "}
           <span role="img" aria-label="">
             💎
           </span>
         </h2>
-        <p className="text-muted mb-0">
+        <p className="text-muted">
           The data is updated every minute and shows all found Native Tokens in
           new blocks. The pictures are downloaded directly from IPFS, so this
           may take some time.
         </p>
+        <Checkbox
+          className="cursor-pointer"
+          checked={showEmpty}
+          onChange={(e) => setShowEmpty(e.target.checked)}
+        >
+          Show Empty Blocks
+        </Checkbox>
       </div>
       <div>
         {blocks.map((blockNumber) => {
@@ -51,6 +66,7 @@ const Live = () => {
               key={blockNumber}
               blockNumber={blockNumber}
               setLoadingOuter={setLoading}
+              showEmpty={showEmpty}
             />
           )
         })}

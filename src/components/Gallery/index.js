@@ -2,11 +2,14 @@ import React, { useState } from "react"
 import { Link } from "gatsby"
 import { Button } from "antd"
 import Image from "./image"
+import { format } from "@/utils/index"
 import * as style from "./style.module.scss"
 
 const Gallery = ({ tokens }) => {
   const diff = 14
   const [count, setCount] = useState(diff)
+
+  console.log(tokens)
 
   return (
     <div>
@@ -23,7 +26,10 @@ const Gallery = ({ tokens }) => {
                 minted={token.minted}
                 assetName={token.assetName}
               />
-              <div className={style.name}>{token.assetName}</div>
+              <div className={style.name}>
+                <strong>{token.assetName}</strong>{" "}
+                <span className="text-muted">({format(token.quantity)})</span>
+              </div>
             </Link>
           )
         })}

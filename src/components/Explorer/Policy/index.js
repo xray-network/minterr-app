@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
+import { Link } from "gatsby"
 import { useSelector } from "react-redux"
-import { processAsset } from "@/utils/index"
+import { processAsset, truncate } from "@/utils/index"
 import Cardano from "@/services/cardano"
 import Gallery from "@/components/Gallery"
 import Confetti from "@/components/Confetti"
@@ -19,6 +20,7 @@ const query = (policyID) => `
       fingerprint
       assetId
       tokenMints {
+        quantity
         transaction {
           hash
           includedAt
@@ -66,6 +68,13 @@ const BlockFetcher = ({ policyID }) => {
 
   return (
     <div className="mb-5">
+      <div className="ray__breadcrumbs">
+        <Link to="/">Home</Link>
+        <i>/</i>
+        <Link to="/explorer/">Explorer</Link>
+        <i>/</i>
+        <span>Policy ID {truncate(policyID)}</span>
+      </div>
       <Confetti policyId={policyID} />
       <div className="text-left text-md-center">
         <h5 className="mb-1">

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
+import { Link } from "gatsby"
 import { useSelector } from "react-redux"
-import { processAsset } from "@/utils/index"
+import { processAsset, truncate } from "@/utils/index"
 import Cardano from "@/services/cardano"
 import Gallery from "@/components/Gallery"
 
@@ -67,7 +68,7 @@ const Address = ({ address }) => {
     let ada = 0
     addresses.forEach((address) => {
       address?.summary?.assetBalances.forEach((token) => {
-        if (token.asset.assetId === "a") {
+        if (token.asset.assetId === 'ada') {
           ada = (parseInt(token.quantity, 10) / 1e6).toFixed(6)
           return
         }
@@ -84,6 +85,13 @@ const Address = ({ address }) => {
 
   return (
     <div className="mb-5">
+      <div className="ray__breadcrumbs">
+        <Link to="/">Home</Link>
+        <i>/</i>
+        <Link to="/explorer/">Explorer</Link>
+        <i>/</i>
+        <span>Address {truncate(address)}</span>
+      </div>
       <div className="text-left text-md-center">
         <h5 className="mb-1">
           Address <span className="text-break">{address}</span>

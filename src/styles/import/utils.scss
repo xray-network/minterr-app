@@ -1,6 +1,20 @@
 @import "@/styles/mixins";
 
 .ray {
+  &__breadcrumbs {
+    margin-top: rem(-25);
+    margin-bottom: rem(40);
+
+    i {
+      margin: 0 rem(7);
+      color: $gray-3;
+    }
+
+    span {
+      font-weight: bold;
+    }
+  }
+
   &__left {
     padding-left: rem(50);
     position: relative;
@@ -220,6 +234,10 @@
       }
     }
 
+    &--clear {
+      height: rem(40);
+    }
+
     &--large {
       padding: 0 rem(40);
       font-size: rem(21);
@@ -267,7 +285,9 @@
       background: transparent !important;
       border-color: $border !important;
 
-      &:hover {
+      &:hover,
+      &:focus,
+      &:active {
         border-color: $primary !important;
         color: $primary !important;
 
@@ -290,6 +310,16 @@
 // dark theme
 [data-theme="dark"] {
   .ray {
+    &__breadcrumbs {
+      i {
+        color: $dark-gray-3;
+      }
+  
+      span {
+        color: $white;
+      }
+    }
+
     &__icon {
       svg {
         * {
@@ -353,7 +383,9 @@
           }
         }
 
-        &:hover {
+        &:hover,
+        &:focus,
+        &:active {
           border-color: $dark-gray-3 !important;
           background-color: $dark-gray-4 !important;
         }

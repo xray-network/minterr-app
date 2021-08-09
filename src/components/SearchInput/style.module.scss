@@ -6,20 +6,62 @@
       font-size: rem(21);
     }
 
+    &-group-addon {
+      background: none;
+    }
+
     &-affix-wrapper {
+      border-radius: 50px 0 0 50px !important;
+      background: $pastel-1 !important;
+      border-color: transparent;
+
+      input {
+        background: none !important;
+      }
+
       &-lg {
         height: rem(55);
         padding: rem(8) rem(15);
       }
+    }
+
+    &-suffix {
+      margin-right: rem(20);
     }
   }
 
   :global(.ant-input-search-button) {
     font-size: rem(21);
     height: rem(55) !important;
+    border-radius: 50px !important;
+    margin-left: rem(-20) !important;
+    padding-left: rem(30);
+    padding-right: rem(30);
+    background: $orange;
+    border: none !important;
+    color: $white;
+    position: relative;
+    z-index: 100;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background: lighten($orange, 5%);
+    }
   }
 }
 
 // dark theme
 [data-theme="dark"] {
+  .input {
+    :global(.ant-input-search-button) {
+      color: $dark;
+    }
+
+    :global(.ant-input) {
+      &-affix-wrapper {
+        background: lighten($dark-gray-5, 5%) !important;
+      }
+    }
+  }
 }

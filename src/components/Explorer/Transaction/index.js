@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
+import { Link } from "gatsby"
 import { useSelector } from "react-redux"
-import { processAsset } from "@/utils/index"
+import { processAsset, truncate } from "@/utils/index"
 import Cardano from "@/services/cardano"
 import Gallery from "@/components/Gallery"
 
@@ -17,12 +18,14 @@ const query = (transaction) => `
       outputs {
         address
         tokens {
+          quantity
           asset {
             assetName
             policyId
             fingerprint
             assetId
             tokenMints(limit: 1, order_by: { transaction: { includedAt: asc } }) {
+              quantity
               transaction {
                 hash
                 includedAt
@@ -33,7 +36,6 @@ const query = (transaction) => `
               }
             }
           }
-          quantity
         }
       }
     }
@@ -88,6 +90,13 @@ const Transaction = ({ transaction }) => {
 
   return (
     <div className="mb-5">
+      <div className="ray__breadcrumbs">
+        <Link to="/">Home</Link>
+        <i>/</i>
+        <Link to="/explorer/">Explorer</Link>
+        <i>/</i>
+        <span>Transaction {truncate(transaction)}</span>
+      </div>
       <div className="text-left text-md-center">
         <h5 className="mb-1">
           Transaction <span className="text-break">{transaction}</span>

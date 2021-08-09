@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react"
+import { Link } from "gatsby"
 import { useSelector } from "react-redux"
 import { formatDistance } from "date-fns"
-import { processAsset } from "@/utils/index"
+import { processAsset, truncate } from "@/utils/index"
 import Cardano from "@/services/cardano"
 import Gallery from "@/components/Gallery"
 
@@ -16,6 +17,7 @@ const query = (blockNumber) => `
         outputs {
           address
           tokens {
+            quantity
             asset {
               assetName
               policyId
@@ -32,7 +34,6 @@ const query = (blockNumber) => `
                 }
               }
             }
-            quantity
           }
         }
       }
@@ -88,6 +89,7 @@ const Block = ({ blockNumber }) => {
           output.tokens.forEach((token) => {
             const tk = {
               ...processAsset(token.asset),
+              quantity: token.quantity,
               minted: tx.hash === token.asset.tokenMints[0]?.transaction?.hash,
             }
             tokens.push(tk)
@@ -100,6 +102,13 @@ const Block = ({ blockNumber }) => {
 
   return (
     <div className="mb-5">
+      <div className="ray__breadcrumbs">
+        <Link to="/">Home</Link>
+        <i>/</i>
+        <Link to="/explorer/">Explorer</Link>
+        <i>/</i>
+        <span>Block {truncate(blockNumber)}</span>
+      </div>
       <div className="text-left text-md-center">
         <h5 className="mb-1">Block {blockNumber} outputs</h5>
       </div>

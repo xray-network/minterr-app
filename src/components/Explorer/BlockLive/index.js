@@ -17,6 +17,7 @@ const query = (blockNumber) => `
         outputs {
           address
           tokens {
+            quantity
             asset {
               assetName
               policyId
@@ -33,7 +34,6 @@ const query = (blockNumber) => `
                 }
               }
             }
-            quantity
           }
         }
       }
@@ -41,7 +41,7 @@ const query = (blockNumber) => `
   }
 `
 
-const BlockLive = ({ blockNumber, setLoadingOuter = () => { } }) => {
+const BlockLive = ({ blockNumber, showEmpty = false, setLoadingOuter = () => { } }) => {
   const [liveState, setLiveState] = useState([])
   const init = useSelector((state) => state.settings.init)
 
@@ -71,12 +71,8 @@ const BlockLive = ({ blockNumber, setLoadingOuter = () => { } }) => {
       }
     })
     const updatedLiveState = [...liveState]
-    const updatedResult = result.filter((item) => item.tokens.length > 0)
-
-    if (updatedResult.length > 0) {
-      setLoadingOuter(false)
-    }
-    updatedLiveState.push(...updatedResult)
+    setLoadingOuter(false)
+    updatedLiveState.push(...result)
     setLiveState(updatedLiveState)
   }
 
@@ -88,6 +84,7 @@ const BlockLive = ({ blockNumber, setLoadingOuter = () => { } }) => {
           output.tokens.forEach((token) => {
             const tk = {
               ...processAsset(token.asset),
+              quantity: token.quantity,
               minted: tx.hash === token.asset.tokenMints[0]?.transaction?.hash,
             }
             tokens.push(tk)
@@ -99,10 +96,10 @@ const BlockLive = ({ blockNumber, setLoadingOuter = () => { } }) => {
   }
 
   return (
-    <div className="mb-5">
+    <>
       {liveState.map((block) => {
         return (
-          <div className="text-left mb-5 text-md-center" key={block.number}>
+          <div className={`text-left mb-5 text-md-center ${!(block.tokens.length > 0 || showEmpty) ? 'd-none' : ''}`} key={block.number}>
             <h5 className="mb-1">
               Block{" "}
               <Link
@@ -129,7 +126,7 @@ const BlockLive = ({ blockNumber, setLoadingOuter = () => { } }) => {
           </div>
         )
       })}
-    </div>
+    </>
   )
 }
 

@@ -34,51 +34,64 @@ const Menu = () => {
   return (
     <div className="ray__block mb-3">
       <div className={style.menu}>
-        <Link to="/" className={`${style.menuLogo} me-4`}>
-          <SVGMinterr />
-        </Link>
-        <span className="flex-grow-1 d-none d-sm-inline pe-2 pe-md-4">
-          <SearchInputHeader />
-        </span>
-        <span className="ms-auto me-3 d-none d-sm-inline">
-          <Link
-            to="/mint-cardano-tokens/"
-            className="ant-btn ray__btn ray__btn--orange ray__btn--round"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <span className="pe-2">Mint Token</span>
-            <span className="ray__icon">
-              <SVGZap />
+        <div className="row">
+          <div className="col-4 d-flex align-items-center">
+            <Link to="/" className={`${style.menuLogo} me-3`}>
+              <SVGMinterr />
+            </Link>
+            <div className={`d-none d-md-inline ${style.menuLogoDescr}`}>
+              Cardano NFT Explorer & Minter
+              <br />
+              by Ray Network
+            </div>
+          </div>
+          <div className="col-4 d-flex align-items-center">
+            <span className="flex-grow-1 d-none d-sm-inline">
+              <SearchInputHeader />
             </span>
-          </Link>
-        </span>
-        <span
-          className={`cursor-pointer me-3 ms-auto ms-sm-0 ${style.menuSwitch}`}
-          onClick={changeTheme}
-          onKeyPress={changeTheme}
-          role="button"
-          tabIndex="0"
-        >
-          <span className={theme === "default" ? "" : "d-none"}>
-            <span className="ray__icon">
-              <SVGSun />
+          </div>
+          <div className="col-4 d-flex align-items-center">
+            <span className="ms-auto me-3 d-none d-sm-inline">
+              <Link
+                to="/mint-cardano-tokens/"
+                className="ant-btn ray__btn ray__btn--orange ray__btn--round"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span className="pe-2">Mint Token</span>
+                <span className="ray__icon">
+                  <SVGZap />
+                </span>
+              </Link>
             </span>
-          </span>
-          <span className={theme !== "default" ? "" : "d-none"}>
-            <span className="ray__icon">
-              <SVGMoon />
+            <span
+              className={`cursor-pointer me-3 ms-auto ms-sm-0 ${style.menuSwitch}`}
+              onClick={changeTheme}
+              onKeyPress={changeTheme}
+              role="button"
+              tabIndex="0"
+            >
+              <span className={theme === "default" ? "" : "d-none"}>
+                <span className="ray__icon">
+                  <SVGSun />
+                </span>
+              </span>
+              <span className={theme !== "default" ? "" : "d-none"}>
+                <span className="ray__icon">
+                  <SVGMoon />
+                </span>
+              </span>
             </span>
-          </span>
-        </span>
-        <span
-          className={`${style.menuIcon} cursor-pointer`}
-          onClick={switchMegaMenu}
-          onKeyPress={switchMegaMenu}
-          role="button"
-          tabIndex="0"
-          aria-label="Open Menu"
-        />
+            <span
+              className={`${style.menuIcon} cursor-pointer`}
+              onClick={switchMegaMenu}
+              onKeyPress={switchMegaMenu}
+              role="button"
+              tabIndex="0"
+              aria-label="Open Menu"
+            />
+          </div>
+        </div>
       </div>
       <div className="ray__line" />
       <div className={style.submenu}>

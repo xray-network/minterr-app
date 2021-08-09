@@ -6,7 +6,7 @@ import Top from "@/components/Top"
 const PageLive = () => {
   return (
     <MainLayout>
-      <Helmet title="Cardano Top 100 NFT Projects" />
+      <Helmet title="Cardano Top 20 NFT Projects" />
       <Top />
     </MainLayout>
   )

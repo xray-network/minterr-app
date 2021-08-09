@@ -224,6 +224,14 @@ const MegaMenu = () => {
                       </li>
                       <li>
                         <a
+                          href="https://rraayy.com/xray/xdiamond/"
+                          className="text-muted"
+                        >
+                          XDIAMOND
+                        </a>
+                      </li>
+                      <li>
+                        <a
                           href="https://rraayy.com/roadmap/"
                           className="text-muted"
                         >
@@ -349,7 +357,7 @@ const MegaMenu = () => {
                           <span className="ray__icon me-2 mb-1 mb-sm-0">
                             <SVGTwitter />
                           </span>
-                          <h6 className="mb-0">Minterr</h6>
+                          <h6 className="mb-0">Minterr.io</h6>
                         </div>
                         <ul className="list-unstyled mb-4">
                           <li>

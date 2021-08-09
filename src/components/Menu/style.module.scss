@@ -1,15 +1,21 @@
 @import "@/styles/mixins";
 
 .menu {
-  display: flex;
-  align-items: center;
-  padding: rem(15) 0;
   height: rem(65);
+
+  :global(.col-4) {
+    height: rem(65);
+  }
 
   &Logo {
     svg {
       height: rem(39) !important;
       width: auto !important;
+    }
+
+    &Descr {
+      font-size: rem(14);
+      line-height: 1;
     }
   }
 
@@ -84,6 +90,14 @@
     color: $dark;
     white-space: nowrap;
 
+    &:hover {
+      svg {
+        * {
+          fill: $blue;
+        }
+      }
+    }
+
     svg {
       position: relative;
       top: -1px;
@@ -157,6 +171,32 @@
         &:after,
         &:before {
           background: $white;
+        }
+      }
+    }
+  }
+
+  .submenu {
+    &Link {
+      &:hover {
+        svg {
+          * {
+            fill: $white;
+          }
+        }
+      }
+
+      &Active {
+        color: $white;
+  
+        svg {
+          * {
+            fill: $white;
+          }
+        }
+  
+        @media (max-width: $sm-max-width) {
+          border-color: $white;
         }
       }
     }

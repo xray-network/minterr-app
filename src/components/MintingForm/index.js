@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import { Link } from "gatsby"
 import { useSelector, useDispatch } from "react-redux"
 import QRCode from "qrcode.react"
 import {
@@ -280,6 +281,11 @@ const MintingForm = () => {
 
   return (
     <div className="ray__block">
+      <div className="ray__breadcrumbs">
+        <Link to="/">Home</Link>
+        <i>/</i>
+        <span>Mint Cardano NFT Tokens</span>
+      </div>
       <div className="ray__left mb-5">
         <h2 className="mb-4">
           Let's mint a Cardano token, creator.
@@ -643,6 +649,7 @@ const MintingForm = () => {
                                   >
                                     <Form.Item className={style.assetKey}>
                                       <Input
+                                        size="large"
                                         allowClear
                                         autoComplete="off"
                                         value="ticker"
@@ -661,6 +668,7 @@ const MintingForm = () => {
                                       ]}
                                     >
                                       <Input
+                                        size="large"
                                         placeholder="eg, XRAY001"
                                         allowClear
                                         autoComplete="off"
@@ -673,6 +681,7 @@ const MintingForm = () => {
                                   >
                                     <Form.Item className={style.assetKey}>
                                       <Input
+                                        size="large"
                                         allowClear
                                         autoComplete="off"
                                         value="name"
@@ -691,6 +700,7 @@ const MintingForm = () => {
                                       ]}
                                     >
                                       <Input
+                                        size="large"
                                         placeholder="eg, XRAY NFT #001"
                                         allowClear
                                         autoComplete="off"
@@ -703,6 +713,7 @@ const MintingForm = () => {
                                   >
                                     <Form.Item className={style.assetKey}>
                                       <Input
+                                        size="large"
                                         allowClear
                                         autoComplete="off"
                                         value="amount"
@@ -719,6 +730,7 @@ const MintingForm = () => {
                                       ]}
                                     >
                                       <InputNumber
+                                        size="large"
                                         placeholder="Integer Number"
                                         autoComplete="off"
                                         className="w-100"
@@ -761,6 +773,7 @@ const MintingForm = () => {
                                                     ]}
                                                   >
                                                     <Input
+                                                      size="large"
                                                       allowClear
                                                       autoComplete="off"
                                                       placeholder="eg, url, twiter, author..."
@@ -786,6 +799,7 @@ const MintingForm = () => {
                                                     ]}
                                                   >
                                                     <Input
+                                                      size="large"
                                                       allowClear
                                                       autoComplete="off"
                                                     />
@@ -814,7 +828,7 @@ const MintingForm = () => {
                                           }
                                         )}
                                         <Button
-                                          className="ray__btn ray__btn--small ray__btn--transparent"
+                                          className="ray__btn ray__btn--clear ray__btn--transparent"
                                           onClick={() => extraAdd()}
                                         >
                                           <span className="ray__icon ray__icon--inline me-1">
@@ -852,6 +866,7 @@ const MintingForm = () => {
               <Input.Group compact className={style.assetGroup}>
                 <Form.Item className={style.assetKey}>
                   <Input
+                    size="large"
                     allowClear
                     autoComplete="off"
                     value="ticker"
@@ -867,12 +882,23 @@ const MintingForm = () => {
                     validationRules.max64bytes,
                   ]}
                 >
-                  <Input placeholder="eg, XRAY" allowClear autoComplete="off" />
+                  <Input
+                    size="large"
+                    placeholder="eg, XRAY"
+                    allowClear
+                    autoComplete="off"
+                  />
                 </Form.Item>
               </Input.Group>
               <Input.Group compact className={style.assetGroup}>
                 <Form.Item className={style.assetKey}>
-                  <Input allowClear autoComplete="off" value="name" disabled />
+                  <Input
+                    size="large"
+                    allowClear
+                    autoComplete="off"
+                    value="name"
+                    disabled
+                  />
                 </Form.Item>
                 <Form.Item
                   className={style.assetValue}
@@ -884,6 +910,7 @@ const MintingForm = () => {
                   ]}
                 >
                   <Input
+                    size="large"
                     placeholder="eg, XRAY Token"
                     allowClear
                     autoComplete="off"
@@ -893,6 +920,7 @@ const MintingForm = () => {
               <Input.Group compact className={style.assetGroup}>
                 <Form.Item className={style.assetKey}>
                   <Input
+                    size="large"
                     allowClear
                     autoComplete="off"
                     value="amount"
@@ -905,6 +933,7 @@ const MintingForm = () => {
                   rules={[validationRules.required]}
                 >
                   <InputNumber
+                    size="large"
                     placeholder="Amount"
                     autoComplete="off"
                     className="w-100"
@@ -934,6 +963,7 @@ const MintingForm = () => {
                               ]}
                             >
                               <Input
+                                size="large"
                                 allowClear
                                 autoComplete="off"
                                 placeholder="eg, url, twiter, author..."
@@ -950,11 +980,15 @@ const MintingForm = () => {
                                 validationRules.max64bytes,
                               ]}
                             >
-                              <Input allowClear autoComplete="off" />
+                              <Input
+                                size="large"
+                                allowClear
+                                autoComplete="off"
+                              />
                             </Form.Item>
                             <Form.Item className={style.assetRemove}>
                               <Button
-                                className="ray__btn ray__btn--small ray__btn--transparent ps-2 pe-2"
+                                className="ray__btn ray__btn--clear ray__btn--transparent ps-2 pe-2"
                                 onClick={() => {
                                   extraRemove(extraField.name)
                                 }}

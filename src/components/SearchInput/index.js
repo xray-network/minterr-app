@@ -73,7 +73,7 @@ const SearchInput = () => {
           enterButton="Search"
           onSearch={onSearch}
           autoComplete="off"
-          placeholder="Search assets by fingerprint, policy id, transaction, block, or address"
+          placeholder="Search assets by fingerprint, policy id, transaction, block, or address..."
         />
       </Form.Item>
     </Form>

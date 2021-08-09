@@ -132,7 +132,9 @@
   }
 
   &-upload {
+
     &.ant-upload-drag {
+      background: $white !important;
       border-radius: 8px;
     }
 
@@ -154,6 +156,7 @@
   &-checkbox {
     &-wrapper {
       font-size: rem(16);
+      color: $text;
     }
   }
 
@@ -335,6 +338,10 @@
       background: transparent !important;
       border-color: $dark-gray-3;
       color: $white;
+
+      &.ant-upload-drag {
+        background: $dark-gray-5 !important;
+      }
 
       &-text-icon .anticon {
         color: $dark-gray-2;

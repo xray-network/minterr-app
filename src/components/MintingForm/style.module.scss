@@ -4,6 +4,7 @@
   padding: rem(40) rem(30);
   border-radius: 12px;
   border: 1px solid $border;
+  // background: $gray-1;
 }
 
 .restoreInput {
@@ -122,6 +123,7 @@
 [data-theme="dark"] {
   .mintingForm {
     border: 1px solid $dark-border;
+    // background: $dark-gray-6;
   }
 
   .image {
