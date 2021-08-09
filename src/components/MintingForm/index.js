@@ -1003,7 +1003,7 @@ const MintingForm = () => {
                       )
                     })}
                     <Button
-                      className="ray__btn ray__btn--small ray__btn--transparent"
+                      className="ray__btn ray__btn--clear ray__btn--transparent"
                       onClick={() => extraAdd()}
                     >
                       <span className="ray__icon ray__icon--inline me-1">
