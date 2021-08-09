@@ -75,7 +75,7 @@ const Top = ({ project, rank }) => {
             </div>
           </div>
           <h2 className="mb-2">{project.name}</h2>
-          <div className="mb-2">{project.description}</div>
+          <div className="mb-2 text-muted">{project.description}</div>
           <div className="mb-2">
             <span className="me-2">
               {/* <span className="ray__icon ray__icon--inline">

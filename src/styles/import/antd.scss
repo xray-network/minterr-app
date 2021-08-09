@@ -178,21 +178,30 @@
     }
   }
 
-  // &-alert {
-  //   border-radius: 8px;
+  &-table {
+    background: none;
+    font-size: rem(16);
+    color: $dark;
 
-  //   &-message {
-  //     font-weight: 700;
-  //   }
-  // }
+    th {
+      transition: none !important;
+    }
 
-  // &-table {
-  //   background: none;
+    &-thead {
+      > tr > th {
+        background: $gray-2 !important;
+      }
+    }
 
-  //   th {
-  //     transition: none !important;
-  //   }
-  // }
+    &-tbody > tr.ant-table-placeholder > td {
+      background: transparent !important;
+      color: $dark-gray-2;
+
+      svg {
+        display: none;
+      }
+    }
+  }
 
   &-modal {
     &-mask {
@@ -357,54 +366,35 @@
         }
       }
     }
+
+    &-table {
+      color: $dark-gray-2;
+  
+      td,
+      th {
+        border-bottom-color: $dark-border;
+      }
+  
+      &-thead {
+        > tr > th {
+          background: $dark-gray-6 !important;
+          color: $dark-gray-2;
+  
+          &.ant-table-column-has-sorters {
+            &:hover {
+              background: darken($dark-gray-3, 17%) !important;
+            }
+          }
+        }
+      }
+  
+      &-row {
+        &:hover {
+          > td {
+            background: $dark-gray-4 !important;
+          }
+        }
+      }
+    }
   }
-
-  // .ant {
-
-  //   &-alert {
-  //     background: darken($dark-gray-3, 15%);
-  //     border-color: darken($dark-gray-3, 15%);
-  //     color: $white;
-
-  //     &-message {
-  //       color: $white;
-  //     }
-  //   }
-
-  //   &-table {
-  //     color: lighten($dark-gray-2, 5%);
-
-  //     td, th {
-  //       border-bottom-color: darken($dark-gray-3, 15%);
-  //     }
-
-  //     &-thead  {
-  //       > tr > th {
-  //         background: darken($dark-gray-3, 15%);
-  //         color: lighten($dark-gray-2, 5%);
-
-  //         &.ant-table-column-has-sorters {
-  //           &:hover {
-  //             background: darken($dark-gray-3, 17%) !important;
-  //           }
-  //         }
-  //       }
-  //     }
-
-  //     &-row {
-  //       &:hover {
-  //         > td {
-  //           background: $dark-gray-4 !important;
-  //         }
-  //       }
-  //     }
-  //   }
-
-  //   &-spin {
-  //     &-container {
-  //       &:after {
-  //         background: $dark-gray-4;
-  //       }
-  //     }
-  //   }
 }

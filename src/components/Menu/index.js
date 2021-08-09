@@ -39,7 +39,7 @@ const Menu = () => {
             <Link to="/" className={`${style.menuLogo} me-3`}>
               <SVGMinterr />
             </Link>
-            <div className={`d-none d-md-inline ${style.menuLogoDescr}`}>
+            <div className={`d-none text-muted d-md-inline ${style.menuLogoDescr}`}>
               Cardano NFT Explorer & Minter
               <br />
               by Ray Network

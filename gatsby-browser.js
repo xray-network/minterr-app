@@ -16,6 +16,8 @@ import "antd/es/form/style/index.css"
 import "antd/es/input-number/style/index.css"
 import "antd/es/modal/style/index.css"
 import "antd/es/result/style/index.css"
+import "antd/es/pagination/style/index.css"
+import "antd/es/select/style/index.css"
 
 import "aos/dist/aos.css"
 import "bootstrap/dist/css/bootstrap.min.css"

@@ -216,7 +216,7 @@ const Asset = ({ fingerprint }) => {
                           <Tooltip
                             title={
                               <div className="text-center">
-                                If you see the image in the following link, you don't need to take any action, just surf the NFT!
+                                Pass the captcha on the following link. If you see an image, you don't need to take any action, just surf the NFT!
                               </div>
                             }
                           >

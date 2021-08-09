@@ -83,6 +83,14 @@
       }
     }
 
+    &--white {
+      svg {
+        * {
+          fill: $white !important;
+        }
+      }
+    }
+
     // @at-root {
     //   a:not(.ray__btn),
     //   .cursor-pointer {

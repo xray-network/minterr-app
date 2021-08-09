@@ -15,7 +15,6 @@ import {
   SVGCategory,
   SVGAndroid,
   SVGInternet,
-  SVGZap,
 } from "@/svg"
 import * as style from "./style.module.scss"
 import imgWallet1 from "./wallet1.png"
@@ -56,13 +55,13 @@ const MegaMenu = () => {
           <span className="ms-auto me-3 d-none d-sm-inline">
             <a
               href="https://raywallet.io"
-              className="ant-btn ray__btn--orange ray__btn ray__btn--round"
+              className="ant-btn ray__btn ray__btn--round"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <span className="pe-2">Mint Token</span>
+              <span className="pe-2">Ray Wallet</span>
               <span className="ray__icon">
-                <SVGZap />
+                <SVGWallet />
               </span>
             </a>
           </span>
