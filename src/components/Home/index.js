@@ -65,6 +65,8 @@ const Explorer = () => {
     // eslint-disable-next-line
   }, [])
 
+  let isDragging
+
   return (
     <div className="ray__block pt-3">
       <div className={style.block}>
@@ -87,14 +89,30 @@ const Explorer = () => {
                 disableDotsControls
                 autoPlay
                 autoPlayInterval={3000}
-                // mouseTracking
+                mouseTracking
                 autoPlayStrategy="none"
                 autoWidth
                 paddingLeft={150}
                 paddingRight={150}
               >
                 {[...projects, ...projects].map((project, index) => (
-                  <div key={index} className={style.sliderItem}>
+                  <div
+                    key={index}
+                    className={style.sliderItem}
+                    onDragStart={(e) => {
+                      e.preventDefault();
+                      isDragging = true
+                    }}
+                    onClickCapture={(e) => {
+                      if (isDragging) {
+                        isDragging = false
+                        e.preventDefault()
+                        return
+                      }
+                    }}
+                    role="button"
+                    tabIndex="0"
+                  >
                     <Link to={`/explorer/search/?policyID=${project.policies[0]}`}>
                       <img src={`https://raw.githubusercontent.com/ray-network/cardano-verified-nft-projects/main/logo/${project.image}`} alt={project.name} />
                     </Link>
