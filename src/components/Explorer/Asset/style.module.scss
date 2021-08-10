@@ -11,9 +11,14 @@
   @media (max-width: $sm-max-width) {
     transform: none !important;
     cursor: auto !important;
+    will-change: none;
 
     &3d {
       display: none;
+    }
+
+    &Inner {
+      transform: none !important;
     }
   }
 
@@ -169,6 +174,10 @@
     max-height: rem(400);
     width: auto !important;
     height: auto !important;
+
+    @media (max-width: $sm-max-width) {
+      max-width: 100% !important;
+    }
   }
 }
 

@@ -9,8 +9,6 @@ const Gallery = ({ tokens }) => {
   const diff = 14
   const [count, setCount] = useState(diff)
 
-  console.log(tokens)
-
   return (
     <div>
       <div className={style.container}>

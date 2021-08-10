@@ -10,7 +10,6 @@ import * as style from "./style.module.scss"
 const Top = ({ project, rank }) => {
   const [showAll, setShowAll] = useState(false)
   // const [loading] = useState(false)
-  // console.log(loading)
 
   const onCopy = () => {
     message.success("Copied to clipboard")

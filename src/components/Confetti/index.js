@@ -12,8 +12,6 @@ const ConfettiBlock = ({ policyId }) => {
     return item.policies.filter((policy) => policy === policyId)[0] === policyId
   }).length
 
-  console.log(inProjects)
-
   return (
     <div>
       {inProjects && (
