@@ -136,19 +136,6 @@ const Menu = () => {
           </span>
         </Link>
         <Link
-          to="/top-nft-projects/"
-          className={style.submenuLink}
-          activeClassName={style.submenuLinkActive}
-        >
-          <span className="ray__icon me-2">
-            <SVGTrophy />
-          </span>
-          <span className={style.submenuLinkWidth}>
-            <span>Top Projects</span>
-            <span>Top Projects</span>
-          </span>
-        </Link>
-        <Link
           to="/mint-cardano-tokens/"
           className={style.submenuLink}
           activeClassName={style.submenuLinkActive}
@@ -159,6 +146,19 @@ const Menu = () => {
           <span className={style.submenuLinkWidth}>
             <span>Mint Tokens</span>
             <span>Mint Tokens</span>
+          </span>
+        </Link>
+        <Link
+          to="/top-nft-projects/"
+          className={style.submenuLink}
+          activeClassName={style.submenuLinkActive}
+        >
+          <span className="ray__icon me-2">
+            <SVGTrophy />
+          </span>
+          <span className={style.submenuLinkWidth}>
+            <span>Top Projects</span>
+            <span>Top Projects</span>
           </span>
         </Link>
       </div>

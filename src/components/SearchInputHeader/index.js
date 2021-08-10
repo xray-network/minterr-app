@@ -1,6 +1,6 @@
 import React from "react"
 import { navigate } from "gatsby"
-import { Input, Form, message } from "antd"
+import { Input, Form } from "antd"
 import Cardano from "@/services/cardano"
 import { SVGSearch } from "@/svg"
 import * as style from "./style.module.scss"
@@ -34,7 +34,7 @@ const SearchInputHeader = () => {
         navigate(`/explorer/search/?address=${value}`)
         break
       default:
-        if (value) message.error("Wrong Cardano entity", 1)
+        navigate(`/explorer/?name=${value}`)
         break
     }
   }
@@ -69,7 +69,7 @@ const SearchInputHeader = () => {
           }
           onSearch={onSearch}
           autoComplete="off"
-          placeholder="Search assets by fingerprint, policy id, transaction, block, or address"
+          placeholder="Search assets by name, fingerprint, policy id, transaction, block, or address"
         />
       </Form.Item>
     </Form>

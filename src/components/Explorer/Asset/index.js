@@ -5,6 +5,7 @@ import { Helmet } from "react-helmet"
 import { Tooltip } from "antd"
 import { format as formatDate } from "date-fns"
 import ReactJson from "react-json-view-ssr"
+import Tilty from 'react-tilty'
 import store from "store"
 import { Link } from "gatsby"
 import {
@@ -48,14 +49,17 @@ const query = (fingerpint) => `
 const Asset = ({ fingerprint }) => {
   const networkBlock = useSelector((state) => state.settings.networkBlock)
   const theme = useSelector((state) => state.settings.theme)
-  const [isLight, setIsLight] = useState(
-    store.get("app.settings.viewerLight") || false
-  )
   const [loading, setLoading] = useState(true)
   const [loadingImg, setLoadingImg] = useState(true)
   const [found, setFound] = useState(false)
   const [assetInfo, setAssetInfo] = useState({})
   const [selectedMint, setSelectedMint] = useState()
+  const [isLight, setIsLight] = useState(
+    store.get("app.settings.viewerLight") || false
+  )
+  const [disable3d, setDisable3d] = useState(
+    store.get("app.settings.disable3d") || false
+  )
 
   useEffect(() => {
     if (networkBlock !== 0) {
@@ -76,6 +80,11 @@ const Asset = ({ fingerprint }) => {
         })
     }
   }, [networkBlock, fingerprint])
+
+  const switch3d = () => {
+    setDisable3d(!disable3d)
+    store.set("app.settings.disable3d", !disable3d)
+  }
 
   const switchColor = () => {
     setIsLight(!isLight)
@@ -149,160 +158,171 @@ const Asset = ({ fingerprint }) => {
             <meta property="og:image" content={imageUrl} />
           </Helmet>
           <Confetti policyId={assetInfo.policyId} />
-          <div
-            className={`${style.preview} ${isLight ? style.previewLight : ""}`}
-          >
+          <Tilty className={`${style.tilt} ${disable3d && style.tiltDisabled}`} reverse={true} max={25}>
             <div
-              className={style.switchTheme}
-              onClick={switchColor}
-              onKeyPress={switchColor}
-              role="button"
-              tabIndex="0"
+              className={`${style.preview} ${isLight ? style.previewLight : ""}`}
             >
-              {isLight && <SVGSun />}
-              {!isLight && <SVGMoon />}
-            </div>
-            <div className={style.previewInner}>
-              <div className="px-5">
-                <h1 className="mb-1">
-                  <span className={style.title}>{imageName}</span>
-                </h1>
-                <div className="mb-3">
-                  Quantity: <strong>{format(assetInfo.quantity || 0)}</strong> —{" "}
-                  <span className="text-break">{fingerprint}</span>
-                  <div>
-                    Policy ID{" "}
-                    <Link
-                      to={`/explorer/search/?policyID=${assetInfo.policyId}`}
-                      className="link--dashed text-break"
-                    >
-                      {assetInfo.policyId}
-                    </Link>
+              <div
+                className={style.switchTheme}
+                onClick={switchColor}
+                onKeyPress={switchColor}
+                role="button"
+                tabIndex="0"
+              >
+                {isLight && <SVGSun />}
+                {!isLight && <SVGMoon />}
+              </div>
+              <div
+                className={style.tilt3d}
+                onClick={switch3d}
+                onKeyPress={switch3d}
+                role="button"
+                tabIndex="0"
+              >
+                3D
+              </div>
+              <div className={style.previewInner}>
+                <div className="px-5">
+                  <h1 className="mb-1">
+                    <span className={style.title}>{imageName}</span>
+                  </h1>
+                  <div className="mb-3">
+                    Quantity: <strong>{format(assetInfo.quantity || 0)}</strong> —{" "}
+                    <span className="text-break">{fingerprint}</span>
+                    <div>
+                      Policy ID{" "}
+                      <Link
+                        to={`/explorer/search/?policyID=${assetInfo.policyId}`}
+                        className="link--dashed text-break"
+                      >
+                        {assetInfo.policyId}
+                      </Link>
+                    </div>
                   </div>
                 </div>
-              </div>
-              {assetInfo.metadataNft?.image && (
-                <div className="pt-4">
-                  {/* <div className={style.by}>
+                {assetInfo.metadataNft?.image && (
+                  <div className="pt-4">
+                    {/* <div className={style.by}>
                     {assetInfo.minterr && "Minted & Explored by "}
                     {!assetInfo.minterr && "Explored by "}
                     <SVGMinterr />
                   </div> */}
-                  <div className={style.image}>
-                    <img
-                      className={loadingImg ? "visually-hidden" : ""}
-                      ref={(input) => {
-                        if (!input) {
-                          return
-                        }
-                        input.onload = () => {
-                          setLoadingImg(false)
-                        }
-                      }}
-                      alt={imageName}
-                      src={imageUrl}
-                    />
-                    {loadingImg && (
-                      <div className="text-center mt-3 pt-5 pb-5">
-                        <div
-                          className="spinner-border spinner-border-lg text-primary"
-                          role="status"
-                        >
-                          <span className="visually-hidden">Loading...</span>
-                        </div>
-                        <div className="mt-3">
-                          Loading...
-                          <br />
-                          <Tooltip
-                            title={
-                              <div className="text-center">
-                                Pass the captcha on the following link. If you see an image, you don't need to take any action, just surf the NFT!
-                              </div>
-                            }
+                    <div className={style.image}>
+                      <img
+                        className={`${style.tiltInner} ${loadingImg ? "visually-hidden" : ""}`}
+                        ref={(input) => {
+                          if (!input) {
+                            return
+                          }
+                          input.onload = () => {
+                            setLoadingImg(false)
+                          }
+                        }}
+                        alt={imageName}
+                        src={imageUrl}
+                      />
+                      {loadingImg && (
+                        <div className="text-center mt-3 pt-5 pb-5">
+                          <div
+                            className="spinner-border spinner-border-lg text-primary"
+                            role="status"
                           >
-                            <a
-                              href={`${imageUrl}?v=${Math.random()}`}
-                              target="_blank"
-                              rel="noopener noreferrer"
+                            <span className="visually-hidden">Loading...</span>
+                          </div>
+                          <div className="mt-3">
+                            Loading...
+                            <br />
+                            <Tooltip
+                              title={
+                                <div className="text-center">
+                                  Pass the captcha on the following link. If you see an image, you don't need to take any action, just surf the NFT!
+                                </div>
+                              }
                             >
-                              Unable to load?
-                            </a>
-                          </Tooltip>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                  {metadataNftTransformed.length > 0 && (
-                    <div
-                      className={`${style.shortMetadata} text-break max-width-700 ms-auto mt-5 me-auto`}
-                    >
-                      {metadataNftTransformed.map((item, index) => {
-                        const [key, value] = item
-                        const stopWords = ["image", "Image", "name", "Name"]
-                        if (stopWords.includes(key)) {
-                          return <span key={index} />
-                        } else if (validUrl(value)) {
-                          return (
-                            <span style={{ color: randomHSL() }} key={index}>
-                              <span className="text-capitalize">{key}</span>:{" "}
                               <a
-                                href={value}
+                                href={`${imageUrl}?v=${Math.random()}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
                               >
-                                {value}
+                                Unable to load?
                               </a>
-                              {metadataNftTransformed.length === index + 1
-                                ? ""
-                                : ", "}
-                            </span>
-                          )
-                        } else if (
-                          typeof value === "string" ||
-                          typeof value === "number"
-                        ) {
+                            </Tooltip>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                    {metadataNftTransformed.length > 0 && (
+                      <div
+                        className={`${style.shortMetadata} text-break max-width-700 ms-auto mt-5 me-auto`}
+                      >
+                        {metadataNftTransformed.map((item, index) => {
+                          const [key, value] = item
+                          const stopWords = ["image", "Image", "name", "Name"]
+                          if (stopWords.includes(key)) {
+                            return <span key={index} />
+                          } else if (validUrl(value)) {
+                            return (
+                              <span style={{ color: randomHSL() }} key={index}>
+                                <span className="text-capitalize">{key}</span>:{" "}
+                                <a
+                                  href={value}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                >
+                                  {value}
+                                </a>
+                                {metadataNftTransformed.length === index + 1
+                                  ? ""
+                                  : ", "}
+                              </span>
+                            )
+                          } else if (
+                            typeof value === "string" ||
+                            typeof value === "number"
+                          ) {
+                            return (
+                              <span style={{ color: randomHSL() }} key={index}>
+                                <span className="text-capitalize text-break">
+                                  {key}
+                                </span>
+                                : {value}
+                                {metadataNftTransformed.length === index + 1
+                                  ? ""
+                                  : ", "}
+                              </span>
+                            )
+                          }
                           return (
                             <span style={{ color: randomHSL() }} key={index}>
                               <span className="text-capitalize text-break">
                                 {key}
                               </span>
-                              : {value}
+                              : [...]
                               {metadataNftTransformed.length === index + 1
                                 ? ""
                                 : ", "}
                             </span>
                           )
-                        }
-                        return (
-                          <span style={{ color: randomHSL() }} key={index}>
-                            <span className="text-capitalize text-break">
-                              {key}
-                            </span>
-                            : [...]
-                            {metadataNftTransformed.length === index + 1
-                              ? ""
-                              : ", "}
-                          </span>
-                        )
-                      })}
-                    </div>
-                  )}
-                </div>
-              )}
-              {!assetInfo.metadataNft && (
-                <div className={style.notFound}>
-                  <SVGFavicon />
-                  <div>Fungible Token</div>
-                </div>
-              )}
-              {assetInfo.metadataNft && !assetInfo.metadataNft.image && (
-                <div className={style.notFound}>
-                  <SVGFavicon />
-                  <div>Image Not Found</div>
-                </div>
-              )}
+                        })}
+                      </div>
+                    )}
+                  </div>
+                )}
+                {!assetInfo.metadataNft && (
+                  <div className={style.notFound}>
+                    <SVGFavicon />
+                    <div>Fungible Token</div>
+                  </div>
+                )}
+                {assetInfo.metadataNft && !assetInfo.metadataNft.image && (
+                  <div className={style.notFound}>
+                    <SVGFavicon />
+                    <div>Image Not Found</div>
+                  </div>
+                )}
+              </div>
             </div>
-          </div>
+          </Tilty>
           <div>
             <div className="mb-5">
               <InlineShareButtons

@@ -33,6 +33,7 @@ const SearchInput = () => {
         navigate(`/explorer/search/?address=${value}`)
         break
       default:
+        navigate(`/explorer/?name=${value}`)
         break
     }
   }
@@ -52,20 +53,7 @@ const SearchInput = () => {
 
   return (
     <Form className="pb-4" form={form} layout="vertical" requiredMark={false}>
-      <Form.Item
-        name="searchEntity"
-        rules={[
-          { required: true, message: "Required" },
-          () => ({
-            validator(_, value) {
-              if (!value || detectEntity(value)) {
-                return Promise.resolve()
-              }
-              return Promise.reject(new Error("Must be a valid Cardano entity"))
-            },
-          }),
-        ]}
-      >
+      <Form.Item name="searchEntity">
         <Input.Search
           allowClear
           size="large"
@@ -73,7 +61,7 @@ const SearchInput = () => {
           enterButton="Search"
           onSearch={onSearch}
           autoComplete="off"
-          placeholder="Search assets by fingerprint, policy id, transaction, block, or address..."
+          placeholder="Search assets by name, fingerprint, policy id, transaction, block, or address..."
         />
       </Form.Item>
     </Form>

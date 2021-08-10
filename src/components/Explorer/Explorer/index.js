@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { Table, Input } from "antd"
-import { Link } from "gatsby"
+import { Link, navigate } from "gatsby"
 import { useSelector } from "react-redux"
 import Cardano from "@/services/cardano"
 import { format as formatDate } from "date-fns"
@@ -72,8 +72,9 @@ const columns = [
   },
 ]
 
-const Explorer = () => {
+const Explorer = ({ search }) => {
   const init = useSelector((state) => state.settings.init)
+  const [value, setValue] = useState(search)
   const [totalCount, setTotalCount] = useState(0)
   const [dataSource, setDataSource] = useState([])
   const [loading, setLoading] = useState(true)
@@ -85,9 +86,12 @@ const Explorer = () => {
   })
 
   useEffect(() => {
-    fetchData(0)
+    if (init) {
+      const hex = search ? Buffer.from(search, "utf-8").toString('hex') : ''
+      fetchData(0, hex)
+    }
     // eslint-disable-next-line
-  }, [init])
+  }, [init, search])
 
   const fetchData = (offset, name = '') => {
     setLoading(true)
@@ -114,8 +118,7 @@ const Explorer = () => {
   }
 
   const onSearch = (name) => {
-    const hex = Buffer.from(name, "utf-8").toString('hex')
-    fetchData(0, hex)
+    navigate(`?name=${name}`)
   }
 
   return (
@@ -127,10 +130,19 @@ const Explorer = () => {
       </div>
       <div className="ray__left mb-4">
         <h2 className="mb-0">
-          Explorer: Cardano Native Tokens{" "}
-          <span role="img" aria-label="">
-            👀
-          </span>
+          {!search && (
+            <div>
+              Explorer: Cardano Native Tokens{" "}
+              <span role="img" aria-label="">
+                👀
+              </span>
+            </div>
+          )}
+          {search && (
+            <div>
+              Search Name: "{search}"
+            </div>
+          )}
         </h2>
         <span className="text-muted">Total {format(totalCount)} tokens</span>
       </div>
@@ -144,6 +156,8 @@ const Explorer = () => {
             </span>
           }
           onSearch={onSearch}
+          onChange={e => setValue(e.target.value)}
+          value={value}
           autoComplete="off"
           placeholder="Search assets by name (exact match and case sensitive)..."
         />

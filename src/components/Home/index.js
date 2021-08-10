@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import AliceCarousel from "react-alice-carousel"
 import { useSelector } from "react-redux"
 import { Link, navigate } from "gatsby"
 import { Button } from "antd"
@@ -28,6 +29,8 @@ const query = `
 
 const Explorer = () => {
   const networkBlock = useSelector((state) => state.settings.networkBlock)
+  const [projects, setProjects] = useState([])
+  const [loadingProjects, setLoadingProjects] = useState(true)
   const [stat, setStat] = useState({
     assets: 0,
     epochs: 0,
@@ -52,9 +55,55 @@ const Explorer = () => {
     }
   }, [networkBlock])
 
+  useEffect(() => {
+    fetch('https://raw.githubusercontent.com/ray-network/cardano-verified-nft-projects/main/list.json')
+      .then(response => response.json())
+      .then(projectsData => {
+        setProjects(projectsData)
+        setLoadingProjects(false)
+      })
+    // eslint-disable-next-line
+  }, [])
+
   return (
     <div className="ray__block pt-3">
       <div className={style.block}>
+        <div className={style.slider}>
+          {loadingProjects && (
+            <div
+              className="spinner-border spinner-border-lg text-primary mt-5"
+              role="status"
+            >
+              <span className="visually-hidden">Loading...</span>
+            </div>
+          )}
+          {!loadingProjects && (
+            <>
+              <Link to="/top-nft-projects/" className={style.sliderLink}>Top Projects &rarr;</Link>
+              <AliceCarousel
+                autoHeight={false}
+                infinite
+                disableButtonsControls
+                disableDotsControls
+                autoPlay
+                autoPlayInterval={3000}
+                // mouseTracking
+                autoPlayStrategy="none"
+                autoWidth
+                paddingLeft={150}
+                paddingRight={150}
+              >
+                {[...projects, ...projects].map((project, index) => (
+                  <div key={index} className={style.sliderItem}>
+                    <Link to={`/explorer/search/?policyID=${project.policies[0]}`}>
+                      <img src={`https://raw.githubusercontent.com/ray-network/cardano-verified-nft-projects/main/logo/${project.image}`} alt={project.name} />
+                    </Link>
+                  </div>
+                ))}
+              </AliceCarousel>
+            </>
+          )}
+        </div>
         <h1 className="mb-5">
           Are you here to find NFT diamonds?
           <br />

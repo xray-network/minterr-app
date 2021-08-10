@@ -111,6 +111,10 @@
     max-width: rem(1260);
     margin: 0 auto rem(80);
     padding: 0 rem(25);
+
+    @media (max-width: $sm-max-width) {
+      padding: rem(15);
+    }
   }
 
   &__box {

@@ -11,7 +11,7 @@
   
   &Inner {
     position: relative;
-    z-index: 10;
+    z-index: 1;
     text-align: center;
     background: $pastel-1;
     padding: rem(20) rem(20);
@@ -40,7 +40,7 @@
 [data-theme="dark"] {
   .banner {
     &Inner {
-      background: $dark-gray-6;
+      background: #000;
     }
   }
 }

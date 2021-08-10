@@ -1,5 +1,73 @@
 @import "@/styles/mixins";
 
+.tilt {
+  transform-style: preserve-3d;
+  will-change: transform;
+  position: relative;
+  z-index: 3;
+  transform: perspective(1000px);
+  cursor: none;
+
+  @media (max-width: $sm-max-width) {
+    transform: none !important;
+    cursor: auto !important;
+
+    &3d {
+      display: none;
+    }
+  }
+
+  &Inner {
+    transform: translateZ(50px);
+  }
+
+  &3d {
+    position: absolute;
+    top: rem(12);
+    right: rem(50);
+    background: $white;
+    color: $dark;
+    border-radius: 8px;
+    padding: rem(1) rem(5) rem(0);
+    border: 1px solid $white;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  .preview {
+    &Light {
+      .tilt3d {
+        background: $dark;
+        color: $white;
+        border-color: $dark;
+      }
+    }
+  }
+
+  &Disabled {
+    transform: none !important;
+    cursor: auto;
+
+    .tilt3d {
+      background: #000;
+      border-color: $dark-gray-2;
+      color: $white;
+    }
+
+    .preview {
+      &Light {
+        .tilt3d {
+          background: $white;
+          color: $dark;
+          border-color: $gray-3;
+        }
+      }
+    }
+  }
+
+  
+}
+
 .preview {
   background: #000000;
   border: 1px solid #000000;
@@ -8,7 +76,6 @@
   padding: rem(60) 0 rem(70);
   margin: 0 auto rem(40);
   position: relative;
-  overflow: hidden;
   text-align: center;
 
   &Light {
@@ -96,7 +163,6 @@
   display: flex;
   align-content: center;
   justify-content: center;
-  overflow: hidden;
 
   img {
     max-width: rem(600);

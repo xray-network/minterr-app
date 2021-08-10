@@ -189,7 +189,7 @@
 
     &-thead {
       > tr > th {
-        background: $gray-2 !important;
+        background: transparent !important;
       }
     }
 
@@ -377,7 +377,7 @@
   
       &-thead {
         > tr > th {
-          background: $dark-gray-6 !important;
+          background: transparent !important;
           color: $dark-gray-2;
   
           &.ant-table-column-has-sorters {
