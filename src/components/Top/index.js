@@ -52,7 +52,7 @@ const Top = () => {
                     votes: (parseInt(parseInt(paymentAddressesResults[item.voteAddress]) / 1000000 * 10)).toString(),
                   }
                 })
-                .sort((a, b) => b.votes.localeCompare(a.votes))
+                .sort((a, b) => b.votes - a.votes)
             )
           })
       })
