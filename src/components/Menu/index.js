@@ -109,6 +109,19 @@ const Menu = () => {
           </span>
         </Link>
         <Link
+          to="/mint-cardano-tokens/"
+          className={style.submenuLink}
+          activeClassName={style.submenuLinkActive}
+        >
+          <span className="ray__icon me-2">
+            <SVGAddCircled />
+          </span>
+          <span className={style.submenuLinkWidth}>
+            <span>Mint Tokens</span>
+            <span>Mint Tokens</span>
+          </span>
+        </Link>
+        <Link
           to="/explorer/"
           className={style.submenuLink}
           activeClassName={style.submenuLinkActive}
@@ -133,19 +146,6 @@ const Menu = () => {
           <span className={style.submenuLinkWidth}>
             <span>Live Feed</span>
             <span>Live Feed</span>
-          </span>
-        </Link>
-        <Link
-          to="/mint-cardano-tokens/"
-          className={style.submenuLink}
-          activeClassName={style.submenuLinkActive}
-        >
-          <span className="ray__icon me-2">
-            <SVGAddCircled />
-          </span>
-          <span className={style.submenuLinkWidth}>
-            <span>Mint Tokens</span>
-            <span>Mint Tokens</span>
           </span>
         </Link>
         <Link

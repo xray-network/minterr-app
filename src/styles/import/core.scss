@@ -8,9 +8,12 @@ body {
 }
 
 html {
-  font-size: 16px;
+  font-size: 18px;
   @media (max-width: $lg-max-width) {
-    font-size: 14px;
+    font-size: 16px;
+  }
+  @media (max-width: $sm-max-width) {
+    font-size: 15px;
   }
 }
 
@@ -167,7 +170,7 @@ code {
 // dark theme
 [data-theme="dark"] {
   body {
-    background: $dark-gray-5;
+    background: $dark-gray-6;
     color: $dark-gray-2;
 
     &:before {

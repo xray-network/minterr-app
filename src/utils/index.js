@@ -33,7 +33,8 @@ export const randomHSL = () => {
 
 export const imageStringToCloudflare = (i) => {
   // const provider = "https://ipfs.blockfrost.dev/ipfs/"
-  const provider = 'https://cloudflare-ipfs.com/ipfs/'
+  // const provider = 'https://cloudflare-ipfs.com/ipfs/'
+  const provider = "https://infura-ipfs.io/ipfs/"
 
   if (!(typeof i === "string")) {
     return ""

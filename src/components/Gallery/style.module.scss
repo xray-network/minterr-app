@@ -24,28 +24,28 @@
 
 .image {
   position: relative;
-  height: rem(150);
-  width: rem(130);
+  width: rem(150);
+  height: rem(180);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: #000000;
-  border-radius: 8px;
+  background: $pastel-1;
+  border-radius: 3px;
   overflow: hidden;
   margin-bottom: rem(5);
 
   @media (max-width: 360px) {
-    width: rem(110);
-    height: rem(130);
+    width: rem(120);
+    height: rem(140);
   }
 
   &Fungible {
-    background: $orange;
+    // background: darken($pastel-1, 2%);
 
-    .placeholder {
-      color: $white;
-    }
+    // .placeholder {
+    //   color: $blue;
+    // }
   }
 
   canvas {
@@ -95,7 +95,7 @@
     svg {
       margin: 0 auto;
       * {
-        fill: $white !important;
+        fill: $dark !important;
       }
     }
   }
@@ -119,8 +119,9 @@
   font-size: rem(11);
   position: absolute;
   z-index: 2;
-  border: 2px solid $dark;
-  background: $success;
+  border: 2px solid $success;
+  background: $pastel-1;
+  color: $success !important;
   padding: 0 rem(5);
   border-radius: 8px;
   top: rem(5);
@@ -142,26 +143,46 @@
     }
   }
 
+  .type {
+    background: $dark-gray-5;
+    color: $white;
+    border-color: $white;
+  }
+
+  .minted {
+    background: $dark-gray-5;
+    color: $success;
+    border-color: $success;
+  }
+
   .image {
-    background: $white;
+    background: $dark-gray-5;
 
     &Fungible {
-      background: $orange;
+      // background: $orange;
 
-      .placeholder {
-        color: $dark;
-      }
+      // .placeholder {
+      //   color: $dark;
+      // }
     }
   }
 
   .placeholder {
-    color: $dark !important;
+    a {
+      color: $blue-light;
+  
+      &:hover,
+      &:focus,
+      &:active {
+        color: $white;
+      }
+    }
 
     :global(.ray__icon) {
       color: $dark !important;
       svg {
         * {
-          fill: $dark !important;
+          fill: $gray-2 !important;
         }
       }
     }

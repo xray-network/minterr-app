@@ -51,7 +51,7 @@ const Footer = () => {
                         href="https://rraayy.com/wallet/"
                         className="text-muted"
                       >
-                        Ray Wallet
+                        RayWallet
                       </a>
                     </li>
                     <li>
@@ -59,12 +59,12 @@ const Footer = () => {
                         href="https://rraayy.com/stake/"
                         className="text-muted"
                       >
-                        Ray Stake
+                        RayStake
                       </a>
                     </li>
                     <li>
                       <a href="https://rraayy.com/swap/" className="text-muted">
-                        Ray Swap
+                        RaySwap
                       </a>
                     </li>
                     <li>
@@ -72,7 +72,7 @@ const Footer = () => {
                         href="https://rraayy.com/kickstart/"
                         className="text-muted"
                       >
-                        Ray Kickstart
+                        RayKickstart
                       </a>
                     </li>
                     <li>
@@ -80,7 +80,7 @@ const Footer = () => {
                         href="https://rraayy.com/nft/"
                         className="text-muted"
                       >
-                        Ray NFT
+                        RayNFT
                       </a>
                     </li>
                     <li>
@@ -88,12 +88,12 @@ const Footer = () => {
                         href="https://rraayy.com/graph/"
                         className="text-muted"
                       >
-                        Ray Graph
+                        RayGraph
                       </a>
                     </li>
                     <li>
                       <a href="https://rraayy.com/data/" className="text-muted">
-                        Ray Data
+                        RayData
                       </a>
                     </li>
                     <li>
@@ -111,10 +111,10 @@ const Footer = () => {
                     </li>
                     <li>
                       <a
-                        href="https://rraayy.com/tokens-list/"
+                        href="https://rraayy.com/cardano-list/"
                         className="text-muted"
                       >
-                        Tokens List
+                        Cardano List
                       </a>
                     </li>
                   </ul>
@@ -137,7 +137,7 @@ const Footer = () => {
                     </li>
                     <li>
                       <a
-                        href="https://rraayy.com/xray/xdiamond/"
+                        href="https://rraayy.com/xdiamond/"
                         className="text-muted"
                       >
                         XDIAMOND
@@ -289,7 +289,7 @@ const Footer = () => {
               <div className="row">
                 <div className="col-6 col-sm-12">
                   <div className="mb-3">
-                    <h6 className="mb-0">Ray Wallet Apps</h6>
+                    <h6 className="mb-0">RayWallet Apps</h6>
                   </div>
                   <div className="mb-4">
                     <div>
@@ -360,13 +360,13 @@ const Footer = () => {
                 </div>
                 <div className="col-6 col-sm-12">
                   <div className="mb-3">
-                    <h6 className="mb-0">Ray Stake Apps</h6>
+                    <h6 className="mb-0">RayStake Apps</h6>
                   </div>
                   <div className="mb-4">
                     <div>
                       <Tooltip title="Web Version">
                         <a
-                          href="https://rraayy.com/stake/track/"
+                          href="https://rraayy.com/stake/"
                           className={style.footerApp}
                         >
                           <span className="ray__icon ray__icon--22">
@@ -376,7 +376,7 @@ const Footer = () => {
                       </Tooltip>
                       <Tooltip title="iOS App">
                         <a
-                          href="https://rraayy.com/stake/track/"
+                          href="https://rraayy.com/stake/"
                           className={style.footerApp}
                         >
                           <span className="ray__icon ray__icon--22">
@@ -386,7 +386,7 @@ const Footer = () => {
                       </Tooltip>
                       <Tooltip title="Android App">
                         <a
-                          href="https://rraayy.com/stake/track/"
+                          href="https://rraayy.com/stake/"
                           className={style.footerApp}
                         >
                           <span className="ray__icon ray__icon--22">

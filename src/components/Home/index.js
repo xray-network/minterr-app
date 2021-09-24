@@ -145,7 +145,7 @@ const Explorer = () => {
             Mint a token!
           </Button>
         </div>
-        <div className="text-muted max-width-800 mx-auto">
+        <div className="text-muted mx-auto">
           <p className="mb-2">
             Current epoch is <strong>{stat.epochs}</strong>. During this time,{" "}
             <strong>{stat.assets}</strong> tokens have been minted{" "}

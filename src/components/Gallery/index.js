@@ -6,7 +6,7 @@ import { format } from "@/utils/index"
 import * as style from "./style.module.scss"
 
 const Gallery = ({ tokens }) => {
-  const diff = 14
+  const diff = 16
   const [count, setCount] = useState(diff)
 
   return (

@@ -74,7 +74,6 @@
     display: flex;
     padding: rem(8) 0;
     border-radius: 5px;
-    background: $white;
     color: $dark;
     line-height: 1;
 
@@ -101,7 +100,6 @@
 }
 
 .share {
-  background: $white;
   padding: rem(60) rem(10) 0;
   margin-top: rem(40);
   border-top: 1px solid $border;
@@ -118,15 +116,9 @@
         color: $dark;
       }
     }
-
-    &Vote {
-      background: $dark-gray-5;
-      color: $white;
-    }
   }
 
   .share {
-    background: $dark-gray-5;
     border-top: 1px solid $dark-border;
   }
 }

@@ -59,7 +59,7 @@ const MegaMenu = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <span className="pe-2">Ray Wallet</span>
+              <span className="pe-2">RayWallet</span>
               <span className="ray__icon">
                 <SVGWallet />
               </span>
@@ -94,17 +94,7 @@ const MegaMenu = () => {
         </div>
         <div className="ray__line" />
       </div>
-      <div className="ray__block pt-5 mb-0">
-        <div className="ray__left" data-aos="fade-up" data-aos-delay="0">
-          <h1>
-            Welcome to Ray Network!{" "}
-            <span role="img" aria-label="">
-              👋
-            </span>
-            <br />
-            Our Cardano ecosystem is waiting for you!
-          </h1>
-        </div>
+      <div className="ray__block pt-3 mb-0">
         <div className="mb-5">
           <div className={style.footerTop}>
             <div className="row">
@@ -127,7 +117,7 @@ const MegaMenu = () => {
                           href="https://rraayy.com/wallet/"
                           className="text-muted"
                         >
-                          Ray Wallet
+                          RayWallet
                         </a>
                       </li>
                       <li>
@@ -135,7 +125,7 @@ const MegaMenu = () => {
                           href="https://rraayy.com/stake/"
                           className="text-muted"
                         >
-                          Ray Stake
+                          RayStake
                         </a>
                       </li>
                       <li>
@@ -143,7 +133,7 @@ const MegaMenu = () => {
                           href="https://rraayy.com/swap/"
                           className="text-muted"
                         >
-                          Ray Swap
+                          RaySwap
                         </a>
                       </li>
                       <li>
@@ -151,7 +141,7 @@ const MegaMenu = () => {
                           href="https://rraayy.com/kickstart/"
                           className="text-muted"
                         >
-                          Ray Kickstart
+                          RayKickstart
                         </a>
                       </li>
                       <li>
@@ -159,7 +149,7 @@ const MegaMenu = () => {
                           href="https://rraayy.com/nft/"
                           className="text-muted"
                         >
-                          Ray NFT
+                          RayNFT
                         </a>
                       </li>
                       <li>
@@ -167,7 +157,7 @@ const MegaMenu = () => {
                           href="https://rraayy.com/graph/"
                           className="text-muted"
                         >
-                          Ray Graph
+                          RayGraph
                         </a>
                       </li>
                       <li>
@@ -175,7 +165,7 @@ const MegaMenu = () => {
                           href="https://rraayy.com/data/"
                           className="text-muted"
                         >
-                          Ray Data
+                          RayData
                         </a>
                       </li>
                       <li>
@@ -193,10 +183,10 @@ const MegaMenu = () => {
                       </li>
                       <li>
                         <a
-                          href="https://rraayy.com/tokens-list/"
+                          href="https://rraayy.com/cardano-list/"
                           className="text-muted"
                         >
-                          Tokens List
+                          Cardano List
                         </a>
                       </li>
                     </ul>
@@ -223,7 +213,7 @@ const MegaMenu = () => {
                       </li>
                       <li>
                         <a
-                          href="https://rraayy.com/xray/xdiamond/"
+                          href="https://rraayy.com/xdiamond/"
                           className="text-muted"
                         >
                           XDIAMOND
@@ -388,7 +378,7 @@ const MegaMenu = () => {
               <div className="row">
                 <div className="col-6 col-md-12">
                   <div className="mb-3">
-                    <h6 className="mb-0">Ray Wallet Apps</h6>
+                    <h6 className="mb-0">RayWallet Apps</h6>
                   </div>
                   <div className="mb-4">
                     <div>
@@ -459,7 +449,7 @@ const MegaMenu = () => {
                 </div>
                 <div className="col-6 col-md-12">
                   <div className="mb-3">
-                    <h6 className="mb-0">Ray Stake Apps</h6>
+                    <h6 className="mb-0">RayStake Apps</h6>
                   </div>
                   <div className="mb-4">
                     <div>
@@ -500,8 +490,8 @@ const MegaMenu = () => {
             </div>
             <div className="col-12 col-md-6">
               <div className={style.wallets}>
-                <img src={imgWallet2} alt="Ray Wallet" />
-                <img src={imgWallet1} alt="Ray Wallet" />
+                <img src={imgWallet2} alt="RayWallet" />
+                <img src={imgWallet1} alt="RayWallet" />
               </div>
             </div>
           </div>

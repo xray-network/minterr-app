@@ -165,7 +165,6 @@ const Explorer = ({ search }) => {
       <div className="ray__table">
         <Table
           rowKey="fingerprint"
-          size="small"
           loading={loading}
           dataSource={dataSource}
           columns={columns}

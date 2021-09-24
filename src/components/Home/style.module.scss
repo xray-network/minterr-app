@@ -2,7 +2,7 @@
 
 .block {
   border: 1px solid $border;
-  border-radius: rem(64);
+  border-radius: rem(16);
   overflow: hidden;
   padding: 0 rem(30) rem(80);
   text-align: center;
@@ -30,7 +30,7 @@
   &Link {
     position: absolute;
     top: rem(80);
-    right: rem(100);
+    right: rem(80);
     z-index: 3;
     display: inline-block;
     padding: rem(4) rem(12) rem(3);

@@ -155,6 +155,8 @@ const MintingForm = () => {
 
     const values = form.getFieldsValue()
 
+    console.log(values)
+
     const tokensToMint = values.mint.map((item) => {
       return {
         quantity: item.amount.toString(),
@@ -191,7 +193,7 @@ const MintingForm = () => {
         processedMetadata[item.ticker] = {
           ...itemProcessed,
           ...extra,
-          publisher: "https://minterr.io",
+          // publisher: "https://minterr.io",
         }
       })
       metadata = {
@@ -211,7 +213,7 @@ const MintingForm = () => {
       metadata = {
         0: {
           ...extra,
-          publisher: "https://minterr.io",
+          // publisher: "https://minterr.io",
         },
       }
     }
@@ -264,7 +266,7 @@ const MintingForm = () => {
       message: "No special characters",
     },
     noReservedWords: {
-      pattern: new RegExp(/^(?!(image|ticker|name|amount|publisher)$)/),
+      pattern: donateState ? new RegExp(/^(?!(image|ticker|name|amount)$)/) : new RegExp(/^(?!(image|ticker|name|amount|publisher)$)/),
       message: "No reserved words",
     },
     max64bytes: {
@@ -302,11 +304,11 @@ const MintingForm = () => {
             </li>
             <li>
               <span className="ray__point ray__point--outline">2</span> Send at
-              least 3 <span className="ray__ticker">ADA</span> (or 2{" "}
-              <span className="ray__ticker">ADA</span> if you don't want to
-              donate) to the session address (~1.7{" "}
+              least 3 <span className="ray__ticker">ADA</span> to the session address (or 2{" "}
+              <span className="ray__ticker">ADA</span> if you do not want to
+              white label your token, in this case the Minterr publisher metadata field will be added). ~1.7{" "}
               <span className="ray__ticker">ADA</span> will be sent back with
-              minted tokens)
+              minted tokens.
             </li>
             <li>
               <span className="ray__point ray__point--outline">3</span> Make sure
@@ -481,7 +483,7 @@ const MintingForm = () => {
           form={form}
           layout="vertical"
           requiredMark={false}
-          preserve={true}
+          preserve={false}
           onFinish={mintNft}
         >
           <div className="row">
@@ -550,7 +552,7 @@ const MintingForm = () => {
                 <div className="mb-2">
                   <span className="me-3">
                     <strong>
-                      <span className="ray__point">6</span> Donation
+                      <span className="ray__point">6</span> White Label
                     </strong>
                   </span>
                 </div>
@@ -559,8 +561,7 @@ const MintingForm = () => {
                   checked={donateState}
                   onChange={(e) => setDonateState(e.target.checked)}
                 >
-                  Donate 1 <span className="ray__ticker">ADA</span> for the
-                  further development
+                  Unlock publisher metadata field (requires at least 3 <span className="ray__ticker">ADA</span> on the balance)
                 </Checkbox>
               </div>
             </div>
@@ -569,7 +570,7 @@ const MintingForm = () => {
             <div>
               <Form.Item
                 name="mint"
-              // rules={[{ required: true, message: "Required" }]}
+                rules={[{ required: true, message: "Required" }]}
               >
                 <div className="row">
                   <div className="col-12">
@@ -740,6 +741,36 @@ const MintingForm = () => {
                                       />
                                     </Form.Item>
                                   </Input.Group>
+                                  {!donateState && (
+                                    <Input.Group
+                                      compact
+                                      className={style.assetGroup}
+                                    >
+                                      <Form.Item className={style.assetKey}>
+                                        <Input
+                                          size="large"
+                                          allowClear
+                                          autoComplete="off"
+                                          value="publisher"
+                                          disabled
+                                        />
+                                      </Form.Item>
+                                      <Form.Item
+                                        className={style.assetValue}
+                                        {...field.restField}
+                                        name={[field.name, "publisher"]}
+                                        fieldKey={[field.fieldKey, "publisher"]}
+                                        initialValue="https://minterr.io"
+                                      >
+                                        <Input
+                                          size="large"
+                                          allowClear
+                                          autoComplete="off"
+                                          disabled
+                                        />
+                                      </Form.Item>
+                                    </Input.Group>
+                                  )}
                                   <Form.List name={[field.name, "extra"]}>
                                     {(
                                       extraFields,

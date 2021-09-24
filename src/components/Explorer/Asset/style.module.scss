@@ -6,7 +6,6 @@
   position: relative;
   z-index: 3;
   transform: perspective(1000px);
-  cursor: none;
 
   @media (max-width: $sm-max-width) {
     transform: none !important;
@@ -69,13 +68,11 @@
       }
     }
   }
-
-  
 }
 
 .preview {
   background: #000000;
-  border: 1px solid #000000;
+  border: 1px solid $dark-border;
   border-radius: rem(16);
   color: $white;
   padding: rem(60) 0 rem(70);
@@ -101,16 +98,24 @@
         }
       }
     }
+
+    :global(.link--dashed) {
+      color: $dark !important;
+
+      &:hover {
+        color: $blue-light !important;
+        border-bottom: 1px dashed $blue-light !important;
+      }
+    }
   }
 
   &Inner {
     position: relative;
     z-index: 2;
-    color: $gray-6;
 
     :global(.link--dashed) {
-      color: $gray-6;
-      border-bottom: 1px dashed $gray-6;
+      color: $white;
+      border-bottom: 1px dashed $gray-5;
 
       &:hover {
         color: $blue-light;
