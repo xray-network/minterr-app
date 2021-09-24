@@ -807,7 +807,7 @@ const MintingForm = () => {
                                                       size="large"
                                                       allowClear
                                                       autoComplete="off"
-                                                      placeholder="eg, url, twiter, author..."
+                                                      placeholder="eg, url, twitter, author..."
                                                     />
                                                   </Form.Item>
                                                   <Form.Item
@@ -997,7 +997,7 @@ const MintingForm = () => {
                                 size="large"
                                 allowClear
                                 autoComplete="off"
-                                placeholder="eg, url, twiter, author..."
+                                placeholder="eg, url, twitter, author..."
                               />
                             </Form.Item>
                             <Form.Item
