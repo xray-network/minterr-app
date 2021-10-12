@@ -56,10 +56,10 @@ const Explorer = () => {
   }, [networkBlock])
 
   useEffect(() => {
-    fetch('https://raw.githubusercontent.com/ray-network/cardano-verified-nft-projects/main/list.json')
+    fetch('https://raw.githubusercontent.com/ray-network/cardano-verified/main/nft/list.json')
       .then(response => response.json())
       .then(projectsData => {
-        setProjects(projectsData)
+        setProjects(projectsData?.data || [])
         setLoadingProjects(false)
       })
     // eslint-disable-next-line
@@ -114,7 +114,7 @@ const Explorer = () => {
                     tabIndex="0"
                   >
                     <Link to={`/explorer/search/?policyID=${project.policies[0]}`}>
-                      <img src={`https://raw.githubusercontent.com/ray-network/cardano-verified-nft-projects/main/logo/${project.image}`} alt={project.name} />
+                      <img src={`https://raw.githubusercontent.com/ray-network/cardano-verified/main/nft/example/${project.policies[0]}.png`} alt={project.name} />
                     </Link>
                   </div>
                 ))}
