@@ -426,7 +426,7 @@ const MintingForm = () => {
               <strong className="me-2">
                 <span className="ray__point">2</span> Session Address
               </strong>
-              <Popover content={<QRCode value={address} size="50" />}>
+              <Popover content={<QRCode value={address} size="100" />}>
                 <span className="link">QR Code</span>
               </Popover>
             </div>

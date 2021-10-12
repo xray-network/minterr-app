@@ -27,7 +27,7 @@ const Top = ({ project, rank }) => {
         <div className={style.projectImage}>
           <span className={style.projectImageCount}>#{rank}</span>
           <Link to={`/explorer/search/?policyID=${project.policies[0]}`}>
-            <img src={`https://raw.githubusercontent.com/ray-network/cardano-verified-nft-projects/main/logo/${project.image}`} alt={project.name} />
+            <img src={`https://raw.githubusercontent.com/ray-network/cardano-verified/main/nft/example/${project.policies[0]}.png`} alt={project.name} />
           </Link>
         </div>
         <div className={style.projectInfo}>

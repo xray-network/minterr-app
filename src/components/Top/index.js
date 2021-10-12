@@ -16,10 +16,10 @@ const Top = () => {
   }, [init])
 
   const fetchVotes = () => {
-    fetch('https://raw.githubusercontent.com/ray-network/cardano-verified-nft-projects/main/list.json')
+    fetch('https://raw.githubusercontent.com/ray-network/cardano-verified/main/nft/list.json')
       .then(response => response.json())
       .then(projectsData => {
-        const voteAddresses = projectsData.map((item) => item.voteAddress)
+        const voteAddresses = projectsData?.data?.map((item) => item.voteAddress) || []
         Cardano.explorer.query({
           query: `
             query paymentAddressSummary {
@@ -36,6 +36,31 @@ const Top = () => {
               }
             }
           `
+          // TODO: change current balance to outputs history
+          // query: `
+          //   query tx {
+          //     transactions(where: {
+          //       outputs: { 
+          //         address: {
+          //           _eq: ""
+          //         }
+          //       }
+          //     }) {
+          //       hash
+          //       block {
+          //         number
+          //       }
+          //       outputs (where: {
+          //         address: {
+          //           _eq: ""
+          //         }
+          //       }) {
+          //         address
+          //         value
+          //       }
+          //     }
+          //   }
+          // `
         })
           .then((result) => {
             const paymentAddresses = result?.data?.data?.paymentAddresses || []
@@ -45,8 +70,7 @@ const Top = () => {
               paymentAddressesResults[item.address] = ada.quantity || 0
             })
             setProjects(
-              projectsData
-                .map((item) => {
+              projectsData?.data?.map((item) => {
                   return {
                     ...item,
                     votes: (parseInt(parseInt(paymentAddressesResults[item.voteAddress]) / 1000000 * 10)).toString(),
