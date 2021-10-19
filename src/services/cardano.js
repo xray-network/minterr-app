@@ -11,8 +11,8 @@ const Cardano = new CardanoWeb3({
   explorer: {
     url:
       network === "testnet"
-        ? "https://api-testnet-graphql.rraayy.com"
-        : "https://api-mainnet-graphql.rraayy.com",
+        ? "https://api-testnet-graphql.raynet.work"
+        : "https://api-mainnet-graphql.raynet.work",
     responseHandler: (response) => {
       const { data } = response
       if (data.errors) {
