@@ -2,7 +2,7 @@
 $white: #fff;
 $black: #0c0c1b;
 $blue: #1940ed;
-$blue-light: #4171eb;
+$blue-light: #719aff;
 $blue-dark: #1a39c5;
 $yellow: #ff0;
 $orange: #faad15;
@@ -13,7 +13,7 @@ $green: #3fcb9b;
 
 // light grays
 $gray-1: #f2f4f8;
-$gray-2: #E8E8F0;
+$gray-2: #e8e8f0;
 $gray-3: #dddfe2;
 $gray-4: #9aa0b6;
 $gray-5: #7b8199;
@@ -23,16 +23,16 @@ $gray-6: #595c97;
 $dark-gray-1: #b8b8db;
 $dark-gray-2: #8484ad;
 $dark-gray-3: #55556d;
-$dark-gray-4: #323248;
-$dark-gray-5: #23232D;
+$dark-gray-4: #363647;
+$dark-gray-5: #23232d;
 $dark-gray-6: #0c0c1b;
 
 // warm colors
-$pastel-1: #f8f8f8;
+$pastel-1: #F8F3F7;
 
 $text: $black;
-$border: $gray-2;
-$dark-border: #272639;
+$border: $gray-3;
+$dark-border: #3e3c4d;
 
 // Accent colors
 $default: $gray-4;
@@ -45,13 +45,14 @@ $danger: $red;
 $light: $gray-1;
 $dark: $black;
 $ant-blue: #40a9ff;
+$ant-blue-dark: #444ba7;
 $ant-red: #ff4d4f;
 
 // Font Family
 // $base-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
 // 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
 // 'Noto Color Emoji';
-$base-font-family: "Circular Local", sans-serif;
+$base-font-family: "Inter", sans-serif;
 
 // Font Size
 $base-font-size: 18 !default;
