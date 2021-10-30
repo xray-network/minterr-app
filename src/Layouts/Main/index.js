@@ -13,8 +13,8 @@ const MainLayout = ({ children }) => {
   return (
     <div className={style.layout}>
       <Helmet titleTemplate="%s | Minterr" title="Mint Cardano Tokens">
-        <link rel="preload" href="/resources/font/circular.css" as="style" />
-        <link href="/resources/font/circular.css" rel="stylesheet" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
         <meta property="og:url" content="https://minterr.io" />
         <meta
