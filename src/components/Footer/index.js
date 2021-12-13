@@ -48,7 +48,7 @@ const Footer = () => {
                   <ul className="list-unstyled mb-4">
                     <li>
                       <a
-                        href="https://rraayy.com/wallet/"
+                        href="https://raywallet.io"
                         className="text-muted"
                       >
                         RayWallet
@@ -56,49 +56,44 @@ const Footer = () => {
                     </li>
                     <li>
                       <a
-                        href="https://rraayy.com/stake/"
+                        href="https://raystake.io"
                         className="text-muted"
                       >
                         RayStake
                       </a>
                     </li>
                     <li>
-                      <a href="https://rraayy.com/swap/" className="text-muted">
+                      <a href="https://rayswap.io" className="text-muted">
                         RaySwap
                       </a>
                     </li>
                     <li>
                       <a
-                        href="https://rraayy.com/kickstart/"
+                        href="https://raypad.io"
                         className="text-muted"
                       >
-                        RayKickstart
+                        RayPad
                       </a>
                     </li>
                     <li>
                       <a
-                        href="https://rraayy.com/nft/"
+                        href="https://minterr.io"
                         className="text-muted"
                       >
-                        RayNFT
+                        Minterr
                       </a>
                     </li>
                     <li>
                       <a
-                        href="https://rraayy.com/graph/"
+                        href="https://raygraph.io"
                         className="text-muted"
                       >
                         RayGraph
                       </a>
                     </li>
                     <li>
-                      <a href="https://rraayy.com/data/" className="text-muted">
+                      <a href="https://raydata.io" className="text-muted">
                         RayData
-                      </a>
-                    </li>
-                    <li>
-                      <a href="https://minterr.io/" className="text-muted">
-                        Minterr.io
                       </a>
                     </li>
                     <li>
@@ -111,7 +106,7 @@ const Footer = () => {
                     </li>
                     <li>
                       <a
-                        href="https://rraayy.com/cardano-list/"
+                        href="https://cardanolist.io"
                         className="text-muted"
                       >
                         Cardano List
@@ -129,7 +124,7 @@ const Footer = () => {
                   <ul className="list-unstyled mb-5">
                     <li>
                       <a
-                        href="https://rraayy.com/xray/"
+                        href="https://raynetwork.io/xray/"
                         className="text-muted"
                       >
                         XRAY Token
@@ -137,7 +132,7 @@ const Footer = () => {
                     </li>
                     <li>
                       <a
-                        href="https://rraayy.com/xdiamond/"
+                        href="https://raynetwork.io/xdiamond/"
                         className="text-muted"
                       >
                         XDIAMOND
@@ -145,20 +140,20 @@ const Footer = () => {
                     </li>
                     <li>
                       <a
-                        href="https://rraayy.com/roadmap/"
+                        href="https://raynetwork.io/roadmap/"
                         className="text-muted"
                       >
                         Roadmap & Updates
                       </a>
                     </li>
                     <li>
-                      <a href="https://rraayy.com/wiki/" className="text-muted">
+                      <a href="https://raynetwork.io/wiki/" className="text-muted">
                         Wiki
                       </a>
                     </li>
                     <li>
                       <a
-                        href="https://status.rraayy.com/"
+                        href="https://status.raynetwork.io/"
                         className="text-muted"
                       >
                         Status
@@ -166,7 +161,7 @@ const Footer = () => {
                     </li>
                     <li>
                       <a
-                        href="https://rraayy.com/about/"
+                        href="https://raynetwork.io/about/"
                         className="text-muted"
                       >
                         About
@@ -174,20 +169,20 @@ const Footer = () => {
                     </li>
                     <li>
                       <a
-                        href="https://rraayy.com/whitepaper/"
+                        href="https://raynetwork.io/whitepaper/"
                         className="text-muted"
                       >
                         Whitepaper
                       </a>
                     </li>
                     <li>
-                      <a href="https://docs.rraayy.com/" className="text-muted">
+                      <a href="https://docs.raynetwork.io/" className="text-muted">
                         Docs
                       </a>
                     </li>
                     <li>
                       <a
-                        href="https://rraayy.com/audit/"
+                        href="https://raynetwork.io/audit/"
                         className="text-muted"
                       >
                         Audit
@@ -195,7 +190,7 @@ const Footer = () => {
                     </li>
                     <li>
                       <a
-                        href="https://rraayy.com/terms-of-use/"
+                        href="https://raynetwork.io/terms-of-use/"
                         className="text-muted"
                       >
                         Terms of Use
@@ -305,7 +300,7 @@ const Footer = () => {
                       </Tooltip>
                       <Tooltip title="Chrome Extension">
                         <a
-                          href="https://rraayy.com/wallet/"
+                          href="https://raywallet.io"
                           className={style.footerApp}
                         >
                           <span className="ray__icon ray__icon--22">
@@ -315,7 +310,7 @@ const Footer = () => {
                       </Tooltip>
                       <Tooltip title="macOS App">
                         <a
-                          href="https://rraayy.com/wallet/"
+                          href="https://raywallet.io"
                           className={style.footerApp}
                         >
                           <span className="ray__icon ray__icon--22">
@@ -325,7 +320,7 @@ const Footer = () => {
                       </Tooltip>
                       <Tooltip title="Windows App">
                         <a
-                          href="https://rraayy.com/wallet/"
+                          href="https://raywallet.io"
                           className={style.footerApp}
                         >
                           <span className="ray__icon ray__icon--22">
@@ -337,7 +332,7 @@ const Footer = () => {
                     <div>
                       <Tooltip title="iOS App">
                         <a
-                          href="https://rraayy.com/wallet/"
+                          href="https://raywallet.io"
                           className={style.footerApp}
                         >
                           <span className="ray__icon ray__icon--22">
@@ -347,7 +342,7 @@ const Footer = () => {
                       </Tooltip>
                       <Tooltip title="Android App">
                         <a
-                          href="https://rraayy.com/wallet/"
+                          href="https://raywallet.io"
                           className={style.footerApp}
                         >
                           <span className="ray__icon ray__icon--22">
@@ -366,7 +361,7 @@ const Footer = () => {
                     <div>
                       <Tooltip title="Web Version">
                         <a
-                          href="https://rraayy.com/stake/"
+                          href="https://raystake.io"
                           className={style.footerApp}
                         >
                           <span className="ray__icon ray__icon--22">
@@ -376,7 +371,7 @@ const Footer = () => {
                       </Tooltip>
                       <Tooltip title="iOS App">
                         <a
-                          href="https://rraayy.com/stake/"
+                          href="https://raystake.io"
                           className={style.footerApp}
                         >
                           <span className="ray__icon ray__icon--22">
@@ -386,7 +381,7 @@ const Footer = () => {
                       </Tooltip>
                       <Tooltip title="Android App">
                         <a
-                          href="https://rraayy.com/stake/"
+                          href="https://raystake.io"
                           className={style.footerApp}
                         >
                           <span className="ray__icon ray__icon--22">
@@ -417,7 +412,7 @@ const Footer = () => {
           <div className="mb-2">
             <a
               className={style.footerRay}
-              href="https://rraayy.com/"
+              href="https://raynetwork.io/"
               rel="noopener noreferrer"
               target="_blank"
             >

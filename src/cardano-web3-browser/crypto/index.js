@@ -1,8 +1,8 @@
 /**
  * The MIT License (MIT)
  *
- * Copyright (c) 2021, Ray Network <hello@rraayy.com>
- * https://rraayy.com, https://raywallet.io
+ * Copyright (c) 2021, Ray Network <hello@raynetwork.io>
+ * https://raynetwork.io, https://raywallet.io
  *
  * Copyright (c) 2018 EMURGO
  * Copyright (c) 2021 Tango-crypto
