@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    siteUrl: "https://minterr.org",
+    siteUrl: "https://minterr.io",
     title: "Mint Cardano Tokens | Minterr",
   },
   plugins: [

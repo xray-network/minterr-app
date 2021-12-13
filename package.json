@@ -1,10 +1,10 @@
 {
-  "name": "minterr",
+  "name": "minterr-io",
   "version": "1.0.0",
   "private": true,
   "description": "Minterr",
   "license": "MIT",
-  "author": "Sellpixels Robot",
+  "author": "Ray Network",
   "keywords": [
     "gatsby"
   ],
@@ -20,10 +20,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ray-network/minterr"
+    "url": "https://github.com/ray-network/minterr-io"
   },
   "bugs": {
-    "url": "https://github.com/ray-network/minterr/issues"
+    "url": "https://github.com/ray-network/minterr-io/issues"
   },
   "dependencies": {
     "@ant-design/icons": "^4.6.2",
