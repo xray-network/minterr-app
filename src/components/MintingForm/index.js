@@ -43,7 +43,7 @@ const MintingForm = () => {
   const addressState = useSelector((state) => state.settings.addressState)
   const networkSlot = useSelector((state) => state.settings.networkSlot)
   const policyId = useSelector((state) => state.settings.policyId)
-  const script = useSelector((state) => state.settings.script)
+  const scriptHash = useSelector((state) => state.settings.scriptHash)
   const [restore, setRestore] = useState(false)
   const [isMnemonicValid, setIsMnemonicValid] = useState(true)
   const [mnemonicToRestore, setMnemonicToRestore] = useState("")
@@ -397,7 +397,7 @@ const MintingForm = () => {
                     PolicyID (no timelocks): {policyId}
                   </div>
                   <div className="text-muted mt-0 text-break">
-                    Script Hash: {script}
+                    Script Hash: {scriptHash}
                   </div>
                 </div>
               )}

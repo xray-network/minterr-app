@@ -150,6 +150,7 @@ const Crypto = function Crypto(pkg, settings) {
           Buffer.from(entropy, "hex"),
           Buffer.from("")
         )
+
         const privateKey = rootKey
           .derive(harden(1852))
           .derive(harden(1815))
@@ -739,6 +740,7 @@ const Crypto = function Crypto(pkg, settings) {
 
       return {
         script,
+        scriptHash: Buffer.from(keyHash.to_bytes()).toString('hex'),
         policyId,
       }
     }

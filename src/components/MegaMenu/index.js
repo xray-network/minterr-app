@@ -96,7 +96,7 @@ const MegaMenu = () => {
       </div>
       <div className="ray__block pt-3 mb-0">
         <div className="mb-5">
-          <div className={style.footerTop}>
+          <div>
             <div className="row">
               <div className="col-12 col-sm-8 mb-3">
                 <div className={`${style.footerLists} row`}>

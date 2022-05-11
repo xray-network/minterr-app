@@ -28,6 +28,7 @@ const initialState = {
   address: "",
   policyId: "",
   script: "",
+  scriptHash: "",
   addressState: {},
   addressStateLoading: false,
   transaction: "",

@@ -21,7 +21,8 @@ export function* LOAD_APP({ mnemonic }) {
     1,
     [0]
   )
-  const { policyId, script } = yield Cardano.crypto.generatePolicyForPubkey(
+
+  const { policyId, script, scriptHash } = yield Cardano.crypto.generatePolicyForPubkey(
     accountKeys.publicKey
   )
 
@@ -57,6 +58,12 @@ export function* LOAD_APP({ mnemonic }) {
     type: "settings/SET_STATE",
     payload: {
       script,
+    },
+  })
+  yield put({
+    type: "settings/SET_STATE",
+    payload: {
+      scriptHash,
     },
   })
 

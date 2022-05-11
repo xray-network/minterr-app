@@ -43,7 +43,7 @@ const Image = ({ nft, minted, assetName, inViewport, forwardedRef }) => {
 
   return (
     <div
-      className={`${style.image} ${isNotNft ? style.imageFungible : ""}`}
+      className={`${style.image}`}
       ref={forwardedRef}
     >
       {type === "image/gif" && <span className={style.type}>GIF</span>}
