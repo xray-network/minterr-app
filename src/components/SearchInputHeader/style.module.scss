@@ -27,19 +27,20 @@
     @media (max-width: $md-max-width) {
       height: rem(40) !important;
     }
+  }
 
-    &-group-addon {
-      background: transparent !important;
-      border: none;
-    }
+  :global(.ant-input-group-addon) {
+    background: transparent !important;
+    border: none;
+  }
 
-    &-affix-wrapper {
-      background: transparent !important;
-      border: none;
-      box-shadow: none;
-      outline: none;
-      padding: 0 !important;
-    }
+
+  :global(.ant-input-affix-wrapper) {
+    background: transparent !important;
+    border: none;
+    box-shadow: none;
+    outline: none;
+    padding: 0 !important;
   }
 
   :global(.ant-btn) {

@@ -67,7 +67,7 @@ $shadow-ant: 0 10px 35px -5px rgba(0, 0, 0, 0.15);
 
 // Convert value of rem() sass mixin function
 @function rem($px, $base: $base-font-size) {
-  @return #{floor(($px/$base) * 100) / 100}rem; // to REMs
+  @return #{calc(floor(calc($px/$base) * 100) / 100)}rem; // to REMs
   // @return #{$px}px; // to PX's
 }
 

@@ -1,33 +1,31 @@
 @import "@/styles/mixins";
 
 .input {
-  :global(.ant-input) {
-    &-lg {
-      font-size: rem(21);
+  :global(.ant-input-lg) {
+    font-size: rem(21);
+  }
+
+  :global(.ant-input-group-addon) {
+    background: none;
+  }
+
+  :global(.ant-input-affix-wrapper) {
+    border-radius: 50px 0 0 50px !important;
+    background: $pastel-1 !important;
+    border-color: transparent;
+
+    input {
+      background: none !important;
     }
+  }
 
-    &-group-addon {
-      background: none;
-    }
+  :global(.ant-input-affix-wrapper-lg) {
+    height: rem(55);
+    padding: rem(8) rem(15);
+  }
 
-    &-affix-wrapper {
-      border-radius: 50px 0 0 50px !important;
-      background: $pastel-1 !important;
-      border-color: transparent;
-
-      input {
-        background: none !important;
-      }
-
-      &-lg {
-        height: rem(55);
-        padding: rem(8) rem(15);
-      }
-    }
-
-    &-suffix {
-      margin-right: rem(20);
-    }
+  :global(.ant-input-suffix) {
+    margin-right: rem(20);
   }
 
   :global(.ant-input-search-button) {
@@ -58,10 +56,8 @@
       color: $dark;
     }
 
-    :global(.ant-input) {
-      &-affix-wrapper {
-        background: lighten($dark-gray-5, 5%) !important;
-      }
+    :global(.ant-input-affix-wrapper) {
+      background: lighten($dark-gray-5, 5%) !important;
     }
   }
 }

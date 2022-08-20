@@ -4,14 +4,9 @@ module.exports = {
     title: "Mint Cardano Tokens | Minterr",
   },
   plugins: [
+    "gatsby-plugin-sass",
     "gatsby-plugin-sitemap",
     `gatsby-plugin-react-helmet`,
-    {
-      resolve: `gatsby-plugin-sass`,
-      options: {
-        implementation: require("node-sass"),
-      },
-    },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
